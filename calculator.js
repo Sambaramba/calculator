@@ -23,3 +23,34 @@ let numberOne;
 let operator;
 let numberTwo;
 
+/*THINK OPERATOR PARAMETER HAS TO BE A FUNCTION*/
+
+function operate(numberOne, operator, numberTwo) {
+
+     let value = "";
+
+    switch (operator) {
+        
+        case "+": 
+            value = add(numberOne, numberTwo);
+            break;
+
+        case "-": 
+            value = subtract(numberOne, numberTwo);
+            break;
+
+        case "*": 
+            value = multiply(numberOne, numberTwo);
+            break;
+
+        case "/": 
+            value = divide(numberOne, numberTwo);
+            break;
+
+        default: console.log("That is not a arthmetic operator");
+
+    }
+    return value;
+}
+
+
