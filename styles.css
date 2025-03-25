@@ -27,3 +27,22 @@ body {
     height: 20rem;
     gap: 1rem;
 }
+
+#button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#right-buttons-container {
+    width: 20%;
+}
+
+button {
+    padding: 0.5rem 1rem;
+}
+
+#ce {
+    padding: 0.25rem;
+}
