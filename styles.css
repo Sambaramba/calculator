@@ -28,6 +28,12 @@ body {
     gap: 1rem;
 }
 
+#display-container {
+    width: 100%;
+    display: flex;
+    border: 0.25rem solid grey;
+}
+
 #button-container {
     display: flex;
     align-items: center;
@@ -45,4 +51,10 @@ button {
 
 #ce {
     padding: 0.25rem;
+}
+
+#display-text {
+    border: black solid 0.25rem;
+    width: 100%;
+    text-align: right;
 }
