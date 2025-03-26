@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: 2.5rem;
 }
 
 html {
@@ -25,7 +26,7 @@ body {
     padding: 1rem;
     padding-bottom: 4rem;
     width: 40rem;
-    height: 45rem;
+    /* height: 45rem; */
     gap: 1.5rem;
     margin: 2rem auto;
     background-color: grey;
@@ -47,6 +48,7 @@ body {
     border: black solid 0.25rem;
     width: 100%;
     text-align: right;
+    padding: 2rem 1rem;
 }
 
 /*BUTTON CONTAINERS AND BUTTON STYLES*/
@@ -90,6 +92,8 @@ body {
     gap: 1rem;
     padding: 1rem
 }
+
+/*COUPLE OF BUTTONS ARE LESS WIDE-DUE TO SIZE OF CONTENT*/
 
 button {
     padding: 2rem 2.5rem;
