@@ -47,10 +47,15 @@ body {
 
 button {
     padding: 0.5rem 1rem;
+    border-radius: 50%;
+    border: 0.25rem solid grey;
 }
 
 #ce {
     padding: 0.25rem;
+    border-radius: 10% 0 0 10%;
+    border: 0.25rem solid rgb(239, 132, 17);
+    background-color: rgb(240, 165, 96);
 }
 
 #display-text {
