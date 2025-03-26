@@ -23,9 +23,10 @@ body {
     border: 1px solid black;
     border-radius: 1rem;
     padding: 1rem;
-    width: 20rem;
-    height: 20rem;
+    width: 40rem;
+    height: 45rem;
     gap: 1rem;
+    margin: 2rem auto;
 }
 
 #display-container {
