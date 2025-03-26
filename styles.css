@@ -31,7 +31,7 @@ body {
 
 #display-container {
     width: 100%;
-    height: 10%;
+    height: 20%;
     display: flex;
     /* border: 0.25rem solid grey; */
     border-radius: 1rem;
@@ -64,7 +64,7 @@ button {
 }
 
 #ce {
-    padding: 0.25rem;
+    /* padding: 0.25rem; */
     border-radius: 10% 0 0 10%;
     border: 0.25rem solid rgb(239, 132, 17);
     background-color: rgb(240, 165, 96);
