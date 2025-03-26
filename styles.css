@@ -23,10 +23,12 @@ body {
     border: 1px solid black;
     border-radius: 1rem;
     padding: 1rem;
+    padding-bottom: 4rem;
     width: 40rem;
     height: 45rem;
-    gap: 1rem;
+    gap: 1.5rem;
     margin: 2rem auto;
+    background-color: grey;
 }
 
 #display-container {
@@ -51,15 +53,24 @@ body {
 #left-buttons-container {
     width: 75%;
     height: 100%;
+    background-color: beige;
+    border-radius: 1rem;
 }
 
 #right-buttons-container {
     width: 25%;
     height: 100%;
+    background-color: beige;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem
 }
 
 button {
-    padding: 3rem 4rem;
+    padding: 2rem 2.5rem;
     border-radius: 50%;
     border: 0.25rem solid grey;
 }
