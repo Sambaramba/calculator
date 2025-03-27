@@ -49,6 +49,7 @@ body {
     width: 100%;
     text-align: right;
     padding: 2rem 1rem;
+    border-radius: 0 1rem 1rem 0;
 }
 
 /*BUTTON CONTAINERS AND BUTTON STYLES*/
@@ -104,9 +105,10 @@ button {
 }
 
 #ce-button {
-    padding: 2rem;
-    border-radius: 10% 0 0 10%;
+    /* padding: 2rem; */
+    border-radius: 1rem 0 0 1rem;
     border: 0.25rem solid rgb(239, 132, 17);
     background-color: rgb(240, 165, 96);
     height: 100%;
+    width: 7rem;
 }
