@@ -101,7 +101,7 @@ button {
     border: 0.25rem solid grey;
 }
 
-#ce {
+#ce-button {
     padding: 2rem;
     border-radius: 10% 0 0 10%;
     border: 0.25rem solid rgb(239, 132, 17);
