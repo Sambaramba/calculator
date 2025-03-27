@@ -1,5 +1,4 @@
 /*TODO LIST*/
-/*create button hover styles*/
 /*add shading or highlights to give 3d look*/
 /*add some transition colors in...at least for background*/
 
@@ -57,6 +56,14 @@ html {
 
 /* body {
     
+} */
+
+.bold {
+    font-weight: bold;
+}
+
+/* .large {
+    font-size: 3rem;
 } */
 
 #calculator-container {
