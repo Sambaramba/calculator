@@ -1,3 +1,29 @@
+/*TODO LIST*/
+/*add custom color properties to learn*/
+/*add color to buttons and choose coloring of calculator*/
+/*create button hover styles*/
+/*add shading or highlights to give 3d look*/
+/*add some transition colors in...at least for background*/
+
+/*CUSTOM PROPERTIES*/
+
+/*COLORS*/
+
+:root {
+    --purple: hsl(263, 86%, 42%);
+    --green: hsl(114, 78%, 34%);
+    --light-blue: hsl(204, 88%, 75%);
+}
+
+.green {
+    background-color: var(--green);
+}
+
+.light-blue {
+    background-color: var(--light-blue);
+}
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -29,7 +55,7 @@ body {
     height: 45rem;
     gap: 1.5rem;
     margin: 2rem auto;
-    background-color: grey;
+    background-color: var(--purple);
 }
 
 /*DISPLAY CONTAINER STYLES*/
@@ -45,7 +71,7 @@ body {
 }
 
 #display-text {
-    border: black solid 0.25rem;
+    border: var(--purple) solid 0.25rem;
     width: 100%;
     text-align: right;
     padding: 2rem 1rem;
@@ -99,7 +125,7 @@ body {
 button {
     /* padding: 2rem 2.5rem; */
     border-radius: 50%;
-    border: 0.25rem solid grey;
+    border: 0.25rem solid var(--purple);
     width: 6rem;
     height: 6rem
 }
