@@ -1,6 +1,4 @@
 /*TODO LIST*/
-/*add custom color properties to learn*/
-/*add color to buttons and choose coloring of calculator*/
 /*create button hover styles*/
 /*add shading or highlights to give 3d look*/
 /*add some transition colors in...at least for background*/
@@ -13,6 +11,9 @@
     --green: hsl(114, 78%, 34%);
     --light-blue: hsl(204, 88%, 75%);
     --light-yellow: hsl(59, 93%, 74%);
+    --light-orange: hsl(29, 82.8%, 65.9%);
+    --bright-orange:  hsl(31, 87%, 50%);
+    --red: hsl(6, 74%, 49%);
 }
 
 /*color classes*/
@@ -33,6 +34,12 @@
     background-color: var(--light-yellow);
 }
 
+.orange {
+    background-color: var(--bright-orange);
+}
+
+
+
 
 * {
     box-sizing: border-box;
@@ -45,12 +52,12 @@ html {
     font-size: 16px;
     width: 100vw;
     height: 100vh;
+    background: linear-gradient(45deg, rgb(174, 182, 228), rgb(247, 255, 222));
 }
 
-body {
-    width: 100vw;
-    height: 100vh;
-}
+/* body {
+    
+} */
 
 #calculator-container {
     display: flex;
@@ -143,4 +150,33 @@ button {
     background-color: rgb(240, 165, 96);
     height: 100%;
     width: 7rem;
+}
+
+
+/*HOVER STYLES*/
+
+.green:hover,
+.light-blue:hover {
+    background-color: var(--bright-orange);
+}
+
+
+#ce-button:hover {
+    background-color: var(--red);
+}
+
+
+/*ACTIVE STYLES*/
+
+.green:active {
+    background-color: var(--green);
+}
+
+.light-blue:active {
+    background-color: var(--light-blue);
+}
+
+
+#ce-button:active {
+    background-color: var(--light-orange);
 }
