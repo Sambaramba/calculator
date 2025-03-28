@@ -7,11 +7,13 @@
 
 :root {
     --purple: hsl(263, 86%, 42%);
+    --light-green: hsl(114, 43%, 62%);
     --green: hsl(114, 78%, 34%);
     --light-blue: hsl(204, 88%, 75%);
     --light-yellow: hsl(59, 93%, 74%);
+    --pale-orange: hsl(30, 81%, 86%);
     --light-orange: hsl(29, 82.8%, 65.9%);
-    --bright-orange:  hsl(31, 87%, 50%);
+    --bright-orange:  hsl(23, 94%, 43%);
     --red: hsl(6, 74%, 49%);
 }
 
@@ -176,7 +178,7 @@ button {
     left: 0;
     width: 100%; /* Adjust the width of the crescent */
     height: 100%; /* Adjust the height of the crescent */
-    background-color: #fff; /* Light color */
+    background-color: var(--light-green); /* Light color */
     border-radius: 50%; /* Full circle */
     z-index: -1; /* Ensure it's behind the button */
   }
@@ -199,6 +201,31 @@ button {
     position:relative;
     z-index: 1;
   }
+
+  #ce-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--pale-orange);
+    /* border-radius: 50%; */
+    z-index: -1;
+  }
+
+  #ce-button::after {
+    content: '';
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 100%;
+    height: 95%;
+    background-color: var(--light-orange);
+    border-radius: 1rem 0 0 1rem;
+    z-index: -1; /* Ensure it's behind the button */
+  }
+
 
 
 /*HOVER STYLES*/
