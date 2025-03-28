@@ -7,13 +7,17 @@
 
 :root {
     --purple: hsl(263, 86%, 42%);
-    --light-green: hsl(114, 43%, 62%);
+    --green-highlight: hsl(114, 43%, 62%);
     --green: hsl(114, 78%, 34%);
+    --bright-green: hsl(109, 96%, 49%);
+    --blue-highlight: hsl(192, 93%, 66%);
     --light-blue: hsl(204, 88%, 75%);
+    --bright-blue: hsl(192, 96%, 49%);
     --light-yellow: hsl(59, 93%, 74%);
-    --pale-orange: hsl(30, 81%, 86%);
+    --orange-highlight: hsl(30, 81%, 86%);
     --light-orange: hsl(29, 82.8%, 65.9%);
-    --bright-orange:  hsl(23, 94%, 43%);
+    --bright-orange:  hsl(31, 87.4%, 50.2%);
+    --red-highlight: hsl(6, 88%, 87%);
     --red: hsl(6, 74%, 49%);
 }
 
@@ -178,7 +182,7 @@ button {
     left: 0;
     width: 100%; /* Adjust the width of the crescent */
     height: 100%; /* Adjust the height of the crescent */
-    background-color: var(--light-green); /* Light color */
+    background-color: var(--green-highlight); /* Light color */
     border-radius: 50%; /* Full circle */
     z-index: -1; /* Ensure it's behind the button */
   }
@@ -209,7 +213,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--pale-orange);
+    background-color: var(--orange-highlight);
     /* border-radius: 50%; */
     z-index: -1;
   }
@@ -230,13 +234,24 @@ button {
 
 /*HOVER STYLES*/
 
-.green:hover,
+/*TODO: */
+/*want hover for only blue, equals and ce buttons*/
+
+.green:hover::before {
+    background-color: var(--orange-highlight);
+}
+
+.green:hover::after,
 .light-blue:hover {
     background-color: var(--bright-orange);
 }
 
 
-#ce-button:hover {
+
+#ce-button:hover::before {
+    background-color: var(red-highlight);
+}
+#ce-button:hover::after {
     background-color: var(--red);
 }
 
