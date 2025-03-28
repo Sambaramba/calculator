@@ -147,7 +147,12 @@ button {
     border-radius: 50%;
     border: 0.25rem solid var(--purple);
     width: 6rem;
-    height: 6rem
+    height: 6rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    z-index: 1;
+    
 }
 
 #ce-button {
@@ -158,6 +163,33 @@ button {
     height: 100%;
     width: 7rem;
 }
+
+/*shading styles*/
+
+.green::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Adjust the width of the crescent */
+    height: 100%; /* Adjust the height of the crescent */
+    background-color: #fff; /* Light color */
+    border-radius: 50%; /* Full circle */
+    z-index: -1; /* Ensure it's behind the button */
+  }
+  
+  /* Clipping the crescent effect */
+  .green::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%; /* Position it to overlap the top-left circle */
+    width: 50%; /* Make the second circle smaller */
+    height: 50%;
+    background-color: #333; /* Same as the button background to "cut out" the crescent */
+    border-radius: 50%; /* Make the second circle a full circle */
+    z-index: -1; /* Ensure it's behind the button */
+  }
 
 
 /*HOVER STYLES*/
