@@ -178,19 +178,31 @@ button {
 
 /*shading styles*/
 
-.green::before {
+button::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--green-highlight);
-    border-radius: 50%;
     z-index: -1;
+}
+
+.circle-button::before {
+    border-radius: 50%;
+}
+
+.green::before {
+    background-color: var(--green-highlight);
   }
+
+#ce-button::before {
+    background-color: var(--orange-highlight);
+  }
+
   
-  /* Clipping the crescent effect */
+  /*AFTER STYLES FOR THE CRESENT EFFECT */
+
   .green::after {
     content: '';
     position: absolute;
@@ -204,22 +216,7 @@ button {
     z-index: -1;
   }
 
-  .button {
-    position:relative;
-    z-index: 1;
-  }
 
-  #ce-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--orange-highlight);
-    /* border-radius: 50%; */
-    z-index: -1;
-  }
 
   #ce-button::after {
     content: '';
