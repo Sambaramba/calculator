@@ -146,20 +146,23 @@ html {
     padding: 1rem
 }
 
-/*COUPLE OF BUTTONS ARE LESS WIDE-DUE TO SIZE OF CONTENT*/
 
 button {
     /* padding: 2rem 2.5rem; */
-    border-radius: 50%;
     border: 0.25rem solid var(--purple);
-    width: 6rem;
-    height: 6rem;
     position: relative;
     cursor: pointer;
     transition: background-color 0.2s ease;
     z-index: 2;
     overflow: hidden;
     
+}
+
+.circle-button {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+
 }
 
 
