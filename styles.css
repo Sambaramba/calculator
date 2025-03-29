@@ -10,8 +10,8 @@
     --green-highlight: hsl(115, 51%, 57%);
     --green: hsl(114, 78%, 34%);
     --bright-green: hsl(109, 96%, 49%);
-    --blue-highlight: hsl(192, 93%, 66%);
-    --light-blue: hsl(204, 88%, 75%);
+    --blue-highlight: hsl(192, 91%, 78%);
+    --blue: hsl(204, 88%, 75%);
     --bright-blue: hsl(192, 96%, 49%);
     --light-yellow: hsl(59, 93%, 74%);
     --orange-highlight: hsl(30, 81%, 86%);
@@ -31,8 +31,8 @@
     background-color: var(--green);
 }
 
-.light-blue {
-    background-color: var(--light-blue);
+.blue {
+    background-color: var(--blue);
 }
 
 .light-yellow {
@@ -178,6 +178,8 @@ button {
 
 /*shading styles*/
 
+/*BEFORE BUTTON STYLES*/
+
 button::before {
     content: '';
     position: absolute;
@@ -192,6 +194,10 @@ button::before {
     border-radius: 50%;
 }
 
+.blue::before {
+    background-color: var(--blue-highlight);
+}
+
 .green::before {
     background-color: var(--green-highlight);
   }
@@ -201,7 +207,7 @@ button::before {
   }
 
   
-  /*AFTER STYLES FOR THE CRESENT EFFECT */
+  /*AFTER BUTTON STYLES FOR THE CRESENT EFFECT */
 
   button::after {
     content: '';
@@ -222,6 +228,10 @@ button::before {
     background-color: var(--green);
   }
 
+  .blue::after {
+    background-color: var(--blue);
+  }
+
 
 
   #ce-button::after {
@@ -237,12 +247,13 @@ button::before {
 /*TODO: */
 /*want hover for only blue, equals and ce buttons*/
 
-.green:hover::before {
+.green:hover::before,
+.blue:hover::before {
     background-color: var(--orange-highlight);
 }
 
 .green:hover::after,
-.light-blue:hover {
+.blue:hover::after {
     background-color: var(--bright-orange);
 }
 
@@ -263,7 +274,7 @@ button::before {
 }
 
 .light-blue:active {
-    background-color: var(--light-blue);
+    background-color: var(--blue);
 }
 
 
