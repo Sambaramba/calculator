@@ -3,9 +3,9 @@
 
 :root {
     --purple: hsl(263, 86%, 42%);
-    --green-highlight: hsl(107, 54%, 54%);
-    --green: hsl(114, 78%, 34%);
-    --bright-green: hsl(109, 96%, 49%);
+    --green-highlight: hsl(115, 72%, 63%);
+    --green: hsl(118, 80%, 44%);
+    /* --bright-green: hsl(109, 43%, 36%); */
     --blue-highlight: hsl(192, 83%, 84%);
     --blue: hsl(204, 88%, 75%);
     --bright-blue: hsl(192, 96%, 49%);
