@@ -12,6 +12,7 @@
     --light-yellow: hsl(59, 93%, 74%);
     --orange-highlight: hsl(30, 81%, 86%);
     --light-orange: hsl(29, 82.8%, 65.9%);
+    --bright-orange-highlight: hsl(25, 97%, 61%);
     --bright-orange:  hsl(19, 98%, 50%);
     --red-highlight: hsl(6, 76%, 65%);
     --red: hsl(6, 74%, 49%);
@@ -245,7 +246,7 @@ button::before {
 
 .green:hover::before,
 .blue:hover::before {
-    background-color: var(--orange-highlight);
+    background-color: var(--bright-orange-highlight);
 }
 
 .green:hover::after,
