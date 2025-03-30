@@ -53,4 +53,11 @@ function operate(numberOne, operator, numberTwo) {
     return value;
 }
 
+/*DISPLAY TEXT SELECT AND UPDATE CODE*/
+
+let displayNumber = 0;
+
+
+let displayText = document.querySelector("#display-text");
+displayText.textContent = displayNumber;
 
