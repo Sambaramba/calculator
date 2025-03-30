@@ -1,16 +1,12 @@
-/*TODO LIST*/
-/*add shading or highlights to give 3d look*/
-/*add some transition colors in...at least for background*/
-
 
 /*CUSTOM COLORS*/
 
 :root {
     --purple: hsl(263, 86%, 42%);
-    --green-highlight: hsl(115, 51%, 57%);
+    --green-highlight: hsl(107, 54%, 54%);
     --green: hsl(114, 78%, 34%);
     --bright-green: hsl(109, 96%, 49%);
-    --blue-highlight: hsl(192, 91%, 78%);
+    --blue-highlight: hsl(192, 83%, 84%);
     --blue: hsl(204, 88%, 75%);
     --bright-blue: hsl(192, 96%, 49%);
     --light-yellow: hsl(59, 93%, 74%);
