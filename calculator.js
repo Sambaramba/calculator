@@ -55,6 +55,10 @@ function operate(numberOne, operator, numberTwo) {
 
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
 
+/*TODO LIST*/
+/*when numbers get to big for display stop showing them*/
+
+
 let displayNumber = 0;
 
 
@@ -69,6 +73,7 @@ function addToDisplay(displayNum, eventTargetNum) {
     }
     let eventNumString = String(eventTargetNum);
     displayNumber += eventNumString;
+    displayNumber = parseFloat(displayNumber);
     return displayNumber;
 }
 
