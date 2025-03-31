@@ -61,3 +61,24 @@ let displayNumber = 0;
 let displayText = document.querySelector("#display-text");
 displayText.textContent = displayNumber;
 
+
+function addToDisplay(displayNum, eventTargetNum) {
+    if (displayNum === 0) {
+        displayNumber = eventTargetNum;
+        return displayNumber;
+    }
+    let eventNumString = String(eventTargetNum);
+    displayNumber += eventNumString;
+    return displayNumber;
+}
+
+let numbers = document.querySelectorAll(".number");
+
+    numbers.forEach((number) => {
+        number.addEventListener("click", (event) => {
+        let eventNum = event.target.textContent;
+          displayText.textContent = addToDisplay(displayNumber, eventNum);
+    });
+});
+
+
