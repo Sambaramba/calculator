@@ -71,19 +71,32 @@ function addToDisplay(displayNum, eventTargetNum) {
         displayNumber = eventTargetNum;
         return displayNumber;
     }
+
     let eventNumString = String(eventTargetNum);
+    let displayNumToString = String(displayNum);
+
+    if (displayNumToString.length >= 9) {
+        return displayNumToString;
+    }
+    
     displayNumber += eventNumString;
-    displayNumber = parseFloat(displayNumber);
+
     return displayNumber;
 }
 
+
 let numbers = document.querySelectorAll(".number");
 
-    numbers.forEach((number) => {
-        number.addEventListener("click", (event) => {
+numbers.forEach((number) => {
+    number.addEventListener("click", (event) => {
         let eventNum = event.target.textContent;
-          displayText.textContent = addToDisplay(displayNumber, eventNum);
+        displayText.textContent = addToDisplay(displayNumber, eventNum);
+        //   alert(displayNumber);
     });
+    // number.removeEventListener("click", () => {
+    //     if (displayNumber >= ) {
+    //     }
+    // })
 });
 
 
