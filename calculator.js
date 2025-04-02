@@ -59,15 +59,17 @@ function operate(numberOne, operator, numberTwo) {
 /*when numbers get to big for display stop showing them*/
 
 
-let displayNumber = 0;
+let displayNumber = "0";
 
 
 let displayText = document.querySelector("#display-text");
 displayText.textContent = displayNumber;
 
+/*TODO: Remove event when displaynumber gets to 9*/
+
 
 function addToDisplay(displayNum, eventTargetNum) {
-    if (displayNum === 0) {
+    if (displayNum === "0") {
         displayNumber = eventTargetNum;
         return displayNumber;
     }
@@ -89,6 +91,7 @@ let numbers = document.querySelectorAll(".number");
 
 numbers.forEach((number) => {
     number.addEventListener("click", (event) => {
+        console.log(event.target);
         let eventNum = event.target.textContent;
         displayText.textContent = addToDisplay(displayNumber, eventNum);
         //   alert(displayNumber);
