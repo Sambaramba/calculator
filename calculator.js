@@ -69,19 +69,19 @@ displayText.textContent = displayNumber;
 
 
 function addToDisplay(displayNum, eventTargetNum) {
+
+
     if (displayNum === "0") {
         displayNumber = eventTargetNum;
         return displayNumber;
     }
 
-    let eventNumString = String(eventTargetNum);
-    let displayNumToString = String(displayNum);
-
-    if (displayNumToString.length >= 9) {
-        return displayNumToString;
+    if (displayNum.length >= 9) {
+        return displayNum;
     }
-    
-    displayNumber += eventNumString;
+
+    displayNumber = displayNum + eventTargetNum;
+
 
     return displayNumber;
 }
@@ -91,10 +91,8 @@ let numbers = document.querySelectorAll(".number");
 
 numbers.forEach((number) => {
     number.addEventListener("click", (event) => {
-        console.log(event.target);
         let eventNum = event.target.textContent;
         displayText.textContent = addToDisplay(displayNumber, eventNum);
-        //   alert(displayNumber);
     });
     // number.removeEventListener("click", () => {
     //     if (displayNumber >= ) {
