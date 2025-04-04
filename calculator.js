@@ -70,7 +70,12 @@ displayText.textContent = displayNumber;
 
 function addToDisplay(displayNum, event) {
 
+    if (numbers.count >= 9) {
+        return displayNum;
+    }
+
     ++numbers.count;
+
     let eventNum = event.target.textContent;
     
     if (displayNum === "0") {
@@ -78,9 +83,6 @@ function addToDisplay(displayNum, event) {
         return displayNumber;
     }
 
-    if (numbers.count >= 9) {
-        return displayNum;
-    }
 
     displayNumber = displayNum + eventNum;
     
