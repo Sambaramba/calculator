@@ -56,7 +56,7 @@ function operate(numberOne, operator, numberTwo) {
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
 
 /*TODO LIST*/
-/*when numbers get to big for display stop showing them*/
+/*when numbers get too big for display stop showing them*/
 
 
 let displayNumber = "0";
@@ -68,20 +68,22 @@ displayText.textContent = displayNumber;
 /*TODO: Remove event when displaynumber gets to 9*/
 
 
-function addToDisplay(displayNum, eventTargetNum) {
+function addToDisplay(displayNum, event) {
 
-
+    ++numbers.count;
+    let eventNum = event.target.textContent;
+    
     if (displayNum === "0") {
-        displayNumber = eventTargetNum;
+        displayNumber = eventNum;
         return displayNumber;
     }
 
-    if (displayNum.length >= 9) {
+    if (numbers.count >= 9) {
         return displayNum;
     }
 
-    displayNumber = displayNum + eventTargetNum;
-
+    displayNumber = displayNum + eventNum;
+    
 
     return displayNumber;
 }
@@ -89,10 +91,17 @@ function addToDisplay(displayNum, eventTargetNum) {
 
 let numbers = document.querySelectorAll(".number");
 
+
+//add tally for tally of numbers clicked
+
+numbers.count = 0;
+
+
 numbers.forEach((number) => {
     number.addEventListener("click", (event) => {
-        let eventNum = event.target.textContent;
-        displayText.textContent = addToDisplay(displayNumber, eventNum);
+        
+        displayText.textContent = addToDisplay(displayNumber, event);
+        alert(numbers.count);
     });
     // number.removeEventListener("click", () => {
     //     if (displayNumber >= ) {
