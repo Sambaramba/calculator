@@ -61,18 +61,50 @@ function operate(numberOne, operator, numberTwo) {
 
 let displayNumber = "0";
 
-
 let displayText = document.querySelector("#display-text");
+
 displayText.textContent = displayNumber;
 
+
 /*TODO: Remove event when displaynumber gets to 9*/
+
+
+let numbers = document.querySelectorAll(".number");
+
+
+//add tally for tally of numbers clicked
+numbers.count = 0;
+
+/*trying to add and remove event listener depending on count value*/
+
+
+function addNumbersEventListener () {
+    numbers.forEach((number) => {
+        number.addEventListener("click", (event) => {
+            addToDisplay(event);
+            alert(numbers.count);
+            // alert(event.target);
+        });
+    });
+}
+
+addNumbersEventListener();
+
+function removeNumbersEventListener() {
+    numbers.forEach((number) => {
+        number.removeEventListener("click", (event) => {
+            addToDisplay(event);
+            alert(numbers.count);
+            // alert(event.target);
+        })
+    });
+}
 
 
 function addToDisplay(event) {
   
 
     if (numbers.count >= 9) {
-       
         return  displayText.textContent;
     }
 
@@ -88,31 +120,4 @@ function addToDisplay(event) {
     displayNumber += eventNum;
     
     return displayText.textContent = displayNumber;
-}
-
-
-let numbers = document.querySelectorAll(".number");
-
-
-//add tally for tally of numbers clicked
-numbers.count = 0;
-
-/*trying to add and remove event listener depending on count value*/
-
-if (numbers.count >= 0 && numbers.count <= 9) {
-    numbers.forEach((number) => {
-        number.addEventListener("click", (event) => {
-            addToDisplay(event);
-            alert(numbers.count);
-            // alert(event.target);
-        });
-    });
-}; 
-// else {
-//          numbers.forEach((number) => {
-//             number.removeEventListener("click", (event) => {
-//                 displayText.textContent = addToDisplay(displayNumber, event);
-//             })
-//         });
-// };
-
+};
