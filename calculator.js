@@ -80,35 +80,28 @@ numbers.count = 0;
 
 function addNumbersEventListener () {
     numbers.forEach((number) => {
-        number.addEventListener("click", (event) => {
-            addToDisplay(event);
-            alert(numbers.count);
-            // alert(event.target);
+        number.addEventListener("click", addToDisplay)
         });
-    });
-}
+    };
 
 addNumbersEventListener();
 
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
-        number.removeEventListener("click", (event) => {
-            addToDisplay(event);
-            alert(numbers.count);
-            // alert(event.target);
+        number.removeEventListener("click", addToDisplay)
         })
-    });
-}
+    };
 
 
 function addToDisplay(event) {
   
-
+    
     if (numbers.count >= 9) {
         return  displayText.textContent;
     }
 
     ++numbers.count;
+    // alert(numbers.count);
 
     let eventNum = event.target.textContent;
     
@@ -118,6 +111,7 @@ function addToDisplay(event) {
     }
 
     displayNumber += eventNum;
+    
     
     return displayText.textContent = displayNumber;
 };
@@ -139,6 +133,7 @@ function addOperator(event) {
     
     //get operator btn value
     let currentOperator = event.target.textContent;
+    // event.stopProgagation();
 
     //update variables for operator function
     numberOne = displayNumber;
