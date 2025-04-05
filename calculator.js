@@ -68,26 +68,26 @@ displayText.textContent = displayNumber;
 /*TODO: Remove event when displaynumber gets to 9*/
 
 
-function addToDisplay(displayNum, event) {
+function addToDisplay(event) {
   
 
     if (numbers.count >= 9) {
        
-        return  displayText.textContent = displayNum;
+        return  displayText.textContent;
     }
 
     ++numbers.count;
 
     let eventNum = event.target.textContent;
     
-    if (displayNum === "0") {
+    if (displayNumber === "0") {
         displayNumber = eventNum;
         return  displayText.textContent = displayNumber;
     }
 
-    displayNumber = displayNum + eventNum;
+    displayNumber += eventNum;
     
-    return  displayText.textContent = displayNumber;
+    return displayText.textContent = displayNumber;
 }
 
 
@@ -102,7 +102,7 @@ numbers.count = 0;
 if (numbers.count >= 0 && numbers.count <= 9) {
     numbers.forEach((number) => {
         number.addEventListener("click", (event) => {
-            addToDisplay(displayNumber, event);
+            addToDisplay(event);
             alert(numbers.count);
             // alert(event.target);
         });
