@@ -69,9 +69,11 @@ displayText.textContent = displayNumber;
 
 
 function addToDisplay(displayNum, event) {
+  
 
     if (numbers.count >= 9) {
-        return displayNum;
+       
+        return  displayText.textContent = displayNum;
     }
 
     ++numbers.count;
@@ -80,14 +82,12 @@ function addToDisplay(displayNum, event) {
     
     if (displayNum === "0") {
         displayNumber = eventNum;
-        return displayNumber;
+        return  displayText.textContent = displayNumber;
     }
-
 
     displayNumber = displayNum + eventNum;
     
-
-    return displayNumber;
+    return  displayText.textContent = displayNumber;
 }
 
 
@@ -95,20 +95,24 @@ let numbers = document.querySelectorAll(".number");
 
 
 //add tally for tally of numbers clicked
-
 numbers.count = 0;
 
+/*trying to add and remove event listener depending on count value*/
 
-numbers.forEach((number) => {
-    number.addEventListener("click", (event) => {
-        
-        displayText.textContent = addToDisplay(displayNumber, event);
-        alert(numbers.count);
+if (numbers.count >= 0 && numbers.count <= 9) {
+    numbers.forEach((number) => {
+        number.addEventListener("click", (event) => {
+            addToDisplay(displayNumber, event);
+            alert(numbers.count);
+            // alert(event.target);
+        });
     });
-    // number.removeEventListener("click", () => {
-    //     if (displayNumber >= ) {
-    //     }
-    // })
-});
-
+}; 
+// else {
+//          numbers.forEach((number) => {
+//             number.removeEventListener("click", (event) => {
+//                 displayText.textContent = addToDisplay(displayNumber, event);
+//             })
+//         });
+// };
 
