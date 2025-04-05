@@ -121,3 +121,34 @@ function addToDisplay(event) {
     
     return displayText.textContent = displayNumber;
 };
+
+/*Code to add click event to operator buttons*/
+
+let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
+
+arithmeticOperators.forEach ((operator) => {
+    operator.addEventListener("click", (event) => {
+        addOperator(event);
+    });
+});
+
+/*TODO: below code is broken, adds 2 nums when readd click func on nums*/
+// repeats addToDisplay func as adds 2x count and nums to display
+
+function addOperator(event) {
+    
+    //get operator btn value
+    let currentOperator = event.target.textContent;
+
+    //update variables for operator function
+    numberOne = displayNumber;
+    operator = currentOperator;
+    removeNumbersEventListener();
+    displayNumber = "0";
+    numbers.count = 0;
+    addNumbersEventListener();
+
+
+    alert (numberOne);
+    return currentOperator;
+};
