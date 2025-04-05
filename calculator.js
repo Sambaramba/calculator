@@ -138,6 +138,8 @@ function addOperator(event) {
     //update variables for operator function
     numberOne = displayNumber;
     operator = currentOperator;
+    alert(numberOne);
+    alert(operator);
     removeNumbersEventListener();
     displayNumber = "0";
     numbers.count = 0;
@@ -147,3 +149,13 @@ function addOperator(event) {
     alert (numberOne);
     return currentOperator;
 };
+
+//TODO NEXT
+//stop/remove eventListener for arithmetic operators after click
+//do i want to allow for changing of aritmetic operator?
+//create equals selector with click event
+//named function adds current display num to numberTwo
+//readds eventlistener to aritmetic buttons
+//then calls operate with the 3 variables
+//then displays the result in the display
+//resets all eventlisteners and buttons
