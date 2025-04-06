@@ -136,11 +136,11 @@ function addOperator(event) {
     
     //get operator btn value
     let currentOperator = event.target.textContent;
+    alert(typeof currentOperator);
     // event.stopProgagation();
 
     //update variables for operator function
     numberOne = displayNumber;
-    // operator = currentOperator;
     displayText.textContent = `${numberOne} ${currentOperator}`;
     alert(numberOne);
     alert(operator);
@@ -175,6 +175,7 @@ function clearAll(event) {
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
+    numbers.count = 0;
     removeNumbersEventListener();
     displayText.textContent = displayNumber;
     addNumbersEventListener();
