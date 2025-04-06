@@ -75,7 +75,6 @@ let numbers = document.querySelectorAll(".number");
 //add tally for tally of numbers clicked
 numbers.count = 0;
 
-/*trying to add and remove event listener depending on count value*/
 
 
 function addNumbersEventListener () {
@@ -101,7 +100,6 @@ function addToDisplay(event) {
     }
 
     ++numbers.count;
-    // alert(numbers.count);
 
     let eventNum = event.target.textContent;
     
@@ -120,15 +118,19 @@ function addToDisplay(event) {
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
-//TODO remove arrow function and add op param like with numbers NL
-arithmeticOperators.forEach ((operator) => {
-    operator.addEventListener("click", (event) => {
-        addOperator(event);
-    });
-});
 
-/*TODO: below code is broken, adds 2 nums when readd click func on nums*/
-// repeats addToDisplay func as adds 2x count and nums to display
+//TODO find out if below function needs event param for addOperator helper func or not
+//same for numbers add/remove funcs
+
+//function to reuse add arithmetic operators click event code
+function addArithmeticOperatorsEventListener() {
+arithmeticOperators.forEach ((operator) => {
+    operator.addEventListener("click", addOperator);
+    });
+};
+
+addArithmeticOperatorsEventListener();
+
 
 function addOperator(event) {
     
