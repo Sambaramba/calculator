@@ -120,6 +120,7 @@ function addToDisplay(event) {
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
+//TODO remove arrow function and add op param like with numbers NL
 arithmeticOperators.forEach ((operator) => {
     operator.addEventListener("click", (event) => {
         addOperator(event);
@@ -159,3 +160,21 @@ function addOperator(event) {
 //then calls operate with the 3 variables
 //then displays the result in the display
 //resets all eventlisteners and buttons
+
+
+let clear = document.querySelctor ("#ac-button");
+
+//CAN'T COMPLETE UNTIL SORTED OPERATORS ADD/REMOVE LIKE NUMBERS
+
+clear.addEventListener("click", clearAll);
+
+function clearAll (event) {
+    displayNumber = "0";
+    numberOne = undefined;
+    operator = undefined;
+    numberTwo = undefined;
+    removeNumbersEventListener()
+    displayText.textContent = displayNumber;
+
+
+}
