@@ -140,13 +140,13 @@ function addOperator(event) {
 
     //update variables for operator function
     numberOne = displayNumber;
-    operator = currentOperator;
-    displayText.textContent = `${numberOne} ${operator}`;
+    // operator = currentOperator;
+    displayText.textContent = `${numberOne} ${currentOperator}`;
     alert(numberOne);
     alert(operator);
     removeNumbersEventListener();
-    displayNumber = "0";
-    numbers.count = 0;
+    // displayNumber = "0";
+    // numbers.count = 0;
     addNumbersEventListener();
 
     return currentOperator;
