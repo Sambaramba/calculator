@@ -164,19 +164,18 @@ function addOperator(event) {
 //resets all eventlisteners and buttons
 
 
-let clear = document.querySelctor ("#ac-button");
+let clear = document.querySelector ("#ac-button");
 
 //CAN'T COMPLETE UNTIL SORTED OPERATORS ADD/REMOVE LIKE NUMBERS
 
 clear.addEventListener("click", clearAll);
 
-function clearAll (event) {
+function clearAll(event) {
+    alert(event.target);
     displayNumber = "0";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
-    removeNumbersEventListener()
+    removeNumbersEventListener();
     displayText.textContent = displayNumber;
-
-
 }
