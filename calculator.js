@@ -94,7 +94,7 @@ function removeNumbersEventListener() {
 
 function addToDisplay(event) {
   
-    alert(numbers.count);
+    // alert(numbers.count);
     if (numbers.count >= 9) {
         removeNumbersEventListener();
         // numbers.count = 0;
@@ -142,13 +142,15 @@ function addOperator(event) {
     //update variables for operator function
     numberOne = displayNumber;
     displayText.textContent = `${numberOne} ${currentOperator}`;
-    alert(numberOne);
     alert(operator);
+    //do i need func call if updated 1st if statement in addToDisplay
     removeNumbersEventListener();
+    //do i update operator with currentOperator now?
     // displayNumber = "0";
     // numbers.count = 0;
+    /*when do i want to add numbers EL again?*/
     addNumbersEventListener();
-
+    /*do i need to return this and could it be more useful*/
     return currentOperator;
 };
 
