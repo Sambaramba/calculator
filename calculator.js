@@ -66,7 +66,7 @@ let displayText = document.querySelector("#display-text");
 displayText.textContent = displayNumber;
 
 
-/*TODO: Remove event when displaynumber gets to 9*/
+/*TODO: Remove event when numbers.count gets to 9*/
 
 
 let numbers = document.querySelectorAll(".number");
@@ -94,12 +94,15 @@ function removeNumbersEventListener() {
 
 function addToDisplay(event) {
   
-    
+    alert(numbers.count);
     if (numbers.count >= 9) {
+        removeNumbersEventListener();
+        // numbers.count = 0;
         return  displayText.textContent;
     }
 
     ++numbers.count;
+    
 
     let eventNum = event.target.textContent;
     
@@ -118,9 +121,6 @@ function addToDisplay(event) {
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
-
-//TODO find out if below function needs event param for addOperator helper func or not
-//same for numbers add/remove funcs
 
 //function to reuse add arithmetic operators click event code
 function addArithmeticOperatorsEventListener() {
