@@ -131,23 +131,25 @@ arithmeticOperators.forEach ((operator) => {
 
 addArithmeticOperatorsEventListener();
 
+//TODO update operator but keep display number
+//when number btn is pressed after thats start of 2nd num
 
 function addOperator(event) {
     
     //get operator btn value
     let currentOperator = event.target.textContent;
-    alert(typeof currentOperator);
-    // event.stopProgagation();
 
     //update variables for operator function
     numberOne = displayNumber;
-    displayText.textContent = `${numberOne} ${currentOperator}`;
-    alert(operator);
+    displayText.textContent = displayNumber;
+    // displayText.textContent = `${numberOne} ${currentOperator}`;
+    
     //do i need func call if updated 1st if statement in addToDisplay
-    removeNumbersEventListener();
+    // removeNumbersEventListener();
     //do i update operator with currentOperator now?
+    operator = currentOperator;
     // displayNumber = "0";
-    // numbers.count = 0;
+    numbers.count = 0;
     /*when do i want to add numbers EL again?*/
     addNumbersEventListener();
     /*do i need to return this and could it be more useful*/
