@@ -141,6 +141,7 @@ function addOperator(event) {
     //update variables for operator function
     numberOne = displayNumber;
     operator = currentOperator;
+    displayText.textContent = `${numberOne} ${operator}`;
     alert(numberOne);
     alert(operator);
     removeNumbersEventListener();
@@ -148,8 +149,6 @@ function addOperator(event) {
     numbers.count = 0;
     addNumbersEventListener();
 
-
-    alert (numberOne);
     return currentOperator;
 };
 
@@ -178,4 +177,6 @@ function clearAll(event) {
     numberTwo = undefined;
     removeNumbersEventListener();
     displayText.textContent = displayNumber;
+    addNumbersEventListener();
+
 }
