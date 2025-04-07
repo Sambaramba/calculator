@@ -186,17 +186,41 @@ equals.addEventListener("click", resolveEquation);
 function resolveEquation(event) {
     
 
+    //convert variables to number values;
+    numberOne = parseFloat(numberOne);
+    numberTwo = displayNumber;
+    numberTwo = parseFloat(numberTwo);
+    
+
     //if num1 + num2 have no values return displayNumber value
-    if (!numberOne|| !numberTwo) {
-        alert(numberTwo);
-        alert(numberOne);
-        displayText.textContent = displayNumber;
-        clearAll();
+    if (!numberOne) {
+        numberOne = displayNumber;
+        displayText.textContent = numberOne;
+        // clearAll();
         // addArithmeticOperatorsEventListener();
         return
     }
+    //does this keep number one showing in display text
+    if (numberOne && !numberTwo) {
+        displayText.textContent = numberOne;
+    }
 
-    numberTwo = displayNumber;
+    //operator value doen't work in operate
+    //need to convert it to js readable value?
+    if(numberOne && operator && numberTwo) {
+        displayNumber = operate(numberOne, operator, numberTwo);
+        console.log(displayNumber);
+        displayText.textContent = displayNumber;
+        // numberOne = displayNumber;
+        alert(typeof operator);
+    };
+    
+
+    // if (parseFloat(numberOne) && operator && ) {
+    //     displayNumber = operate(numberOne, operator, numberTwo);
+    //     // alert(displayNumber);
+    //     return displayNumber;
+    // };
 
     //adds displayNumber to num2, make sure it has a value;
     
