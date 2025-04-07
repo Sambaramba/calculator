@@ -93,6 +93,13 @@ function removeNumbersEventListener() {
 
 
 function addToDisplay(event) {
+
+    
+
+    //removes listener when got 1st 2 operate values;
+    if (numberOne && operator) {
+        removeArithmeticOperatorsEventListener();
+    }
   
     if (!numbers.count) {
         displayNumber = "0";
@@ -143,7 +150,7 @@ function addOperator(event) {
     
     //get operator btn value
     let currentOperator = event.target.textContent;
-    alert(currentOperator);
+    
     //store current display number
     numberOne = displayNumber;
 
