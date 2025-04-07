@@ -179,6 +179,14 @@ function addOperator(event) {
      currentOperator;
 };
 
+const equals = document.querySelector("#equals");
+
+equals.addEventListener("click", resolveEquation);
+
+function resolveEquation(event) {
+    
+}
+
 //TODO NEXT
 //create equals selector with click event
 //named function adds current display num to numberTwo
