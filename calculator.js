@@ -99,19 +99,12 @@ function addToDisplay(event) {
         numbers.count = 0
     };
 
-    // alert(numbers.count);
     if (numbers.count >= 9) {
         removeNumbersEventListener();
-        // numbers.count = 0;
         return  displayText.textContent;
     }
 
-    
-
     ++numbers.count;
-    alert(numbers.count);
-    
-
     let eventNum = event.target.textContent;
     
     if (displayNumber === "0") {
@@ -132,41 +125,50 @@ let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
 //function to reuse add arithmetic operators click event code
 function addArithmeticOperatorsEventListener() {
-arithmeticOperators.forEach ((operator) => {
-    operator.addEventListener("click", addOperator);
-    });
+    arithmeticOperators.forEach ((operator) => {
+        operator.addEventListener("click", addOperator);
+        });
 };
 
 addArithmeticOperatorsEventListener();
 
-//TODO update operator but keep display number
-//when number btn is pressed after thats start of 2nd num
+function removeArithmeticOperatorsEventListener() {
+    arithmeticOperators.forEach((operator) => {
+        operator.removeEventListener("click", addOperator);
+    });
+};
+
 
 function addOperator(event) {
     
     //get operator btn value
     let currentOperator = event.target.textContent;
-
-    //update variables for operator function
+    alert(currentOperator);
+    //store current display number
     numberOne = displayNumber;
+
+    //then add keep showing in display
     displayText.textContent = displayNumber;
+
     // displayText.textContent = `${numberOne} ${currentOperator}`;
+
+    //delete count property until next num btn is pressed
     delete numbers.count;
-    //do i need func call if updated 1st if statement in addToDisplay
+    
+    //remove click event for numbers less than 9 long
     removeNumbersEventListener();
-    //do i update operator with currentOperator now?
+    
+
     operator = currentOperator;
-    // displayNumber = "0";
-    // numbers.count = 0;
-    /*when do i want to add numbers EL again?*/
+    
     addNumbersEventListener();
+    
     /*do i need to return this and could it be more useful*/
     return currentOperator;
 };
 
 //TODO NEXT
 //stop/remove eventListener for arithmetic operators after click
-//do i want to allow for changing of aritmetic operator?
 //create equals selector with click event
 //named function adds current display num to numberTwo
 //readds eventlistener to aritmetic buttons
