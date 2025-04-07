@@ -145,6 +145,10 @@ function removeArithmeticOperatorsEventListener() {
     });
 };
 
+/*TODO? when click operator after numberTwo has value operate on 
+equation then add result to num1 and new operator click to 
+operator var*/
+
 
 function addOperator(event) {
     
@@ -171,11 +175,11 @@ function addOperator(event) {
     addNumbersEventListener();
     
     /*do i need to return this and could it be more useful*/
-    return currentOperator;
+    return
+     currentOperator;
 };
 
 //TODO NEXT
-//stop/remove eventListener for arithmetic operators after click
 //create equals selector with click event
 //named function adds current display num to numberTwo
 //readds eventlistener to aritmetic buttons
@@ -191,14 +195,15 @@ let clear = document.querySelector ("#ac-button");
 clear.addEventListener("click", clearAll);
 
 function clearAll(event) {
-    alert(event.target);
     displayNumber = "0";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
     numbers.count = 0;
     removeNumbersEventListener();
+    removeArithmeticOperatorsEventListener();
     displayText.textContent = displayNumber;
     addNumbersEventListener();
+    addArithmeticOperatorsEventListener();
 
 }
