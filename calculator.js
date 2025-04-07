@@ -58,7 +58,7 @@ function operate(numberOne, operator, numberTwo) {
 /*TODO LIST*/
 /*when numbers get too big for display stop showing them*/
 
-
+//Could play around with making this falsy to start
 let displayNumber = "0";
 
 let displayText = document.querySelector("#display-text");
@@ -95,6 +95,7 @@ function removeNumbersEventListener() {
 function addToDisplay(event) {
   
     if (!numbers.count) {
+        displayNumber = "0";
         numbers.count = 0
     };
 
@@ -150,9 +151,9 @@ function addOperator(event) {
     numberOne = displayNumber;
     displayText.textContent = displayNumber;
     // displayText.textContent = `${numberOne} ${currentOperator}`;
-    
+    delete numbers.count;
     //do i need func call if updated 1st if statement in addToDisplay
-    // removeNumbersEventListener();
+    removeNumbersEventListener();
     //do i update operator with currentOperator now?
     operator = currentOperator;
     // displayNumber = "0";
