@@ -185,10 +185,36 @@ equals.addEventListener("click", resolveEquation);
 
 function resolveEquation(event) {
     
+
+    //if num1 + num2 have no values return displayNumber value
+    if (!numberOne|| !numberTwo) {
+        alert(numberTwo);
+        alert(numberOne);
+        displayText.textContent = displayNumber;
+        clearAll();
+        // addArithmeticOperatorsEventListener();
+        return
+    }
+
+    numberTwo = displayNumber;
+
+    //adds displayNumber to num2, make sure it has a value;
+    
+
+    //alerts dont execute so no values?
+    // alert(numberOne);
+    // alert(operator);
+    // alert(numberTwo);
+    
+    
+    //add equation result to display- does it work?
+    // displayText.textContent = operate(numberOne, operator, numberTwo);
+    // alert(displayText.textContent = operate(numberOne, operator, numberTwo));
+
+    return 
 }
 
 //TODO NEXT
-//create equals selector with click event
 //named function adds current display num to numberTwo
 //readds eventlistener to aritmetic buttons
 //then calls operate with the 3 variables
