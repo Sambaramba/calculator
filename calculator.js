@@ -73,7 +73,7 @@ let numbers = document.querySelectorAll(".number");
 
 
 //add tally for tally of numbers clicked
-numbers.count = 0;
+// numbers.count = 0;
 
 
 
@@ -94,6 +94,10 @@ function removeNumbersEventListener() {
 
 function addToDisplay(event) {
   
+    if (!numbers.count) {
+        numbers.count = 0
+    };
+
     // alert(numbers.count);
     if (numbers.count >= 9) {
         removeNumbersEventListener();
@@ -101,7 +105,10 @@ function addToDisplay(event) {
         return  displayText.textContent;
     }
 
+    
+
     ++numbers.count;
+    alert(numbers.count);
     
 
     let eventNum = event.target.textContent;
@@ -149,7 +156,7 @@ function addOperator(event) {
     //do i update operator with currentOperator now?
     operator = currentOperator;
     // displayNumber = "0";
-    numbers.count = 0;
+    // numbers.count = 0;
     /*when do i want to add numbers EL again?*/
     addNumbersEventListener();
     /*do i need to return this and could it be more useful*/
