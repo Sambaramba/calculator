@@ -80,15 +80,8 @@ let displayText = document.querySelector("#display-text");
 displayText.textContent = displayNumber;
 
 
-/*TODO: Remove event when numbers.count gets to 9*/
-
 
 let numbers = document.querySelectorAll(".number");
-
-
-//add tally for tally of numbers clicked
-// numbers.count = 0;
-
 
 
 function addNumbersEventListener () {
@@ -142,7 +135,7 @@ function addToDisplay(event) {
 /*Code to add click event to operator buttons*/
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
-// arithmeticOperators.forEach((operator) => {c
+
 
 //function to reuse add arithmetic operators click event code
 function addArithmeticOperatorsEventListener() {
@@ -162,11 +155,7 @@ function removeArithmeticOperatorsEventListener() {
 /*TODO? when click operator after numberTwo has value operate on 
 equation then add result to num1 and new operator click to 
 operator var*/
-// console.log(operator);
 
-/* NEED TO CONVERT &MINUS,TIMES and DIVIDED TO -, * and / respectivly
-this will allow operate to work for these
-currently only plus works */
 
 function addOperator(event) {
     
@@ -192,9 +181,9 @@ function addOperator(event) {
     
     addNumbersEventListener();
     
-    /*do i need to return this and could it be more useful*/
+    // could refactor and return something
     return
-     currentOperator;
+    
 };
 
 const equals = document.querySelector("#equals");
