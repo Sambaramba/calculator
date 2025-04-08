@@ -23,27 +23,41 @@ let numberOne;
 let operator;
 let numberTwo;
 
+//variables for each arithmetic buttons text unicode values
+const plusOperator = "\u002B";
+const minusOperator = "\u2212";
+const multiplyOperator = "\u00D7";
+const divideOperator = "\u00F7";
+
+
 /*THINK OPERATOR PARAMETER HAS TO BE A FUNCTION*/
 
+
+//minus button symbol need converting to /
+// multiply button needs converting to *
+//subtract needs converting
+//plus works!!!!
+// so dont need to convert to string like in console.log
 function operate(numberOne, operator, numberTwo) {
 
      let value = "";
+     
 
     switch (operator) {
         
-        case "+": 
+        case plusOperator : 
             value = add(numberOne, numberTwo);
             break;
 
-        case "-": 
+        case minusOperator : 
             value = subtract(numberOne, numberTwo);
             break;
 
-        case "*": 
+        case multiplyOperator : 
             value = multiply(numberOne, numberTwo);
             break;
 
-        case "/": 
+        case divideOperator : 
             value = divide(numberOne, numberTwo);
             break;
 
@@ -128,7 +142,7 @@ function addToDisplay(event) {
 /*Code to add click event to operator buttons*/
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
-
+// arithmeticOperators.forEach((operator) => {c
 
 //function to reuse add arithmetic operators click event code
 function addArithmeticOperatorsEventListener() {
@@ -148,14 +162,18 @@ function removeArithmeticOperatorsEventListener() {
 /*TODO? when click operator after numberTwo has value operate on 
 equation then add result to num1 and new operator click to 
 operator var*/
+// console.log(operator);
 
+/* NEED TO CONVERT &MINUS,TIMES and DIVIDED TO -, * and / respectivly
+this will allow operate to work for these
+currently only plus works */
 
 function addOperator(event) {
     
-    //get operator btn value
+   
     let currentOperator = event.target.textContent;
     
-    //store current display number
+    
     numberOne = displayNumber;
 
     //then add keep showing in display
@@ -169,8 +187,8 @@ function addOperator(event) {
     //remove click event for numbers less than 9 long
     removeNumbersEventListener();
     
-
     operator = currentOperator;
+    // operator = convertedCurrentOperator;
     
     addNumbersEventListener();
     
@@ -201,6 +219,7 @@ function resolveEquation(event) {
         return
     }
     //does this keep number one showing in display text
+    //needs a return statement potentially
     if (numberOne && !numberTwo) {
         displayText.textContent = numberOne;
     }
