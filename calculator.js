@@ -64,7 +64,9 @@ function operate(numberOne, operator, numberTwo) {
         default: console.log("That is not a arthmetic operator");
 
     }
-    return value;
+
+    
+    return value.toString();
 }
 
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
@@ -213,37 +215,24 @@ function resolveEquation(event) {
         displayText.textContent = numberOne;
     }
 
-    //operator value doen't work in operate
-    //need to convert it to js readable value?
+    
     if(numberOne && operator && numberTwo) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        console.log(displayNumber);
+
+        if (displayNumber.length >= 9) {
+            displayNumber = toScientificNotation(displayNumber, 5);
+            // console.log("This works!");
+        }
         displayText.textContent = displayNumber;
         // numberOne = displayNumber;
-        alert(typeof operator);
+        // alert(typeof operator);
     };
-    
-
-    // if (parseFloat(numberOne) && operator && ) {
-    //     displayNumber = operate(numberOne, operator, numberTwo);
-    //     // alert(displayNumber);
-    //     return displayNumber;
-    // };
-
-    //adds displayNumber to num2, make sure it has a value;
-    
-
-    //alerts dont execute so no values?
-    // alert(numberOne);
-    // alert(operator);
-    // alert(numberTwo);
-    
-    
-    //add equation result to display- does it work?
-    // displayText.textContent = operate(numberOne, operator, numberTwo);
-    // alert(displayText.textContent = operate(numberOne, operator, numberTwo));
 
     return 
+}
+
+function toScientificNotation (number, decimalPlaces) {
+    return Number.parseFloat(number).toExponential(decimalPlaces);
 }
 
 //TODO NEXT
