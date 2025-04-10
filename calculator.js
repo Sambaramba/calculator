@@ -107,6 +107,10 @@ function addToDisplay(event) {
     //NEED TO ADD EQUALS CLICK EVENT WHEN GOT NUMBER
     //IS THAT DISPLAY OR NUM!
     //HOW & WHEN DO I DO IT
+    if(displayNumber.length >= 1 || numberOne) {
+        addEqualsEventListener();
+    }
+    alert(typeof displayNumber);
 
     //removes listener when got 1st 2 operate values;
     //is this a relevant check for num1?
@@ -128,7 +132,8 @@ function addToDisplay(event) {
 
     let eventNum = parseFloat(event.target.textContent);
 
-    
+    //is this code necessary?
+    //could the condition text displayText.textContent instead?
     if (displayNumber == 0) {
         displayNumber = eventNum;
         alert(typeof displayNumber);
@@ -202,7 +207,9 @@ function addOperator(event) {
 
 const equals = document.querySelector("#equals");
 
-equals.addEventListener("click", resolveEquation);
+function addEqualsEventListener() {
+    equals.addEventListener("click", resolveEquation);
+}
 
 
 //does equals work if operands have Scientific notation values?
