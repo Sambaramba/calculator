@@ -34,8 +34,12 @@ const divideOperator = "\u00F7";
 
 
 //i dont really know why this unicode conversion works in below function
+//think its simler to just parseFloat numbers in operate
+//do i need number datatype anywhere else
 function operate(numberOne, operator, numberTwo) {
-     console.log(operator);
+     
+    numberOne = parseFloat(numberOne);
+    numberTwo = parseFloat(numberTwo);
 
      let value;
      
@@ -105,6 +109,7 @@ function addToDisplay(event) {
     //HOW & WHEN DO I DO IT
 
     //removes listener when got 1st 2 operate values;
+    //is this a relevant check for num1?
     if (Number.isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
@@ -121,13 +126,12 @@ function addToDisplay(event) {
 
     ++numbers.count;
 
-    let eventNum = event.target.textContent;
+    let eventNum = parseFloat(event.target.textContent);
 
-    alert(typeof eventNum);
-    //IF TYPEOF IS STRING NEED TO CONVERT TO NUM
     
-    if (displayNumber === 0) {
+    if (displayNumber == 0) {
         displayNumber = eventNum;
+        alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
     }
 
@@ -238,7 +242,8 @@ function resolveEquation(event) {
     if (numberOne && !numberTwo) {
         displayText.textContent = numberOne;
     }
-
+    
+    //do i parsefloat num2 in below condition?
     if (numberOne && operator && !numberTwo) {
         numberTwo = parseFloat(displayNumber);
     }
