@@ -36,6 +36,7 @@ const divideOperator = "\u00F7";
 //i dont really know why this unicode conversion works in below function
 function operate(numberOne, operator, numberTwo) {
      console.log(operator);
+
      let value;
      
 
@@ -99,7 +100,9 @@ function removeNumbersEventListener() {
 
 function addToDisplay(event) {
 
-    
+    //NEED TO ADD EQUALS CLICK EVENT WHEN GOT NUMBER
+    //IS THAT DISPLAY OR NUM!
+    //HOW & WHEN DO I DO IT
 
     //removes listener when got 1st 2 operate values;
     if (Number.isFinite(numberOne) && operator) {
@@ -117,7 +120,11 @@ function addToDisplay(event) {
     }
 
     ++numbers.count;
+
     let eventNum = event.target.textContent;
+
+    alert(typeof eventNum);
+    //IF TYPEOF IS STRING NEED TO CONVERT TO NUM
     
     if (displayNumber === 0) {
         displayNumber = eventNum;
@@ -157,6 +164,11 @@ operator var*/
 
 function addOperator(event) {
     
+    //is this what i want to do?
+    if(Number.isFinite(numberTwo)) {
+        alert(numberTwo);
+        numberTwo = undefined;
+    }
    
     let currentOperator = event.target.textContent;
     
@@ -190,7 +202,9 @@ equals.addEventListener("click", resolveEquation);
 
 
 //does equals work if operands have Scientific notation values?
-
+/*equals btn doesn.t work when clicked again,
+ to operate on result with another operator and new num2 value,
+ so when trying to operate with new math operator and num*/
 
 function resolveEquation(event) {
     
@@ -208,13 +222,17 @@ function resolveEquation(event) {
     
     
     //if num1 + num2 have no values return displayNumber value
-    if (!numberOne) {
-        numberOne = displayNumber;
-        displayText.textContent = numberOne;
-        // clearAll();
-        // addArithmeticOperatorsEventListener();
-        return
-    }
+    /*THIS DOESN'T WORK*/
+    //NUMBERONE WANTS TO STAY UNDEFINED
+    // if (!Number.isFinite(numberOne)) {
+    //     alert(numberOne);
+    //     numberOne = displayNumber;
+    //     alert(numberOne);
+    //     displayText.textContent = numberOne;
+    //     // clearAll();
+    //     // addArithmeticOperatorsEventListener();
+    //     return
+    // }
     //does this keep number one showing in display text
     //needs a return statement potentially
     if (numberOne && !numberTwo) {
@@ -240,6 +258,8 @@ function resolveEquation(event) {
         //when press equals again times result by num2 again
         //keep repeating until big int/nan/infinity?
         numberOne = displayNumber;
+        // alert(numberTwo);
+        // alert(numberOne);
         displayNumber = 0;
         // alert(typeof operator);
     };
