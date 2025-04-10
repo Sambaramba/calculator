@@ -1,4 +1,5 @@
 //FOUR BASIC MATHS OPERATIONS
+//they accept 2 numbers and then operate on them
 
 function add (a, b ) {
     return a + b;
@@ -18,21 +19,24 @@ function divide(a, b) {
 
 
 //VARIABLES FOR THE MATHS EXPRESSION
+//declared as undefined
 
 let numberOne;
 let operator;
 let numberTwo;
 
-//variables for each arithmetic buttons text unicode values
+//store arithmetic buttons textContent in unicode form
+//these are used to make operate functions switch statement more readable;
 const plusOperator = "\u002B";
 const minusOperator = "\u2212";
 const multiplyOperator = "\u00D7";
 const divideOperator = "\u00F7";
 
 
+//i dont really know why this unicode conversion works in below function
 function operate(numberOne, operator, numberTwo) {
-
-     let value = "";
+     console.log(operator);
+     let value;
      
 
     switch (operator) {
@@ -67,7 +71,7 @@ function operate(numberOne, operator, numberTwo) {
 /*when numbers get too big for display stop showing them*/
 
 //Could play around with making this falsy to start
-let displayNumber = "0";
+let displayNumber = 0;
 
 let displayText = document.querySelector("#display-text");
 
@@ -98,12 +102,12 @@ function addToDisplay(event) {
     
 
     //removes listener when got 1st 2 operate values;
-    if (isNumeric(numberOne) && operator) {
+    if (Number.isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
   
     if (!numbers.count) {
-        displayNumber = "0";
+        displayNumber = 0;
         numbers.count = 0
     };
 
@@ -115,7 +119,7 @@ function addToDisplay(event) {
     ++numbers.count;
     let eventNum = event.target.textContent;
     
-    if (displayNumber === "0") {
+    if (displayNumber === 0) {
         displayNumber = eventNum;
         return  displayText.textContent = displayNumber;
     }
@@ -200,6 +204,7 @@ function resolveEquation(event) {
     /*error as only want to add display num to num2 
     if number buttons been pressed after num1 and operator have values*/
     numberOne = parseFloat(numberOne);
+    displayNumber = parseFloat(displayNumber);
     
     
     //if num1 + num2 have no values return displayNumber value
@@ -235,7 +240,7 @@ function resolveEquation(event) {
         //when press equals again times result by num2 again
         //keep repeating until big int/nan/infinity?
         numberOne = displayNumber;
-        displayNumber = "0";
+        displayNumber = 0;
         // alert(typeof operator);
     };
 
@@ -265,7 +270,7 @@ let clear = document.querySelector ("#ac-button");
 clear.addEventListener("click", clearAll);
 
 function clearAll(event) {
-    displayNumber = "0";
+    displayNumber = 0;
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
