@@ -30,14 +30,6 @@ const multiplyOperator = "\u00D7";
 const divideOperator = "\u00F7";
 
 
-/*THINK OPERATOR PARAMETER HAS TO BE A FUNCTION*/
-
-
-//minus button symbol need converting to /
-// multiply button needs converting to *
-//subtract needs converting
-//plus works!!!!
-// so dont need to convert to string like in console.log
 function operate(numberOne, operator, numberTwo) {
 
      let value = "";
@@ -106,7 +98,7 @@ function addToDisplay(event) {
     
 
     //removes listener when got 1st 2 operate values;
-    if (numberOne && operator) {
+    if (isNumeric(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
   
@@ -192,15 +184,24 @@ const equals = document.querySelector("#equals");
 
 equals.addEventListener("click", resolveEquation);
 
+
+//does equals work if operands have Scientific notation values?
+
+
 function resolveEquation(event) {
     
+    //how to get number 2 to only be display num if undefined;
+    //add if statement to check?
+    //then if already pressed equals pressing again would calulate result with num2 again;
+
 
     //convert variables to number values;
+    //is it better to parseFloat in operate func?
+    /*error as only want to add display num to num2 
+    if number buttons been pressed after num1 and operator have values*/
     numberOne = parseFloat(numberOne);
-    numberTwo = displayNumber;
-    numberTwo = parseFloat(numberTwo);
     
-
+    
     //if num1 + num2 have no values return displayNumber value
     if (!numberOne) {
         numberOne = displayNumber;
@@ -215,25 +216,39 @@ function resolveEquation(event) {
         displayText.textContent = numberOne;
     }
 
-    
+    if (numberOne && operator && !numberTwo) {
+        numberTwo = parseFloat(displayNumber);
+    }
+
+    //change numberTwo condition to displayNumber?
     if(numberOne && operator && numberTwo) {
         displayNumber = operate(numberOne, operator, numberTwo);
 
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
             // console.log("This works!");
+            alert(displayNumber);
         }
         displayText.textContent = displayNumber;
-        // numberOne = displayNumber;
+        
+        // after operate complete add result to num1
+        //when press equals again times result by num2 again
+        //keep repeating until big int/nan/infinity?
+        numberOne = displayNumber;
+        displayNumber = "0";
         // alert(typeof operator);
     };
 
     return 
 }
-
-function toScientificNotation (number, decimalPlaces) {
-    return Number.parseFloat(number).toExponential(decimalPlaces);
+//don't think it rounds number to decimal places
+function toScientificNotation (number, dps) {
+    return Number.parseFloat(number).toExponential(dps);
 }
+
+// function getRoundedNumber(number, decimalPlaces) {
+//     return Math.round(number * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
+// }
 
 //TODO NEXT
 //named function adds current display num to numberTwo
