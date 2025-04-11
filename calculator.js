@@ -122,7 +122,6 @@ function addToDisplay(event) {
     // if(isNonZeroNumber(displayNumber)) {
     //     addEqualsEventListener();
     // }
-    // alert(typeof displayNumber);
 
     //removes listener when got 1st 2 operate values;
     //is this a relevant check for num1?
@@ -147,9 +146,6 @@ function addToDisplay(event) {
 
     ++numbers.count;
     
-
-    
-
     //is this code necessary?
     //could the condition text displayText.textContent instead?
     if (displayNumber == "0") {
@@ -237,6 +233,12 @@ function addEqualsEventListener() {
  so when trying to operate with new math operator and num*/
 
 function resolveEquation(event) {
+
+    /*-numberOne check with created non zero fun
+    -if is a number then check if operator is a value
+    -if have both have truthy values check if displaynum and numberOne are the same
+    -if they are return num1 value?
+     */
     
     //how to get number 2 to only be display num if undefined;
     //add if statement to check?
@@ -288,10 +290,7 @@ function resolveEquation(event) {
         //when press equals again times result by num2 again
         //keep repeating until big int/nan/infinity?
         numberOne = displayNumber;
-        // alert(numberTwo);
-        // alert(numberOne);
-        displayNumber = "0";
-        // alert(typeof operator);
+        
     };
 
     return 
