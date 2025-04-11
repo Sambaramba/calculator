@@ -99,7 +99,13 @@ function removeNumbersEventListener() {
     numbers.forEach((number) => {
         number.removeEventListener("click", addToDisplay)
         })
-    };
+};
+
+
+function isNonZeroNumber(value) {
+    const number = +value;
+    return !isNaN(number) && number !== 0;
+}
 
 
 function addToDisplay(event) {
@@ -107,10 +113,10 @@ function addToDisplay(event) {
     //NEED TO ADD EQUALS CLICK EVENT WHEN GOT NUMBER
     //IS THAT DISPLAY OR NUM!
     //HOW & WHEN DO I DO IT
-    if(displayNumber.length >= 1 || numberOne) {
+    if(isNonZeroNumber(numberOne)) {
         addEqualsEventListener();
     }
-    alert(typeof displayNumber);
+    // alert(typeof displayNumber);
 
     //removes listener when got 1st 2 operate values;
     //is this a relevant check for num1?
