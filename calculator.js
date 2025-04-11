@@ -72,8 +72,6 @@ function operate(numberOne, operator, numberTwo) {
 
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
 
-/*TODO LIST*/
-/*when numbers get too big for display stop showing them*/
 
 //Could play around with making this falsy to start
 let displayNumber = 0;
@@ -111,18 +109,31 @@ function isNonZeroNumber(value) {
 function addToDisplay(event) {
 
     //NEED TO ADD EQUALS CLICK EVENT WHEN GOT NUMBER
-    //IS THAT DISPLAY OR NUM!
+    //is test number displayNumber or numberOne var?
     //HOW & WHEN DO I DO IT
-    if(isNonZeroNumber(numberOne)) {
+    //number button text as string
+    let eventNum = event.target.textContent;
+    
+    /*believe below code adds equals click event if any
+    num button accept 0 is pressed*/
+    if(eventNum != 0) {
         addEqualsEventListener();
     }
+    // if(isNonZeroNumber(displayNumber)) {
+    //     addEqualsEventListener();
+    // }
     // alert(typeof displayNumber);
 
     //removes listener when got 1st 2 operate values;
     //is this a relevant check for num1?
+    //or change to non zero number check?
+    //does isFinite() convert?
+    //does nonZero num func convert?
     if (Number.isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
+
+    //Numbers count add/remove/increment code
   
     if (!numbers.count) {
         displayNumber = "0";
@@ -135,17 +146,19 @@ function addToDisplay(event) {
     }
 
     ++numbers.count;
+    
 
-    let eventNum = event.target.textContent;
+    
 
     //is this code necessary?
     //could the condition text displayText.textContent instead?
     if (displayNumber == "0") {
         displayNumber = eventNum;
-        alert(typeof displayNumber);
+        // alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
     }
-
+    //do i create else statement to above if
+    //then add below code;
     displayNumber += eventNum;
     
     
