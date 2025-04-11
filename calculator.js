@@ -119,7 +119,7 @@ function addToDisplay(event) {
     }
   
     if (!numbers.count) {
-        displayNumber = 0;
+        displayNumber = "0";
         numbers.count = 0
     };
 
@@ -130,11 +130,11 @@ function addToDisplay(event) {
 
     ++numbers.count;
 
-    let eventNum = parseFloat(event.target.textContent);
+    let eventNum = event.target.textContent;
 
     //is this code necessary?
     //could the condition text displayText.textContent instead?
-    if (displayNumber == 0) {
+    if (displayNumber == "0") {
         displayNumber = eventNum;
         alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
@@ -262,7 +262,6 @@ function resolveEquation(event) {
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
             // console.log("This works!");
-            alert(displayNumber);
         }
         displayText.textContent = displayNumber;
         
@@ -272,7 +271,7 @@ function resolveEquation(event) {
         numberOne = displayNumber;
         // alert(numberTwo);
         // alert(numberOne);
-        displayNumber = 0;
+        displayNumber = "0";
         // alert(typeof operator);
     };
 
@@ -302,7 +301,7 @@ let clear = document.querySelector ("#ac-button");
 clear.addEventListener("click", clearAll);
 
 function clearAll(event) {
-    displayNumber = 0;
+    displayNumber = "0";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
