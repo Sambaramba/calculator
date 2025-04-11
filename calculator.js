@@ -226,6 +226,10 @@ function addEqualsEventListener() {
     equals.addEventListener("click", resolveEquation);
 }
 
+function removeEqualsEventListener() {
+    equals.removeEventListener("click", resolveEquation);
+}
+
 
 //does equals work if operands have Scientific notation values?
 /*equals btn doesn.t work when clicked again,
