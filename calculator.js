@@ -333,5 +333,6 @@ function clearAll(event) {
     displayText.textContent = displayNumber;
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
+    removeEqualsEventListener();
 
 }
