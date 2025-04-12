@@ -103,8 +103,13 @@ function removeNumbersEventListener() {
 
 //change isFinite to !isNan if want infinity returned
 function isNonZeroNumber(value) {
-    const number = +value;
-    return isFinite(number) && number !== 0;
+    const number = Number(value);
+    return Number.isFinite(number) && number !== 0;
+}
+
+function isValidNumber(value) {
+    const number = Number(value);
+    return Number.isFinite(number);
 }
 
 
@@ -182,9 +187,10 @@ function addOperator(event) {
     delete numbers.count;
     
     //is this what i want to do?
-    if(Number.isFinite(numberTwo)) {
+    if(isFinite(numberTwo)) {
+        alert("This if has been executed!");
         numberTwo = undefined;
-        alert(numberTwo);
+        // alert(numberTwo);
     }
    
     let currentOperator = event.target.textContent;
