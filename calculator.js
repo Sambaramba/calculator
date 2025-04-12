@@ -76,11 +76,11 @@ function operate(numberOne, operator, numberTwo) {
 //Could play around with making displayNumber undefined at start
 //could instead set display text to "0";
 
-let displayNumber = "0";
+let displayNumber = "";
 
 let displayText = document.querySelector("#display-text");
 
-displayText.textContent = displayNumber;
+displayText.textContent = "0";
 
 
 
@@ -113,14 +113,12 @@ function addToDisplay(event) {
     
     let eventNum = event.target.textContent;
     
-    
-    if(isFinite(numberOne) && operator && isFinite(displayNumber)) {
+    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
+    if (isFinite(numberOne) && operator && isFinite(displayNumber)) {
         addEqualsEventListener();
     }
-    // if(isNonZeroNumber(displayNumber)) {
-    //     addEqualsEventListener();
-    // }
-
+    
+    //remove maths operators when num1 is legal num and operator is truthy
     if (isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
@@ -128,20 +126,19 @@ function addToDisplay(event) {
     //Numbers count add/remove/increment code
   
     if (!numbers.count) {
-        displayNumber = "0";
+        displayNumber = "";
         numbers.count = 0
     };
 
     if (numbers.count >= 9) {
         removeNumbersEventListener();
-        return  displayText.textContent;
+        return  displayText.textContent = displayNumber;
     }
 
     ++numbers.count;
     
-    //is this code necessary?
-    //could the condition text displayText.textContent instead?
-    if (displayNumber == "0") {
+    
+    if (displayNumber.length === "0") {
         displayNumber = eventNum;
         // alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
@@ -290,7 +287,9 @@ function resolveEquation(event) {
             displayNumber = toScientificNotation(displayNumber, 5);
             // console.log("This works!");
         }
-        displayText.textContent = displayNumber;
+        numberOne = displayNumber;
+        displayNumber = "";
+        displayText.textContent = numberOne;
         
         // after operate complete add result to num1
         //when press equals again times result by num2 again
@@ -325,7 +324,7 @@ let clear = document.querySelector ("#ac-button");
 clear.addEventListener("click", clearAll);
 
 function clearAll(event) {
-    displayNumber = "0";
+    displayNumber = "";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
