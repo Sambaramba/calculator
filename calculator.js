@@ -73,8 +73,10 @@ function operate(numberOne, operator, numberTwo) {
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
 
 
-//Could play around with making this falsy to start
-let displayNumber = 0;
+//Could play around with making displayNumber undefined at start
+//could instead set display text to "0";
+
+let displayNumber = "0";
 
 let displayText = document.querySelector("#display-text");
 
@@ -105,36 +107,20 @@ function isNonZeroNumber(value) {
     return isFinite(number) && number !== 0;
 }
 
-function isNumber(value) {
-    const number = +value;
-    return isFinite(number);
-}
-
 
 function addToDisplay(event) {
 
-    //NEED TO ADD EQUALS CLICK EVENT WHEN GOT NUMBER
-    //is test number displayNumber or numberOne var?
-    //HOW & WHEN DO I DO IT
-    //number button text as string
+    
     let eventNum = event.target.textContent;
     
-    /*don't need equals listener until 2nd number clicked
-    ,so when got numberOne, operator and displayNum with
-    diff value to numberOne. For that to happen do you
-     update displayNumber early on in this func?*/
-    if(isFinite(numberOne) && operator && displayNumber) {
+    
+    if(isFinite(numberOne) && operator && isFinite(displayNumber)) {
         addEqualsEventListener();
     }
     // if(isNonZeroNumber(displayNumber)) {
     //     addEqualsEventListener();
     // }
 
-    //removes listener when got 1st 2 operate values;
-    //is this a relevant check for num1?
-    //or change to non zero number check?
-    //does isFinite() convert?
-    //does nonZero num func convert?
     if (isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
@@ -246,6 +232,8 @@ function removeEqualsEventListener() {
  /*when press equals after 1st equation and 
  operator pressed again displays 1*/
 
+ /* need to readd operators listener after equation */
+
 
 function resolveEquation(event) {
 
@@ -283,6 +271,7 @@ function resolveEquation(event) {
     //does this keep number one showing in display text
     //needs a return statement potentially
     //is num2 check correct?
+    //add isFinite check
     if (numberOne && !numberTwo) {
         displayText.textContent = numberOne;
     }
@@ -295,6 +284,7 @@ function resolveEquation(event) {
     //change numberTwo condition to displayNumber?
     if(numberOne && operator && numberTwo) {
         displayNumber = operate(numberOne, operator, numberTwo);
+        // addArithmeticOperatorsEventListener();
 
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
