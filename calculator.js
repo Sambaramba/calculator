@@ -183,8 +183,8 @@ function addOperator(event) {
     
     //is this what i want to do?
     if(Number.isFinite(numberTwo)) {
-        alert(numberTwo);
         numberTwo = undefined;
+        alert(numberTwo);
     }
    
     let currentOperator = event.target.textContent;
@@ -235,7 +235,9 @@ function removeEqualsEventListener() {
 
 
 function resolveEquation(event) {
+    
 
+    delete numbers.count;
     /*-numberOne check with created non zero fun
     -if is a number then check if operator is a value
     -if have both have truthy values check if displaynum and numberOne are the same
