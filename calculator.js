@@ -101,12 +101,13 @@ function removeNumbersEventListener() {
         })
 };
 
-//change isFinite to !isNan if want infinity returned
+//test if valid non zero number,returns true or false;
 function isNonZeroNumber(value) {
     const number = Number(value);
     return Number.isFinite(number) && number !== 0;
 }
 
+//test if valid number, returns true or false
 function isValidNumber(value) {
     const number = Number(value);
     return Number.isFinite(number);
@@ -119,8 +120,9 @@ function addToDisplay(event) {
     let eventNum = event.target.textContent;
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
-    if (isFinite(numberOne) && operator && isFinite(displayNumber)) {
+    if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
         addEqualsEventListener();
+        alert ("By jove this works!");
     }
     
     //remove maths operators when num1 is legal num and operator is truthy
@@ -187,7 +189,7 @@ function addOperator(event) {
     delete numbers.count;
     
     //is this what i want to do?
-    if(isFinite(numberTwo)) {
+    if(isValidNumber(numberTwo)) {
         alert("This if has been executed!");
         numberTwo = undefined;
         // alert(numberTwo);
@@ -278,18 +280,18 @@ function resolveEquation(event) {
     //does this keep number one showing in display text
     //needs a return statement potentially
     //is num2 check correct?
-    //add isFinite check
-    if (numberOne && !numberTwo) {
+    if (isValidNumber(numberOne) && !numberTwo) {
         displayText.textContent = numberOne;
     }
     
     //do i parsefloat num2 in below condition?
-    if (numberOne && operator && !numberTwo) {
+    if (isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         numberTwo = parseFloat(displayNumber);
+        alert("This bloody works!");
     }
 
     //change numberTwo condition to displayNumber?
-    if(numberOne && operator && numberTwo) {
+    if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // addArithmeticOperatorsEventListener();
 
