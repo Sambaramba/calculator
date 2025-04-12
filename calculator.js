@@ -177,6 +177,9 @@ operator var*/
 
 
 function addOperator(event) {
+
+    //delete count property until next num btn is pressed
+    delete numbers.count;
     
     //is this what i want to do?
     if(Number.isFinite(numberTwo)) {
@@ -194,8 +197,7 @@ function addOperator(event) {
 
     // displayText.textContent = `${numberOne} ${currentOperator}`;
 
-    //delete count property until next num btn is pressed
-    delete numbers.count;
+    
     
     //remove click event for numbers less than 9 long
     removeNumbersEventListener();
@@ -290,6 +292,7 @@ function resolveEquation(event) {
         numberOne = displayNumber;
         displayNumber = "";
         displayText.textContent = numberOne;
+        alert(numberTwo);
         
         // after operate complete add result to num1
         //when press equals again times result by num2 again
