@@ -99,10 +99,15 @@ function removeNumbersEventListener() {
         })
 };
 
-
+//change isFinite to !isNan if want infinity returned
 function isNonZeroNumber(value) {
     const number = +value;
-    return !isNaN(number) && number !== 0;
+    return isFinite(number) && number !== 0;
+}
+
+function isNumber(value) {
+    const number = +value;
+    return isFinite(number);
 }
 
 
@@ -114,9 +119,11 @@ function addToDisplay(event) {
     //number button text as string
     let eventNum = event.target.textContent;
     
-    /*believe below code adds equals click event if any
-    num button accept 0 is pressed*/
-    if(eventNum != 0) {
+    /*don't need equals listener until 2nd number clicked
+    ,so when got numberOne, operator and displayNum with
+    diff value to numberOne. For that to happen do you
+     update displayNumber early on in this func?*/
+    if(isFinite(numberOne) && operator && displayNumber) {
         addEqualsEventListener();
     }
     // if(isNonZeroNumber(displayNumber)) {
@@ -128,7 +135,7 @@ function addToDisplay(event) {
     //or change to non zero number check?
     //does isFinite() convert?
     //does nonZero num func convert?
-    if (Number.isFinite(numberOne) && operator) {
+    if (isFinite(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
 
@@ -236,6 +243,10 @@ function removeEqualsEventListener() {
  to operate on result with another operator and new num2 value,
  so when trying to operate with new math operator and num*/
 
+ /*when press equals after 1st equation and 
+ operator pressed again displays 1*/
+
+
 function resolveEquation(event) {
 
     /*-numberOne check with created non zero fun
@@ -271,6 +282,7 @@ function resolveEquation(event) {
     // }
     //does this keep number one showing in display text
     //needs a return statement potentially
+    //is num2 check correct?
     if (numberOne && !numberTwo) {
         displayText.textContent = numberOne;
     }
@@ -292,8 +304,8 @@ function resolveEquation(event) {
         
         // after operate complete add result to num1
         //when press equals again times result by num2 again
-        //keep repeating until big int/nan/infinity?
-        numberOne = displayNumber;
+        //numberOne = undefined;
+        // numberOne = displayNumber;
         
     };
 
