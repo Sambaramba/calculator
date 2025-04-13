@@ -299,6 +299,12 @@ function resolveEquation(event) {
         // alert(numberTwo);
     }
 
+    /*check repeat equations,
+     if wanting to operate on result with diff num*/
+    if (displayNumber !== numberTwo) {
+        numberTwo = displayNumber;
+    }
+
     //change numberTwo condition to displayNumber?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
