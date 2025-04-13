@@ -189,12 +189,14 @@ function addOperator(event) {
     delete numbers.count;
     
     //adds display num to num1 if no numerical value
+    //this runs
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
-        }
+        alert("numberOne has been changed");
+    }
     
     //if num2 has number value make it undefined;
-    //doesn't work
+    //below if doesn't execute
     if(isValidNumber(numberTwo)) {
         alert("This if has been executed!");
         numberTwo = undefined;
@@ -285,8 +287,8 @@ function resolveEquation(event) {
     //does this keep number one showing in display text
     //needs a return statement potentially
     //is num2 check correct?
-    if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
-        alert ("Number Two is " + numberTwo);
+    if (isValidNumber(numberOne) && !operator) {
+        alert ("Operator is " + numberTwo);
         displayText.textContent = numberOne;
     }
     
@@ -294,6 +296,7 @@ function resolveEquation(event) {
     if (isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         numberTwo = parseFloat(displayNumber);
         alert("This bloody works!");
+        // alert(numberTwo);
     }
 
     //change numberTwo condition to displayNumber?
