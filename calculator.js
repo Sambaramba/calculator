@@ -122,7 +122,7 @@ function addToDisplay(event) {
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
         addEqualsEventListener();
-        alert ("By jove this works!");
+        // alert ("By jove this works!");
     }
     
     //remove maths operators when num1 is legal num and operator is truthy
@@ -188,7 +188,13 @@ function addOperator(event) {
     //delete count property until next num btn is pressed
     delete numbers.count;
     
-    //is this what i want to do?
+    //adds display num to num1 if no numerical value
+    if (!isValidNumber(numberOne)) {
+        numberOne = displayNumber;
+        }
+    
+    //if num2 has number value make it undefined;
+    //doesn't work
     if(isValidNumber(numberTwo)) {
         alert("This if has been executed!");
         numberTwo = undefined;
@@ -198,7 +204,6 @@ function addOperator(event) {
     let currentOperator = event.target.textContent;
     
     
-    numberOne = displayNumber;
 
     //then add keep showing in display
     displayText.textContent = displayNumber;
@@ -280,7 +285,8 @@ function resolveEquation(event) {
     //does this keep number one showing in display text
     //needs a return statement potentially
     //is num2 check correct?
-    if (isValidNumber(numberOne) && !numberTwo) {
+    if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
+        alert ("Number Two is " + numberTwo);
         displayText.textContent = numberOne;
     }
     
