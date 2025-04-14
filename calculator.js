@@ -272,20 +272,6 @@ function resolveEquation(event) {
     displayNumber = parseFloat(displayNumber);
     
     
-    //if num1 + num2 have no values return displayNumber value
-    /*THIS DOESN'T WORK*/
-    //NUMBERONE WANTS TO STAY UNDEFINED
-    // if (!Number.isFinite(numberOne)) {
-    //     alert(numberOne);
-    //     numberOne = displayNumber;
-    //     alert(numberOne);
-    //     displayText.textContent = numberOne;
-    //     // clearAll();
-    //     // addArithmeticOperatorsEventListener();
-    //     return
-    // }
-    //does this keep number one showing in display text
-    //needs a return statement potentially
     //is num2 check correct?
     if (isValidNumber(numberOne) && !operator) {
         alert ("Operator is " + numberTwo);
@@ -319,10 +305,6 @@ function resolveEquation(event) {
         displayText.textContent = numberOne;
         alert(numberTwo);
         
-        // after operate complete add result to num1
-        //when press equals again times result by num2 again
-        //numberOne = undefined;
-        // numberOne = displayNumber;
         
     };
 
@@ -347,8 +329,6 @@ function toScientificNotation (number, dps) {
 
 let clear = document.querySelector ("#ac-button");
 
-//CAN'T COMPLETE UNTIL SORTED OPERATORS ADD/REMOVE LIKE NUMBERS
-
 clear.addEventListener("click", clearAll);
 
 function clearAll(event) {
@@ -359,7 +339,7 @@ function clearAll(event) {
     numbers.count = 0;
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
-    displayText.textContent = displayNumber;
+    displayText.textContent = "0";
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
