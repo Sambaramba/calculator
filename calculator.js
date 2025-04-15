@@ -126,7 +126,7 @@ function addToDisplay(event) {
     }
     
     //remove maths operators when num1 is legal num and operator is truthy
-    if (isValidNumber(numberOne)) && operator) {
+    if (isValidNumber(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
 
