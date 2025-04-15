@@ -126,7 +126,7 @@ function addToDisplay(event) {
     }
     
     //remove maths operators when num1 is legal num and operator is truthy
-    if (isFinite(numberOne) && operator) {
+    if (isValidNumber(numberOne)) && operator) {
         removeArithmeticOperatorsEventListener();
     }
 
@@ -184,6 +184,10 @@ operator var*/
 
 
 function addOperator(event) {
+
+    alert("Number One's starting value is: " + numberOne);
+    alert("Operators starting values is: " + operator);
+    alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
     delete numbers.count;
