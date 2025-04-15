@@ -158,6 +158,12 @@ function addToDisplay(event) {
     return displayText.textContent = displayNumber;
 };
 
+
+
+
+
+
+
 /*Code to add click event to operator buttons*/
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
@@ -185,9 +191,9 @@ operator var*/
 
 function addOperator(event) {
 
-    alert("Number One's starting value is: " + numberOne);
-    alert("Operators starting values is: " + operator);
-    alert("Numbers two's starting value is: " + numberTwo);
+    // alert("Number One's starting value is: " + numberOne);
+    // alert("Operators starting values is: " + operator);
+    // alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
     delete numbers.count;
@@ -198,14 +204,15 @@ function addOperator(event) {
     //this runs
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
-        alert("numberOne has been changed");
+        // alert("numberOne value is: " + numberOne);
     }
     
     //if num2 has number value make it undefined;
     //below if doesn't execute
     if(isValidNumber(numberTwo)) {
-        alert("This if has been executed!");
+        // alert("This if has been executed!");
         numberTwo = undefined;
+        // alert("numberTwo's value is now: " + numberTwo);
         // alert(numberTwo);
     }
    
@@ -214,7 +221,7 @@ function addOperator(event) {
     
 
     //then add keep showing in display
-    displayText.textContent = displayNumber;
+    // displayText.textContent = displayNumber;
 
     // displayText.textContent = `${numberOne} ${currentOperator}`;
 
@@ -262,6 +269,7 @@ function resolveEquation(event) {
     alert("Operators starting values is: " + operator);
     alert("Numbers two's starting value is: " + numberTwo);
     delete numbers.count;
+    addArithmeticOperatorsEventListener();
     /*-numberOne check with created non zero fun
     -if is a number then check if operator is a value
     -if have both have truthy values check if displaynum and numberOne are the same
