@@ -187,6 +187,8 @@ function addOperator(event) {
 
     //delete count property until next num btn is pressed
     delete numbers.count;
+
+    let currentOperator = event.target.textContent;
     
     //adds display num to num1 if no numerical value
     //this runs
@@ -203,7 +205,7 @@ function addOperator(event) {
         // alert(numberTwo);
     }
    
-    let currentOperator = event.target.textContent;
+    
     
     
 
@@ -218,7 +220,7 @@ function addOperator(event) {
     removeNumbersEventListener();
     
     operator = currentOperator;
-    // operator = convertedCurrentOperator;
+    
     
     addNumbersEventListener();
     
@@ -252,6 +254,9 @@ function removeEqualsEventListener() {
 function resolveEquation(event) {
     
 
+    alert("Number One's starting value is: " + numberOne);
+    alert("Operators starting values is: " + operator);
+    alert("Numbers two's starting value is: " + numberTwo);
     delete numbers.count;
     /*-numberOne check with created non zero fun
     -if is a number then check if operator is a value
@@ -272,24 +277,26 @@ function resolveEquation(event) {
     displayNumber = parseFloat(displayNumber);
     
     
-    //is num2 check correct?
-    if (isValidNumber(numberOne) && !operator) {
-        alert ("Operator is " + numberTwo);
-        displayText.textContent = numberOne;
-    }
+    // //is num2 check correct?
+    // if (isValidNumber(numberOne) && !operator) {
+    //     alert ("Operator is " + numberTwo);
+    //     displayText.textContent = numberOne;
+    // }
     
     //do i parsefloat num2 in below condition?
-    if (isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
+    if (isValidNumber(numberOne) && operator && numberTwo == undefined) {
         numberTwo = parseFloat(displayNumber);
         alert("This bloody works!");
-        // alert(numberTwo);
+        
     }
 
     /*check repeat equations,
      if wanting to operate on result with diff num*/
-    if (displayNumber !== numberTwo) {
+    if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
     }
+
+    alert("number twos value is: " + numberTwo);
 
     //change numberTwo condition to displayNumber?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
@@ -300,9 +307,10 @@ function resolveEquation(event) {
             displayNumber = toScientificNotation(displayNumber, 5);
             // console.log("This works!");
         }
+        displayText.textContent = displayNumber;
         numberOne = displayNumber;
         displayNumber = "";
-        displayText.textContent = numberOne;
+        
         alert(numberTwo);
         
         
