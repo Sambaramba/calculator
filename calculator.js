@@ -270,30 +270,12 @@ function resolveEquation(event) {
     alert("Numbers two's starting value is: " + numberTwo);
     delete numbers.count;
     addArithmeticOperatorsEventListener();
-    /*-numberOne check with created non zero fun
-    -if is a number then check if operator is a value
-    -if have both have truthy values check if displaynum and numberOne are the same
-    -if they are return num1 value?
-     */
     
-    //how to get number 2 to only be display num if undefined;
-    //add if statement to check?
-    //then if already pressed equals pressing again would calulate result with num2 again;
-
-
-    //convert variables to number values;
-    //is it better to parseFloat in operate func?
-    /*error as only want to add display num to num2 
-    if number buttons been pressed after num1 and operator have values*/
     numberOne = parseFloat(numberOne);
     displayNumber = parseFloat(displayNumber);
     
     
-    // //is num2 check correct?
-    // if (isValidNumber(numberOne) && !operator) {
-    //     alert ("Operator is " + numberTwo);
-    //     displayText.textContent = numberOne;
-    // }
+
     
     //do i parsefloat num2 in below condition?
     if (isValidNumber(numberOne) && operator && numberTwo == undefined) {
@@ -306,6 +288,15 @@ function resolveEquation(event) {
      if wanting to operate on result with diff num*/
     if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
+    }
+
+    //snarky message if divide by zero
+    //need to reset display number in addTodisplay
+    if (operator == divideOperator && parseFloat(numberTwo) == 0) {
+        alert("Well done you broke the calculator");
+        clearAll(event);
+        displayText.textContent = "Clever!";
+        return;
     }
 
     alert("number twos value is: " + numberTwo);
@@ -330,7 +321,8 @@ function resolveEquation(event) {
 
     return 
 }
-//don't think it rounds number to decimal places
+
+
 function toScientificNotation (number, dps) {
     return Number.parseFloat(number).toExponential(dps);
 }
@@ -339,12 +331,6 @@ function toScientificNotation (number, dps) {
 //     return Math.round(number * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
 // }
 
-//TODO NEXT
-//named function adds current display num to numberTwo
-//readds eventlistener to aritmetic buttons
-//then calls operate with the 3 variables
-//then displays the result in the display
-//resets all eventlisteners and buttons
 
 
 let clear = document.querySelector ("#ac-button");
