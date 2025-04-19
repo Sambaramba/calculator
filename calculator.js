@@ -116,8 +116,8 @@ function isValidNumber(value) {
 
 function addToDisplay(event) {
 
-    
     let eventNum = event.target.textContent;
+    // alert(typeof eventNum);
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
@@ -273,7 +273,7 @@ function resolveEquation(event) {
     
     numberOne = parseFloat(numberOne);
     displayNumber = parseFloat(displayNumber);
-    
+    numberTwo = parseFloat(numberTwo);
     
 
     
@@ -293,7 +293,6 @@ function resolveEquation(event) {
     //snarky message if divide by zero
     //need to reset display number in addTodisplay
     if (operator == divideOperator && parseFloat(numberTwo) == 0) {
-        alert("Well done you broke the calculator");
         clearAll(event);
         displayText.textContent = "Clever!";
         return;
@@ -305,7 +304,11 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // addArithmeticOperatorsEventListener();
-
+        alert(typeof displayNumber);
+        answerLength = displayNumber.length;
+        alert(answerLength);
+        // displayNumber = displayNumber .toPrecision(answerLength);
+        // alert(displayNumber);
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
             // console.log("This works!");
@@ -314,7 +317,7 @@ function resolveEquation(event) {
         numberOne = displayNumber;
         displayNumber = "";
         
-        alert(numberTwo);
+        // alert(numberTwo);
         
         
     };
@@ -330,6 +333,30 @@ function toScientificNotation (number, dps) {
 // function getRoundedNumber(number, decimalPlaces) {
 //     return Math.round(number * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
 // }
+
+
+//doesnt work for negative exponents yet
+//think if you have value as number not string will convert
+function fromScientificNotation (number) {
+    if (parseFloat(number) && number.includes("e")) {
+
+      let index = number.search("e");
+      let baseNumber = number.slice(0, index);
+      let exponent = number.slice(index + 1);
+      
+        if (exponent.startsWith("-")) {
+            console.log("negative");
+            let removedNegative = exponent.replace("-", "");
+            console.log(removedNegative);  
+            console.log(baseNumber / (10 ** removedNegative));
+            return baseNumber / (10 ** removedNegative);
+        } else {
+            return baseNumber * (10 ** exponent)
+        };
+    }
+    console.log("this runned");
+    return number;
+}
 
 
 
