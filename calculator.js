@@ -251,16 +251,6 @@ function removeEqualsEventListener() {
 }
 
 
-//does equals work if operands have Scientific notation values?
-/*equals btn doesn.t work when clicked again,
- to operate on result with another operator and new num2 value,
- so when trying to operate with new math operator and num*/
-
- /*when press equals after 1st equation and 
- operator pressed again displays 1*/
-
- /* need to readd operators listener after equation */
-
 
 function resolveEquation(event) {
     
@@ -304,9 +294,9 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // addArithmeticOperatorsEventListener();
-        alert(typeof displayNumber);
-        answerLength = displayNumber.length;
-        alert(answerLength);
+        // let nonScientificNotationNumber = displayNumber;
+        numberOne = displayNumber;
+        alert(numberOne);
         // displayNumber = displayNumber .toPrecision(answerLength);
         // alert(displayNumber);
         if (displayNumber.length >= 9) {
@@ -314,7 +304,6 @@ function resolveEquation(event) {
             // console.log("This works!");
         }
         displayText.textContent = displayNumber;
-        numberOne = displayNumber;
         displayNumber = "";
         
         // alert(numberTwo);
@@ -337,26 +326,28 @@ function toScientificNotation (number, dps) {
 
 //doesnt work for negative exponents yet
 //think if you have value as number not string will convert
-function fromScientificNotation (number) {
-    if (parseFloat(number) && number.includes("e")) {
+// function fromScientificNotation (number) {
+//     if (parseFloat(number) && number.includes("e")) {
 
-      let index = number.search("e");
-      let baseNumber = number.slice(0, index);
-      let exponent = number.slice(index + 1);
-      
-        if (exponent.startsWith("-")) {
-            console.log("negative");
-            let removedNegative = exponent.replace("-", "");
-            console.log(removedNegative);  
-            console.log(baseNumber / (10 ** removedNegative));
-            return baseNumber / (10 ** removedNegative);
-        } else {
-            return baseNumber * (10 ** exponent)
-        };
-    }
-    console.log("this runned");
-    return number;
-}
+//       let index = number.search("e");
+//       let baseNumber = number.slice(0, index);
+//       let exponent = number.slice(index + 1);
+//       if(number.includes("+")) {
+//         Number(number).toString();
+//       }
+//         if (exponent.startsWith("-")) {
+//             console.log("negative");
+//             let removedNegative = exponent.replace("-", "");
+//             console.log(removedNegative);  
+//             console.log(baseNumber / (10 ** removedNegative));
+//             return baseNumber / (10 ** removedNegative);
+//         } else {
+//             return baseNumber * (10 ** exponent)
+//         };
+//     }
+//     console.log("this runned");
+//     return number;
+// }
 
 
 
