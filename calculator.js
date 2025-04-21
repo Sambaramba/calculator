@@ -355,3 +355,12 @@ function clearAll(event) {
     removeEqualsEventListener();
 
 }
+
+// dot button code
+
+let dot = document.querySelector("#dot");
+
+dot.addEventListener("click", addDecimalPlace);
+
+function addDecimalPlace(event) {
+}
