@@ -289,14 +289,14 @@ function resolveEquation(event) {
     }
 
     alert("number twos value is: " + numberTwo);
-
-    //change numberTwo condition to displayNumber?
+   
+    //TODO refine num1 value with either fixed or position as loads of dps
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        // addArithmeticOperatorsEventListener();
-        // let nonScientificNotationNumber = displayNumber;
-        numberOne = displayNumber;
-        alert(numberOne);
+
+        //convert to number then to string with no dps
+        numberOne = Number(displayNumber).toFixed(0);
+        alert(typeof numberOne);
         // displayNumber = displayNumber .toPrecision(answerLength);
         // alert(displayNumber);
         if (displayNumber.length >= 9) {
@@ -305,8 +305,6 @@ function resolveEquation(event) {
         }
         displayText.textContent = displayNumber;
         displayNumber = "";
-        
-        // alert(numberTwo);
         
         
     };
