@@ -254,11 +254,10 @@ function removeEqualsEventListener() {
 
 function resolveEquation(event) {
     
-
-    alert("Number One's starting value is: " + numberOne);
-    alert("Operators starting values is: " + operator);
-    alert("Numbers two's starting value is: " + numberTwo);
+    //reset count property for addToDisplay();
     delete numbers.count;
+    
+    //readd event listener for repeat operations
     addArithmeticOperatorsEventListener();
     
     numberOne = parseFloat(numberOne);
@@ -266,42 +265,31 @@ function resolveEquation(event) {
     numberTwo = parseFloat(numberTwo);
     
 
-    
-    //do i parsefloat num2 in below condition?
     if (isValidNumber(numberOne) && operator && numberTwo == undefined) {
         numberTwo = parseFloat(displayNumber);
         alert("This bloody works!");
         
     }
 
-    /*check repeat equations,
-     if wanting to operate on result with diff num*/
     if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
     }
 
-    //snarky message if divide by zero
-    //need to reset display number in addTodisplay
+    
     if (operator == divideOperator && parseFloat(numberTwo) == 0) {
         clearAll(event);
         displayText.textContent = "Clever!";
         return;
     }
-
-    alert("number twos value is: " + numberTwo);
    
-    //TODO refine num1 value with either fixed or position as loads of dps
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
 
         //convert to number then to string with no dps
         numberOne = Number(displayNumber).toFixed(0);
-        alert(typeof numberOne);
-        // displayNumber = displayNumber .toPrecision(answerLength);
-        // alert(displayNumber);
+        
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
-            // console.log("This works!");
         }
         displayText.textContent = displayNumber;
         displayNumber = "";
@@ -348,7 +336,7 @@ function toScientificNotation (number, dps) {
 // }
 
 
-
+//clear button code
 let clear = document.querySelector ("#ac-button");
 
 clear.addEventListener("click", clearAll);
