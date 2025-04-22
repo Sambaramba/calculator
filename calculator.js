@@ -116,6 +116,10 @@ function isValidNumber(value) {
 
 function addToDisplay(event) {
 
+    if (displayNumber.length >= 1) {
+        dot.addEventListener("click", addDecimalPlace, { once: true });
+    }
+
     let eventNum = event.target.textContent;
     // alert(typeof eventNum);
     
@@ -364,7 +368,7 @@ let dot = document.querySelector("#dot");
 // do i want to use once or clearer/better like other EL's?
 //decide first next time.
 //could just add at beginning of addToDisplay();
-dot.addEventListener("click", addDecimalPlace, { once: true });
+
 
 function addDecimalPlace(event) {
 
