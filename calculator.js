@@ -112,7 +112,7 @@ function isValidNumber(value) {
 
 
 function addToDisplay(event) {
-
+    console.log(displayNumber);
     //This if breaks minus btn;
     // if (displayNumber.length === "0") {
     //     minusBtn.addEventListener("click", addMinusSign, { once: true });
@@ -134,6 +134,7 @@ function addToDisplay(event) {
     }
     
     //remove maths operators when num1 is legal num and operator is truthy
+    //MIGHT WANT TO REMOVE THIS so can add minus to 2nd num in equation
     if (isValidNumber(numberOne) && operator) {
         removeArithmeticOperatorsEventListener();
     }
@@ -152,8 +153,9 @@ function addToDisplay(event) {
 
     ++numbers.count;
     
-    
+    // console.log(typeof displayNumber);
     if (displayNumber.length === "0") {
+        
         displayNumber = eventNum;
         // alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
@@ -210,18 +212,27 @@ function addOperator(event) {
     
     //adds display num to num1 if no numerical value
     //this runs
+    // console.log(typeof displayNumber);
+    // console.log(displayNumber.length);
+    if(displayNumber.length === 0 && currentOperator === minusOperator) {
+       displayNumber = minusOperator;
+       return;
+    }
+
+    if (
+
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
+        displayNumber = "";
         // alert("numberOne value is: " + numberOne);
     }
+
     
     //if num2 has number value make it undefined;
     //below if doesn't execute
     if(isValidNumber(numberTwo)) {
-        // alert("This if has been executed!");
+        // console.log("this if executed");
         numberTwo = undefined;
-        // alert("numberTwo's value is now: " + numberTwo);
-        // alert(numberTwo);
     }
    
     
