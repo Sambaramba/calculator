@@ -34,7 +34,7 @@ const divideOperator = "\u00F7";
 
 
 //i dont really know why this unicode conversion works in below function
-//think its simler to just parseFloat numbers in operate
+//think its simpler to just parseFloat numbers in operate;
 //do i need number datatype anywhere else
 function operate(numberOne, operator, numberTwo) {
      
@@ -72,10 +72,6 @@ function operate(numberOne, operator, numberTwo) {
 
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
 
-
-//Could play around with making displayNumber undefined at start
-//could instead set display text to "0";
-
 let displayNumber = "";
 
 let displayText = document.querySelector("#display-text");
@@ -83,6 +79,7 @@ let displayText = document.querySelector("#display-text");
 displayText.textContent = "0";
 
 
+//code for adding/removing numbers event listeners;
 
 let numbers = document.querySelectorAll(".number");
 
@@ -360,19 +357,24 @@ function clearAll(event) {
 
 }
 
-// dot button code
+// dot button selector and function for its click event;
 
 let dot = document.querySelector("#dot");
 
-
-// do i want to use once or clearer/better like other EL's?
-//decide first next time.
-//could just add at beginning of addToDisplay();
-
-
 function addDecimalPlace(event) {
-
     let dotSign = event.target.textContent
     displayNumber += dotSign;
     
+}
+
+
+//MINUS BUTTON CODE TO ADD MINUS SIGN TO START OF NUMBERS
+
+let minusBtn = document.querySelector("#minus");
+
+minusBtn.addEventListener("click", addMinusSign);
+
+function addMinusSign(event) {
+    let minusSign = event.target.textContent;
+    displayNumber += minusSign;
 }
