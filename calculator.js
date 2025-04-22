@@ -113,7 +113,14 @@ function isValidNumber(value) {
 
 function addToDisplay(event) {
 
-    if (displayNumber.length >= 1) {
+    //This if breaks minus btn;
+    // if (displayNumber.length === "0") {
+    //     minusBtn.addEventListener("click", addMinusSign, { once: true });
+    // }
+    
+
+    //think this now works;
+    if (displayNumber.length >= 1 && !displayNumber.includes(".")) {
         dot.addEventListener("click", addDecimalPlace, { once: true });
     }
 
@@ -372,7 +379,7 @@ function addDecimalPlace(event) {
 
 let minusBtn = document.querySelector("#minus");
 
-minusBtn.addEventListener("click", addMinusSign);
+
 
 function addMinusSign(event) {
     let minusSign = event.target.textContent;
