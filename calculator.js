@@ -360,7 +360,15 @@ function clearAll(event) {
 
 let dot = document.querySelector("#dot");
 
-dot.addEventListener("click", addDecimalPlace);
+
+// do i want to use once or clearer/better like other EL's?
+//decide first next time.
+//could just add at beginning of addToDisplay();
+dot.addEventListener("click", addDecimalPlace, { once: true });
 
 function addDecimalPlace(event) {
+
+    let dotSign = event.target.textContent
+    displayNumber += dotSign;
+    
 }
