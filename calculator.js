@@ -142,7 +142,7 @@ function addToDisplay(event) {
     //Numbers count add/remove/increment code
   
     if (!numbers.count) {
-        displayNumber = "";
+        // displayNumber = "";
         numbers.count = 0
     };
 
@@ -154,8 +154,8 @@ function addToDisplay(event) {
     ++numbers.count;
     
     // console.log(typeof displayNumber);
-    if (displayNumber.length === "0") {
-        
+    if (displayNumber.length === 0) {
+        console.log("display num length is 0");
         displayNumber = eventNum;
         // alert(typeof displayNumber);
         return  displayText.textContent = displayNumber;
@@ -214,12 +214,12 @@ function addOperator(event) {
     //this runs
     // console.log(typeof displayNumber);
     // console.log(displayNumber.length);
-    if(displayNumber.length === 0 && currentOperator === minusOperator) {
-       displayNumber = minusOperator;
-       return;
-    }
+    // if(displayNumber.length === 0 && currentOperator === minusOperator) {
+    //    displayNumber = minusOperator;
+    //    return;
+    // }
 
-    if (
+    
 
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
@@ -390,9 +390,17 @@ function addDecimalPlace(event) {
 
 let minusBtn = document.querySelector("#minus");
 
-
+minusBtn.addEventListener("click", addMinusSign, { once: true });
 
 function addMinusSign(event) {
     let minusSign = event.target.textContent;
+    if (minusSign === minusOperator) {
+        console.log("Values are the same!");
+    }
+    
     displayNumber += minusSign;
+    console.log(displayNumber);
 }
+
+
+// if (displayNumber === 0 && operator !== minusOperator
