@@ -392,17 +392,17 @@ function addDecimalPlace(event) {
 
 let minusBtn = document.querySelector("#minus");
 
-minusBtn.addEventListener("click", addMinusSign, { once: true });
+
 
 function addMinusSign(event) {
     let minusSign = event.target.textContent;
-    if (minusSign === minusOperator) {
-        console.log("Values are the same!");
-    }
     
     displayNumber += minusSign;
     console.log(displayNumber);
 }
 
 
-// if (displayNumber === 0 && operator !== minusOperator
+if (displayNumber.length === 0 && operator !== minusOperator) {
+    alert("minus event code");
+    minusBtn.addEventListener("click", addMinusSign, { once: true });
+}
