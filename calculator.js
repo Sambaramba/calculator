@@ -117,6 +117,10 @@ function addToDisplay(event) {
     // if (displayNumber.length === "0") {
     //     minusBtn.addEventListener("click", addMinusSign, { once: true });
     // }
+
+    if(displayNumber.length >=1) {
+        addArithmeticOperatorsEventListener();
+    }
     
 
     //think this now works;
@@ -200,29 +204,27 @@ operator var*/
 
 
 function addOperator(event) {
-
+    console.log(event);
     // alert("Number One's starting value is: " + numberOne);
     // alert("Operators starting values is: " + operator);
     // alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
     delete numbers.count;
+    console.log(event.target);
 
     let currentOperator = event.target.textContent;
     
+    
     //adds display num to num1 if no numerical value
-    //this runs
-    // console.log(typeof displayNumber);
-    // console.log(displayNumber.length);
     // if(displayNumber.length === 0 && currentOperator === minusOperator) {
     //    displayNumber = minusOperator;
     //    return;
     // }
 
-    
-
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
+        // displayText.textContent = displayNumber;
         displayNumber = "";
         // alert("numberOne value is: " + numberOne);
     }
@@ -284,13 +286,7 @@ function resolveEquation(event) {
     numberTwo = parseFloat(numberTwo);
     
 
-    if (isValidNumber(numberOne) && operator && numberTwo == undefined) {
-        numberTwo = parseFloat(displayNumber);
-        alert("This bloody works!");
-        
-    }
-
-    if (isValidNumber(numberOne) && !isValidNumber(numberTwo)) {
+    if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
     }
 
@@ -300,7 +296,7 @@ function resolveEquation(event) {
         displayText.textContent = "Clever!";
         return;
     }
-   
+    /*Could below code become a function so can use for maths operators*/
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
 
@@ -312,7 +308,6 @@ function resolveEquation(event) {
         }
         displayText.textContent = displayNumber;
         displayNumber = "";
-        
         
     };
 
