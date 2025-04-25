@@ -40,8 +40,8 @@ function operate(numberOne, operator, numberTwo, event) {
      
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
-    // || parseFloat(numberTwo) == -0)
-    if (operator == divideOperator && parseFloat(numberTwo) == 0) {
+    
+    if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
         clearAll(event);
         displayText.textContent = "Clever!";
         return;
