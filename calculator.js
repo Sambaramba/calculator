@@ -36,10 +36,16 @@ const divideOperator = "\u00F7";
 //i dont really know why this unicode conversion works in below function
 //think its simpler to just parseFloat numbers in operate;
 //do i need number datatype anywhere else
-function operate(numberOne, operator, numberTwo) {
+function operate(numberOne, operator, numberTwo, event) {
      
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
+    // || parseFloat(numberTwo) == -0)
+    if (operator == divideOperator && parseFloat(numberTwo) == 0) {
+        clearAll(event);
+        displayText.textContent = "Clever!";
+        return;
+    }
 
      let value;
      
@@ -290,12 +296,13 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-    
-    if (operator == divideOperator && parseFloat(numberTwo) == 0) {
-        clearAll(event);
-        displayText.textContent = "Clever!";
-        return;
-    }
+    //move below into operate function?
+    //would code work better if its a helper function?
+    // if (operator == divideOperator && parseFloat(numberTwo) == 0) {
+    //     clearAll(event);
+    //     displayText.textContent = "Clever!";
+    //     return;
+    // }
     /*Could below code become a function so can use for maths operators*/
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
