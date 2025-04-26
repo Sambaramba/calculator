@@ -395,9 +395,11 @@ let minusBtn = document.querySelector("#minus");
 
 
 function addMinusSign(event) {
-    let minusSign = event.target.textContent;
-    
-    displayNumber += minusSign;
+    // let minusSign = event.target.textContent;
+    // if (minusSign === "-") {
+    //     alert("It's alive! it's aliiiive!");
+    // }
+    displayNumber += "-";
     console.log(displayNumber);
 }
 
