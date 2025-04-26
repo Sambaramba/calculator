@@ -196,7 +196,8 @@ function addArithmeticOperatorsEventListener() {
         });
 };
 
-addArithmeticOperatorsEventListener();
+// addArithmeticOperatorsEventListener();
+
 
 function removeArithmeticOperatorsEventListener() {
     arithmeticOperators.forEach((operator) => {
@@ -403,7 +404,7 @@ function addMinusSign(event) {
     console.log(displayNumber);
 }
 
-
+//does 2nd part of condition do what i want?
 if (displayNumber.length === 0 && operator !== minusOperator) {
     alert("minus event code");
     minusBtn.addEventListener("click", addMinusSign, { once: true });
