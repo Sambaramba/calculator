@@ -124,7 +124,7 @@ function addToDisplay(event) {
     //     minusBtn.addEventListener("click", addMinusSign, { once: true });
     // }
 
-    if(displayNumber.length >=1) {
+    if (displayNumber.length >= 1) {
         addArithmeticOperatorsEventListener();
     }
     
@@ -291,6 +291,10 @@ function resolveEquation(event) {
     numberOne = parseFloat(numberOne);
     displayNumber = parseFloat(displayNumber);
     numberTwo = parseFloat(numberTwo);
+    console.log(numberOne);
+    console.log(displayNumber);
+    console.log(numberTwo);
+
     
 
     if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
@@ -309,7 +313,12 @@ function resolveEquation(event) {
         displayNumber = operate(numberOne, operator, numberTwo);
 
         //convert to number then to string with no dps
-        numberOne = Number(displayNumber).toFixed(0);
+        //doesn't work for neg expos so need to refactor;
+        //added toPrecision as start
+        //want to remove zeros from end of num1
+        //also for display length check remove non nums before check
+        // if ()
+        numberOne = Number(displayNumber).toPrecision(20);
         
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
@@ -318,9 +327,11 @@ function resolveEquation(event) {
         displayNumber = "";
         
     };
-
+     console.log(numberOne);
     return 
 }
+
+function (
 
 
 function toScientificNotation (number, dps) {
