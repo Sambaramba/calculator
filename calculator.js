@@ -430,10 +430,17 @@ if (displayNumber.length === 0 && operator !== minusOperator) {
 //if doesn't end in zero update array as is
 //need to return string
 function removeZeros(number) {
+     
+    //returns number if zero;
+    if (+number === 0) {
+        return number;
+    }
 
     let standardNumber = Number(number).toPrecision(20);
     console.log(standardNumber);
     let array = number.split("");
+    
+    
     const last = array[array.length - 1]
     console.log(last);
 
