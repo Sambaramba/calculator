@@ -317,8 +317,11 @@ function resolveEquation(event) {
         //added toPrecision as start
         //want to remove zeros from end of num1
         //also for display length check remove non nums before check
-        // if ()
+        
         numberOne = Number(displayNumber).toPrecision(20);
+        console.log(numberOne);
+        console.log(typeof numberOne);
+        
         
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
@@ -331,7 +334,8 @@ function resolveEquation(event) {
     return 
 }
 
-function (
+/*create function to process result of operate to/from scientific notation*/
+// function ();
 
 
 function toScientificNotation (number, dps) {
@@ -419,4 +423,27 @@ function addMinusSign(event) {
 if (displayNumber.length === 0 && operator !== minusOperator) {
     alert("minus event code");
     minusBtn.addEventListener("click", addMinusSign, { once: true });
+}
+
+
+//update the if to update array without last zero
+//if doesn't end in zero update array as is
+//need to return string
+function removeZeros(number) {
+
+    let standardNumber = Number(number).toPrecision(20);
+    console.log(standardNumber);
+    let array = number.split("");
+    const last = array[array.length - 1]
+    console.log(last);
+
+    for (let i = array.length; i >= 1; i--) {
+            
+            const last = array[array.length - 1]
+            if (last === "0") {
+                    array.pop();
+            } else return standardNumber;
+        
+            console.log(array.length);
+    }
 }
