@@ -431,26 +431,29 @@ if (displayNumber.length === 0 && operator !== minusOperator) {
 //need to return string
 function removeZeros(number) {
      
-    //returns number if zero;
+    //returns number if zero;`
     if (+number === 0) {
         return number;
     }
-
+    //
     let standardNumber = Number(number).toPrecision(20);
-    console.log(standardNumber);
-    let array = number.split("");
+    let array = standardNumber.split("");
     
     
     const last = array[array.length - 1]
-    console.log(last);
+    // console.log(last);
 
     for (let i = array.length; i >= 1; i--) {
-            
-            const last = array[array.length - 1]
+
+            const last = array[array.length - 1];
             if (last === "0") {
                     array.pop();
-            } else return standardNumber;
+                // console.log(array);
+            } 
+            // else return standardNumber;
         
-            console.log(array.length);
+            // console.log(array.length);
     }
+    // console.log(array);
+    return array.join("");
 }
