@@ -317,10 +317,10 @@ function resolveEquation(event) {
         //added toPrecision as start
         //want to remove zeros from end of num1
         //also for display length check remove non nums before check
-        
-        numberOne = Number(displayNumber).toPrecision(20);
-        console.log(numberOne);
-        console.log(typeof numberOne);
+        //need to decide what size numbers to work with;
+        // numberOne = Number(displayNumber).toFixed(15);
+        // console.log(numberOne);
+        // console.log(typeof numberOne);
         
         
         if (displayNumber.length >= 9) {
@@ -435,8 +435,9 @@ function removeTrailingZeros(number) {
     if (+number === 0) {
         return number;
     }
-    //
-    let standardNumber = Number(number).toPrecision(50);
+    //work out what sized numbers to work with in calculator
+    //toFixed is temporary fix;
+    let standardNumber = Number(number).toFixed(15);
     let array = standardNumber.split("");
     
 
