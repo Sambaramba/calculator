@@ -439,9 +439,6 @@ function removeTrailingZeros(number) {
     let standardNumber = Number(number).toPrecision(20);
     let array = standardNumber.split("");
     
-    
-    const last = array[array.length - 1]
-    // console.log(last);
 
     for (let i = array.length; i >= 1; i--) {
 
@@ -450,7 +447,7 @@ function removeTrailingZeros(number) {
                     array.pop();
                 // console.log(array);
             } 
-            // else return standardNumber;
+            // else return array;
         
             // console.log(array.length);
     }
