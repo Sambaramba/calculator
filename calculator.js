@@ -429,7 +429,7 @@ if (displayNumber.length === 0 && operator !== minusOperator) {
 //update the if to update array without last zero
 //if doesn't end in zero update array as is
 //need to return string
-function removeZeros(number) {
+function removeTrailingZeros(number) {
      
     //returns number if zero;`
     if (+number === 0) {
