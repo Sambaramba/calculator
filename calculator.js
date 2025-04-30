@@ -436,7 +436,7 @@ function removeTrailingZeros(number) {
         return number;
     }
     //
-    let standardNumber = Number(number).toPrecision(20);
+    let standardNumber = Number(number).toPrecision(50);
     let array = standardNumber.split("");
     
 
