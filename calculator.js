@@ -112,8 +112,14 @@ function isNonZeroNumber(value) {
 
 //test if valid number, returns true or false
 function isValidNumber(value) {
-    const number = Number(value);
-    return Number.isFinite(number);
+
+    if(typeof value === "number") {
+        return Number.isFinite(value);
+    } else if (typeof value === "string") {
+       const number = Number(value);
+       return Number.isFinite(number);
+    } else return false;
+    
 }
 
 
@@ -455,3 +461,6 @@ function removeTrailingZeros(number) {
     // console.log(array);
     return array.join("");
 }
+
+Number.MIN_SAFE_INTEGER;
+Number.MAX_SAFE_INTEGER;
