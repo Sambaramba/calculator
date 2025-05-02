@@ -111,6 +111,7 @@ function isNonZeroNumber(value) {
 }
 
 //test if valid number, returns true or false
+//tests if argument is string or number datatype;
 function isValidNumber(value) {
 
     if(typeof value === "number") {
@@ -285,7 +286,7 @@ function removeEqualsEventListener() {
 }
 
 
-
+/*does not give correct answers for scientific notation*/
 function resolveEquation(event) {
     
     //reset count property for addToDisplay();
@@ -297,9 +298,9 @@ function resolveEquation(event) {
     numberOne = parseFloat(numberOne);
     displayNumber = parseFloat(displayNumber);
     numberTwo = parseFloat(numberTwo);
-    console.log(numberOne);
-    console.log(displayNumber);
-    console.log(numberTwo);
+    // console.log(numberOne);
+    // console.log(displayNumber);
+    // console.log(numberTwo);
 
     
 
@@ -328,7 +329,7 @@ function resolveEquation(event) {
         // console.log(numberOne);
         // console.log(typeof numberOne);
         
-        
+        //want this to remove dps and - sign from length for condition;
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
         }
@@ -343,7 +344,8 @@ function resolveEquation(event) {
 /*create function to process result of operate to/from scientific notation*/
 // function ();
 
-
+//expecting string as argument
+//will lose precision with bigint numbers;
 function toScientificNotation (number, dps) {
     return Number.parseFloat(number).toExponential(dps);
 }
@@ -428,7 +430,7 @@ function addMinusSign(event) {
 //does 2nd part of condition do what i want?
 if (displayNumber.length === 0 && operator !== minusOperator) {
     alert("minus event code");
-    minusBtn.addEventListener("click", addMinusSign, { once: true });
+    minusBtn.addEventListener("click", addMinusSign);
 }
 
 
