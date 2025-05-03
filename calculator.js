@@ -130,10 +130,6 @@ function addToDisplay(event) {
     // if (displayNumber.length === "0") {
     //     minusBtn.addEventListener("click", addMinusSign, { once: true });
     // }
-
-    if (displayNumber.length >= 1) {
-        addArithmeticOperatorsEventListener();
-    }
     
 
     //think this now works;
@@ -175,6 +171,13 @@ function addToDisplay(event) {
     //do i create else statement to above if
     //then add below code;
     displayNumber += eventNum;
+    
+
+    //checks if valid number and adds maths operators if so
+    // is if statement neccessary?
+    if (isValidNumber(displayNumber)) {
+        addArithmeticOperatorsEventListener();
+    }
     
     
     return displayText.textContent = displayNumber;
