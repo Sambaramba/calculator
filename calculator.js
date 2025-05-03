@@ -216,14 +216,14 @@ operator var*/
 
 
 function addOperator(event) {
-    console.log(event);
+    // console.log(event);
     // alert("Number One's starting value is: " + numberOne);
     // alert("Operators starting values is: " + operator);
     // alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
     delete numbers.count;
-    console.log(event.target);
+    // console.log(event.target);
 
     let currentOperator = event.target.textContent;
     
@@ -462,5 +462,5 @@ function removeTrailingZeros(number) {
     return array.join("");
 }
 
-Number.MIN_SAFE_INTEGER;
-Number.MAX_SAFE_INTEGER;
+// Number.MIN_SAFE_INTEGER;
+// Number.MAX_SAFE_INTEGER;
