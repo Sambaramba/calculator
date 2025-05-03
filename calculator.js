@@ -150,11 +150,6 @@ function addToDisplay(event) {
         // alert ("By jove this works!");
     }
     
-    //remove maths operators when num1 is legal num and operator is truthy
-    //MIGHT WANT TO REMOVE THIS so can add minus to 2nd num in equation
-    if (isValidNumber(numberOne) && operator) {
-        removeArithmeticOperatorsEventListener();
-    }
 
     //Numbers count add/remove/increment code
   
