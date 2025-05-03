@@ -429,6 +429,10 @@ function addMinusSignEventListener() {
     minusBtn.addEventListener("click", addMinusSign);
 }
 
+function removeMinusSignEventListener() {
+    minusBtn.removeEventListener("click", addMinusSign);
+}
+
 //does 2nd part of condition do what i want?
 if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
     alert("minus event code");
