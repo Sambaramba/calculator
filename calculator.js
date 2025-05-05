@@ -92,7 +92,7 @@ let numbers = document.querySelectorAll(".number");
 
 function addNumbersEventListener () {
     numbers.forEach((number) => {
-        number.addEventListener("click", addToDisplay)
+        number.addEventListener("click", addNumberToDisplay)
         });
     };
 
@@ -100,7 +100,7 @@ addNumbersEventListener();
 
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
-        number.removeEventListener("click", addToDisplay)
+        number.removeEventListener("click", addNumberToDisplay)
         })
 };
 
@@ -124,7 +124,7 @@ function isValidNumber(value) {
 }
 
 
-function addToDisplay(event) {
+function addNumberToDisplay(event) {
     console.log(displayNumber);
     //This if breaks minus btn;
     // if (displayNumber.length === "0") {
