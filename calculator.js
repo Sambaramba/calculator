@@ -43,7 +43,7 @@ function operate(numberOne, operator, numberTwo, event) {
     
     if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
         clearAll(event);
-        displayText.textContent = "Clever!";
+        displayText.textContent = "Clever!";;
         return;
     }
 
@@ -126,6 +126,10 @@ function isValidNumber(value) {
 
 function addNumberToDisplay(event) {
     console.log(typeof displayNumber);
+
+    // if (typeof displayNumber === undefined) {
+    //     console.log("this aint no proper number");
+    // }
     
 
     //think this now works;
@@ -158,21 +162,14 @@ function addNumberToDisplay(event) {
 
     ++numbers.count;
     
-    // console.log(typeof displayNumber);
-    if (displayNumber.length === 0) {
-        console.log("display num length is 0");
-        displayNumber = eventNum;
-        // alert(typeof displayNumber);
-        return  displayText.textContent = displayNumber;
-    }
-    //do i create else statement to above if
-    //then add below code;
+    
     displayNumber += eventNum;
     
 
     //checks if valid number and adds maths operators if so
     // is if statement neccessary?
     if (isValidNumber(displayNumber)) {
+        console.log("valid");
         addArithmeticOperatorsEventListener();
     }
 
@@ -327,6 +324,7 @@ function resolveEquation(event) {
         // console.log(typeof numberOne);
         
         //want this to remove dps and - sign from length for condition;
+        /*could add answer variable above and for this if*/
         if (displayNumber.length >= 9) {
             displayNumber = toScientificNotation(displayNumber, 5);
         }
@@ -383,6 +381,7 @@ let clear = document.querySelector ("#ac-button");
 
 clear.addEventListener("click", clearAll);
 
+//add minus sign listener;
 function clearAll(event) {
     displayNumber = "";
     numberOne = undefined;
