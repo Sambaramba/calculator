@@ -405,7 +405,7 @@ let dot = document.querySelector("#dot");
 function addDecimalPlace(event) {
     let dotSign = event.target.textContent
     displayNumber += dotSign;
-    
+    displayText.textContent = displayNumber;
 }
 
 
