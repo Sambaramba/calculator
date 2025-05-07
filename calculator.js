@@ -43,7 +43,7 @@ function operate(numberOne, operator, numberTwo, event) {
     
     if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
         clearAll(event);
-        displayText.textContent = "Clever!";;
+        displayText.textContent = "Clever!";
         return;
     }
 
@@ -125,13 +125,16 @@ function isValidNumber(value) {
 
 
 function addNumberToDisplay(event) {
-    console.log(typeof displayNumber);
-
-    if (displayNumber === undefined) {
-        console.log("this aint no proper number");
-    }
+    console.log(displayNumber);
     
 
+    //this fixes issue after divide by zero
+    //dont understand when displayNumber becomes undefined though
+    if (displayNumber === undefined) {
+        console.log("this aint no proper number");
+        displayNumber = "";
+    }
+    
     //think this now works;
     if (!displayNumber.includes(".")) {
         dot.addEventListener("click", addDecimalPlace, { once: true });
@@ -140,6 +143,8 @@ function addNumberToDisplay(event) {
 
     let eventNum = event.target.textContent;
     // alert(typeof eventNum);
+
+    
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
