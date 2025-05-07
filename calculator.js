@@ -125,16 +125,13 @@ function isValidNumber(value) {
 
 
 function addNumberToDisplay(event) {
-    console.log(displayNumber);
-    //This if breaks minus btn;
-    // if (displayNumber.length === "0") {
-    //     minusBtn.addEventListener("click", addMinusSign, { once: true });
-    // }
+    console.log(typeof displayNumber);
     
 
     //think this now works;
-    if (displayNumber.length >= 1 && !displayNumber.includes(".")) {
+    if (!displayNumber.includes(".")) {
         dot.addEventListener("click", addDecimalPlace, { once: true });
+        console.log("added dot event");
     }
 
     let eventNum = event.target.textContent;
@@ -178,6 +175,8 @@ function addNumberToDisplay(event) {
     if (isValidNumber(displayNumber)) {
         addArithmeticOperatorsEventListener();
     }
+
+    
     
     
     return displayText.textContent = displayNumber;
