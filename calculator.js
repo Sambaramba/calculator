@@ -127,9 +127,9 @@ function isValidNumber(value) {
 function addNumberToDisplay(event) {
     console.log(typeof displayNumber);
 
-    // if (typeof displayNumber === undefined) {
-    //     console.log("this aint no proper number");
-    // }
+    if (displayNumber === undefined) {
+        console.log("this aint no proper number");
+    }
     
 
     //think this now works;
@@ -173,9 +173,7 @@ function addNumberToDisplay(event) {
         addArithmeticOperatorsEventListener();
     }
 
-    
-    
-    
+
     return displayText.textContent = displayNumber;
 };
 
