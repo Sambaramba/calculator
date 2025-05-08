@@ -315,7 +315,7 @@ function resolveEquation(event) {
     /*Could below code become a function so can use for maths operators*/
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-
+        numberOne = displayNumber;
         //convert to number then to string with no dps
         //doesn't work for neg expos so need to refactor;
         //added toPrecision as start
@@ -330,12 +330,14 @@ function resolveEquation(event) {
         /*could add answer variable above and for this if*/
         if (displayNumber.length >= 9) {
             displayText.textContent = toScientificNotation(displayNumber, 5);
-            console.log(displayNumber);
+            // console.log(displayNumber);
         } else {
             displayText.textContent = displayNumber;
-            displayNumber = "";
+            // console.log("less than 9");
+            
         }
-        
+        displayNumber = "";
+        // console.log(displayNumber);
     };
      console.log(numberOne);
     return 
