@@ -424,12 +424,10 @@ let minusBtn = document.querySelector("#minus");
 
 
 function addMinusSign(event) {
-    // let minusSign = event.target.textContent;
-    // if (minusSign === "-") {
-    //     alert("It's alive! it's aliiiive!");
-    // }
+    if (!displayNumber.length) {
     displayNumber += "-";
     displayText.textContent = displayNumber;
+    }
     console.log(displayNumber);
 }
 
