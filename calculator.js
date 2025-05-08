@@ -313,6 +313,7 @@ function resolveEquation(event) {
     //     return;
     // }
     /*Could below code become a function so can use for maths operators*/
+    //need to remove loads of dps,try to fixed()
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         numberOne = displayNumber;
@@ -340,6 +341,7 @@ function resolveEquation(event) {
         // console.log(displayNumber);
     };
      console.log(numberOne);
+     console.log(numberTwo);
     return 
 }
 
@@ -427,6 +429,7 @@ function addMinusSign(event) {
     //     alert("It's alive! it's aliiiive!");
     // }
     displayNumber += "-";
+    displayText.textContent = displayNumber;
     console.log(displayNumber);
 }
 
