@@ -329,10 +329,12 @@ function resolveEquation(event) {
         //want this to remove dps and - sign from length for condition;
         /*could add answer variable above and for this if*/
         if (displayNumber.length >= 9) {
-            displayNumber = toScientificNotation(displayNumber, 5);
+            displayText.textContent = toScientificNotation(displayNumber, 5);
+            console.log(displayNumber);
+        } else {
+            displayText.textContent = displayNumber;
+            displayNumber = "";
         }
-        displayText.textContent = displayNumber;
-        displayNumber = "";
         
     };
      console.log(numberOne);
