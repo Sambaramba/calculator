@@ -316,16 +316,19 @@ function resolveEquation(event) {
     //need to remove loads of dps,try to fixed()
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        numberOne = displayNumber;
+        console.log(displayNumber);
+        numberOne = Number(displayNumber).toFixed(5);
+        console.log(numberOne);
+
+        // numberOne = removeTrailingZeros(displayNumber);
+        // console.log(numberOne);
         //convert to number then to string with no dps
         //doesn't work for neg expos so need to refactor;
         //added toPrecision as start
         //want to remove zeros from end of num1
         //also for display length check remove non nums before check
         //need to decide what size numbers to work with;
-        // numberOne = Number(displayNumber).toFixed(15);
-        // console.log(numberOne);
-        // console.log(typeof numberOne);
+        
         
         //want this to remove dps and - sign from length for condition;
         /*could add answer variable above and for this if*/
@@ -448,34 +451,43 @@ if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.i
 }
 
 
-//update the if to update array without last zero
-//if doesn't end in zero update array as is
-//need to return string
+//want to check if number contains a dot
+//if not return number as is
+//if it does find the index index of the dot
+//then split into 2 parts at dot
+//for second part if ends in zero keep removing until it doesn't
+//need to return a string
 function removeTrailingZeros(number) {
      
     //returns number if zero;`
     if (+number === 0) {
         return number;
     }
-    //work out what sized numbers to work with in calculator
-    //toFixed is temporary fix;
-    let standardNumber = Number(number).toFixed(15);
-    let array = standardNumber.split("");
-    
+    let dot = number.indexOf(".");
 
-    for (let i = array.length; i >= 1; i--) {
+    if (dot === -1) {
+        return number;
+    }
+    
+    let beforeDot = number.slice(0, dot);
+    let afterDot = number.slice(dot);
+    
+    let array = afterDot.split("");
+    let removedZeros;
+
+    //need to .pop() "." too;
+    for (let i = array.length; i >= 0; i--) {
 
             const last = array[array.length - 1];
             if (last === "0") {
                     array.pop();
                 // console.log(array);
             } 
-            // else return array;
-        
-            // console.log(array.length);
+            
+            removedZeros = array.join("");
     }
     // console.log(array);
-    return array.join("");
+    return beforeDot + removedZeros;
 }
 
 // Number.MIN_SAFE_INTEGER;
