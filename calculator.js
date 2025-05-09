@@ -320,8 +320,8 @@ function resolveEquation(event) {
         numberOne = Number(displayNumber).toFixed(5);
         console.log(numberOne);
 
-        // numberOne = removeTrailingZeros(displayNumber);
-        // console.log(numberOne);
+        numberOne = removeTrailingZeros(numberOne);
+        console.log(numberOne);
         //convert to number then to string with no dps
         //doesn't work for neg expos so need to refactor;
         //added toPrecision as start
@@ -493,8 +493,8 @@ function removeTrailingZeros(number) {
             //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
-    // console.log(array);
-
+    
+    // attach two parts back together
     return beforeDot + removedZeros;
 }
 
