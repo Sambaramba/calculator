@@ -459,34 +459,42 @@ if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.i
 //need to return a string
 function removeTrailingZeros(number) {
      
-    //returns number if zero;`
+
+    //think can move this condition into the dot if below
+    //returns number if zero;
     if (+number === 0) {
         return number;
     }
+    
+    //stores ondex of dp;
     let dot = number.indexOf(".");
-
+    
+    //if number doesn't contain dot return number as is;
     if (dot === -1) {
         return number;
     }
     
+    //splits into two parts at the index of the dp;
     let beforeDot = number.slice(0, dot);
     let afterDot = number.slice(dot);
     
     let array = afterDot.split("");
     let removedZeros;
 
-    //need to .pop() "." too;
+    
+    //create array to remove trailing zeros
     for (let i = array.length; i >= 0; i--) {
 
             const last = array[array.length - 1];
-            if (last === "0") {
+            if (last === "0" || last === ".") {
                     array.pop();
                 // console.log(array);
             } 
-            
+            //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
     // console.log(array);
+
     return beforeDot + removedZeros;
 }
 
