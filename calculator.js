@@ -313,15 +313,17 @@ function resolveEquation(event) {
     //     return;
     // }
     /*Could below code become a function so can use for maths operators*/
-    //need to remove loads of dps,try to fixed()
+    //or could add code just after operate is called to a func and call
+    //either could make code cleaner/more readable;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
-        numberOne = Number(displayNumber).toFixed(5);
-        console.log(numberOne);
+        displayNumber = Number(displayNumber).toFixed(5);
+        console.log(displayNumber);
 
-        numberOne = removeTrailingZeros(numberOne);
-        console.log(numberOne);
+        displayNumber = removeTrailingZeros(displayNumber);
+        console.log(displayNumber);
+        numberOne = displayNumber;
         //convert to number then to string with no dps
         //doesn't work for neg expos so need to refactor;
         //added toPrecision as start
@@ -337,7 +339,7 @@ function resolveEquation(event) {
             // console.log(displayNumber);
         } else {
             displayText.textContent = displayNumber;
-            // console.log("less than 9");
+            console.log("less than 9");
             
         }
         displayNumber = "";
