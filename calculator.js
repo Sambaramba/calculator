@@ -315,6 +315,9 @@ function resolveEquation(event) {
     /*Could below code become a function so can use for maths operators*/
     //or could add code just after operate is called to a func and call
     //either could make code cleaner/more readable;
+
+    //DOESN'T WORK WHEN DIVIDING -ve SN numbers BY LARGE NUMBERS
+    //remove zeros doesn't work when got 0.00000
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
@@ -459,14 +462,17 @@ if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.i
 //then split into 2 parts at dot
 //for second part if ends in zero keep removing until it doesn't
 //need to return a string
+
+//breaks with 0.0000
+//think because
 function removeTrailingZeros(number) {
      
 
     //think can move this condition into the dot if below
     //returns number if zero;
-    if (+number === 0) {
-        return number;
-    }
+    // if (+number === 0) {
+    //     return number;
+    // }
     
     //stores ondex of dp;
     let dot = number.indexOf(".");
