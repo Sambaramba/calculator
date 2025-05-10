@@ -319,10 +319,10 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
-        
+
         if (!displayNumber.includes("-")) {
             console.log("no minus");
-        displayNumber = Number(displayNumber).toFixed(5);
+        displayNumber = Number(displayNumber).toFixed(3);
         }
         console.log(displayNumber);
         
