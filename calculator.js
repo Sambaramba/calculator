@@ -482,13 +482,12 @@ addMinusSignEventListener();
 function removeTrailingZeros(number) {
      
 
-    //think can move this condition into the dot if below
-    //returns number if zero;
-    // if (+number === 0) {
-    //     return number;
-    // }
-    
-    //stores ondex of dp;
+    //exits out if scientific notation number;
+    if (number.includes("e")) {
+        console.log("we got some e");
+        return number;
+    }
+    //stores index of dp;
     let dot = number.indexOf(".");
     
     //if number doesn't contain dot return number as is;
