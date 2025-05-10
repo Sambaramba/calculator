@@ -135,11 +135,6 @@ function addNumberToDisplay(event) {
         displayNumber = "";
     }
     
-    //think this now works;
-    if (!displayNumber.includes(".")) {
-        dot.addEventListener("click", addDecimalPlace, { once: true });
-        console.log("added dot event");
-    }
 
     let eventNum = event.target.textContent;
     // alert(typeof eventNum);
@@ -414,15 +409,25 @@ function clearAll(event) {
 
 }
 
-// dot button selector and function for its click event;
+//Code to add a decimal place to number
 
 let dot = document.querySelector("#dot");
 
+dot.addEventListener("click", addDecimalPlace);
+
 function addDecimalPlace(event) {
-    let dotSign = event.target.textContent
-    displayNumber += dotSign;
-    displayText.textContent = displayNumber;
+
+    let dotSign = event.target.textContent;
+    if (!displayNumber.includes(dotSign) && isValidNumber(displayNumber)) {
+        displayNumber += dotSign;
+        displayText.textContent = displayNumber;
+        console.log("added dot event");
+     }
 }
+
+
+
+    
 
 
 //MINUS BUTTON CODE TO ADD MINUS SIGN TO START OF NUMBERS
@@ -450,10 +455,10 @@ function removeMinusSignEventListener() {
 addMinusSignEventListener();
 
 //does 2nd part of condition do what i want?
-if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
-    alert("minus event code");
+// if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
+//     alert("minus event code");
     
-}
+// }
 
 
 //want to check if number contains a dot
@@ -463,8 +468,6 @@ if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.i
 //for second part if ends in zero keep removing until it doesn't
 //need to return a string
 
-//breaks with 0.0000
-//think because
 function removeTrailingZeros(number) {
      
 
