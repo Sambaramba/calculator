@@ -319,12 +319,16 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
-
-        if (!displayNumber.includes("-")) {
-            console.log("no minus");
-        displayNumber = Number(displayNumber).toFixed(3);
-        }
-        console.log(displayNumber);
+        
+        //condition isn't correct
+        //it removes negative numbers
+        //want it only trim dps off large positive/negative numbers;
+        // if (!displayNumber.includes("-")) {
+        //     console.log("no minus");
+        //     displayNumber = Number(displayNumber).toFixed(3);
+        // }
+        // displayNumber = Number(displayNumber).toFixed(3);
+        // console.log(displayNumber);
         
         displayNumber = removeTrailingZeros(displayNumber);
         console.log(displayNumber);
