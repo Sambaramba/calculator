@@ -41,6 +41,7 @@ function operate(numberOne, operator, numberTwo, event) {
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
     
+    //divided by zero code
     if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
         clearAll(event);
         displayText.textContent = "Clever!";
@@ -313,12 +314,18 @@ function resolveEquation(event) {
 
     //DOESN'T WORK WHEN DIVIDING -ve SN numbers BY LARGE NUMBERS
     //remove zeros doesn't work when got 0.00000
+    //toFixed code line doesn't work with large  -ve SN nums
+    //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
+        
+        if (!displayNumber.includes("-")) {
+            console.log("no minus");
         displayNumber = Number(displayNumber).toFixed(5);
+        }
         console.log(displayNumber);
-
+        
         displayNumber = removeTrailingZeros(displayNumber);
         console.log(displayNumber);
         numberOne = displayNumber;
