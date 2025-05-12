@@ -243,6 +243,8 @@ function addOperator(event) {
         // console.log("this if executed");
         numberTwo = undefined;
     }
+
+    
    
     
     
@@ -260,6 +262,10 @@ function addOperator(event) {
     
     operator = currentOperator;
     
+    if(isValidNumber(numberOne) && operator) {
+        console.log("equals removed");
+        removeEqualsEventListener();
+    }
     
     addNumbersEventListener();
     
