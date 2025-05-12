@@ -228,6 +228,8 @@ function addOperator(event) {
     //    displayNumber = minusOperator;
     //    return;
     // }
+    
+
 
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
@@ -256,12 +258,13 @@ function addOperator(event) {
     // displayText.textContent = `${numberOne} ${currentOperator}`;
 
     
-    
+    //why am i removing and readding numbers event?
     //remove click event for numbers less than 9 long
-    removeNumbersEventListener();
+    // removeNumbersEventListener();
     
     operator = currentOperator;
     
+    //remove equals event if no number 2
     if(isValidNumber(numberOne) && operator) {
         console.log("equals removed");
         removeEqualsEventListener();
