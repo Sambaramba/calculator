@@ -343,7 +343,10 @@ function resolveEquation(event) {
         
         //want this to remove dps and - sign from length for condition;
         /*could add answer variable above and for this if*/
+        // let cleanedNumber = cleanNumber(displayNumber);
+        // console.log(cleanedNumber);
         if (displayNumber.length >= 9) {
+            console.log(displayNumber);
             displayText.textContent = toScientificNotation(displayNumber, 5);
             // console.log(displayNumber);
         } else {
@@ -519,12 +522,13 @@ function removeTrailingZeros(number) {
     return beforeDot + removedZeros;
 }
 
-function cleanedNumber(stringedNumber) {
+function cleanNumber(stringedNumber) {
     //is the if needed;
     // if (stringedNumber.includes("e")) {
     //     return stringedNumber;
     // }
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
+   console.log(typeof cleanedNumber);
    return cleanedNumber;
 }
 
