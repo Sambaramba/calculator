@@ -247,24 +247,9 @@ function addOperator(event) {
     }
 
     
-   
-    
-    
-    
-
-    //then add keep showing in display
-    // displayText.textContent = displayNumber;
-
-    // displayText.textContent = `${numberOne} ${currentOperator}`;
-
-    
-    //why am i removing and readding numbers event?
-    //remove click event for numbers less than 9 long
-    // removeNumbersEventListener();
-    
     operator = currentOperator;
     
-    //remove equals event if no number 2
+    //removes equals event if no number 2
     if(isValidNumber(numberOne) && operator) {
         console.log("equals removed");
         removeEqualsEventListener();
