@@ -305,18 +305,12 @@ function resolveEquation(event) {
     // console.log(numberTwo);
 
     
-
+    //add current display number to 2nd number var
     if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
     }
 
-    //move below into operate function?
-    //would code work better if its a helper function?
-    // if (operator == divideOperator && parseFloat(numberTwo) == 0) {
-    //     clearAll(event);
-    //     displayText.textContent = "Clever!";
-    //     return;
-    // }
+   
     /*Could below code become a function so can use for maths operators*/
     //or could add code just after operate is called to a func and call
     //either could make code cleaner/more readable;
@@ -329,15 +323,7 @@ function resolveEquation(event) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
     
-        //condition isn't correct
-        //it removes negative numbers
-        //want it only trim dps off large positive/negative numbers;
-        // if (!displayNumber.includes("-")) {
-        //     console.log("no minus");
-        //     displayNumber = Number(displayNumber).toFixed(3);
-        // }
-        // displayNumber = Number(displayNumber).toFixed(3);
-        // console.log(displayNumber);
+        
         if (displayNumber.startsWith("0.") || 
             displayNumber.startsWith("-0."))
             {   
@@ -348,21 +334,16 @@ function resolveEquation(event) {
                 displayNumber = Number(displayNumber).toFixed(2);
             };
         
+        //remove zeros from result which is stored in displayNumber var;
         displayNumber = removeTrailingZeros(displayNumber);
-        console.log(displayNumber);
+        
+        //store if in numberOne for next time;
         numberOne = displayNumber;
-        //convert to number then to string with no dps
-        //doesn't work for neg expos so need to refactor;
-        //added toPrecision as start
-        //want to remove zeros from end of num1
-        //also for display length check remove non nums before check
-        //need to decide what size numbers to work with;
         
-        
-        //want this to remove dps and - sign from length for condition;
-        /*could add answer variable above and for this if*/
+        //removes all non numbers for result length check
         let cleanedNumber = cleanNumber(displayNumber);
-        console.log(cleanedNumber);
+        
+        //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length >= 9) {
             
             displayText.textContent = toScientificNotation(displayNumber, 5);
@@ -373,10 +354,10 @@ function resolveEquation(event) {
             
         }
         displayNumber = "";
-        // console.log(displayNumber);
+        
     };
-     console.log(numberOne);
-     console.log(numberTwo);
+    //  console.log(numberOne);
+    //  console.log(numberTwo);
     return 
 }
 
