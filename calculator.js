@@ -181,7 +181,7 @@ function addNumberToDisplay(event) {
 
 
 
-/*Code to add click event to operator buttons*/
+//ADD MATHS OPERATORS EVENT CODE;
 
 let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
@@ -258,6 +258,8 @@ function addOperator(event) {
     return
     
 };
+
+//EQUALS BUTTON EVENT CODE;
 
 const equals = document.querySelector("#equals");
 
@@ -359,7 +361,6 @@ let clear = document.querySelector ("#ac-button");
 
 clear.addEventListener("click", clearAll);
 
-//add minus sign listener;
 function clearAll(event) {
     displayNumber = "";
     numberOne = undefined;
@@ -375,7 +376,7 @@ function clearAll(event) {
 
 }
 
-//Code to add a decimal place to number
+//ADD DECIMAl PLACE TO NUMBERS CODE;
 
 let dot = document.querySelector("#dot");
 
@@ -393,10 +394,7 @@ function addDecimalPlace(event) {
 
 
 
-    
-
-
-//MINUS BUTTON CODE TO ADD MINUS SIGN TO START OF NUMBERS
+//ADD MINUS SIGN TO START OF NUMBERS CODE;
 
 let minusBtn = document.querySelector("#minus");
 
@@ -425,14 +423,6 @@ addMinusSignEventListener();
 //     alert("minus event code");
     
 // }
-
-
-//want to check if number contains a dot
-//if not return number as is
-//if it does find the index index of the dot
-//then split into 2 parts at dot
-//for second part if ends in zero keep removing until it doesn't
-//need to return a string
 
 function removeTrailingZeros(number) {
      
@@ -484,7 +474,7 @@ function cleanNumber(stringedNumber) {
    return cleanedNumber;
 }
 
-/*CURRENTLY UNUSED OR BROKEN CODE;
+/*CURRENTLY UNUSED OR BROKEN CODE*/
 
 // Number.MIN_SAFE_INTEGER;
 // Number.MAX_SAFE_INTEGER;
