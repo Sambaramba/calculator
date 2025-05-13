@@ -338,6 +338,15 @@ function resolveEquation(event) {
         // }
         // displayNumber = Number(displayNumber).toFixed(3);
         // console.log(displayNumber);
+        if (displayNumber.startsWith("0.") || 
+            displayNumber.startsWith("-0."))
+            {   
+                console.log("To 8 dps");
+                displayNumber = Number(displayNumber).toFixed(8);
+            } else {
+                console.log("To 2 dps");
+                displayNumber = Number(displayNumber).toFixed(2);
+            };
         
         displayNumber = removeTrailingZeros(displayNumber);
         console.log(displayNumber);
@@ -540,6 +549,8 @@ function cleanNumber(stringedNumber) {
    console.log(typeof cleanedNumber);
    return cleanedNumber;
 }
+
+
 
 // Number.MIN_SAFE_INTEGER;
 // Number.MAX_SAFE_INTEGER;
