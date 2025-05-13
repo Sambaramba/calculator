@@ -152,6 +152,8 @@ function addNumberToDisplay(event) {
     if (!numbers.count) {
         // displayNumber = "";
         numbers.count = 0
+        addArithmeticOperatorsEventListener();
+        console.log("maths operator added");
     };
 
     if (numbers.count >= 9) {
@@ -169,10 +171,10 @@ function addNumberToDisplay(event) {
     // is if statement neccessary?
     //find way to not add multiple times
     //is that neccessary;
-    if (isValidNumber(displayNumber)) {
-        console.log("valid");
-        addArithmeticOperatorsEventListener();
-    }
+    // if (isValidNumber(displayNumber)) {
+    //     console.log("valid");
+    //     addArithmeticOperatorsEventListener();
+    // }
 
 
     return displayText.textContent = displayNumber;
