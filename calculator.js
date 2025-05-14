@@ -414,14 +414,14 @@ addMinusSignEventListener();
     
 // }
 
-function refineNumber (stringedNumber) {
+function refineNumber(stringedNumber) {
 
     let refinedNumber;
     if (stringedNumber.startsWith("0.") || 
         stringedNumber.startsWith("-0."))
         {   
             console.log("To 8 dps");
-            stringedNumber = Number(stringedNumber).toFixed(8);
+            refinedNumber = Number(stringedNumber).toFixed(8);
         } else {
             console.log("To 2 dps");
             refinedNumber = Number(stringedNumber).toFixed(2);
