@@ -414,7 +414,7 @@ addMinusSignEventListener();
     
 // }
 
-function refineNumber(stringedNumber) {
+function refineDecimalPlaces(stringedNumber) {
 
     let refinedNumber;
     if (stringedNumber.startsWith("0.") || 
