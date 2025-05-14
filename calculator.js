@@ -316,9 +316,8 @@ function resolveEquation(event) {
         
         //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length >= 12) {
+            clearAll();
             displayText.textContent = "NaN";
-            displayNumber = "";
-            NumberOne = undefined;
             // displayText.textContent = toScientificNotation(displayNumber, 7);
             
         } else {
