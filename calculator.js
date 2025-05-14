@@ -309,7 +309,9 @@ function resolveEquation(event) {
         displayNumber = operate(numberOne, operator, numberTwo);
         console.log(displayNumber);
     
-        
+        displayNumber = refineDecimalPlaces(displayNumber);
+        console.log(displayNumber);
+
         //removes all non numbers for results length check
         let cleanedNumber = cleanNumber(displayNumber);
         console.log(cleanedNumber.length);
