@@ -296,7 +296,7 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-   
+   console.log(operator);
     /*Could below code become a function so can use for maths operators*/
     //or could add code just after operate is called to a func and call
     //either could make code cleaner/more readable;
@@ -315,7 +315,7 @@ function resolveEquation(event) {
         console.log(cleanedNumber.length);
         
         //If length above 9 convert to scientific notation and display;
-        if (cleanedNumber.length >= 12) {
+        if (cleanedNumber.length > 12) {
             clearAll();
             console.log("is NaN");
             displayText.textContent = "NaN";
