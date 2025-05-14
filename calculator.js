@@ -310,36 +310,25 @@ function resolveEquation(event) {
         console.log(displayNumber);
     
         
-        if (displayNumber.startsWith("0.") || 
-            displayNumber.startsWith("-0."))
-            {   
-                console.log("To 8 dps");
-                displayNumber = Number(displayNumber).toFixed(8);
-            } else {
-                console.log("To 2 dps");
-                displayNumber = Number(displayNumber).toFixed(2);
-            };
-        
-        //remove zeros from result which is stored in displayNumber var;
-        displayNumber = removeTrailingZeros(displayNumber);
-        
-        //store if in numberOne for next time;
-        numberOne = displayNumber;
-        
         //removes all non numbers for results length check
         let cleanedNumber = cleanNumber(displayNumber);
         console.log(cleanedNumber.length);
         
         //If length above 9 convert to scientific notation and display;
-        if (cleanedNumber.length >= 9) {
-            
-            displayText.textContent = toScientificNotation(displayNumber, 5);
+        if (cleanedNumber.length >= 12) {
+            displayText.textContent = "NaN";
+            displayNumber = "";
+            NumberOne = undefined;
+            // displayText.textContent = toScientificNotation(displayNumber, 7);
             
         } else {
             displayText.textContent = displayNumber;
+            NumberOne = displayNumber;
+            displayNumber = "";
             console.log("less than 9");
             
         }
+        numberOne = displayNumber;
         displayNumber = "";
         
     };
@@ -426,6 +415,23 @@ addMinusSignEventListener();
     
 // }
 
+function refineNumber (stringedNumber) {
+
+    let refinedNumber;
+    if (stringedNumber.startsWith("0.") || 
+        stringedNumber.startsWith("-0."))
+        {   
+            console.log("To 8 dps");
+            stringedNumber = Number(stringedNumber).toFixed(8);
+        } else {
+            console.log("To 2 dps");
+            refinedNumber = Number(stringedNumber).toFixed(2);
+        };
+    
+    //remove zeros from end of number;
+    return removeTrailingZeros(refinedNumber);
+} 
+
 function removeTrailingZeros(number) {
      
 
@@ -478,8 +484,15 @@ function cleanNumber(stringedNumber) {
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
 
+//does this work with floating points?
 // Number.MIN_SAFE_INTEGER;
 // Number.MAX_SAFE_INTEGER;
+// function checkIfSafeInteger(number) {
+//     if (number < Number.MIN_SAFE_INTEGER ||
+//         number > Number.MAX_SAFE_INTEGER) {
+//         console.log("NaN");
+//     }
+//  }
 
 
 // function getRoundedNumber(number, decimalPlaces) {
