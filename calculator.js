@@ -317,6 +317,7 @@ function resolveEquation(event) {
         //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length >= 12) {
             clearAll();
+            console.log("is NaN");
             displayText.textContent = "NaN";
             // displayText.textContent = toScientificNotation(displayNumber, 7);
             
@@ -327,12 +328,11 @@ function resolveEquation(event) {
             console.log("less than 9");
             
         }
-        numberOne = displayNumber;
-        displayNumber = "";
+        
         
     };
-    //  console.log(numberOne);
-    //  console.log(numberTwo);
+     console.log(numberOne);
+     console.log(numberTwo);
     return 
 }
 
