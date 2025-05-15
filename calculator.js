@@ -142,9 +142,11 @@ function addNumberToDisplay(event) {
         console.log("this aint no proper number");
         displayNumber = "";
     }
-    
 
+    
     let eventNum = event.target.textContent;
+
+
 
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
@@ -157,7 +159,7 @@ function addNumberToDisplay(event) {
     //Numbers count add/remove/increment code
     if (!numbers.count) {
         // displayNumber = "";
-        numbers.count = 0
+        numbers.count = 0;
         addArithmeticOperatorsEventListener();
         console.log("maths operator added");
     };
@@ -170,7 +172,6 @@ function addNumberToDisplay(event) {
     ++numbers.count;
     
     //adds number selected to displayNumber;
-    displayNumber += eventNum;
     
 
     //checks if valid number and adds maths operators if so
@@ -181,6 +182,15 @@ function addNumberToDisplay(event) {
     //     console.log("valid");
     //     addArithmeticOperatorsEventListener();
     // }
+    
+    
+    if (displayNumber === "0") {
+        console.log(displayNumber);
+        displayNumber = eventNum;
+    } else {
+        console.log(displayNumber);
+        displayNumber += eventNum;
+    }
 
 
     return displayText.textContent = displayNumber;
@@ -307,9 +317,7 @@ function resolveEquation(event) {
     //or could add code just after operate is called to a func and call
     //either could make code cleaner/more readable;
 
-    //DOESN'T WORK WHEN DIVIDING -ve SN numbers BY LARGE NUMBERS
-    //remove zeros doesn't work when got 0.00000
-    //toFixed code line doesn't work with large  -ve SN nums
+
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
