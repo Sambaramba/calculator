@@ -118,9 +118,15 @@ function isValidNumber(value) {
     if(typeof value === "number") {
         return Number.isFinite(value);
     } else if (typeof value === "string") {
-       const number = Number(value);
-       return Number.isFinite(number);
-    } else return false;
+        
+        if (value.trim().length === 0 ) {
+            return false;
+        }
+        const number = Number(value);
+        return Number.isFinite(number);
+    } else { 
+        return false;
+    }
     
 }
 
@@ -314,7 +320,6 @@ function resolveEquation(event) {
 
         //removes all non numbers for results length check
         let cleanedNumber = cleanNumber(displayNumber);
-        console.log(cleanedNumber.length);
         
         //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length > 12) {
@@ -325,7 +330,8 @@ function resolveEquation(event) {
             
         } else {
             displayText.textContent = displayNumber;
-            NumberOne = displayNumber;
+            numberOne = displayNumber;
+            console.log(numberOne);
             displayNumber = "";
             console.log("less than 9");
             
