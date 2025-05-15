@@ -149,11 +149,7 @@ function addNumberToDisplay(event) {
 
 
     
-    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
-    if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
-        addEqualsEventListener();
-        // alert ("By jove this works!");
-    }
+    
     
 
     //Numbers count add/remove/increment code
@@ -170,18 +166,12 @@ function addNumberToDisplay(event) {
     }
 
     ++numbers.count;
-    
-    //adds number selected to displayNumber;
-    
 
-    //checks if valid number and adds maths operators if so
-    // is if statement neccessary?
-    //find way to not add multiple times
-    //is that neccessary;
-    // if (isValidNumber(displayNumber)) {
-    //     console.log("valid");
-    //     addArithmeticOperatorsEventListener();
-    // }
+    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
+    if (isValidNumber(numberOne) && numbers.count === 1) {
+        addEqualsEventListener();
+        // console.log(("add equals event"));
+    }
     
     
     if (displayNumber === "0") {
