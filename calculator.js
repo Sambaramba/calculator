@@ -308,7 +308,7 @@ function resolveEquation(event) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // console.log(displayNumber);
     
-        displayNumber = refineDecimalPlaces(displayNumber);
+        displayNumber = removeExcessDecimalPlaces(displayNumber);
         // console.log(displayNumber);
 
         //removes all non numbers for results length check
@@ -415,7 +415,7 @@ addMinusSignEventListener();
     
 // }
 
-function refineDecimalPlaces(stringedNumber) {
+function removeExcessDecimalPlaces(stringedNumber) {
 
     let refinedNumber;
     if (stringedNumber.startsWith("0.") || 
