@@ -115,7 +115,7 @@ function isNonZeroNumber(value) {
     return Number.isFinite(number) && number !== 0;
 }
 
-//test if valid number, returns true or false
+//test if valid number, returns true or false;
 //tests if argument is string or number datatype;
 function isValidNumber(value) {
 
@@ -288,6 +288,9 @@ function resolveEquation(event) {
     //readd event listener for repeat operations
     addArithmeticOperatorsEventListener();
     
+
+    //convert variables from string to number
+    //Do I need these anymore?
     numberOne = parseFloat(numberOne);
     displayNumber = parseFloat(displayNumber);
     numberTwo = parseFloat(numberTwo);
@@ -305,38 +308,19 @@ function resolveEquation(event) {
     /*Could below code become a function so can use for maths operators*/
     //or could add code just after operate is called to a func and call
     //either could make code cleaner/more readable;
-
+    
 
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // console.log(displayNumber);
-
-
-        //removes all non numbers for results length check
-        let cleanedNumber = removeAllNonNumbers(displayNumber);
+        console.log(numberOne);
+        console.log(numberTwo);
         
-        //If length above 9 convert to scientific notation and display;
-        if (cleanedNumber.length > 12) {
-            clearAll();
-            // console.log("is NaN");
-            displayText.textContent = "NaN";
-            // displayText.textContent = toScientificNotation(displayNumber, 7);
-            
-        } else {
-            displayText.textContent = displayNumber;
-            numberOne = displayNumber;
-            // console.log(numberOne);
-            displayNumber = "";
-            // console.log("less than 9");
-            
-        }
-        
-       
+        return addResultToDisplay(displayNumber);
     };
-     console.log(numberOne);
-     console.log(numberTwo);
-    return 
+     console.log("bottom of resolve Equation runs");
+    
 }
 
 /*create function to process result of operate to/from scientific notation*/
@@ -465,19 +449,17 @@ function removeTrailingZeros(number) {
             const last = array[array.length - 1];
             if (last === "0" || last === ".") {
                     array.pop();
-                // console.log(array);
             } 
             //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
-    console.log(beforeDecimalPlace);
-    console.log(afterDecimalPlace);
+    
     // attach two parts back together
     return beforeDecimalPlace + removedZeros;
 }
 
 function removeAllNonNumbers(stringedNumber) {
-    //is the if needed;
+    //is this if still needed;
     // if (stringedNumber.includes("e")) {
     //     return stringedNumber;
     // }
@@ -491,17 +473,15 @@ function removeAllNonNumbers(stringedNumber) {
 
 //haven't commited this function yet;
 //do i break first part into helper function for 2nd part?
-function getCleanedResult() {
-    displayNumber = removeExcessDecimalPlaces(displayNumber);
-    // console.log(displayNumber);
-
+function addResultToDisplay(stringedNumber) {
+    
     //removes all non numbers for results length check
-    let cleanedNumber = removeAllNonNumbers(displayNumber);
+    let cleanedNumber = removeAllNonNumbers(stringedNumber);
     
     //If length above 9 convert to scientific notation and display;
     if (cleanedNumber.length > 12) {
         clearAll();
-        // console.log("is NaN");
+        console.log("is NaN");
         displayText.textContent = "NaN";
         // displayText.textContent = toScientificNotation(displayNumber, 7);
         
@@ -510,10 +490,10 @@ function getCleanedResult() {
         numberOne = displayNumber;
         // console.log(numberOne);
         displayNumber = "";
-        // console.log("less than 9");
+        console.log("less than 12");
         
     }
-    
+    return;
 }  
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
