@@ -72,9 +72,13 @@ function operate(numberOne, operator, numberTwo, event) {
         default: console.log("That is not a arthmetic operator");
 
     }
-
+    //convert to string
+    value = value.toString();
     
-    return value.toString();
+    // remove excess dps  
+    value = removeExcessDecimalPlaces(value);
+    
+    return value;
 }
 
 /*DISPLAY TEXT SELECT AND UPDATE CODE*/
@@ -307,9 +311,7 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // console.log(displayNumber);
-    
-        displayNumber = removeExcessDecimalPlaces(displayNumber);
-        // console.log(displayNumber);
+
 
         //removes all non numbers for results length check
         let cleanedNumber = removeAllNonNumbers(displayNumber);
@@ -330,7 +332,7 @@ function resolveEquation(event) {
             
         }
         
-        
+       
     };
      console.log(numberOne);
      console.log(numberTwo);
@@ -396,7 +398,8 @@ function addMinusSign(event) {
     displayNumber += "-";
     displayText.textContent = displayNumber;
     }
-    console.log(displayNumber);
+    console.log(displayNumber)
+
 }
 
 function addMinusSignEventListener() {
@@ -484,6 +487,34 @@ function removeAllNonNumbers(stringedNumber) {
    console.log(typeof cleanedNumber);
    return cleanedNumber;
 }
+
+
+//haven't commited this function yet;
+//do i break first part into helper function for 2nd part?
+function getCleanedResult() {
+    displayNumber = removeExcessDecimalPlaces(displayNumber);
+    // console.log(displayNumber);
+
+    //removes all non numbers for results length check
+    let cleanedNumber = removeAllNonNumbers(displayNumber);
+    
+    //If length above 9 convert to scientific notation and display;
+    if (cleanedNumber.length > 12) {
+        clearAll();
+        // console.log("is NaN");
+        displayText.textContent = "NaN";
+        // displayText.textContent = toScientificNotation(displayNumber, 7);
+        
+    } else {
+        displayText.textContent = displayNumber;
+        numberOne = displayNumber;
+        // console.log(numberOne);
+        displayNumber = "";
+        // console.log("less than 9");
+        
+    }
+    
+}  
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
 
