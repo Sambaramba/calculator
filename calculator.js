@@ -305,9 +305,6 @@ function resolveEquation(event) {
     }
 
    console.log(operator);
-    /*Could below code become a function so can use for maths operators*/
-    //or could add code just after operate is called to a func and call
-    //either could make code cleaner/more readable;
     
 
     //actually it might be working but might need to add toPrecsion instead;
@@ -323,11 +320,10 @@ function resolveEquation(event) {
     
 }
 
-/*create function to process result of operate to/from scientific notation*/
-// function ();
 
 //expecting string as argument
 //will lose precision with bigint numbers;
+//not using atm;
 function toScientificNotation (number, dps) {
     return Number.parseFloat(number).toExponential(dps);
 }
