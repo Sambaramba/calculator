@@ -312,7 +312,7 @@ function resolveEquation(event) {
         // console.log(displayNumber);
 
         //removes all non numbers for results length check
-        let cleanedNumber = cleanNumber(displayNumber);
+        let cleanedNumber = removeAllNonNumbers(displayNumber);
         
         //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length > 12) {
@@ -473,7 +473,7 @@ function removeTrailingZeros(number) {
     return beforeDecimalPlace + removedZeros;
 }
 
-function cleanNumber(stringedNumber) {
+function removeAllNonNumbers(stringedNumber) {
     //is the if needed;
     // if (stringedNumber.includes("e")) {
     //     return stringedNumber;
