@@ -147,17 +147,12 @@ function addNumberToDisplay(event) {
     let eventNum = event.target.textContent;
 
 
-
-    
-    
-    
-
     //Numbers count add/remove/increment code
     if (!numbers.count) {
         // displayNumber = "";
         numbers.count = 0;
         addArithmeticOperatorsEventListener();
-        console.log("maths operator added");
+        // console.log("maths operator added");
     };
 
     if (numbers.count >= 9) {
@@ -175,10 +170,10 @@ function addNumberToDisplay(event) {
     
     
     if (displayNumber === "0") {
-        console.log(displayNumber);
+        // console.log(displayNumber);
         displayNumber = eventNum;
     } else {
-        console.log(displayNumber);
+        // console.log(displayNumber);
         displayNumber += eventNum;
     }
 
@@ -311,10 +306,10 @@ function resolveEquation(event) {
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        console.log(displayNumber);
+        // console.log(displayNumber);
     
         displayNumber = refineDecimalPlaces(displayNumber);
-        console.log(displayNumber);
+        // console.log(displayNumber);
 
         //removes all non numbers for results length check
         let cleanedNumber = cleanNumber(displayNumber);
@@ -322,16 +317,16 @@ function resolveEquation(event) {
         //If length above 9 convert to scientific notation and display;
         if (cleanedNumber.length > 12) {
             clearAll();
-            console.log("is NaN");
+            // console.log("is NaN");
             displayText.textContent = "NaN";
             // displayText.textContent = toScientificNotation(displayNumber, 7);
             
         } else {
             displayText.textContent = displayNumber;
             numberOne = displayNumber;
-            console.log(numberOne);
+            // console.log(numberOne);
             displayNumber = "";
-            console.log("less than 9");
+            // console.log("less than 9");
             
         }
         
@@ -454,10 +449,10 @@ function removeTrailingZeros(number) {
     }
     
     //splits into two parts at the index of the dp;
-    let beforeDot = number.slice(0, dot);
-    let afterDot = number.slice(dot);
+    let beforeDecimalPlace = number.slice(0, dot);
+    let afterDecimalPlace = number.slice(dot);
     
-    let array = afterDot.split("");
+    let array = afterDecimalPlace.split("");
     let removedZeros;
 
     
@@ -472,9 +467,10 @@ function removeTrailingZeros(number) {
             //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
-    
+    console.log(beforeDecimalPlace);
+    console.log(afterDecimalPlace);
     // attach two parts back together
-    return beforeDot + removedZeros;
+    return beforeDecimalPlace + removedZeros;
 }
 
 function cleanNumber(stringedNumber) {
@@ -482,6 +478,8 @@ function cleanNumber(stringedNumber) {
     // if (stringedNumber.includes("e")) {
     //     return stringedNumber;
     // }
+
+    //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
    console.log(typeof cleanedNumber);
    return cleanedNumber;
