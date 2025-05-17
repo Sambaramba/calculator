@@ -219,7 +219,7 @@ operator var*/
 function addOperator(event) {
     // console.log(event);
     // alert("Number One's starting value is: " + numberOne);
-    alert("Operators starting values is: " + operator);
+    console.log("Operators starting values is: " + operator);
     // alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
@@ -242,6 +242,7 @@ function addOperator(event) {
     //Would 2nd part of condition be better as .includes check?
     if (operator && displayNumber === "-") {
         removeArithmeticOperatorsEventListener();
+        console.log("remove maths ops");
         return;
     }
 
