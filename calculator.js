@@ -221,6 +221,13 @@ function addOperator(event) {
     // alert("Number One's starting value is: " + numberOne);
     console.log("Operators starting values is: " + operator);
     // alert("Numbers two's starting value is: " + numberTwo);
+    
+    if (operator && displayNumber === "-") {
+        removeArithmeticOperatorsEventListener();
+        console.log("remove maths ops");
+        return;
+    }
+
 
     //delete count property until next num btn is pressed
     delete numbers.count;
@@ -241,11 +248,8 @@ function addOperator(event) {
     //if operator has value and displayNumber is minus
     //Would 2nd part of condition be better as .includes check?
     //haven't commited 3rd part of condition yet;
-    if (operator && displayNumber === "-" && currentOperator === minusOperator) {
-        removeArithmeticOperatorsEventListener();
-        console.log("remove maths ops");
-        return;
-    }
+
+    operator = currentOperator;
 
     
     //Adds minus event if operator has value;
@@ -263,8 +267,6 @@ function addOperator(event) {
         numberTwo = undefined;
     }
 
-    
-    operator = currentOperator;
     
     //removes equals event if no number 2
     if(isValidNumber(numberOne) && operator) {
