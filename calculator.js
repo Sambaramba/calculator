@@ -229,28 +229,30 @@ function addOperator(event) {
     let currentOperator = event.target.textContent;
     console.log(currentOperator);
     
-    //adds display num to num1 if no numerical value
-    // if(displayNumber.length === 0 && currentOperator === minusOperator) {
-    //    displayNumber = minusOperator;
-    //    return;
-    // }
     
-
-    //need to find minusOperator value;
-    //doesn't add minus to displayNumber
-    if(operator && !isValidNumber(displayNumber)) {
-        console.log("add minus in add maths op func");
-        addMinusSignEventListener();
-        displayNumber === "-";
-        return;
-    }
-
-
+    //Add display number to numberOne variable if it has no value;
     if (!isValidNumber(numberOne)) {
         numberOne = displayNumber;
         // displayText.textContent = displayNumber;
         displayNumber = "";
         // alert("numberOne value is: " + numberOne);
+    }
+    
+    //if operator has value and displayNumber is minus
+    //Would 2nd part of condition be better as .includes check?
+    if (operator && displayNumber === "-") {
+        removeArithmeticOperatorsEventListener();
+        return;
+    }
+
+    
+    //Adds minus event if operator has value;
+    if(operator && !isValidNumber(displayNumber)) {
+        console.log("add minus in add maths op func");
+        addMinusSignEventListener();
+        
+        displayNumber === "-";
+        return;
     }
 
     
