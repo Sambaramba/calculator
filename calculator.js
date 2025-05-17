@@ -34,8 +34,7 @@ const divideOperator = "\u00F7";
 
 
 //i dont really know why this unicode conversion works in below function
-//think its simpler to just parseFloat numbers in operate;
-//do i need number datatype anywhere else
+
 function operate(numberOne, operator, numberTwo, event) {
      
     numberOne = parseFloat(numberOne);
@@ -101,13 +100,16 @@ function addNumbersEventListener () {
         });
     };
 
-addNumbersEventListener();
-
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
         number.removeEventListener("click", addNumberToDisplay)
         })
 };
+
+//add numbers event at beginning;
+addNumbersEventListener();
+
+//VALID NUMBER CHECKS
 
 //test if valid non zero number,returns true or false;
 function isNonZeroNumber(value) {
@@ -172,7 +174,7 @@ function addNumberToDisplay(event) {
         // console.log(("add equals event"));
     }
     
-    
+    //Either replace displayNumber or add to it
     if (displayNumber === "0") {
         // console.log(displayNumber);
         displayNumber = eventNum;
@@ -209,7 +211,7 @@ function removeArithmeticOperatorsEventListener() {
     });
 };
 
-/*TODO? when click operator after numberTwo has value operate on 
+/*TODO- when click operator after numberTwo has value operate on 
 equation then add result to num1 and new operator click to 
 operator var*/
 
@@ -217,7 +219,7 @@ operator var*/
 function addOperator(event) {
     // console.log(event);
     // alert("Number One's starting value is: " + numberOne);
-    // alert("Operators starting values is: " + operator);
+    alert("Operators starting values is: " + operator);
     // alert("Numbers two's starting value is: " + numberTwo);
 
     //delete count property until next num btn is pressed
@@ -225,7 +227,7 @@ function addOperator(event) {
     // console.log(event.target);
 
     let currentOperator = event.target.textContent;
-    
+    console.log(currentOperator);
     
     //adds display num to num1 if no numerical value
     // if(displayNumber.length === 0 && currentOperator === minusOperator) {
@@ -233,6 +235,15 @@ function addOperator(event) {
     //    return;
     // }
     
+
+    //need to find minusOperator value;
+    //doesn't add minus to displayNumber
+    if(operator && !isValidNumber(displayNumber)) {
+        console.log("add minus in add maths op func");
+        addMinusSignEventListener();
+        displayNumber === "-";
+        return;
+    }
 
 
     if (!isValidNumber(numberOne)) {
@@ -378,7 +389,7 @@ function addMinusSign(event) {
     displayNumber += "-";
     displayText.textContent = displayNumber;
     }
-    console.log(displayNumber)
+    console.log(event.target.textContent)
 
 }
 
@@ -417,7 +428,6 @@ function removeExcessDecimalPlaces(stringedNumber) {
 
 function removeTrailingZeros(number) {
      
-
     //exits out if scientific notation number;
     if (number.includes("e")) {
         console.log("we got some e");
@@ -454,11 +464,13 @@ function removeTrailingZeros(number) {
     return beforeDecimalPlace + removedZeros;
 }
 
+
+
 function removeAllNonNumbers(stringedNumber) {
     //is this if still needed;
-    // if (stringedNumber.includes("e")) {
-    //     return stringedNumber;
-    // }
+    if (stringedNumber.includes("e")) {
+        return stringedNumber;
+    }
 
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
@@ -467,8 +479,8 @@ function removeAllNonNumbers(stringedNumber) {
 }
 
 
-//haven't commited this function yet;
-//do i break first part into helper function for 2nd part?
+
+//displays Nan or result dependant on num length;
 function addResultToDisplay(stringedNumber) {
     
     //removes all non numbers for results length check
