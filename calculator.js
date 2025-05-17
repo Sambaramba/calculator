@@ -240,7 +240,8 @@ function addOperator(event) {
     
     //if operator has value and displayNumber is minus
     //Would 2nd part of condition be better as .includes check?
-    if (operator && displayNumber === "-") {
+    //haven't commited 3rd part of condition yet;
+    if (operator && displayNumber === "-" && currentOperator === minusOperator) {
         removeArithmeticOperatorsEventListener();
         console.log("remove maths ops");
         return;
@@ -251,8 +252,6 @@ function addOperator(event) {
     if(operator && !isValidNumber(displayNumber)) {
         console.log("add minus in add maths op func");
         addMinusSignEventListener();
-        
-        displayNumber === "-";
         return;
     }
 
@@ -300,6 +299,7 @@ function resolveEquation(event) {
     delete numbers.count;
     
     //readd event listener for repeat operations
+    //think this can be deleted;
     addArithmeticOperatorsEventListener();
     
 
