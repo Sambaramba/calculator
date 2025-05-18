@@ -73,6 +73,8 @@ function operate(numberOne, operator, numberTwo, event) {
     }
     //convert to string
     value = value.toString();
+
+    
     // console.log( `value is : ${value}` )
     
     // remove excess dps  
@@ -427,6 +429,13 @@ function removeExcessDecimalPlaces(stringedNumber) {
     const minusNumberThenDecimal = /^-\d\./;
     const numberThenDecimal = /^\d\./;
 
+    if (stringedNumber.includes("e")) {
+        console.log("got e in remove dps");
+        let number = Number(stringedNumber);
+        let nonExponential = number.toFixed(11);
+        return removeTrailingZeros(nonExponential);
+    }
+
     if (numberThenDecimal.test(stringedNumber) || 
         minusNumberThenDecimal.test(stringedNumber))
         {   
@@ -438,6 +447,7 @@ function removeExcessDecimalPlaces(stringedNumber) {
         };
     
     //remove zeros from end of number;
+    console.log(refinedNumber);
     removeTrailingZeros(refinedNumber);
     console.log(refinedNumber);
     return refinedNumber;
@@ -485,9 +495,7 @@ function removeTrailingZeros(number) {
 
 function removeAllNonNumbers(stringedNumber) {
     //is this if still needed;
-    if (stringedNumber.includes("e")) {
-        return stringedNumber;
-    }
+    
 
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
@@ -503,6 +511,8 @@ function addResultToDisplay(stringedNumber) {
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(stringedNumber);
     
+    //USE THIS IF TO CHECK ANY LENGTH
+    // if (num.toFixed(0).length > 12)
     //If length above 9 convert to scientific notation and display;
     if (cleanedNumber.length > 12) {
         clearAll();
