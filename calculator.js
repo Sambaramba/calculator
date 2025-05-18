@@ -73,6 +73,7 @@ function operate(numberOne, operator, numberTwo, event) {
     }
     //convert to string
     value = value.toString();
+    // console.log( `value is : ${value}` )
     
     // remove excess dps  
     value = removeExcessDecimalPlaces(value);
@@ -139,7 +140,7 @@ function isValidNumber(value) {
 
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
-    console.log(displayNumber);
+    // console.log(displayNumber);
     
 
     //this fixes issue after divide by zero
@@ -307,9 +308,9 @@ function resolveEquation(event) {
 
     //convert variables from string to number
     //Do I need these anymore?
-    numberOne = parseFloat(numberOne);
-    displayNumber = parseFloat(displayNumber);
-    numberTwo = parseFloat(numberTwo);
+    // numberOne = parseFloat(numberOne);
+    // displayNumber = parseFloat(displayNumber);
+    // numberTwo = parseFloat(numberTwo);
     // console.log(numberOne);
     // console.log(displayNumber);
     // console.log(numberTwo);
@@ -321,14 +322,15 @@ function resolveEquation(event) {
     }
 
    console.log(operator);
-    
+    console.log(typeof displayNumber);
+    console.log(typeof numberOne);
 
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
         // console.log(displayNumber);
-        console.log(numberOne);
-        console.log(numberTwo);
+        // console.log(numberOne);
+        // console.log(numberTwo);
         
         return addResultToDisplay(displayNumber);
     };
@@ -414,11 +416,19 @@ addMinusSignEventListener();
     
 // }
 
+//gives zero with exponential numbers
+//need to figure out how to convert to non exponential
+//add whether to do it here or in operate;
 function removeExcessDecimalPlaces(stringedNumber) {
-
+    console.log(stringedNumber);
+    
     let refinedNumber;
-    if (stringedNumber.startsWith("0.") || 
-        stringedNumber.startsWith("-0."))
+
+    const minusNumberThenDecimal = /^-\d\./;
+    const numberThenDecimal = /^\d\./;
+
+    if (numberThenDecimal.test(stringedNumber) || 
+        minusNumberThenDecimal.test(stringedNumber))
         {   
             console.log("To 8 dps");
             refinedNumber = Number(stringedNumber).toFixed(8);
@@ -428,7 +438,9 @@ function removeExcessDecimalPlaces(stringedNumber) {
         };
     
     //remove zeros from end of number;
-    return removeTrailingZeros(refinedNumber);
+    removeTrailingZeros(refinedNumber);
+    console.log(refinedNumber);
+    return refinedNumber;
 } 
 
 function removeTrailingZeros(number) {
@@ -501,7 +513,8 @@ function addResultToDisplay(stringedNumber) {
     } else {
         displayText.textContent = displayNumber;
         numberOne = displayNumber;
-        // console.log(numberOne);
+        console.log(numberOne);
+        console.log(numberTwo);
         displayNumber = "";
         console.log("less than 12");
         
