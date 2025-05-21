@@ -37,10 +37,13 @@ const divideOperator = "\u00F7";
 
 function operate(numberOne, operator, numberTwo, event) {
      
+
+    //converts from string into number;
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
+
     
-    //divided by zero code
+    //divided by zero code with snarky message;
     if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
         clearAll(event);
         displayText.textContent = "Clever!";
@@ -71,13 +74,15 @@ function operate(numberOne, operator, numberTwo, event) {
         default: console.log("That is not a arthmetic operator");
 
     }
-    //convert to string
+    
+    console.log( `value is : ${value}`);
+    //convert to result back to string
     value = value.toString();
-
     
-    // console.log( `value is : ${value}` )
     
-    // remove excess dps  
+    
+    
+    // remove excess dps from result;  
     value = removeExcessDecimalPlaces(value);
     
     return value;
@@ -172,9 +177,9 @@ function addNumberToDisplay(event) {
     ++numbers.count;
 
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
-    if (isValidNumber(numberOne) && numbers.count === 1) {
+    if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
         addEqualsEventListener();
-        // console.log(("add equals event"));
+        console.log(("add equals event in addNum"));
     }
     
     //Either replace displayNumber or add to it
@@ -185,8 +190,8 @@ function addNumberToDisplay(event) {
         // console.log(displayNumber);
         displayNumber += eventNum;
     }
-
-
+    // console.log(event.target);
+    // console.log(displayNumber);
     return displayText.textContent = displayNumber;
 };
 
@@ -221,9 +226,9 @@ operator var*/
 
 function addOperator(event) {
     // console.log(event);
-    // alert("Number One's starting value is: " + numberOne);
+    console.log("Number One's starting value is: " + numberOne);
     console.log("Operators starting values is: " + operator);
-    // alert("Numbers two's starting value is: " + numberTwo);
+    console.log("Numbers two's starting value is: " + numberTwo);
     
     if (operator && displayNumber === "-") {
         removeArithmeticOperatorsEventListener();
@@ -232,13 +237,20 @@ function addOperator(event) {
     }
 
 
+
     //delete count property until next num btn is pressed
     delete numbers.count;
-    // console.log(event.target);
+    
+    //resets 2nd num value for repeat operations
+    if(isValidNumber(numberTwo)) {
+        console.log("this if executed");
+        numberTwo = undefined;
+    }
 
     let currentOperator = event.target.textContent;
-    console.log(currentOperator);
+    console.log(`current operator is ${currentOperator}`);
     
+
     
     //Add display number to numberOne variable if it has no value;
     if (!isValidNumber(numberOne)) {
@@ -247,6 +259,15 @@ function addOperator(event) {
         displayNumber = "";
         // alert("numberOne value is: " + numberOne);
     }
+
+    //code to make 2nd number negative
+    // if (isValidNumber(numberOne) && 
+    // operator && 
+    // currentOperator === minusOperator && 
+    // !isValidNumber(displayNumber)) {
+    //     removeArithmeticOperatorsEventListener();
+    //     return displayNumber = "-";
+    // }
     
     //if operator has value and displayNumber is minus
     //Would 2nd part of condition be better as .includes check?
@@ -256,33 +277,32 @@ function addOperator(event) {
 
     
     //Adds minus event if operator has value;
-    if(operator && !isValidNumber(displayNumber)) {
-        console.log("add minus in add maths op func");
-        addMinusSignEventListener();
-        return;
-    }
+    // if(operator && !isValidNumber(displayNumber)) {
+    //     console.log("add minus in add maths op func");
+    //     addMinusSignEventListener();
+    //     return;
+    // }
 
     
     //if num2 has number value make it undefined;
     //below if doesn't execute
-    if(isValidNumber(numberTwo)) {
-        // console.log("this if executed");
-        numberTwo = undefined;
-    }
+    
 
     
     //removes equals event if no number 2
     if(isValidNumber(numberOne) && operator) {
         console.log("equals removed");
         removeEqualsEventListener();
+        addNumbersEventListener();
     }
-    
-    addNumbersEventListener();
     
     // could refactor and return something
     return
     
 };
+
+
+
 
 //EQUALS BUTTON EVENT CODE;
 
@@ -313,9 +333,10 @@ function resolveEquation(event) {
     // numberOne = parseFloat(numberOne);
     // displayNumber = parseFloat(displayNumber);
     // numberTwo = parseFloat(numberTwo);
-    // console.log(numberOne);
-    // console.log(displayNumber);
-    // console.log(numberTwo);
+    console.log(numberOne);
+    console.log(displayNumber);
+    console.log(numberTwo);
+    console.log(operator);
 
     
     //add current display number to 2nd number var
@@ -323,16 +344,16 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-   console.log(operator);
-    console.log(typeof displayNumber);
-    console.log(typeof numberOne);
+//    console.log(operator);
+//     console.log(typeof displayNumber);
+//     console.log(typeof numberOne);
 
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        // console.log(displayNumber);
-        // console.log(numberOne);
-        // console.log(numberTwo);
+        console.log(displayNumber);
+        console.log(numberOne);
+        console.log(numberTwo);
         
         return addResultToDisplay(displayNumber);
     };
@@ -366,6 +387,7 @@ function clearAll(event) {
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
+    // addMinusSignEventListener();
 
 }
 
@@ -393,24 +415,24 @@ let minusBtn = document.querySelector("#minus");
 
 
 
-function addMinusSign(event) {
-    if (!displayNumber.length) {
-    displayNumber += "-";
-    displayText.textContent = displayNumber;
-    }
-    console.log(event.target.textContent)
+// function addMinusSign(event) {
+//     if (!displayNumber.length) {
+//     displayNumber += "-";
+//     displayText.textContent = displayNumber;
+//     }
+//     console.log(event.target.textContent)
 
-}
+// }
 
-function addMinusSignEventListener() {
-    minusBtn.addEventListener("click", addMinusSign, {once: true});
-}
+// function addMinusSignEventListener() {
+//     minusBtn.addEventListener("click", addMinusSign, {once: true});
+// }
 
-function removeMinusSignEventListener() {
-    minusBtn.removeEventListener("click", addMinusSign);
-}
+// function removeMinusSignEventListener() {
+//     minusBtn.removeEventListener("click", addMinusSign);
+// }
 
-addMinusSignEventListener();
+// addMinusSignEventListener();
 
 //does 2nd part of condition do what i want?
 // if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
@@ -424,32 +446,34 @@ addMinusSignEventListener();
 function removeExcessDecimalPlaces(stringedNumber) {
     console.log(stringedNumber);
     
+    
     let refinedNumber;
+
+    // if (stringedNumber.includes("e")) {
+    //     console.log("got e in remove dps");
+    //     let number = Number(stringedNumber);
+    //     let nonExponential = number.toFixed(15);
+    //     console.log(nonExponential);
+    //     return removeTrailingZeros(nonExponential);
+    // }
 
     const minusNumberThenDecimal = /^-\d\./;
     const numberThenDecimal = /^\d\./;
 
-    if (stringedNumber.includes("e")) {
-        console.log("got e in remove dps");
-        let number = Number(stringedNumber);
-        let nonExponential = number.toFixed(11);
-        return removeTrailingZeros(nonExponential);
-    }
-
     if (numberThenDecimal.test(stringedNumber) || 
         minusNumberThenDecimal.test(stringedNumber))
         {   
-            console.log("To 8 dps");
-            refinedNumber = Number(stringedNumber).toFixed(8);
+            console.log("To 11 dps");
+            refinedNumber = Number(stringedNumber).toFixed(11);
         } else {
             console.log("To 2 dps");
             refinedNumber = Number(stringedNumber).toFixed(2);
         };
     
     //remove zeros from end of number;
-    console.log(refinedNumber);
-    removeTrailingZeros(refinedNumber);
-    console.log(refinedNumber);
+    // console.log(refinedNumber);
+    refinedNumber = removeTrailingZeros(refinedNumber);
+    // console.log(refinedNumber);
     return refinedNumber;
 } 
 
@@ -486,6 +510,8 @@ function removeTrailingZeros(number) {
             //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
+    // console.log(removedZeros);
+    // console.log(beforeDecimalPlace);
     
     // attach two parts back together
     return beforeDecimalPlace + removedZeros;
@@ -523,8 +549,8 @@ function addResultToDisplay(stringedNumber) {
     } else {
         displayText.textContent = displayNumber;
         numberOne = displayNumber;
-        console.log(numberOne);
-        console.log(numberTwo);
+        // console.log(numberOne);
+        // console.log(numberTwo);
         displayNumber = "";
         console.log("less than 12");
         
@@ -552,23 +578,27 @@ function addResultToDisplay(stringedNumber) {
 
 //doesnt work for negative exponents yet
 //think if you have value as number not string will convert
-// function fromScientificNotation (number) {
-//     if (parseFloat(number) && number.includes("e")) {
+//doesn't work yet;
+// function fromScientificNotation(number) {
+//     if (number.includes("e")) {
+      
+//       let baseIndex = number.search("e");
+//       let coefficient = parseFloat(number.slice(0, baseIndex));
+//       let exponent = number.slice(baseIndex + 1);
 
-//       let index = number.search("e");
-//       let baseNumber = number.slice(0, index);
-//       let exponent = number.slice(index + 1);
-//       if(number.includes("+")) {
-//         Number(number).toString();
-//       }
-//         if (exponent.startsWith("-")) {
+//       let nonScientificNum;
+        
+//       if (exponent.startsWith("-")) {
 //             console.log("negative");
 //             let removedNegative = exponent.replace("-", "");
-//             console.log(removedNegative);  
-//             console.log(baseNumber / (10 ** removedNegative));
-//             return baseNumber / (10 ** removedNegative);
+//             console.log(removedNegative);
+//             exponent = parseFloat(removedNegative);
+//             nonScientificNum = coefficient / (10 ** exponent);
+//             console.log(nonScientificNum);
+//             return nonScientificNum;
 //         } else {
-//             return baseNumber * (10 ** exponent)
+//             nonScientificNum = coefficient * (10 ** exponent);
+//             return nonScientificNum;
 //         };
 //     }
 //     console.log("this runned");
