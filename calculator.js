@@ -84,7 +84,6 @@ function operate(numberOne, operator, numberTwo, event) {
     
     // remove excess dps from result;  
     value = removeExcessDecimalPlaces(value);
-    
     return value;
 }
 
@@ -176,11 +175,7 @@ function addNumberToDisplay(event) {
 
     ++numbers.count;
 
-    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
-    if (isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
-        addEqualsEventListener();
-        console.log(("add equals event in addNum"));
-    }
+    
     
     //Either replace displayNumber or add to it
     if (displayNumber === "0") {
@@ -189,6 +184,13 @@ function addNumberToDisplay(event) {
     } else {
         // console.log(displayNumber);
         displayNumber += eventNum;
+    }
+
+    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
+    if (isValidNumber(numberOne) && numbers.count === 1) {
+        addEqualsEventListener();
+        // removeMinusSignEventListener();
+        console.log(("add equals event in addNum"));
     }
     // console.log(event.target);
     // console.log(displayNumber);
@@ -227,8 +229,8 @@ operator var*/
 function addOperator(event) {
     // console.log(event);
     console.log("Number One's starting value is: " + numberOne);
-    console.log("Operators starting values is: " + operator);
-    console.log("Numbers two's starting value is: " + numberTwo);
+    // console.log("Operators starting values is: " + operator);
+    // console.log("Numbers two's starting value is: " + numberTwo);
     
     if (operator && displayNumber === "-") {
         removeArithmeticOperatorsEventListener();
@@ -243,12 +245,12 @@ function addOperator(event) {
     
     //resets 2nd num value for repeat operations
     if(isValidNumber(numberTwo)) {
-        console.log("this if executed");
+        console.log("reset num2 value in addOperator");
         numberTwo = undefined;
     }
 
     let currentOperator = event.target.textContent;
-    console.log(`current operator is ${currentOperator}`);
+    // console.log(`current operator is ${currentOperator}`);
     
 
     
@@ -275,7 +277,7 @@ function addOperator(event) {
 
     operator = currentOperator;
 
-    
+    console.log(`operator value is now ${operator}`);
     //Adds minus event if operator has value;
     // if(operator && !isValidNumber(displayNumber)) {
     //     console.log("add minus in add maths op func");
@@ -291,7 +293,7 @@ function addOperator(event) {
     
     //removes equals event if no number 2
     if(isValidNumber(numberOne) && operator) {
-        console.log("equals removed");
+        console.log("equals removed from add op");
         removeEqualsEventListener();
         addNumbersEventListener();
     }
@@ -335,7 +337,7 @@ function resolveEquation(event) {
     // numberTwo = parseFloat(numberTwo);
     console.log(numberOne);
     console.log(displayNumber);
-    console.log(numberTwo);
+    // console.log(numberTwo);
     console.log(operator);
 
     
@@ -351,9 +353,9 @@ function resolveEquation(event) {
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         displayNumber = operate(numberOne, operator, numberTwo);
-        console.log(displayNumber);
-        console.log(numberOne);
-        console.log(numberTwo);
+        // console.log(displayNumber);
+        // console.log(numberOne);
+        // console.log(numberTwo);
         
         return addResultToDisplay(displayNumber);
     };
@@ -471,9 +473,9 @@ function removeExcessDecimalPlaces(stringedNumber) {
         };
     
     //remove zeros from end of number;
-    // console.log(refinedNumber);
+    console.log(refinedNumber);
     refinedNumber = removeTrailingZeros(refinedNumber);
-    // console.log(refinedNumber);
+    console.log(refinedNumber);
     return refinedNumber;
 } 
 
@@ -559,6 +561,21 @@ function addResultToDisplay(stringedNumber) {
 }  
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
+
+
+// function noIdea (number) {
+//      let cleanedNumber =;
+//      if (!number.includes(".") && cleanedNumber.length > 12) {
+         
+//      }
+//      if()
+//     let indexOfDP = number.indexOf(".");
+//     let preDot = number.slice(0, indexOfDP);
+//     let afterDot = number.slice(indexOfDP + 1);
+//     let numberOfDecimals = (12 - preDot.length);
+    
+
+// }
 
 //does this work with floating points?
 // Number.MIN_SAFE_INTEGER;
