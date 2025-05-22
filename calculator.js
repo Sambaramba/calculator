@@ -351,12 +351,14 @@ function resolveEquation(event) {
 
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
-        displayNumber = operate(numberOne, operator, numberTwo);
+        let result = operate(numberOne, operator, numberTwo);
+        numberOne = result;
+        displayNumber = refineResultForDisplay(result);
         // console.log(displayNumber);
         // console.log(numberOne);
         // console.log(numberTwo);
         
-        return refineResultForDisplay(displayNumber);
+        return 
     };
      console.log("bottom of resolve Equation runs");
     
