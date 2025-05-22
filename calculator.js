@@ -51,7 +51,7 @@ function operate(numberOne, operator, numberTwo, event) {
         clearAll(event);
         displayText.textContent = "Clever!";
         console.log("Clever!");
-        
+
         return value;
     }
 
@@ -357,13 +357,13 @@ function resolveEquation(event) {
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         let result = operate(numberOne, operator, numberTwo);
-        if (isValidNumber
+        if (isValidNumber(result)) {
         numberOne = result;
         displayNumber = refineResultForDisplay(result);
         // console.log(displayNumber);
         // console.log(numberOne);
         // console.log(numberTwo);
-        
+        }
         return 
     };
      console.log("bottom of resolve Equation runs");
