@@ -82,8 +82,7 @@ function operate(numberOne, operator, numberTwo, event) {
     
     
     
-    // remove excess dps from result;  
-    value = removeExcessDecimalPlaces(value);
+    
     return value;
 }
 
@@ -357,7 +356,7 @@ function resolveEquation(event) {
         // console.log(numberOne);
         // console.log(numberTwo);
         
-        return addResultToDisplay(displayNumber);
+        return refineResultForDisplay(displayNumber);
     };
      console.log("bottom of resolve Equation runs");
     
@@ -534,10 +533,14 @@ function removeAllNonNumbers(stringedNumber) {
 
 
 //displays Nan or result dependant on num length;
-function addResultToDisplay(stringedNumber) {
+function refineResultForDisplay(stringedNumber) {
+    
+    
+    // remove excess dps from result;  
+    let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
     
     //removes all non numbers for results length check
-    let cleanedNumber = removeAllNonNumbers(stringedNumber);
+    let cleanedNumber = removeAllNonNumbers(refinedNumber);
     
     //USE THIS IF TO CHECK ANY LENGTH
     // if (num.toFixed(0).length > 12)
