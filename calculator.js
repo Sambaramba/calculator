@@ -41,16 +41,21 @@ function operate(numberOne, operator, numberTwo, event) {
     //converts from string into number;
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
+    
+
+    let value;
 
     
     //divided by zero code with snarky message;
-    if (operator == divideOperator && (parseFloat(numberTwo) == 0 || parseFloat(numberTwo) == -0)) {
+    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
         displayText.textContent = "Clever!";
-        return;
+        console.log("Clever!");
+        
+        return value;
     }
 
-     let value;
+     
      
 
     switch (operator) {
@@ -352,6 +357,7 @@ function resolveEquation(event) {
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         let result = operate(numberOne, operator, numberTwo);
+        if (isValidNumber
         numberOne = result;
         displayNumber = refineResultForDisplay(result);
         // console.log(displayNumber);
@@ -540,7 +546,7 @@ function refineResultForDisplay(stringedNumber) {
     
     // remove excess dps from result;  
     let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
-    
+    console.log(`refined number is ${refinedNumber}`);
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
     
@@ -554,9 +560,9 @@ function refineResultForDisplay(stringedNumber) {
         // displayText.textContent = toScientificNotation(displayNumber, 7);
         
     } else {
-        displayText.textContent = displayNumber;
-        numberOne = displayNumber;
-        // console.log(numberOne);
+        displayText.textContent = refinedNumber;
+        // numberOne = displayNumber;
+        console.log(`number one is ${numberOne}`);
         // console.log(numberTwo);
         displayNumber = "";
         console.log("less than 12");
