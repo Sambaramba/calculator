@@ -574,6 +574,25 @@ function refineResultForDisplay(stringedNumber) {
 /*CURRENTLY UNUSED OR BROKEN CODE*/
 
 
+//checks if number is in precise range returning true or false;
+function isPrecise(stringedNumber) {
+
+    //for decimals
+    if (stringedNumber.includes(".")) {
+       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+       if (cleanedDecimalNum.length < 16) {
+          return true;
+        }
+    }
+    //for integers
+    let pureNumber = Number(stringedNumber);
+    if (Number.isSafeInteger(pureNumber)) {
+    return true;
+    }
+    return false;
+}
+
+
 // function noIdea (number) {
 //      let cleanedNumber =;
 //      if (!number.includes(".") && cleanedNumber.length > 12) {
