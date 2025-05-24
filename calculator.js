@@ -575,12 +575,11 @@ function refineResultForDisplay(stringedNumber) {
 
 
 //checks if number is in precise range returning true or false;
-//don't know if it works for -ve nums or SN;
 function isPrecise(stringedNumber) {
     
     //for Scientific Numbers
-    if (stringedNumber.toLowerCase().includes("e") && 
-        stringedNumber.includes(".")) {
+    if (stringedNumber.toLowerCase().includes("e")) {
+            console.log("triggered SN if in isPrecise");
             let baseIndex = stringedNumber.toLowerCase().indexOf("e");
             let significant = stringedNumber.slice(0, baseIndex);
             let exponent = stringedNumber.slice(baseIndex + 1);
