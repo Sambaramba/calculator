@@ -575,7 +575,27 @@ function refineResultForDisplay(stringedNumber) {
 
 
 //checks if number is in precise range returning true or false;
+//don't know if it works for -ve nums or SN;
 function isPrecise(stringedNumber) {
+    
+    //for Scientific Numbers
+    if (stringedNumber.toLowerCase().includes("e") && 
+        stringedNumber.includes(".")) {
+            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
+            let significant = stringedNumber.slice(0, baseIndex);
+            let exponent = stringedNumber.slice(baseIndex + 1);
+            if (exponent.includes("-")) {
+                 exponent = exponent.replace("-", "");
+                 console.log(`Exponent is now: ${exponent}`);
+            }
+            let cleanedSignificant = removeAllNonNumbers(significant);
+            if (cleanedSignificant.length <= 15 &&
+                exponent <= 15) {
+                    return true;
+            }  else { 
+                return false;
+            }; 
+    }
 
     //for decimals
     if (stringedNumber.includes(".")) {
@@ -593,34 +613,9 @@ function isPrecise(stringedNumber) {
 }
 
 
-// function noIdea (number) {
-//      let cleanedNumber =;
-//      if (!number.includes(".") && cleanedNumber.length > 12) {
-         
-//      }
-//      if()
-//     let indexOfDP = number.indexOf(".");
-//     let preDot = number.slice(0, indexOfDP);
-//     let afterDot = number.slice(indexOfDP + 1);
-//     let numberOfDecimals = (12 - preDot.length);
-    
-
-// }
-
-//does this work with floating points?
-// Number.MIN_SAFE_INTEGER;
-// Number.MAX_SAFE_INTEGER;
-// function checkIfSafeInteger(number) {
-//     if (number < Number.MIN_SAFE_INTEGER ||
-//         number > Number.MAX_SAFE_INTEGER) {
-//         console.log("NaN");
-//     }
-//  }
 
 
-// function getRoundedNumber(number, decimalPlaces) {
-//     return Math.round(number * Math.pow(10, decimalPlaces)) / Math.pow(10, decimalPlaces);
-// }
+
 
 
 //doesnt work for negative exponents yet
