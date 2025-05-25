@@ -529,9 +529,7 @@ function removeTrailingZeros(number) {
 
 
 function removeAllNonNumbers(stringedNumber) {
-    //is this if still needed;
     
-
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
    console.log(typeof cleanedNumber);
@@ -582,14 +580,13 @@ function isPrecise(stringedNumber) {
             console.log("triggered SN if in isPrecise");
             let baseIndex = stringedNumber.toLowerCase().indexOf("e");
             let significant = stringedNumber.slice(0, baseIndex);
-            let exponent = stringedNumber.slice(baseIndex + 1);
-            if (exponent.includes("-")) {
-                 exponent = exponent.replace("-", "");
-                 console.log(`Exponent is now: ${exponent}`);
-            }
+            // let exponent = stringedNumber.slice(baseIndex + 1);
+            // if (exponent.includes("-")) {
+            //      exponent = exponent.replace("-", "");
+            //      console.log(`Exponent is now: ${exponent}`);
+            // }
             let cleanedSignificant = removeAllNonNumbers(significant);
-            if (cleanedSignificant.length <= 15 &&
-                exponent <= 15) {
+            if (cleanedSignificant.length <= 15) {
                     return true;
             }  else { 
                 return false;
