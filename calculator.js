@@ -357,6 +357,13 @@ function resolveEquation(event) {
     //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         let result = operate(numberOne, operator, numberTwo);
+        
+            if(!isPrecise(result)) {
+                console.log("result isn't precise");
+                clearAll;
+                displayText.textContent = "NaN";
+                   
+            }
         if (isValidNumber(result)) {
         numberOne = result;
         displayNumber = refineResultForDisplay(result);
@@ -465,7 +472,8 @@ function removeExcessDecimalPlaces(stringedNumber) {
     //     console.log(nonExponential);
     //     return removeTrailingZeros(nonExponential);
     // }
-
+    
+    //variables to check if number starts with single num before decimal place.
     const minusNumberThenDecimal = /^-\d\./;
     const numberThenDecimal = /^\d\./;
 
@@ -536,10 +544,34 @@ function removeAllNonNumbers(stringedNumber) {
    return cleanedNumber;
 }
 
+function findExponent(stringedNumber) {
+    let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+    let exponent = stringedNumber.slice(indexOfBase + 1);
+    return exponent;
+}
 
+//converts when normal num length is above 12;
+//for displaying result if using SN numbers;
+function convertToScientificNotation(number) {
+
+    if (Maths.abs >= 12) {
+    return number.toExponential();
+    }
+    
+    return number;
+    
+}
+    
 
 //displays Nan or result dependant on num length;
 function refineResultForDisplay(stringedNumber) {
+
+
+    // if(stringedNumber.includes("e-") && findExponent(stringedNumber) < 300) {
+    //     displayText.textContent = "0";
+        
+    //     return
+    // }
     
     
     // remove excess dps from result;  
