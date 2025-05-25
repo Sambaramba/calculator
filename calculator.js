@@ -596,7 +596,7 @@ function isPrecise(stringedNumber) {
     //for decimals
     if (stringedNumber.includes(".")) {
        let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-       if (cleanedDecimalNum.length < 16) {
+       if (cleanedDecimalNum.length <= 15) {
           return true;
         }
     }
