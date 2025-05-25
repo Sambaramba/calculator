@@ -557,7 +557,7 @@ function convertToScientificNotation(number) {
     if (Maths.abs >= 12) {
     return number.toExponential();
     }
-    
+
     return number;
     
 }
