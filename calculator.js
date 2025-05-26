@@ -545,12 +545,14 @@ function removeAllNonNumbers(stringedNumber) {
 }
 
 //used to find value of exponent
-function findExponent(stringedNumber) {
+function getExponent(stringedNumber) {
+    
     let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
     let exponent = stringedNumber.slice(indexOfBase + 1);
     return exponent;
 }
 
+//used to find value of significant in SN numbers;
 function getSignificant(stringedNumber) {
     let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
     let significant = stringedNumber.slice(0, indexOfBase);
