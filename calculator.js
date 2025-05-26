@@ -535,7 +535,7 @@ function removeTrailingZeros(number) {
 }
 
 
-
+//used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
     
     //removes all characters except numbers
@@ -544,14 +544,21 @@ function removeAllNonNumbers(stringedNumber) {
    return cleanedNumber;
 }
 
+//used to find value of exponent
 function findExponent(stringedNumber) {
     let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
     let exponent = stringedNumber.slice(indexOfBase + 1);
     return exponent;
 }
 
-//converts when normal num length is above 12;
-//for displaying result if using SN numbers;
+function getSignificant(stringedNumber) {
+    let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+    let significant = stringedNumber.slice(0, indexOfBase);
+    return significant;
+}
+
+//used to fit in display
+//converts to SN earlier than normal;
 function convertToScientificNotation(number) {
 
     if (Maths.abs >= 12) {
