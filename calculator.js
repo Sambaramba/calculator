@@ -546,10 +546,12 @@ function removeAllNonNumbers(stringedNumber) {
 
 //used to find value of exponent
 function getExponent(stringedNumber) {
-    
-    let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-    let exponent = stringedNumber.slice(indexOfBase + 1);
-    return exponent;
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let exponent = stringedNumber.slice(indexOfBase + 1);
+        return exponent;
+    }
+    return stringedNumber;
 }
 
 //used to find value of significant in SN numbers;
