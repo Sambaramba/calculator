@@ -556,9 +556,12 @@ function getExponent(stringedNumber) {
 
 //used to find value of significant in SN numbers;
 function getSignificant(stringedNumber) {
-    let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-    let significant = stringedNumber.slice(0, indexOfBase);
-    return significant;
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let significant = stringedNumber.slice(0, indexOfBase);
+        return significant;
+    }
+    return stringedNumber;
 }
 
 //used to fit in display
