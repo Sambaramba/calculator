@@ -466,16 +466,16 @@ function removeExcessDecimalPlaces(stringedNumber) {
     let refinedNumber;
     let significand;
 
-    // if (stringedNumber.includes("e")) {
-    //     console.log("got e in remove dps");
-    //     significand = getSignificand(stringedNumber);
-    //     // let number = Number(stringedNumber);
-    //     // let nonExponential = number.toFixed(15);
-    //     // console.log(nonExponential);
-    //     // return removeTrailingZeros(nonExponential);
-    //     return refinedNumber = Number(significand).toFixed(6);
+    if (stringedNumber.includes("e")) {
+        console.log("got e in remove dps");
+        significand = getSignificand(stringedNumber);
+        // let number = Number(stringedNumber);
+        // let nonExponential = number.toFixed(15);
+        // console.log(nonExponential);
+        // return removeTrailingZeros(nonExponential);
+        return refinedNumber = Number(significand).toFixed(6);
 
-    // }
+    }
     
     //variables to check if number starts with single num before decimal place.
     const minusNumberThenDecimal = /^-\d\./;
