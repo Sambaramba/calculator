@@ -361,7 +361,7 @@ function resolveEquation(event) {
             if(!isPrecise(result)) {
                 console.log("result isn't precise");
                 clearAll;
-                displayText.textContent = "NaN";
+                displayText.textContent = "Error";
                    
             }
         if (isValidNumber(result)) {
@@ -464,13 +464,17 @@ function removeExcessDecimalPlaces(stringedNumber) {
     
     
     let refinedNumber;
+    let significand;
 
     // if (stringedNumber.includes("e")) {
     //     console.log("got e in remove dps");
-    //     let number = Number(stringedNumber);
-    //     let nonExponential = number.toFixed(15);
-    //     console.log(nonExponential);
-    //     return removeTrailingZeros(nonExponential);
+    //     significand = getSignificand(stringedNumber);
+    //     // let number = Number(stringedNumber);
+    //     // let nonExponential = number.toFixed(15);
+    //     // console.log(nonExponential);
+    //     // return removeTrailingZeros(nonExponential);
+    //     return refinedNumber = Number(significand).toFixed(6);
+
     // }
     
     //variables to check if number starts with single num before decimal place.
@@ -555,17 +559,17 @@ function getExponent(stringedNumber) {
 }
 
 //used to find value of significant in SN numbers;
-function getSignificant(stringedNumber) {
+function getSignificand(stringedNumber) {
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let significant = stringedNumber.slice(0, indexOfBase);
-        return significant;
+        let significand = stringedNumber.slice(0, indexOfBase);
+        return significand;
     }
     return stringedNumber;
 }
 
 //used to fit in display
-//converts to SN earlier than normal;
+//converts to SN earlier than built-in js;
 function convertToScientificNotation(number) {
 
     if (Maths.abs >= 12) {
