@@ -360,8 +360,8 @@ function resolveEquation(event) {
         
             if(!isPrecise(result)) {
                 console.log("result isn't precise");
-                clearAll;
-                displayText.textContent = "NaN";
+                clearAll();
+                return displayText.textContent = "Error";
                    
             }
         if (isValidNumber(result)) {
