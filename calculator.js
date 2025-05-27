@@ -236,6 +236,10 @@ function addOperator(event) {
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     removeNumbersEventListener();
+
+
+    let currentOperator = event.target.textContent;
+    // console.log(`current operator is ${currentOperator}`);
     
     
     //delete count property until next num btn is pressed
@@ -246,10 +250,6 @@ function addOperator(event) {
         console.log("reset num2 value in addOperator");
         numberTwo = undefined;
     }
-
-    let currentOperator = event.target.textContent;
-    // console.log(`current operator is ${currentOperator}`);
-    
 
     
     //Add display number to numberOne variable if it has no value;
@@ -275,10 +275,11 @@ function addOperator(event) {
 
     
     //removes equals event if no number 2
-    if(isValidNumber(numberOne) && operator) {
+    if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         console.log("equals removed from add op");
         removeEqualsEventListener();
         addNumbersEventListener();
+        
     }
     
     // could refactor and return something
