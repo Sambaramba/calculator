@@ -260,36 +260,15 @@ function addOperator(event) {
         // alert("numberOne value is: " + numberOne);
     }
 
-    // if (numberOne && operator && displayNumber === "-") {
-    //     removeArithmeticOperatorsEventListener();
-    //     console.log("remove maths ops");
-    //     return;
-    // }
 
-    //code to make 2nd number negative
-    // if (isValidNumber(numberOne) && 
-    // operator && 
-    // currentOperator === minusOperator && 
-    // !isValidNumber(displayNumber)) {
-    //     removeArithmeticOperatorsEventListener();
-    //     return displayNumber = "-";
-    // }
     
-    //if operator has value and displayNumber is minus
-    //Would 2nd part of condition be better as .includes check?
-    //haven't commited 3rd part of condition yet;
+    
 
     operator = currentOperator;
 
     console.log(`operator value is now ${operator}`);
-    //Adds minus event if operator has value;
-    // if(operator && !isValidNumber(displayNumber)) {
-    //     console.log("add minus in add maths op func");
-    //     addMinusSignEventListener();
-    //     return;
-    // }
 
-    
+  
     //if num2 has number value make it undefined;
     //below if doesn't execute
     
@@ -440,11 +419,9 @@ let minusBtn = document.querySelector("#minus");
 
 // addMinusSignEventListener();
 
-//does 2nd part of condition do what i want?
-// if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
-//     alert("minus event code");
-    
-// }
+  
+
+
 
 //gives zero with exponential numbers
 //need to figure out how to convert to non exponential
@@ -592,7 +569,6 @@ function refineResultForDisplay(stringedNumber) {
     return;
 }  
 
-/*CURRENTLY UNUSED OR BROKEN CODE*/
 
 
 //checks if number is in precise range returning true or false;
@@ -631,6 +607,45 @@ function isPrecise(stringedNumber) {
     }
     return false;
 }
+
+
+
+/*CURRENTLY UNUSED OR BROKEN CODE*/
+
+
+//code for adding minus sign for next step;
+
+     //if operator has value and displayNumber is minus
+    //Would 2nd part of condition be better as .includes check?
+    //haven't commited 3rd part of condition yet;
+
+    // if (numberOne && operator && displayNumber === "-") {
+    //     removeArithmeticOperatorsEventListener();
+    //     console.log("remove maths ops");
+    //     return;
+    // }
+
+    //code to make 2nd number negative
+    // if (isValidNumber(numberOne) && 
+    // operator && 
+    // currentOperator === minusOperator && 
+    // !isValidNumber(displayNumber)) {
+    //     removeArithmeticOperatorsEventListener();
+    //     return displayNumber = "-";
+    // }
+    
+    //Adds minus event if operator has value;
+    // if(operator && !isValidNumber(displayNumber)) {
+    //     console.log("add minus in add maths op func");
+    //     addMinusSignEventListener();
+    //     return;
+    // }   
+
+//does 2nd part of condition do what i want?
+// if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
+//     alert("minus event code");
+    
+// }
 
 
 
