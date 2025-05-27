@@ -236,12 +236,11 @@ function addOperator(event) {
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     
-    if (operator && displayNumber === "-") {
+    if (numberOne && operator && displayNumber === "-") {
         removeArithmeticOperatorsEventListener();
         console.log("remove maths ops");
         return;
     }
-
 
 
     //delete count property until next num btn is pressed
@@ -333,12 +332,6 @@ function resolveEquation(event) {
     //think this can be deleted;
     addArithmeticOperatorsEventListener();
     
-
-    //convert variables from string to number
-    //Do I need these anymore?
-    // numberOne = parseFloat(numberOne);
-    // displayNumber = parseFloat(displayNumber);
-    // numberTwo = parseFloat(numberTwo);
     console.log(numberOne);
     console.log(displayNumber);
     // console.log(numberTwo);
@@ -350,11 +343,7 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-//    console.log(operator);
-//     console.log(typeof displayNumber);
-//     console.log(typeof numberOne);
 
-    //actually it might be working but might need to add toPrecsion instead;
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         let result = operate(numberOne, operator, numberTwo);
         
@@ -548,25 +537,7 @@ function removeAllNonNumbers(stringedNumber) {
    return cleanedNumber;
 }
 
-//used to find value of exponent
-function getExponent(stringedNumber) {
-    if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let exponent = stringedNumber.slice(indexOfBase + 1);
-        return exponent;
-    }
-    return stringedNumber;
-}
 
-//used to find value of significant in SN numbers;
-function getSignificand(stringedNumber) {
-    if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let significand = stringedNumber.slice(0, indexOfBase);
-        return significand;
-    }
-    return stringedNumber;
-}
 
 //used to fit in display
 //converts to SN earlier than built-in js;
@@ -640,6 +611,7 @@ function isPrecise(stringedNumber) {
             if (cleanedSignificant.length <= 15) {
                     return true;
             }  else { 
+                console.log("SN num isn't precise");
                 return false;
             }; 
     }
@@ -668,6 +640,33 @@ function isPrecise(stringedNumber) {
 let significand;
 significand = getSignificand(stringedNumber);
 return refinedNumber = Number(significand).toFixed(6);
+*/
+
+
+//Code to return different elements of SN num
+
+//used to find value of exponent
+/*
+function getExponent(stringedNumber) {
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let exponent = stringedNumber.slice(indexOfBase + 1);
+        return exponent;
+    }
+    return stringedNumber;
+}
+*/
+
+//used to find value of significant in SN numbers;
+/*
+function getSignificand(stringedNumber) {
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let significand = stringedNumber.slice(0, indexOfBase);
+        return significand;
+    }
+    return stringedNumber;
+}
 */
 
 
