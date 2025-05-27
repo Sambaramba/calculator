@@ -361,7 +361,7 @@ function resolveEquation(event) {
             if(!isPrecise(result)) {
                 console.log("result isn't precise");
                 clearAll;
-                displayText.textContent = "Error";
+                displayText.textContent = "NaN";
                    
             }
         if (isValidNumber(result)) {
@@ -464,16 +464,16 @@ function removeExcessDecimalPlaces(stringedNumber) {
     
     
     let refinedNumber;
-    let significand;
+    
 
     if (stringedNumber.includes("e")) {
         console.log("got e in remove dps");
-        significand = getSignificand(stringedNumber);
-        // let number = Number(stringedNumber);
-        // let nonExponential = number.toFixed(15);
-        // console.log(nonExponential);
-        // return removeTrailingZeros(nonExponential);
-        return refinedNumber = Number(significand).toFixed(6);
+        
+        let number = Number(stringedNumber);
+        let nonExponential = number.toFixed(15);
+        console.log(nonExponential);
+        return removeTrailingZeros(nonExponential);
+        
 
     }
     
@@ -570,22 +570,23 @@ function getSignificand(stringedNumber) {
 
 //used to fit in display
 //converts to SN earlier than built-in js;
-function convertToScientificNotation(number) {
+//broken
+// function convertToScientificNotation(number) {
 
-    if (Maths.abs >= 12) {
-    return number.toExponential();
-    }
+//     if (Math.abs(number).toString().length >= 12) {
+//     return number.toExponential();
+//     }
 
-    return number;
+//     return number;
     
-}
+// }
     
 
 //displays Nan or result dependant on num length;
 function refineResultForDisplay(stringedNumber) {
 
 
-    // if(stringedNumber.includes("e-") && findExponent(stringedNumber) < 300) {
+    // if(stringedNumber.includes("e-") && getExponent(stringedNumber) < 300) {
     //     displayText.textContent = "0";
         
     //     return
@@ -660,7 +661,14 @@ function isPrecise(stringedNumber) {
 
 
 
+//Code for calculator accepting scientific notation
 
+//code to add to removeExcessDecimalPlaces
+/*
+let significand;
+significand = getSignificand(stringedNumber);
+return refinedNumber = Number(significand).toFixed(6);
+*/
 
 
 
