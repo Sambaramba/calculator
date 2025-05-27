@@ -235,14 +235,9 @@ function addOperator(event) {
     console.log("Number One's starting value is: " + numberOne);
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
+    removeNumbersEventListener();
     
-    if (numberOne && operator && displayNumber === "-") {
-        removeArithmeticOperatorsEventListener();
-        console.log("remove maths ops");
-        return;
-    }
-
-
+    
     //delete count property until next num btn is pressed
     delete numbers.count;
     
@@ -264,6 +259,12 @@ function addOperator(event) {
         displayNumber = "";
         // alert("numberOne value is: " + numberOne);
     }
+
+    // if (numberOne && operator && displayNumber === "-") {
+    //     removeArithmeticOperatorsEventListener();
+    //     console.log("remove maths ops");
+    //     return;
+    // }
 
     //code to make 2nd number negative
     // if (isValidNumber(numberOne) && 
