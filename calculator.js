@@ -337,6 +337,7 @@ function resolveEquation(event) {
         if(isValidNumber(result)) {
             numberOne = undefined;
             displayNumber = result;
+            console.log(`Value of displayNumber is ${displayNumber}`);
             // addNumbersEventListener();
             return refineResultForDisplay(result);
         }
