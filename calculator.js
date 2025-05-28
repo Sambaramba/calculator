@@ -239,6 +239,7 @@ function addOperator(event) {
     console.log("Number One's starting value is: " + numberOne);
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
+    console.log("Display number's starting value is: " + displayNumber);
     removeNumbersEventListener();
 
 
@@ -262,7 +263,7 @@ function addOperator(event) {
         // displayText.textContent = displayNumber;
         displayNumber = "";
         addNumbersEventListener();
-        // alert("numberOne value is: " + numberOne);
+        console.log("numberOne value is: " + numberOne);
     }
 
 
@@ -320,7 +321,9 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-    
+    if(!isValidNumber(numberOne)) {
+        numberOne = displayNumber;
+    }
 
     //wack code block in another function?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
@@ -452,9 +455,9 @@ function removeExcessDecimalPlaces(stringedNumber) {
         };
     
     //remove zeros from end of number;
-    console.log(refinedNumber);
+    // console.log(refinedNumber);
     refinedNumber = removeTrailingZeros(refinedNumber);
-    console.log(refinedNumber);
+    // console.log(refinedNumber);
     return refinedNumber;
 } 
 
@@ -544,7 +547,6 @@ function refineResultForDisplay(stringedNumber) {
         // numberOne = displayNumber;
         console.log(`number one is ${numberOne}`);
         // console.log(numberTwo);
-        displayNumber = "";
         console.log("less than 12");
         
     }
