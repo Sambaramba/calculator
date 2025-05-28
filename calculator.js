@@ -336,8 +336,9 @@ function resolveEquation(event) {
 
         if(isValidNumber(result)) {
             numberOne = undefined;
-            displayNumber = refineResultForDisplay(result);
+            displayNumber = result;
             // addNumbersEventListener();
+            return refineResultForDisplay(result);
         }
         return
     };
