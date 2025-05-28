@@ -320,6 +320,8 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
+    
+
     //wack code block in another function?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
@@ -333,7 +335,7 @@ function resolveEquation(event) {
         };
 
         if(isValidNumber(result)) {
-            numberOne = result;
+            numberOne = undefined;
             displayNumber = refineResultForDisplay(result);
             // addNumbersEventListener();
         }
