@@ -162,14 +162,17 @@ function addNumberToDisplay(event) {
 
     
     let eventNum = event.target.textContent;
-
+    
+    //adds maths op event listener at code start and reset start;
+    if (!numbers.count && !isValidNumber(numberOne)) {
+        addArithmeticOperatorsEventListener();
+        console.log("maths operator added in addNum");
+    }
 
     //Numbers count add/remove/increment code
     if (!numbers.count) {
         // displayNumber = "";
-        numbers.count = 0;
-        addArithmeticOperatorsEventListener();
-        // console.log("maths operator added");
+        numbers.count = 0;  
     };
 
     if (numbers.count >= 9) {
@@ -268,13 +271,8 @@ function addOperator(event) {
 
     console.log(`operator value is now ${operator}`);
 
-  
-    //if num2 has number value make it undefined;
-    //below if doesn't execute
     
-
-    
-    //removes equals event if no number 2
+    //removes equals event if condition met
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         console.log("equals removed from add op");
         removeEqualsEventListener();
@@ -324,35 +322,26 @@ function resolveEquation(event) {
         numberTwo = displayNumber;
     }
 
-
+    //wack code block in another function?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
+
         let result = operate(numberOne, operator, numberTwo);
         
-            if(!isPrecise(result)) {
-                console.log("result isn't precise");
-                clearAll();
-                return displayText.textContent = "Error";
-                   
-            }
-        if (isValidNumber(result)) {
-        numberOne = result;
-        displayNumber = refineResultForDisplay(result);
-        // console.log(displayNumber);
-        // console.log(numberOne);
-        // console.log(numberTwo);
+        if(!isPrecise(result)) {
+            console.log("result isn't precise");
+            clearAll();
+            return displayText.textContent = "Error";
+                
+        };
+
+        if(isValidNumber(result)) {
+            numberOne = result;
+            displayNumber = refineResultForDisplay(result);
         }
-        return 
+        return
     };
      console.log("bottom of resolve Equation runs");
     
-}
-
-
-//expecting string as argument
-//will lose precision with bigint numbers;
-//not using atm;
-function toScientificNotation (number, dps) {
-    return Number.parseFloat(number).toExponential(dps);
 }
 
 
@@ -518,18 +507,7 @@ function removeAllNonNumbers(stringedNumber) {
 
 
 
-//used to fit in display
-//converts to SN earlier than built-in js;
-//broken
-// function convertToScientificNotation(number) {
 
-//     if (Math.abs(number).toString().length >= 12) {
-//     return number.toExponential();
-//     }
-
-//     return number;
-    
-// }
     
 
 //displays Nan or result dependant on num length;
@@ -652,6 +630,16 @@ function isPrecise(stringedNumber) {
 
 //Code for calculator accepting scientific notation
 
+
+
+/*
+//expects string as argument
+function toScientificNotation (number, dps) {
+    return Number.parseFloat(number).toExponential(dps);
+}
+*/
+
+
 //code to add to removeExcessDecimalPlaces
 /*
 let significand;
@@ -683,6 +671,21 @@ function getSignificand(stringedNumber) {
         return significand;
     }
     return stringedNumber;
+}
+*/
+
+// used to fit numbers in display
+// converts to SN earlier than built-in js;
+// function is broken
+/*
+function convertToScientificNotation(number) {
+
+    if (Math.abs(number).toString().length >= 12) {
+    return number.toExponential();
+    }
+
+    return number;
+    
 }
 */
 
