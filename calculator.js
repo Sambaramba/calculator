@@ -171,7 +171,7 @@ function addNumberToDisplay(event) {
 
     //Numbers count add/remove/increment code
     if (!numbers.count) {
-        // displayNumber = "";
+        displayNumber = "";
         numbers.count = 0;  
     };
 
