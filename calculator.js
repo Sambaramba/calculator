@@ -177,7 +177,7 @@ function addNumberToDisplay(event) {
 
     if (numbers.count >= 9) {
         removeNumbersEventListener();
-        return  displayText.textContent = displayNumber;
+        return displayText.textContent = displayNumber;
     }
 
     ++numbers.count;
@@ -186,12 +186,13 @@ function addNumberToDisplay(event) {
     
     //Either replace displayNumber or add to it
     if (displayNumber === "0") {
-        // console.log(displayNumber);
         displayNumber = eventNum;
+        // numbers.count === 1;
     } else {
-        // console.log(displayNumber);
         displayNumber += eventNum;
     }
+
+    
 
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && numbers.count === 1) {
@@ -260,15 +261,12 @@ function addOperator(event) {
         numberOne = displayNumber;
         // displayText.textContent = displayNumber;
         displayNumber = "";
+        addNumbersEventListener();
         // alert("numberOne value is: " + numberOne);
     }
 
 
-    
-    
-
     operator = currentOperator;
-
     console.log(`operator value is now ${operator}`);
 
     
@@ -276,7 +274,7 @@ function addOperator(event) {
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         console.log("equals removed from add op");
         removeEqualsEventListener();
-        addNumbersEventListener();
+        
         
     }
     
@@ -306,7 +304,7 @@ function resolveEquation(event) {
     
     //reset count property for addToDisplay();
     delete numbers.count;
-    
+
     //readd event listener for repeat operations
     //think this can be deleted;
     addArithmeticOperatorsEventListener();
@@ -337,6 +335,7 @@ function resolveEquation(event) {
         if(isValidNumber(result)) {
             numberOne = result;
             displayNumber = refineResultForDisplay(result);
+            // addNumbersEventListener();
         }
         return
     };
