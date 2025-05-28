@@ -51,7 +51,6 @@ function operate(numberOne, operator, numberTwo, event) {
         clearAll(event);
         displayText.textContent = "Clever!";
         console.log("Clever!");
-
         return value;
     }
 
@@ -329,22 +328,24 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
-        
+
+        if(!isValidNumber(result)) {
+            return;
+        }
+
         if(!isPrecise(result)) {
             console.log("result isn't precise");
             clearAll();
             return displayText.textContent = "Error";
                 
-        };
-
-        if(isValidNumber(result)) {
+        } else {
             numberOne = undefined;
             displayNumber = result;
             console.log(`Value of displayNumber is ${displayNumber}`);
             // addNumbersEventListener();
             return refineResultForDisplay(result);
         }
-        return
+        
     };
      console.log("bottom of resolve Equation runs");
     
@@ -557,6 +558,7 @@ function refineResultForDisplay(stringedNumber) {
 
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
+    console.log(typeof strindedNumber);
     
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
