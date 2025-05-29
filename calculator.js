@@ -264,30 +264,47 @@ function addOperator(event) {
         addNumbersEventListener();
         console.log("numberOne value is: " + numberOne);
     }
+
+    //add current display number to 2nd number var
+    if (isValidNumber(numberOne) && operator &&
+        isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
+
+            numberTwo = displayNumber;
+            displayNumber = "";
+    }
     
     //wack code block in another function?
-    // if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
-
-    //     let result = operate(numberOne, operator, numberTwo);
-
-    //     if(!isValidNumber(result)) {
-    //         return;
-    //     }
-
-    //     if(!isPrecise(result)) {
-    //         console.log("result isn't precise");
-    //         clearAll();
-    //         return displayText.textContent = "Error";
-                
-    //     } else {
-    //         numberOne = undefined;
-    //         displayNumber = result;
-    //         console.log(`Value of displayNumber is ${displayNumber}`);
-    //         // addNumbersEventListener();
-    //         return refineResultForDisplay(result);
-    //     }
+    if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         
-    // };
+        //return stringed number/undefined;
+        let result = operate(numberOne, operator, numberTwo);
+        
+        //if condtion is met exit out of whole function;
+        //result will be undefined and display showing Clever!;
+        if(!isValidNumber(result)) {
+            return;
+        }
+        
+        // if runs when number has lost precision
+        //else runs if result is still precise;
+        if(!isPrecise(result)) {
+            console.log("result isn't precise");
+            console.log(`Value of result is ${result}`);
+            clearAll();
+            return displayText.textContent = "Error";
+                
+        } else {
+            numberOne = result;
+            numberTwo = undefined;
+            operator = currentOperator;
+            console.log(`Value of result is ${result}`);
+            console.log(`Value of displayNumber is ${displayNumber}`);
+            addNumbersEventListener();
+            removeEqualsEventListener();
+            return refineResultForDisplay(result);
+        }
+        
+    };
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
