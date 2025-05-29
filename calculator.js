@@ -257,14 +257,37 @@ function addOperator(event) {
 
     
     //Add display number to numberOne variable if it has no value;
-    if (!isValidNumber(numberOne)) {
+    if (!isValidNumber(numberOne)&& isValidNumber(displayNumber)) {
         numberOne = displayNumber;
         // displayText.textContent = displayNumber;
         displayNumber = "";
         addNumbersEventListener();
         console.log("numberOne value is: " + numberOne);
     }
+    
+    //wack code block in another function?
+    // if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
+    //     let result = operate(numberOne, operator, numberTwo);
+
+    //     if(!isValidNumber(result)) {
+    //         return;
+    //     }
+
+    //     if(!isPrecise(result)) {
+    //         console.log("result isn't precise");
+    //         clearAll();
+    //         return displayText.textContent = "Error";
+                
+    //     } else {
+    //         numberOne = undefined;
+    //         displayNumber = result;
+    //         console.log(`Value of displayNumber is ${displayNumber}`);
+    //         // addNumbersEventListener();
+    //         return refineResultForDisplay(result);
+    //     }
+        
+    // };
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
@@ -309,20 +332,22 @@ function resolveEquation(event) {
     //think this can be deleted;
     addArithmeticOperatorsEventListener();
     
-    console.log(numberOne);
-    console.log(displayNumber);
+    // console.log(numberOne);
+    // console.log(displayNumber);
     // console.log(numberTwo);
-    console.log(operator);
+    // console.log(operator);
 
+
+    if(!isValidNumber(numberOne) && isValidNumber(displayNumber) && isValidNumber(numberTwo)) {
+        numberOne = displayNumber;
+    }
     
     //add current display number to 2nd number var
     if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
     }
 
-    if(!isValidNumber(numberOne)) {
-        numberOne = displayNumber;
-    }
+
 
     //wack code block in another function?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
