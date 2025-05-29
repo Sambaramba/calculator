@@ -239,7 +239,7 @@ function addOperator(event) {
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     console.log("Display number's starting value is: " + displayNumber);
-    removeNumbersEventListener();
+    // removeNumbersEventListener();
 
 
     let currentOperator = event.target.textContent;
