@@ -540,7 +540,7 @@ function removeTrailingZeros(number) {
     // console.log(removedZeros);
     // console.log(beforeDecimalPlace);
     
-    // attach two parts back together
+    // attach two parts back together and return;
     return beforeDecimalPlace + removedZeros;
 }
 
@@ -550,7 +550,7 @@ function removeAllNonNumbers(stringedNumber) {
     
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
-   console.log(typeof cleanedNumber);
+//    console.log(typeof cleanedNumber);
    return cleanedNumber;
 }
 
@@ -578,7 +578,7 @@ function refineResultForDisplay(stringedNumber) {
     
     //USE THIS IF TO CHECK ANY LENGTH
     // if (num.toFixed(0).length > 12)
-    //If length above 9 convert to scientific notation and display;
+    //If length above 12 convert to scientific notation and display;
     if (cleanedNumber.length > 12) {
         clearAll();
         console.log("is NaN");
@@ -607,12 +607,8 @@ function isPrecise(stringedNumber) {
             console.log("triggered SN if in isPrecise");
             let baseIndex = stringedNumber.toLowerCase().indexOf("e");
             let significant = stringedNumber.slice(0, baseIndex);
-            // let exponent = stringedNumber.slice(baseIndex + 1);
-            // if (exponent.includes("-")) {
-            //      exponent = exponent.replace("-", "");
-            //      console.log(`Exponent is now: ${exponent}`);
-            // }
             let cleanedSignificant = removeAllNonNumbers(significant);
+
             if (cleanedSignificant.length <= 15) {
                     return true;
             }  else { 
@@ -679,7 +675,14 @@ function isPrecise(stringedNumber) {
 
 //Code for calculator accepting scientific notation
 
-
+//code to add to isPrecise();
+/*
+let exponent = stringedNumber.slice(baseIndex + 1);
+if (exponent.includes("-")) {
+      exponent = exponent.replace("-", "");
+      console.log(`Exponent is now: ${exponent}`);
+}
+*/
 
 /*
 //expects string as argument
