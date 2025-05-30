@@ -258,6 +258,17 @@ function addOperator(event) {
     //delete count property until next num btn is pressed
     delete numbers.count;
     
+    
+    //adds minus to displayNumber start if operator is divide or multiply;
+    if (currentOperator === minusOperator) {
+        if(operator === divideOperator || operator === multiplyOperator) {
+            displayNumber = "-";
+            displayText.textContent = displayNumber;
+            removeArithmeticOperatorsEventListener();
+            return;
+        }
+    }
+
     //resets 2nd num value for repeat operations
     if(isValidNumber(numberTwo)) {
         console.log("reset num2 value in addOperator");
