@@ -239,7 +239,6 @@ function addOperator(event) {
     // console.log("Operators starting values is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     console.log("Display number's starting value is: " + displayNumber);
-    // removeNumbersEventListener();
 
 
     let currentOperator = event.target.textContent;
@@ -349,10 +348,10 @@ function resolveEquation(event) {
     //think this can be deleted;
     addArithmeticOperatorsEventListener();
     
-    // console.log(numberOne);
-    // console.log(displayNumber);
-    // console.log(numberTwo);
-    // console.log(operator);
+    console.log(`numberOne at equals start is ${numberOne}`);
+    console.log(`displayNumber at equals start is ${displayNumber}`);
+    console.log(`numberTwo at equals start is ${numberTwo}`);
+    console.log(`operator at equals start is ${operator}`);
 
 
     if(!isValidNumber(numberOne) && isValidNumber(displayNumber) && isValidNumber(numberTwo)) {
@@ -411,7 +410,7 @@ function clearAll(event) {
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
-    // addMinusSignEventListener();
+    addMinusSignEventListener();
 
 }
 
@@ -439,24 +438,24 @@ let minusBtn = document.querySelector("#minus");
 
 
 
-// function addMinusSign(event) {
-//     if (!displayNumber.length) {
-//     displayNumber += "-";
-//     displayText.textContent = displayNumber;
-//     }
-//     console.log(event.target.textContent)
+function addMinusSign(event) {
+    console.log(event.target.textContent);
+    if (!displayNumber.length) {
+    displayNumber = "-";
+    displayText.textContent = displayNumber;
+    return displayNumber;
+    }
+}
 
-// }
+function addMinusSignEventListener() {
+    minusBtn.addEventListener("click", addMinusSign, {once: true});
+}
 
-// function addMinusSignEventListener() {
-//     minusBtn.addEventListener("click", addMinusSign, {once: true});
-// }
+function removeMinusSignEventListener() {
+    minusBtn.removeEventListener("click", addMinusSign);
+}
 
-// function removeMinusSignEventListener() {
-//     minusBtn.removeEventListener("click", addMinusSign);
-// }
-
-// addMinusSignEventListener();
+addMinusSignEventListener();
 
   
 
