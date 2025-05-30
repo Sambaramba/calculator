@@ -160,6 +160,8 @@ function addNumberToDisplay(event) {
     }
 
     
+
+    
     let eventNum = event.target.textContent;
     
     //adds maths op event listener at code start and reset start;
@@ -169,10 +171,18 @@ function addNumberToDisplay(event) {
     }
 
     //Numbers count add/remove/increment code
+    //commented code out to add minus sign;
+    //calculator now breaks when start new calculation after equals pressed;
     if (!numbers.count) {
-        displayNumber = "";
-        numbers.count = 0;  
+          numbers.count = 0;
+        
+        //only resets if not minus;
+        if (displayNumber !== "-") {
+            displayNumber = "";
+    }
     };
+
+    
 
     if (numbers.count >= 9) {
         removeNumbersEventListener();
@@ -443,6 +453,7 @@ function addMinusSign(event) {
     if (!displayNumber.length) {
     displayNumber = "-";
     displayText.textContent = displayNumber;
+    console.log(`display numbers value is now ${displayNumber}`);
     return displayNumber;
     }
 }
