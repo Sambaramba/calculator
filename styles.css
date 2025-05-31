@@ -90,13 +90,15 @@ html {
     width: 100%;
     height: 20%;
     display: flex;
-    /* border: 0.25rem solid grey; */
+    flex-direction: column;
+    border: var(--purple) solid 0.25rem;
     border-radius: 1rem;
     padding: 0.5rem;
+    text-align: right;
 }
 
 #display-text {
-    border: var(--purple) solid 0.25rem;
+    /* border: var(--purple) solid 0.25rem; */
     width: 100%;
     text-align: right;
     padding: 1rem;
