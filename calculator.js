@@ -50,7 +50,7 @@ function operate(numberOne, operator, numberTwo, event) {
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
         displayText.textContent = "Clever!";
-        console.log("Clever!");
+        // console.log("Clever!");
         return value;
     }
 
@@ -167,16 +167,14 @@ function addNumberToDisplay(event) {
     //adds maths op event listener at code start and reset start;
     if (!numbers.count && !isValidNumber(numberOne)) {
         addArithmeticOperatorsEventListener();
-        console.log("maths operator added in addNum");
+        console.log("maths op event added in addNum");
     }
 
-    //Numbers count add/remove/increment code
-    //commented code out to add minus sign;
-    //calculator now breaks when start new calculation after equals pressed;
+    //Adds count variable if there isn't one already;
     if (!numbers.count) {
           numbers.count = 0;
         
-        //only resets if not minus;
+        //Resets if is not minus;
         if (displayNumber !== "-") {
             displayNumber = "";
     }
@@ -229,8 +227,6 @@ function addArithmeticOperatorsEventListener() {
         });
 };
 
-// addArithmeticOperatorsEventListener();
-
 
 function removeArithmeticOperatorsEventListener() {
     arithmeticOperators.forEach((operator) => {
@@ -238,17 +234,13 @@ function removeArithmeticOperatorsEventListener() {
     });
 };
 
-/*TODO- when click operator after numberTwo has value operate on 
-equation then add result to num1 and new operator click to 
-operator var*/
-
 
 function addOperator(event) {
     // console.log(event);
-    console.log("Number One's starting value is: " + numberOne);
-    // console.log("Operators starting values is: " + operator);
+    // console.log("Number One's starting value is: " + numberOne);
+    console.log("Operators starting value in addOp is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
-    console.log("Display number's starting value is: " + displayNumber);
+    // console.log("Display number's starting value is: " + displayNumber);
 
 
     let currentOperator = event.target.textContent;
@@ -271,7 +263,7 @@ function addOperator(event) {
 
     //resets 2nd num value for repeat operations
     if(isValidNumber(numberTwo)) {
-        console.log("reset num2 value in addOperator");
+        // console.log("reset num2 value in addOperator");
         numberTwo = undefined;
     }
 
