@@ -177,13 +177,26 @@ button {
 
 
 
-#ac-button {
-    /* padding: 2rem; */
+/*#ac-button {
+    padding: 2rem;
     border-radius: 1rem 0 0 1rem;
     border: 0.25rem solid var(--bright-orange);
     background-color: var(--light-orange);
     height: 100%;
     width: 7rem;
+}*/
+
+/*#ce-button {
+    border-radius: 0 1rem 1rem 0;
+}*/
+
+#ac-button, 
+#ce-button {
+    border: 0.25rem solid var(--bright-orange);
+    background-color : var(--light-orange);
+    height: 100%;
+    width: 10rem;
+    border-radius: 3rem;
 }
 
 /*shading styles*/
