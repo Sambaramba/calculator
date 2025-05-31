@@ -94,25 +94,26 @@ body {
     justify-content: center;
     /* border: 1px solid black; */
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     padding-bottom: 4rem;
     width: 40rem;
     height: 50rem;
     gap: 1.5rem;
-    margin: 2rem auto;
+    margin: 1.5rem auto;
 }
 
 /*DISPLAY CONTAINER STYLES*/
 
 #display-container {
-    width: 100%;
-    height: 20%;
+    width: 97%;
+    height: 15%;
     display: flex;
     flex-direction: column;
     border: var(--purple) solid 0.25rem;
     border-radius: 1rem;
     padding: 0.5rem;
     text-align: right;
+    outline: 0.5rem solid var(--light-yellow);
 }
 
 #display-text {
@@ -122,6 +123,7 @@ body {
     /* padding: 1rem; */
     border-radius: 0 1rem 1rem 0;
     overflow: hidden;
+
 }
 
 /*BUTTON CONTAINERS AND BUTTON STYLES*/
