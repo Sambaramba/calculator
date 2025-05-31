@@ -79,6 +79,10 @@ body {
     font-size: 4rem;
 }
 
+.x-large {
+    font-size: 4.5rem;
+}
+
 #calculator-container {
     display: flex;
     flex-direction: column;
