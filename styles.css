@@ -75,6 +75,10 @@ body {
     font-size: 1rem;
 }
 
+.medium {
+    font-size: 3rem;
+}
+
 .large {
     font-size: 4rem;
 }
