@@ -243,7 +243,7 @@ button::before {
     background-color: var(--green-highlight);
   }
 
-#ac-button::before {
+.orange::before {
     background-color: var(--orange-highlight);
   }
 
@@ -275,7 +275,7 @@ button::before {
 
 
 
-  #ac-button::after {
+  .orange::after {
     left: 0.5rem;
     background-color: var(--light-orange);
     border-radius: 1rem 0 0 1rem;
@@ -300,10 +300,10 @@ button::before {
 
 
 
-#ac-button:hover::before {
+.orange:hover::before {
     background-color: var(--red-highlight);
 }
-#ac-button:hover::after {
+.orange:hover::after {
     background-color: var(--red);
 }
 
@@ -319,6 +319,6 @@ button::before {
 }
 
 
-#ac-button:active {
+.orange:active {
     background-color: var(--light-orange);
 }
