@@ -198,12 +198,14 @@ button {
 }*/
 
 #ac-button, 
-#ce-button {
+#ce-button,
+#plus-minus {
     border: 0.25rem solid var(--bright-orange);
     background-color : var(--light-orange);
-    height: 100%;
+    /* height: 4rem;
     width: 10rem;
-    border-radius: 3rem;
+    border-radius: 0.5rem;
+    padding-bottom: 4rem; */
 }
 
 /*shading styles*/
