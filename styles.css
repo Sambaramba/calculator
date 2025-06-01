@@ -276,9 +276,9 @@ button::before {
 
 
   .orange::after {
-    left: 0.5rem;
+    /* left: 0.5rem; */
     background-color: var(--light-orange);
-    border-radius: 1rem 0 0 1rem;
+    /* border-radius: 1rem 0 0 1rem; */
   }
 
 
