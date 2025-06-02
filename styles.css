@@ -314,17 +314,15 @@ background-color: var(--light-orange);
 /*TODO: */
 /*want hover for only blue, equals and ce buttons*/
 
-.green:hover::before,
+/* .green:hover::before, */
 .blue:hover::before {
     background-color: var(--bright-orange-highlight);
 }
 
-.green:hover::after,
+/* .green:hover::after, */
 .blue:hover::after {
     background-color: var(--bright-orange);
 }
-
-
 
 .orange:hover::before {
     background-color: var(--red-highlight);
@@ -350,9 +348,13 @@ button:active {
 .blue:active::before {
     background-color: var(--blue-highlight);
 }
-/* .green:active::after {
-    background-color: var(--green);
+/* .green:active::before {
+    background-color: var(--bright-orange-highlight);
 } */
+
+.green:focus::before {
+    background-color: var(--bright-orange-highlight);
+}
 
 
 
@@ -364,4 +366,12 @@ button:active {
 
 .orange:active::after {
     background-color: var(--light-orange);
+}
+
+/* .green:active::after {
+    background-color: var(--bright-orange);
+} */
+
+.green:focus::after {
+    background-color: var(--bright-orange);
 }
