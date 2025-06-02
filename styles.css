@@ -292,7 +292,7 @@ background-color: var(--light-orange);
 }
 
 .double-size::after {
-    /* left: 0.15rem; */
+    left: 0.15rem;
     border-radius:  50% 60% 0% 60%;
     content: '';
     position: absolute;
@@ -300,6 +300,10 @@ background-color: var(--light-orange);
     width: 100%;
     height: 95%;
     z-index: -1;
+    flex: 0 2 auto;
+    border-radius: 4rem;
+    width: 14rem;
+    /* transform: rotate(-1deg); */
 }
 
 
