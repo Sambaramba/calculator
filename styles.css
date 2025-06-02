@@ -325,24 +325,28 @@ background-color: var(--light-orange);
 
 /*HOVER STYLES*/
 
-/*TODO: */
-/*want hover for only blue, equals and ce buttons*/
 
-/* .green:hover::before, */
+/*BEFORE HOVER STYLES*/
+
+
 .blue:hover::before,
 .violet:hover::before {
     background-color: var(--bright-orange-highlight);
 }
 
-/* .green:hover::after, */
+.orange:hover::before {
+    background-color: var(--red-highlight);
+}
+
+
+/*AFTER HOVER STYLES*/
+
+
 .blue:hover::after,
 .violet:hover::after {
     background-color: var(--bright-orange);
 }
 
-.orange:hover::before {
-    background-color: var(--red-highlight);
-}
 .orange:hover::after {
     background-color: var(--red);
 }
