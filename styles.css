@@ -368,13 +368,6 @@ button:active {
 .blue:active::before {
     background-color: var(--blue-highlight);
 }
-/* .green:active::before {
-    background-color: var(--bright-orange-highlight);
-} */
-
-.green:focus::before {
-    background-color: var(--bright-orange-highlight);
-}
 
 
 
@@ -388,10 +381,13 @@ button:active {
     background-color: var(--light-orange);
 }
 
-/* .green:active::after {
-    background-color: var(--bright-orange);
-} */
+
+/*FOCUS STYLES*/
 
 .green:focus::after {
     background-color: var(--bright-orange);
+}
+
+.green:focus::before {
+    background-color: var(--bright-orange-highlight);
 }
