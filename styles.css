@@ -329,12 +329,14 @@ background-color: var(--light-orange);
 /*want hover for only blue, equals and ce buttons*/
 
 /* .green:hover::before, */
-.blue:hover::before {
+.blue:hover::before,
+.violet:hover::before {
     background-color: var(--bright-orange-highlight);
 }
 
 /* .green:hover::after, */
-.blue:hover::after {
+.blue:hover::after,
+.violet:hover::after {
     background-color: var(--bright-orange);
 }
 
