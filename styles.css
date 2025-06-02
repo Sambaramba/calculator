@@ -340,11 +340,13 @@ button:active {
     transform: translateY(4px);
 
 }
-.green:active {
-    background-color: var(--green);
-}
 
-.light-blue:active {
+
+/* .green:active::after {
+    background-color: var(--green);
+} */
+
+.blue:active::after {
     background-color: var(--blue);
 }
 
