@@ -341,7 +341,11 @@ button:active {
 
 }
 
+/*active before styles*/
 
+.blue:active::before {
+    background-color: var(--blue-highlight);
+}
 /* .green:active::after {
     background-color: var(--green);
 } */
