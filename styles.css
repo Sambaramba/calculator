@@ -217,7 +217,7 @@ button {
 #ce-button,
 #plus-minus {
     border: 0.25rem solid var(--bright-orange);
-    background-color : var(--light-orange);
+    /* background-color : var(--light-orange); */
     /* height: 4rem;
     width: 10rem;
     border-radius: 0.5rem;
@@ -253,6 +253,10 @@ button::before {
 .orange::before {
     background-color: var(--orange-highlight);
   }
+
+.violet::before {
+    background-color: var(--violet-highlight);
+}
 
 .double-size::before {
     content: '';
@@ -296,6 +300,10 @@ background-color: var(--blue);
 /* left: 0.5rem; */
 background-color: var(--light-orange);
 /* border-radius: 1rem 0 0 1rem; */
+}
+
+.violet::after {
+    background-color: var(--violet);
 }
 
 .double-size::after {
