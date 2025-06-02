@@ -406,7 +406,7 @@ function resolveEquation(event) {
 }
 
 
-//clear button code
+//CLEAR BUTTON CODE
 let clear = document.querySelector ("#ac-button");
 
 clear.addEventListener("click", clearAll);
@@ -425,6 +425,16 @@ function clearAll(event) {
     removeEqualsEventListener();
     addMinusSignEventListener();
 
+}
+
+//BACKSPACE BUTTON CODE
+
+let clearEntry = document.querySelector("#ce-button");
+
+clearEntry.addEventListener("click", deleteCharacter);
+
+function deleteCharacter(event) {
+    console.log("delete character");
 }
 
 //ADD DECIMAl PLACE TO NUMBERS CODE;
