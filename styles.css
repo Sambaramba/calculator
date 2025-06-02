@@ -369,6 +369,10 @@ button:active {
     background-color: var(--blue-highlight);
 }
 
+.violet:active::before {
+    background-color: var(--violet-highlight);
+}
+
 
 
 /*ACTIVE AFTER STYLES*/
@@ -379,6 +383,10 @@ button:active {
 
 .orange:active::after {
     background-color: var(--light-orange);
+}
+
+.violet:active::after {
+    background-color: var(--violet);
 }
 
 
