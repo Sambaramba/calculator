@@ -3,7 +3,7 @@
 
 :root {
     --purple: hsl(263, 86%, 42%);
-    --violet: hsl(280, 89%, 65%);
+    --violet: hsl(280deg 76.6% 73.6%);
     --violet-highlight: hsl(280, 82%, 89%);
     --green-highlight: hsl(115, 72%, 63%);
     --green: hsl(118, 80%, 44%);
