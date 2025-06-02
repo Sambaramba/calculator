@@ -336,6 +336,10 @@ background-color: var(--light-orange);
 
 /*ACTIVE STYLES*/
 
+button:active {
+    transform: translateY(4px);
+
+}
 .green:active {
     background-color: var(--green);
 }
