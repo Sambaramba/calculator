@@ -434,7 +434,20 @@ let clearEntry = document.querySelector("#ce-button");
 clearEntry.addEventListener("click", deleteCharacter);
 
 function deleteCharacter(event) {
-    console.log("delete character");
+    let numberMinusLastCharacter;
+    if(displayNumber.length) {
+        let lastCharacter = displayNumber.charAt(displayNumber.length-1);
+        console.log(lastCharacter);
+        numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
+        displayNumber = numberMinusLastCharacter;
+        displayText.textContent = numberMinusLastCharacter;
+        
+        console.log(numberMinusLastCharacter);
+        
+    } else {
+        displayNumber = "";
+        displayText.textContent = "0";
+    }
 }
 
 //ADD DECIMAl PLACE TO NUMBERS CODE;
