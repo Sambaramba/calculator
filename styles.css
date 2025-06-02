@@ -341,7 +341,11 @@ button:active {
 
 }
 
-/*active before styles*/
+/*ACTIVE BEFORE STYLES*/
+
+.orange:active::before {
+    background-color: var(--orange-highlight);
+  }
 
 .blue:active::before {
     background-color: var(--blue-highlight);
@@ -350,11 +354,14 @@ button:active {
     background-color: var(--green);
 } */
 
+
+
+/*ACTIVE AFTER STYLES*/
 .blue:active::after {
     background-color: var(--blue);
 }
 
 
-.orange:active {
+.orange:active::after {
     background-color: var(--light-orange);
 }
