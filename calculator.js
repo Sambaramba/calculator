@@ -172,7 +172,8 @@ function addNumberToDisplay(event) {
     if (!numbers.count) {
           numbers.count = 0;
           addDotEventListener();
-          console.log("added dot event in addNum");
+          addClearEntryEventlistener();
+          console.log("added dot and clearEntry events in addNum");
         
         //Resets if is not minus;
         if (displayNumber !== "-") {
@@ -461,6 +462,7 @@ function deleteCharacter(event) {
         removeDotEventListener();
         console.log("remove count var and dot event in delete char");
         displayNumber = "";
+        removeClearEntryEventListener();
         return displayText.textContent = "0";
     }
 }
