@@ -435,18 +435,15 @@ clearEntry.addEventListener("click", deleteCharacter);
 
 function deleteCharacter(event) {
     let numberMinusLastCharacter;
-    if(!displayNumber.length) {
+    
+    let lastCharacter = displayNumber.charAt(displayNumber.length-1);
+    numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
+    displayNumber = numberMinusLastCharacter;
+    displayText.textContent = numberMinusLastCharacter;
+
+    if (displayNumber.length === 0) {
         displayNumber = "";
-        displayText.textContent = "0";
-    }  else {
-        let lastCharacter = displayNumber.charAt(displayNumber.length-1);
-        console.log(lastCharacter);
-        numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
-        displayNumber = numberMinusLastCharacter;
-        displayText.textContent = numberMinusLastCharacter;
-        
-        console.log(numberMinusLastCharacter);
-        
+        return displayText.textContent = "0";
     }
 }
 
