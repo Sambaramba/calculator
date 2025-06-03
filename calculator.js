@@ -434,8 +434,13 @@ function clearAll(event) {
 
 let clearEntry = document.querySelector("#ce-button");
 
+function addClearEntryEventlistener() {
 clearEntry.addEventListener("click", deleteCharacter);
+}
 
+function removeClearEntryEventListener() {
+    clearEntry.removeEventListener("click", deleteCharacter);
+}
 function deleteCharacter(event) {
     let numberMinusLastCharacter;
 
@@ -447,7 +452,10 @@ function deleteCharacter(event) {
     numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
     displayNumber = numberMinusLastCharacter;
     displayText.textContent = numberMinusLastCharacter;
+    
 
+    //keeps executing below code
+    //add add/remove ce event necessary?
     if (displayNumber.length === 0) {
         delete numbers.count;
         removeDotEventListener();
