@@ -445,19 +445,23 @@ function removeClearEntryEventListener() {
 
 
 function deleteCharacter(event) {
-    let numberMinusLastCharacter;
-
+    
+    //readds number event
     if(displayNumber.length === 9) {
         addNumbersEventListener();
     }
     
-    let lastCharacter = displayNumber.charAt(displayNumber.length-1);
+    //stores value of last character
+    let lastCharacter = displayNumber.charAt(displayNumber.length - 1);
     
+    //decrements count property if last character is number
     if(Number(lastCharacter)) {
-        console.log("character is number");
+        // console.log("character is number");
         --numbers.count;
     }
-    numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
+    //stores number with last character removed
+    let numberMinusLastCharacter = displayNumber.slice(0, -1);
+
     displayNumber = numberMinusLastCharacter;
     displayText.textContent = numberMinusLastCharacter;
     
