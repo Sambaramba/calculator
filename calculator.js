@@ -442,6 +442,8 @@ clearEntry.addEventListener("click", deleteCharacter);
 function removeClearEntryEventListener() {
     clearEntry.removeEventListener("click", deleteCharacter);
 }
+
+
 function deleteCharacter(event) {
     let numberMinusLastCharacter;
 
@@ -450,15 +452,22 @@ function deleteCharacter(event) {
     }
     
     let lastCharacter = displayNumber.charAt(displayNumber.length-1);
+    
+    if(Number(lastCharacter)) {
+        console.log("character is number");
+        --numbers.count;
+    }
     numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
     displayNumber = numberMinusLastCharacter;
     displayText.textContent = numberMinusLastCharacter;
+    
+    console.log(numbers.count);
     
 
     //keeps executing below code
     //add add/remove ce event necessary?
     if (displayNumber.length === 0) {
-        delete numbers.count;
+        // delete numbers.count;
         removeDotEventListener();
         console.log("remove count var and dot event in delete char");
         displayNumber = "";
