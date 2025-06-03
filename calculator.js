@@ -160,8 +160,6 @@ function addNumberToDisplay(event) {
     }
 
     
-
-    
     let eventNum = event.target.textContent;
     
     //adds maths op event listener at code start and reset start;
@@ -173,6 +171,8 @@ function addNumberToDisplay(event) {
     //Adds count variable if there isn't one already;
     if (!numbers.count) {
           numbers.count = 0;
+          addDotEventListener();
+          console.log("added dot event in addNum");
         
         //Resets if is not minus;
         if (displayNumber !== "-") {
@@ -188,6 +188,7 @@ function addNumberToDisplay(event) {
     }
 
     ++numbers.count;
+    console.log(numbers.count);
 
     
     
@@ -198,6 +199,8 @@ function addNumberToDisplay(event) {
     } else {
         displayNumber += eventNum;
     }
+
+    
 
     
 
