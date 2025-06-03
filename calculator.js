@@ -446,6 +446,8 @@ function deleteCharacter(event) {
 
     if (displayNumber.length === 0) {
         delete numbers.count;
+        removeDotEventListener();
+        console.log("remove count var and dot event in delete char");
         displayNumber = "";
         return displayText.textContent = "0";
     }
