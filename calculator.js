@@ -451,7 +451,13 @@ function deleteCharacter(event) {
 
 let dot = document.querySelector("#dot");
 
-dot.addEventListener("click", addDecimalPlace);
+function addDotEventListener() {
+    dot.addEventListener("click", addDecimalPlace, {once: true});
+}
+
+function removeDotEventListener() {
+    dot.removeEventListener("click", addDecimalPlace);
+}
 
 function addDecimalPlace(event) {
 
@@ -462,6 +468,8 @@ function addDecimalPlace(event) {
         console.log("added dot event");
      }
 }
+
+
 
 
 
