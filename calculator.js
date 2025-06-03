@@ -438,6 +438,10 @@ clearEntry.addEventListener("click", deleteCharacter);
 
 function deleteCharacter(event) {
     let numberMinusLastCharacter;
+
+    if(displayNumber.length === 9) {
+        addNumbersEventListener();
+    }
     
     let lastCharacter = displayNumber.charAt(displayNumber.length-1);
     numberMinusLastCharacter = displayNumber.replace(lastCharacter, "");
