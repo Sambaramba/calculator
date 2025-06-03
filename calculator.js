@@ -177,7 +177,7 @@ function addNumberToDisplay(event) {
         //Resets if is not minus;
         if (displayNumber !== "-") {
             displayNumber = "";
-    }
+        }
     };
 
     
@@ -442,6 +442,7 @@ function deleteCharacter(event) {
     displayText.textContent = numberMinusLastCharacter;
 
     if (displayNumber.length === 0) {
+        delete numbers.count;
         displayNumber = "";
         return displayText.textContent = "0";
     }
