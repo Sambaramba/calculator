@@ -149,7 +149,7 @@ function isValidNumber(value) {
 
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
-    // console.log(displayNumber);
+    console.log(`display number at addNum start is ${displayNumber}`);
     
 
     //this fixes issue after divide by zero
@@ -163,17 +163,18 @@ function addNumberToDisplay(event) {
     let eventNum = event.target.textContent;
     
     //adds maths op event listener at code start and reset start;
-    if (!numbers.count && !isValidNumber(numberOne)) {
-        addArithmeticOperatorsEventListener();
-        console.log("maths op event added in addNum");
-    }
+    // if (!numbers.count && !isValidNumber(numberOne)) {
+    //     addArithmeticOperatorsEventListener();
+    //     console.log("maths op event added in addNum");
+    // }
 
     //Adds count variable if there isn't one already;
     if (!numbers.count) {
           numbers.count = 0;
           addDotEventListener();
           addClearEntryEventlistener();
-          console.log("added dot and clearEntry events in addNum");
+          addArithmeticOperatorsEventListener();
+          console.log("added dot, maths ops and clearEntry events in addNum");
         
         //Resets if is not minus;
         if (displayNumber !== "-") {
@@ -320,7 +321,7 @@ function addOperator(event) {
         // if(operator === divideOperator || operator === multiplyOperator) {
             displayNumber = "-";
             displayText.textContent = displayNumber;
-            console.log("added minus to display num in addop");
+            console.log("added minus to display num and remove maths ops in addop");
             removeArithmeticOperatorsEventListener();
             return;
         // }
