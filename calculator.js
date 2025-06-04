@@ -245,7 +245,7 @@ function addOperator(event) {
     console.log("Operators starting value in addOp is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     // console.log("Display number's starting value is: " + displayNumber);
-
+    removeMinusSignEventListener();
 
     let currentOperator = event.target.textContent;
     // console.log(`current operator is ${currentOperator}`);
@@ -255,15 +255,6 @@ function addOperator(event) {
     delete numbers.count;
     
     
-    //adds minus to displayNumber start if operator is divide or multiply;
-    if (currentOperator === minusOperator) {
-        if(operator === divideOperator || operator === multiplyOperator) {
-            displayNumber = "-";
-            displayText.textContent = displayNumber;
-            removeArithmeticOperatorsEventListener();
-            return;
-        }
-    }
 
     //resets 2nd num value for repeat operations
     if(isValidNumber(numberTwo)) {
@@ -294,7 +285,7 @@ function addOperator(event) {
         
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
-        
+        operator = currentOperator;
         //if condtion is met exit out of whole function;
         //result will be undefined and display showing Clever!;
         if(!isValidNumber(result)) {
@@ -312,7 +303,7 @@ function addOperator(event) {
         } else {
             numberOne = result;
             numberTwo = undefined;
-            operator = currentOperator;
+            // operator = currentOperator;
             console.log(`Value of result is ${result}`);
             console.log(`Value of displayNumber is ${displayNumber}`);
             addNumbersEventListener();
@@ -321,6 +312,19 @@ function addOperator(event) {
         }
         
     };
+
+    //adds minus to displayNumber start if operator is divide or multiply;
+    if (currentOperator === minusOperator &&
+        (operator  === multiplyOperator ||
+        operator === divideOperator)) {
+        // if(operator === divideOperator || operator === multiplyOperator) {
+            displayNumber = "-";
+            displayText.textContent = displayNumber;
+            console.log("added minus to display num in addop");
+            removeArithmeticOperatorsEventListener();
+            return;
+        // }
+    }
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
@@ -456,7 +460,6 @@ function deleteCharacter(event) {
     
     //decrements count property if last character is number
     if(Number(lastCharacter)) {
-        // console.log("character is number");
         --numbers.count;
     }
     //stores number with last character removed
@@ -465,15 +468,10 @@ function deleteCharacter(event) {
     displayNumber = numberMinusLastCharacter;
     displayText.textContent = numberMinusLastCharacter;
     
-    console.log(numbers.count);
-    
-
-    //keeps executing below code
-    //add add/remove ce event necessary?
     if (displayNumber.length === 0) {
         // delete numbers.count;
         removeDotEventListener();
-        console.log("remove count var and dot event in delete char");
+        console.log("remove count var,dot and clear entry events in delete char");
         displayNumber = "";
         removeClearEntryEventListener();
         return displayText.textContent = "0";
