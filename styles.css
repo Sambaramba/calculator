@@ -129,7 +129,17 @@ body {
 
 }
 
-/*BUTTON CONTAINERS AND BUTTON STYLES*/
+/*MIDDLE CONTAINER STYLES- for name and clear buttons*/
+
+#middle-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#name {
+    color: white;
+    font-family: 'Brush script MT', cursive;
+}
 
 #top-buttons-container {
     border-radius: 1rem;
@@ -138,6 +148,10 @@ body {
     margin-bottom: -0.5rem;
     margin-right: 1rem;
 }
+
+/*BUTTON CONTAINERS AND BUTTON STYLES*/
+
+
 
 #button-container {
     display: flex;
