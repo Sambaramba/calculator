@@ -161,14 +161,10 @@ function addNumberToDisplay(event) {
 
     
     let eventNum = event.target.textContent;
-    
-    //adds maths op event listener at code start and reset start;
-    // if (!numbers.count && !isValidNumber(numberOne)) {
-    //     addArithmeticOperatorsEventListener();
-    //     console.log("maths op event added in addNum");
-    // }
+
 
     //Adds count variable if there isn't one already;
+    //also add events for dot,clear entry and maths ops
     if (!numbers.count) {
           numbers.count = 0;
           addDotEventListener();
@@ -176,13 +172,8 @@ function addNumberToDisplay(event) {
           addArithmeticOperatorsEventListener();
           console.log("added dot, maths ops and clearEntry events in addNum");
         
-        //Resets if is not minus;
-        if (displayNumber !== "-") {
-            displayNumber = "";
-        }
+        
     };
-
-    
 
     if (numbers.count >= 9) {
         removeNumbersEventListener();
@@ -203,13 +194,9 @@ function addNumberToDisplay(event) {
     }
 
     
-
-    
-
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && numbers.count === 1) {
         addEqualsEventListener();
-        // removeMinusSignEventListener();
         console.log(("add equals event in addNum"));
     }
     // console.log(event.target);
@@ -246,7 +233,7 @@ function addOperator(event) {
     console.log("Operators starting value in addOp is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     // console.log("Display number's starting value is: " + displayNumber);
-    removeMinusSignEventListener();
+    // removeMinusSignEventListener();
 
     let currentOperator = event.target.textContent;
     // console.log(`current operator is ${currentOperator}`);
@@ -254,7 +241,6 @@ function addOperator(event) {
     
     //delete count property until next num btn is pressed
     delete numbers.count;
-    
     
 
     //resets 2nd num value for repeat operations
@@ -314,18 +300,7 @@ function addOperator(event) {
         
     };
 
-    //adds minus to displayNumber start if operator is divide or multiply;
-    if (currentOperator === minusOperator &&
-        (operator  === multiplyOperator ||
-        operator === divideOperator)) {
-        // if(operator === divideOperator || operator === multiplyOperator) {
-            displayNumber = "-";
-            displayText.textContent = displayNumber;
-            console.log("added minus to display num and remove maths ops in addop");
-            removeArithmeticOperatorsEventListener();
-            return;
-        // }
-    }
+    
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
@@ -432,7 +407,6 @@ function clearAll(event) {
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
-    addMinusSignEventListener();
 
 }
 
@@ -504,40 +478,6 @@ function addDecimalPlace(event) {
 
 
 
-
-//ADD MINUS SIGN TO START OF NUMBERS CODE;
-
-let minusBtn = document.querySelector("#minus");
-
-
-
-function addMinusSign(event) {
-    console.log(event.target.textContent);
-    if (!displayNumber.length) {
-    displayNumber = "-";
-    displayText.textContent = displayNumber;
-    console.log(`display numbers value is now ${displayNumber}`);
-    return displayNumber;
-    }
-}
-
-function addMinusSignEventListener() {
-    minusBtn.addEventListener("click", addMinusSign, {once: true});
-}
-
-function removeMinusSignEventListener() {
-    minusBtn.removeEventListener("click", addMinusSign);
-}
-
-addMinusSignEventListener();
-
-  
-
-
-
-//gives zero with exponential numbers
-//need to figure out how to convert to non exponential
-//add whether to do it here or in operate;
 function removeExcessDecimalPlaces(stringedNumber) {
     console.log(stringedNumber);
     
@@ -710,40 +650,59 @@ function isPrecise(stringedNumber) {
 /*CURRENTLY UNUSED OR BROKEN CODE*/
 
 
-//code for adding minus sign for next step;
+//ADD MINUS SIGN TO START OF NUMBERS CODE;
+/*
+let minusBtn = document.querySelector("#minus");
 
-     //if operator has value and displayNumber is minus
-    //Would 2nd part of condition be better as .includes check?
-    //haven't commited 3rd part of condition yet;
 
-    // if (numberOne && operator && displayNumber === "-") {
-    //     removeArithmeticOperatorsEventListener();
-    //     console.log("remove maths ops");
-    //     return;
-    // }
 
-    //code to make 2nd number negative
-    // if (isValidNumber(numberOne) && 
-    // operator && 
-    // currentOperator === minusOperator && 
-    // !isValidNumber(displayNumber)) {
-    //     removeArithmeticOperatorsEventListener();
-    //     return displayNumber = "-";
-    // }
-    
-    //Adds minus event if operator has value;
-    // if(operator && !isValidNumber(displayNumber)) {
-    //     console.log("add minus in add maths op func");
-    //     addMinusSignEventListener();
-    //     return;
-    // }   
+function addMinusSign(event) {
+    console.log(event.target.textContent);
+    if (!displayNumber.length) {
+    displayNumber = "-";
+    displayText.textContent = displayNumber;
+    console.log(`display numbers value is now ${displayNumber}`);
+    return displayNumber;
+    }
+}
 
-//does 2nd part of condition do what i want?
-// if (displayNumber.length === 0 && operator !== minusOperator && !displayNumber.includes("-")) {
-//     alert("minus event code");
-    
-// }
+function addMinusSignEventListener() {
+    minusBtn.addEventListener("click", addMinusSign, {once: true});
+}
 
+function removeMinusSignEventListener() {
+    minusBtn.removeEventListener("click", addMinusSign);
+}
+
+addMinusSignEventListener();
+*/
+
+//for adding to number.count if in addnumbers func
+//Resets if is not minus;
+/*
+if (displayNumber !== "-") {
+    displayNumber = "";
+}
+*/
+
+//in add operator func:-
+//adds minus to displayNumber start if operator is divide or multiply;
+    /*
+    if (currentOperator === minusOperator &&
+        (operator  === multiplyOperator ||
+        operator === divideOperator)) {
+        // if(operator === divideOperator || operator === multiplyOperator) {
+            displayNumber = "-";
+            displayText.textContent = displayNumber;
+            console.log("added minus to display num and remove maths ops in addop");
+            removeArithmeticOperatorsEventListener();
+            return;
+        // }
+    }
+    */
+
+//add in clear entry func
+// addMinusSignEventListener();
 
 
 //Code for calculator accepting scientific notation
