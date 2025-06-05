@@ -115,6 +115,7 @@ body {
     height: 35%;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     align-items: flex-end;
     border: var(--purple) solid 0.25rem;
     border-radius: 1rem;
