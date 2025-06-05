@@ -141,6 +141,7 @@ body {
 #name {
     color: white;
     font-family: "Sofia", sans-serif;
+    text-align: center;
 }
 
 #top-buttons-container {
