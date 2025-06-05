@@ -141,7 +141,8 @@ body {
 #name {
     color: white;
     font-family: "Sofia", sans-serif;
-    text-align: center;
+    /* text-align: center; */
+    margin-left: 1.5rem;
 }
 
 #top-buttons-container {
