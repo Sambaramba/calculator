@@ -95,6 +95,7 @@ function operate(numberOne, operator, numberTwo, event) {
 let displayNumber = "";
 
 let displayText = document.querySelector("#display-text");
+// displayText.focus();
 
 displayText.textContent = "0";
 
@@ -108,6 +109,7 @@ function addNumbersEventListener () {
     numbers.forEach((number) => {
         number.addEventListener("click", addNumberToDisplay);
         number.addEventListener("keydown", addNumberToDisplay);
+        // displayText.focus();
         });
     };
 
@@ -152,8 +154,8 @@ function isValidNumber(value) {
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
     console.log(`display number at addNum start is ${displayNumber}`);
-    
-
+    console.log(document.activeElement);
+    displayText.focus();
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
     if (displayNumber === undefined) {
