@@ -273,19 +273,20 @@ function addOperator(event) {
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
         operator = currentOperator;
-        //if condtion is met exit out of whole function;
-        //result will be undefined and display showing Clever!;
+
+
+        
+        //Result will be undefined and display showing Clever!;
         if(!isValidNumber(result)) {
             return;
         }
         
         // if runs when number has lost precision
-        //else runs if result is still precise;
         if(!isPrecise(result)) {
             console.log("result isn't precise");
             console.log(`Value of result is ${result}`);
             clearAll();
-            return displayText.textContent = "Error";
+            return displayText.textContent = "Precision Error";
                 
         } else {
             numberOne = result;
@@ -374,7 +375,7 @@ function resolveEquation(event) {
         if(!isPrecise(result)) {
             console.log("result isn't precise");
             clearAll();
-            return displayText.textContent = "Error";
+            return displayText.textContent = "Precision Error";
                 
         } else {
             numberOne = undefined;
@@ -650,6 +651,8 @@ function isPrecise(stringedNumber) {
 /*CURRENTLY UNUSED OR BROKEN CODE*/
 
 
+//UNUSED
+
 //ADD MINUS SIGN TO START OF NUMBERS CODE;
 /*
 let minusBtn = document.querySelector("#minus");
@@ -703,6 +706,7 @@ if (displayNumber !== "-") {
 
 //add in clear entry func
 // addMinusSignEventListener();
+
 
 
 //Code for calculator accepting scientific notation
@@ -774,6 +778,10 @@ function convertToScientificNotation(number) {
 */
 
 
+
+
+
+//BROKEN CODE
 
 //doesnt work for negative exponents yet
 //think if you have value as number not string will convert
