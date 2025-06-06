@@ -106,13 +106,15 @@ let numbers = document.querySelectorAll(".number");
 
 function addNumbersEventListener () {
     numbers.forEach((number) => {
-        number.addEventListener("click", addNumberToDisplay)
+        number.addEventListener("click", addNumberToDisplay);
+        number.addEventListener("keydown", addNumberToDisplay);
         });
     };
 
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
-        number.removeEventListener("click", addNumberToDisplay)
+        number.removeEventListener("click", addNumberToDisplay);
+        number.removeEventListener("keydown", addNumberToDisplay);
         })
 };
 
