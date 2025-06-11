@@ -33,7 +33,7 @@ const multiplyOperator = "\u00D7";
 const divideOperator = "\u00F7";
 
 
-//i dont really know why this unicode conversion works in below function
+//i dont fully understand why this unicode conversion works in below function
 
 function operate(numberOne, operator, numberTwo, event) {
      
@@ -108,17 +108,78 @@ let numbers = document.querySelectorAll(".number");
 function addNumbersEventListener () {
     numbers.forEach((number) => {
         number.addEventListener("click", addNumberToDisplay);
-        number.addEventListener("keydown", addNumberToDisplay);
-        // displayText.focus();
-        });
-    };
+        // number.addEventListener("keydown", addNumberToDisplay);
+    });
+};
 
+//would it be easier to add/remove on mousedown,mouseup?
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
         number.removeEventListener("click", addNumberToDisplay);
-        number.removeEventListener("keydown", addNumberToDisplay);
-        })
+        // number.removeEventListener("keydown", addNumberToDisplay);
+    });
 };
+// function addNumbersKeydownEvent() {
+//     numbers.forEach((number) => {
+//         number.addEventListener("keydown", addNumberToDisplay);
+        
+//         });
+        
+// };
+
+
+// function removeNumbersKeydownEvent() {
+//     numbers.forEach((number) => {
+//         number.removeEventListener("keydown", (event) => {
+//             console.log(event);
+//             console.log(event.key);
+//             console.log(document.activeElement);
+//          });
+//     });
+// };
+
+// displayText.addEventListener("keydown", (event) => {
+//     console.log(event.key);
+// });
+
+// document.addEventListener("keydown", (event) => {
+//     console.log(document.activeElement);
+//     // console.log(event.key);
+//     if (/\d/.test(event.key)) {
+//         console.log("Number key pressed:", event.key);
+//         if (!displayNumber.length) {
+//             displayNumber = event.key;
+//             displayText.textContent = displayNumber;
+//         } else {
+//             displayNumber += event.key;
+//             displayText.textContent = displayNumber;
+//         }
+//     };
+// });
+
+// addNumbersKeydownEvent();
+
+
+// document.addEventListener('keydown', (event) => {
+//     let target = event.target;
+//     console.log(event);
+//     console.log(event.key);
+//     let key = event.key;
+//     console.log(event.target);
+//     // console.log(event.class);
+//     switch(key) {
+//         case '.':
+//                dot.click();
+//             break;
+//         case 'equals':
+//             equals.focus();
+//             break;
+//         case 'report':
+            
+//             break;
+//     }
+// });
+
 
 //add numbers event at beginning;
 addNumbersEventListener();
@@ -154,8 +215,25 @@ function isValidNumber(value) {
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
     console.log(`display number at addNum start is ${displayNumber}`);
-    console.log(document.activeElement);
-    displayText.focus();
+//     console.log(document.activeElement);
+//     console.log(event.key);
+//     console.log(event.target);
+
+//    if (/\d/.test(event.key)) {
+//         console.log("Number key pressed:", event.key);
+//         if (!displayNumber.length) {
+//             displayNumber = event.key;
+//             displayText.textContent = displayNumber;
+//         } else {
+//             displayNumber += event.key;
+//             displayText.textContent = displayNumber;
+//         }
+//     };
+
+
+
+
+    // displayText.focus();
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
     if (displayNumber === undefined) {
@@ -165,7 +243,7 @@ function addNumberToDisplay(event) {
 
     
     let eventNum = event.target.textContent;
-
+    console.log(eventNum);
 
     //Adds count variable if there isn't one already;
     //also add events for dot,clear entry and maths ops
@@ -329,7 +407,7 @@ function addOperator(event) {
 
 //EQUALS BUTTON EVENT CODE;
 
-const equals = document.querySelector("#equals");
+const equals = document.querySelector("#equals-button");
 
 function addEqualsEventListener() {
     equals.addEventListener("click", resolveEquation);
@@ -460,7 +538,7 @@ function deleteCharacter(event) {
 
 //ADD DECIMAl PLACE TO NUMBERS CODE;
 
-let dot = document.querySelector("#dot");
+const dot = document.querySelector("#dot-button");
 
 function addDotEventListener() {
     dot.addEventListener("click", addDecimalPlace, {once: true});
@@ -650,6 +728,42 @@ function isPrecise(stringedNumber) {
     return false;
 }
 
+//button id DOM elements
+
+const 1 =
+
+
+document.addEventListener('keydown', (event) => {
+    let target = event.target;
+    console.log(event);
+    let key = event.key;
+    console.log(`key is ${key}`);
+    console.log(event.target);
+    console.log(document.activeElement);
+    // console.log(event.class);
+    if (key === ".") {
+        console.log("dot key selected");
+        dot.click();
+        
+    }
+    switch(key) {
+        case "1":
+            console.log("1 key pressed");
+
+        case ".":
+            console.log("dot key selected");
+            dot.click();
+            break;
+        case "Enter":
+            equals.click();
+            break;
+        case "Backspace":
+            clearEntry.click();
+            break;
+        default: console.log("this shouldn't run");
+    }
+});
+
 
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
@@ -659,7 +773,7 @@ function isPrecise(stringedNumber) {
 
 //ADD MINUS SIGN TO START OF NUMBERS CODE;
 /*
-let minusBtn = document.querySelector("#minus");
+let minusBtn = document.querySelector("#minus-button");
 
 
 
