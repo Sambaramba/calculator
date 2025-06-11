@@ -730,6 +730,8 @@ function isPrecise(stringedNumber) {
 
 //button id DOM elements
 
+//NUMBERS
+
 const button0 = document.querySelector("#button-0");
 const button1 = document.querySelector("#button-1");
 const button2 = document.querySelector("#button-2");
@@ -741,38 +743,82 @@ const button7 = document.querySelector("#button-7");
 const button8 = document.querySelector("#button-8");
 const button9 = document.querySelector("#button-9");
 
+//MATHS OPERATORS
+const divideBtn = document.querySelector("#divide-button");
+const multiplyBtn = document.querySelector("#multiply-button");
+const minusBtn = document.querySelector("#minus-button");
+const plusBtn = document.querySelector("#plus-button");
 
-
-document.addEventListener('keydown', (event) => {
-    let target = event.target;
-    console.log(event);
-    let key = event.key;
-    console.log(`key is ${key}`);
-    console.log(event.target);
-    console.log(document.activeElement);
-    // console.log(event.class);
-    if (key === ".") {
-        console.log("dot key selected");
-        dot.click();
+// document.addEventListener('keydown', (event) => {
+//     // let target = event.target;
+//     console.log(event);
+//     let key = event.key;
+//     console.log(`key is ${key}`);
+//     console.log(event.target);
+//     console.log(document.activeElement);
+//     // console.log(event.class);
+//     // if (key === ".") {
+//     //     console.log("dot key selected");
+//     //     dot.click();
         
-    }
-    switch(key) {
-        case "1":
-            console.log("1 key pressed");
-
-        case ".":
-            console.log("dot key selected");
-            dot.click();
-            break;
-        case "Enter":
-            equals.click();
-            break;
-        case "Backspace":
-            clearEntry.click();
-            break;
-        default: console.log("this shouldn't run");
-    }
-});
+//     // }
+//     switch(key) {
+//         case "Backspace":
+//             clearEntry.click();
+//             break;
+//         case "0":
+//             console.log("0 key pressed");
+//             button0.click();
+//             break;
+//         case "1":
+//             console.log("1 key pressed");
+//             button1.click();
+//             break;
+//         case "2":
+//             console.log("2 key pressed");
+//             button2.click();
+//             break;
+//         case "3":
+//             console.log("3 key pressed");
+//             button3.click();
+//             break;
+//         case "4":
+//             console.log("4 key pressed");
+//             button4.click();
+//             break;
+//         case "5":
+//             console.log("5 key pressed");
+//             button5.click();
+//             break;
+//         case "6":
+//             console.log("6 key pressed");
+//             button6.click();
+//             break;
+//         case "7":
+//             console.log("7 key pressed");
+//             button7.click();
+//             break;
+//         case "8":
+//             console.log("8 key pressed");
+//             button8.click();
+//             break;
+//         case "9":
+//             console.log("9 key pressed");
+//             button9.click();
+//             break;
+//         case ".":
+//             console.log("dot key selected");
+//             dot.click();
+//             break;
+//         case "Enter":
+//             equals.click();
+//             break;
+//         // case "":
+//         //     equals.click();
+//         //     break;
+//         default: console.log("this shouldn't run");
+//     }
+// });
 
 
 
