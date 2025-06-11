@@ -750,11 +750,17 @@ const minusBtn = document.querySelector("#minus-button");
 const plusBtn = document.querySelector("#plus-button");
 
 
+//Object to store flag of held down keys
+let heldDownKeys = {};
+
 //Code to attach keydown to click events for buttons
 document.addEventListener('keydown', (event) => {
     
     //store key in variable
+
     let key = event.key;
+    if(heldDownKeys[key]) return;
+    heldDownKeys[key] = true;
     
     //
     switch(key) {
@@ -827,6 +833,9 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+document.addEventListener("keyup", (event) => {
+       heldDownKeys[event.key] = false;
+});
 
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
