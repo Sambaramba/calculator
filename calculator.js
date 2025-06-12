@@ -1,22 +1,6 @@
-//FOUR BASIC MATHS OPERATIONS
-//they accept 2 numbers and then operate on them
-
-function add (a, b ) {
-    return a + b;
-}
-
-function subtract (a, b) {
-    return a - b;
-}
-
-function multiply (a, b ) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
+//==========================================================
+// GLOBAL VARIABLES
+//============================================================
 
 //VARIABLES FOR THE MATHS EXPRESSION
 //declared as undefined
@@ -25,7 +9,10 @@ let numberOne;
 let operator;
 let numberTwo;
 
-//store arithmetic buttons textContent in unicode form
+//variable to store display value;
+let displayNumber = "";
+
+//VARIABLES THAT STORE MATHS BUTTONS TEXTCONTENT
 //these are used to make operate functions switch statement more readable;
 const plusOperator = "\u002B";
 const minusOperator = "\u2212";
@@ -33,156 +20,59 @@ const multiplyOperator = "\u00D7";
 const divideOperator = "\u00F7";
 
 
-//i dont fully understand why this unicode conversion works in below function
+//==========================================================
+// DOM ELEMENTS
+//============================================================
 
-function operate(numberOne, operator, numberTwo, event) {
-     
 
-    //converts from string into number;
-    numberOne = parseFloat(numberOne);
-    numberTwo = parseFloat(numberTwo);
-    
+//INDIVIDUAL BUTTONS
 
-    let value;
+//NUMBERS
 
-    
-    //divided by zero code with snarky message;
-    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
-        clearAll(event);
-        displayText.textContent = "Clever!";
-        // console.log("Clever!");
-        return value;
-    }
+const button0 = document.querySelector("#button-0");
+const button1 = document.querySelector("#button-1");
+const button2 = document.querySelector("#button-2");
+const button3 = document.querySelector("#button-3");
+const button4 = document.querySelector("#button-4");
+const button5 = document.querySelector("#button-5");
+const button6 = document.querySelector("#button-6");
+const button7 = document.querySelector("#button-7");
+const button8 = document.querySelector("#button-8");
+const button9 = document.querySelector("#button-9");
 
-     
-     
+//MATHS OPERATORS
+const divideBtn = document.querySelector("#divide-button");
+const multiplyBtn = document.querySelector("#multiply-button");
+const minusBtn = document.querySelector("#minus-button");
+const plusBtn = document.querySelector("#plus-button");
 
-    switch (operator) {
-        
-        case plusOperator : 
-            value = add(numberOne, numberTwo);
-            break;
+//Equals button
+const equals = document.querySelector("#equals-button");
 
-        case minusOperator : 
-            value = subtract(numberOne, numberTwo);
-            break;
+//Clear buttons;
+let clear = document.querySelector ("#ac-button");
+let clearEntry = document.querySelector("#ce-button");
 
-        case multiplyOperator : 
-            value = multiply(numberOne, numberTwo);
-            break;
+//Decimal place button;
+const dot = document.querySelector("#dot-button");
 
-        case divideOperator : 
-            value = divide(numberOne, numberTwo);
-            break;
 
-        default: console.log("That is not a arthmetic operator");
-
-    }
-    
-    console.log( `value is : ${value}`);
-    //convert to result back to string
-    value = value.toString();
-    
-    
-    
-    
-    
-    return value;
-}
-
-/*DISPLAY TEXT SELECT AND UPDATE CODE*/
-
-let displayNumber = "";
+//OTHER INDIVIDUAL ELEMENTS;
 
 let displayText = document.querySelector("#display-text");
-// displayText.focus();
-
 displayText.textContent = "0";
 
 
-//code for adding/removing numbers event listeners;
+//GROUPING DOM ELEMENTS;
 
+//number and maths selector alls
 let numbers = document.querySelectorAll(".number");
+let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
 
-function addNumbersEventListener () {
-    numbers.forEach((number) => {
-        number.addEventListener("click", addNumberToDisplay);
-        // number.addEventListener("keydown", addNumberToDisplay);
-    });
-};
-
-//would it be easier to add/remove on mousedown,mouseup?
-function removeNumbersEventListener() {
-    numbers.forEach((number) => {
-        number.removeEventListener("click", addNumberToDisplay);
-        // number.removeEventListener("keydown", addNumberToDisplay);
-    });
-};
-// function addNumbersKeydownEvent() {
-//     numbers.forEach((number) => {
-//         number.addEventListener("keydown", addNumberToDisplay);
-        
-//         });
-        
-// };
-
-
-// function removeNumbersKeydownEvent() {
-//     numbers.forEach((number) => {
-//         number.removeEventListener("keydown", (event) => {
-//             console.log(event);
-//             console.log(event.key);
-//             console.log(document.activeElement);
-//          });
-//     });
-// };
-
-// displayText.addEventListener("keydown", (event) => {
-//     console.log(event.key);
-// });
-
-// document.addEventListener("keydown", (event) => {
-//     console.log(document.activeElement);
-//     // console.log(event.key);
-//     if (/\d/.test(event.key)) {
-//         console.log("Number key pressed:", event.key);
-//         if (!displayNumber.length) {
-//             displayNumber = event.key;
-//             displayText.textContent = displayNumber;
-//         } else {
-//             displayNumber += event.key;
-//             displayText.textContent = displayNumber;
-//         }
-//     };
-// });
-
-// addNumbersKeydownEvent();
-
-
-// document.addEventListener('keydown', (event) => {
-//     let target = event.target;
-//     console.log(event);
-//     console.log(event.key);
-//     let key = event.key;
-//     console.log(event.target);
-//     // console.log(event.class);
-//     switch(key) {
-//         case '.':
-//                dot.click();
-//             break;
-//         case 'equals':
-//             equals.focus();
-//             break;
-//         case 'report':
-            
-//             break;
-//     }
-// });
-
-
-//add numbers event at beginning;
-addNumbersEventListener();
+//==========================================================
+// GENERIC HELPER FUNCTIONS;
+//============================================================
 
 //VALID NUMBER CHECKS
 
@@ -212,23 +102,250 @@ function isValidNumber(value) {
 }
 
 
+//FOUR BASIC MATHS OPERATIONS
+//HELPER FUNCTIONS FOR OPERATE;
+
+function add (a, b ) {
+    return a + b;
+}
+
+function subtract (a, b) {
+    return a - b;
+}
+
+function multiply (a, b ) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+
+//i dont fully understand why this unicode conversion works in below function
+
+//carries out calculations
+//helper function in add maths operators and resolveEquation
+function operate(numberOne, operator, numberTwo, event) {
+     
+
+    //converts from string into number;
+    numberOne = parseFloat(numberOne);
+    numberTwo = parseFloat(numberTwo);
+    
+    let value;
+
+    //divided by zero code with snarky message;
+    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
+        clearAll(event);
+        displayText.textContent = "Clever!";
+        // console.log("Clever!");
+        return value;
+    }
+
+    //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
+    switch (operator) {
+        
+        case plusOperator : 
+            value = add(numberOne, numberTwo);
+            break;
+
+        case minusOperator : 
+            value = subtract(numberOne, numberTwo);
+            break;
+
+        case multiplyOperator : 
+            value = multiply(numberOne, numberTwo);
+            break;
+
+        case divideOperator : 
+            value = divide(numberOne, numberTwo);
+            break;
+
+        default: console.log("That is not a arthmetic operator");
+
+    }
+    
+    // console.log( `value is : ${value}`);
+    //convert to result back to string
+    value = value.toString();
+    
+    return value;
+}
+
+
+
+function removeExcessDecimalPlaces(stringedNumber) {
+    console.log(stringedNumber);
+    
+    
+    let refinedNumber;
+    
+    if (stringedNumber.includes("e")) {
+        console.log("got e in remove dps");
+        
+        let number = Number(stringedNumber);
+        let nonExponential = number.toFixed(15);
+        console.log(nonExponential);
+        return removeTrailingZeros(nonExponential);
+        
+    }
+    
+    //variables to check if number starts with single num before decimal place.
+    const minusNumberThenDecimal = /^-\d\./;
+    const numberThenDecimal = /^\d\./;
+
+    if (numberThenDecimal.test(stringedNumber) || 
+        minusNumberThenDecimal.test(stringedNumber))
+        {   
+            console.log("To 11 dps");
+            refinedNumber = Number(stringedNumber).toFixed(11);
+        } else {
+            console.log("To 2 dps");
+            refinedNumber = Number(stringedNumber).toFixed(2);
+        };
+    
+    //remove zeros from end of number;
+    // console.log(refinedNumber);
+    refinedNumber = removeTrailingZeros(refinedNumber);
+    // console.log(refinedNumber);
+    return refinedNumber;
+} 
+
+
+function removeTrailingZeros(number) {
+     
+    //exits out if scientific notation number;
+    if (number.includes("e")) {
+        console.log("we got some e");
+        return number;
+    }
+    //stores index of dp;
+    let dot = number.indexOf(".");
+    
+    //if number doesn't contain dot return number as is;
+    if (dot === -1) {
+        return number;
+    }
+    
+    //splits into two parts at the index of the dp;
+    let beforeDecimalPlace = number.slice(0, dot);
+    let afterDecimalPlace = number.slice(dot);
+    
+    let array = afterDecimalPlace.split("");
+    let removedZeros;
+
+    
+    //create array to remove trailing zeros
+    for (let i = array.length; i >= 0; i--) {
+
+            const last = array[array.length - 1];
+            if (last === "0" || last === ".") {
+                    array.pop();
+            } 
+            //change back to string when removed zeros off end;
+            removedZeros = array.join("");
+    }
+    // console.log(removedZeros);
+    // console.log(beforeDecimalPlace);
+    
+    // attach two parts back together and return;
+    return beforeDecimalPlace + removedZeros;
+}
+
+
+//used for checking absolute length of number
+function removeAllNonNumbers(stringedNumber) {
+    
+    //removes all characters except numbers
+   let cleanedNumber = stringedNumber.replace(/\D/g, "");
+//    console.log(typeof cleanedNumber);
+   return cleanedNumber;
+}
+
+
+//displays Nan or result dependant on num length;
+//used to display result 
+function refineResultForDisplay(stringedNumber) {
+
+    // remove excess dps from result;  
+    let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
+    console.log(`refined number is ${refinedNumber}`);
+    //removes all non numbers for results length check
+    let cleanedNumber = removeAllNonNumbers(refinedNumber);
+    
+    
+    if (cleanedNumber.length > 12) {
+        clearAll();
+        console.log("is NaN");
+        displayText.textContent = "NaN";
+        
+    } else {
+        displayText.textContent = refinedNumber;
+        // numberOne = displayNumber;
+        // console.log(`number one is ${numberOne}`);
+        // console.log(numberTwo);
+        console.log("less than 12");
+        
+    }
+    return;
+}  
+
+
+//checks if number is in precise range returning true or false;
+//helper function for what? for result precision
+function isPrecise(stringedNumber) {
+    console.log(typeof strindedNumber);
+    
+    //for Scientific Numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+            console.log("triggered SN if in isPrecise");
+            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
+            let significant = stringedNumber.slice(0, baseIndex);
+            let cleanedSignificant = removeAllNonNumbers(significant);
+
+            if (cleanedSignificant.length <= 15) {
+                    return true;
+            }  else { 
+                console.log("SN num isn't precise");
+                return false;
+            }; 
+    }
+
+    //for decimals
+    if (stringedNumber.includes(".")) {
+       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+       if (cleanedDecimalNum.length <= 15) {
+          return true;
+        }
+    }
+    //for integers
+    let pureNumber = Number(stringedNumber);
+    if (Number.isSafeInteger(pureNumber)) {
+    return true;
+    }
+    return false;
+}
+
+
+
+
+
+
+
+
+
+//=====================================================
+//FEATURE: ADD NUMBERS TO DISPLAY
+//=====================================================
+
+
+
+
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
     console.log(`display number at addNum start is ${displayNumber}`);
-//     console.log(document.activeElement);
-//     console.log(event.key);
-//     console.log(event.target);
-
-//    if (/\d/.test(event.key)) {
-//         console.log("Number key pressed:", event.key);
-//         if (!displayNumber.length) {
-//             displayNumber = event.key;
-//             displayText.textContent = displayNumber;
-//         } else {
-//             displayNumber += event.key;
-//             displayText.textContent = displayNumber;
-//         }
-//     };
+//    
 
 
 
@@ -287,27 +404,35 @@ function addNumberToDisplay(event) {
 };
 
 
+//code for adding/removing numbers event listeners;
 
-
-//ADD MATHS OPERATORS EVENT CODE;
-
-let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
-
-
-//function to reuse add arithmetic operators click event code
-function addArithmeticOperatorsEventListener() {
-    arithmeticOperators.forEach ((operator) => {
-        operator.addEventListener("click", addOperator);
-        });
-};
-
-
-function removeArithmeticOperatorsEventListener() {
-    arithmeticOperators.forEach((operator) => {
-        operator.removeEventListener("click", addOperator);
+function addNumbersEventListener () {
+    numbers.forEach((number) => {
+        number.addEventListener("click", addNumberToDisplay);
+        // number.addEventListener("keydown", addNumberToDisplay);
     });
 };
 
+//would it be easier to add/remove on mousedown,mouseup?
+function removeNumbersEventListener() {
+    numbers.forEach((number) => {
+        number.removeEventListener("click", addNumberToDisplay);
+        // number.removeEventListener("keydown", addNumberToDisplay);
+    });
+};
+
+//add numbers event at beginning;
+addNumbersEventListener();
+
+
+
+
+//=====================================================
+//FEATURE: ADD MATHS OPERATORS EVENT CODE;
+//=====================================================
+
+
+//function to reuse add arithmetic operators click event code
 
 function addOperator(event) {
     // console.log(event);
@@ -402,20 +527,26 @@ function addOperator(event) {
     
 };
 
+//maths operators event listener;
+
+function addArithmeticOperatorsEventListener() {
+    arithmeticOperators.forEach ((operator) => {
+        operator.addEventListener("click", addOperator);
+        });
+};
+
+
+function removeArithmeticOperatorsEventListener() {
+    arithmeticOperators.forEach((operator) => {
+        operator.removeEventListener("click", addOperator);
+    });
+};
 
 
 
-//EQUALS BUTTON EVENT CODE;
-
-const equals = document.querySelector("#equals-button");
-
-function addEqualsEventListener() {
-    equals.addEventListener("click", resolveEquation);
-}
-
-function removeEqualsEventListener() {
-    equals.removeEventListener("click", resolveEquation);
-}
+//=====================================================
+//FEATURE: EQUALS BUTTON EVENT CODE;
+//=====================================================
 
 
 /*does not give correct answers for scientific notation*/
@@ -472,11 +603,21 @@ function resolveEquation(event) {
     
 }
 
+//Equals click event add/remove code
 
-//CLEAR BUTTON CODE
-let clear = document.querySelector ("#ac-button");
+function addEqualsEventListener() {
+    equals.addEventListener("click", resolveEquation);
+}
 
-clear.addEventListener("click", clearAll);
+function removeEqualsEventListener() {
+    equals.removeEventListener("click", resolveEquation);
+}
+
+
+//=====================================================
+//FEATURE: ALL CLEAR BUTTON CODE
+//=====================================================
+
 
 function clearAll(event) {
     displayNumber = "";
@@ -490,20 +631,17 @@ function clearAll(event) {
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
-
 }
 
-//BACKSPACE BUTTON CODE
+//AC button add click event;
+clear.addEventListener("click", clearAll);
 
-let clearEntry = document.querySelector("#ce-button");
 
-function addClearEntryEventlistener() {
-clearEntry.addEventListener("click", deleteCharacter);
-}
 
-function removeClearEntryEventListener() {
-    clearEntry.removeEventListener("click", deleteCharacter);
-}
+
+//=====================================================
+//FEATURE: CLEAR ENTRY BUTTON CODE
+//=====================================================
 
 
 function deleteCharacter(event) {
@@ -536,17 +674,25 @@ function deleteCharacter(event) {
     }
 }
 
-//ADD DECIMAl PLACE TO NUMBERS CODE;
-
-const dot = document.querySelector("#dot-button");
-
-function addDotEventListener() {
-    dot.addEventListener("click", addDecimalPlace, {once: true});
+//Clear entry add/remove click event funcs;
+function addClearEntryEventlistener() {
+clearEntry.addEventListener("click", deleteCharacter);
 }
 
-function removeDotEventListener() {
-    dot.removeEventListener("click", addDecimalPlace);
+function removeClearEntryEventListener() {
+    clearEntry.removeEventListener("click", deleteCharacter);
 }
+
+
+
+
+
+
+
+//=====================================================
+//FEATURE: ADD DECIMAl PLACE TO NUMBERS CODE;
+//=====================================================
+
 
 function addDecimalPlace(event) {
 
@@ -559,195 +705,16 @@ function addDecimalPlace(event) {
 }
 
 
-
-
-function removeExcessDecimalPlaces(stringedNumber) {
-    console.log(stringedNumber);
-    
-    
-    let refinedNumber;
-    
-
-    if (stringedNumber.includes("e")) {
-        console.log("got e in remove dps");
-        
-        let number = Number(stringedNumber);
-        let nonExponential = number.toFixed(15);
-        console.log(nonExponential);
-        return removeTrailingZeros(nonExponential);
-        
-
-    }
-    
-    //variables to check if number starts with single num before decimal place.
-    const minusNumberThenDecimal = /^-\d\./;
-    const numberThenDecimal = /^\d\./;
-
-    if (numberThenDecimal.test(stringedNumber) || 
-        minusNumberThenDecimal.test(stringedNumber))
-        {   
-            console.log("To 11 dps");
-            refinedNumber = Number(stringedNumber).toFixed(11);
-        } else {
-            console.log("To 2 dps");
-            refinedNumber = Number(stringedNumber).toFixed(2);
-        };
-    
-    //remove zeros from end of number;
-    // console.log(refinedNumber);
-    refinedNumber = removeTrailingZeros(refinedNumber);
-    // console.log(refinedNumber);
-    return refinedNumber;
-} 
-
-function removeTrailingZeros(number) {
-     
-    //exits out if scientific notation number;
-    if (number.includes("e")) {
-        console.log("we got some e");
-        return number;
-    }
-    //stores index of dp;
-    let dot = number.indexOf(".");
-    
-    //if number doesn't contain dot return number as is;
-    if (dot === -1) {
-        return number;
-    }
-    
-    //splits into two parts at the index of the dp;
-    let beforeDecimalPlace = number.slice(0, dot);
-    let afterDecimalPlace = number.slice(dot);
-    
-    let array = afterDecimalPlace.split("");
-    let removedZeros;
-
-    
-    //create array to remove trailing zeros
-    for (let i = array.length; i >= 0; i--) {
-
-            const last = array[array.length - 1];
-            if (last === "0" || last === ".") {
-                    array.pop();
-            } 
-            //change back to string when removed zeros off end;
-            removedZeros = array.join("");
-    }
-    // console.log(removedZeros);
-    // console.log(beforeDecimalPlace);
-    
-    // attach two parts back together and return;
-    return beforeDecimalPlace + removedZeros;
+function addDotEventListener() {
+    dot.addEventListener("click", addDecimalPlace, {once: true});
 }
 
-
-//used for checking absolute length of number
-function removeAllNonNumbers(stringedNumber) {
-    
-    //removes all characters except numbers
-   let cleanedNumber = stringedNumber.replace(/\D/g, "");
-//    console.log(typeof cleanedNumber);
-   return cleanedNumber;
+function removeDotEventListener() {
+    dot.removeEventListener("click", addDecimalPlace);
 }
 
 
 
-
-    
-
-//displays Nan or result dependant on num length;
-function refineResultForDisplay(stringedNumber) {
-
-
-    // if(stringedNumber.includes("e-") && getExponent(stringedNumber) < 300) {
-    //     displayText.textContent = "0";
-        
-    //     return
-    // }
-    
-    
-    // remove excess dps from result;  
-    let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
-    console.log(`refined number is ${refinedNumber}`);
-    //removes all non numbers for results length check
-    let cleanedNumber = removeAllNonNumbers(refinedNumber);
-    
-    //USE THIS IF TO CHECK ANY LENGTH
-    // if (num.toFixed(0).length > 12)
-    //If length above 12 convert to scientific notation and display;
-    if (cleanedNumber.length > 12) {
-        clearAll();
-        console.log("is NaN");
-        displayText.textContent = "NaN";
-        // displayText.textContent = toScientificNotation(displayNumber, 7);
-        
-    } else {
-        displayText.textContent = refinedNumber;
-        // numberOne = displayNumber;
-        console.log(`number one is ${numberOne}`);
-        // console.log(numberTwo);
-        console.log("less than 12");
-        
-    }
-    return;
-}  
-
-
-
-//checks if number is in precise range returning true or false;
-function isPrecise(stringedNumber) {
-    console.log(typeof strindedNumber);
-    
-    //for Scientific Numbers
-    if (stringedNumber.toLowerCase().includes("e")) {
-            console.log("triggered SN if in isPrecise");
-            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
-            let significant = stringedNumber.slice(0, baseIndex);
-            let cleanedSignificant = removeAllNonNumbers(significant);
-
-            if (cleanedSignificant.length <= 15) {
-                    return true;
-            }  else { 
-                console.log("SN num isn't precise");
-                return false;
-            }; 
-    }
-
-    //for decimals
-    if (stringedNumber.includes(".")) {
-       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-       if (cleanedDecimalNum.length <= 15) {
-          return true;
-        }
-    }
-    //for integers
-    let pureNumber = Number(stringedNumber);
-    if (Number.isSafeInteger(pureNumber)) {
-    return true;
-    }
-    return false;
-}
-
-//button id DOM elements
-
-//NUMBERS
-
-const button0 = document.querySelector("#button-0");
-const button1 = document.querySelector("#button-1");
-const button2 = document.querySelector("#button-2");
-const button3 = document.querySelector("#button-3");
-const button4 = document.querySelector("#button-4");
-const button5 = document.querySelector("#button-5");
-const button6 = document.querySelector("#button-6");
-const button7 = document.querySelector("#button-7");
-const button8 = document.querySelector("#button-8");
-const button9 = document.querySelector("#button-9");
-
-//MATHS OPERATORS
-const divideBtn = document.querySelector("#divide-button");
-const multiplyBtn = document.querySelector("#multiply-button");
-const minusBtn = document.querySelector("#minus-button");
-const plusBtn = document.querySelector("#plus-button");
 
 
 //Object to store flag of held down keys
@@ -1001,3 +968,81 @@ function convertToScientificNotation(number) {
 //     console.log("this runned");
 //     return number;
 // }
+
+//KEY PRESS UNUSED/BROKEN CODE;
+
+// function addNumbersKeydownEvent() {
+//     numbers.forEach((number) => {
+//         number.addEventListener("keydown", addNumberToDisplay);
+        
+//         });
+        
+// };
+
+
+// function removeNumbersKeydownEvent() {
+//     numbers.forEach((number) => {
+//         number.removeEventListener("keydown", (event) => {
+//             console.log(event);
+//             console.log(event.key);
+//             console.log(document.activeElement);
+//          });
+//     });
+// };
+
+// displayText.addEventListener("keydown", (event) => {
+//     console.log(event.key);
+// });
+
+// document.addEventListener("keydown", (event) => {
+//     console.log(document.activeElement);
+//     // console.log(event.key);
+//     if (/\d/.test(event.key)) {
+//         console.log("Number key pressed:", event.key);
+//         if (!displayNumber.length) {
+//             displayNumber = event.key;
+//             displayText.textContent = displayNumber;
+//         } else {
+//             displayNumber += event.key;
+//             displayText.textContent = displayNumber;
+//         }
+//     };
+// });
+
+// addNumbersKeydownEvent();
+
+
+// document.addEventListener('keydown', (event) => {
+//     let target = event.target;
+//     console.log(event);
+//     console.log(event.key);
+//     let key = event.key;
+//     console.log(event.target);
+//     // console.log(event.class);
+//     switch(key) {
+//         case '.':
+//                dot.click();
+//             break;
+//         case 'equals':
+//             equals.focus();
+//             break;
+//         case 'report':
+            
+//             break;
+//     }
+// });
+
+//  console.log(document.activeElement);
+//     console.log(event.key);
+//     console.log(event.target);
+
+//    if (/\d/.test(event.key)) {
+//         console.log("Number key pressed:", event.key);
+//         if (!displayNumber.length) {
+//             displayNumber = event.key;
+//             displayText.textContent = displayNumber;
+//         } else {
+//             displayNumber += event.key;
+//             displayText.textContent = displayNumber;
+//         }
+//     };
