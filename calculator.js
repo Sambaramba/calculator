@@ -295,7 +295,7 @@ function refineResultForDisplay(stringedNumber) {
 //checks if number is in precise range returning true or false;
 //helper function for what? for result precision
 function isPrecise(stringedNumber) {
-    console.log(typeof strindedNumber);
+    console.log(typeof stringedNumber);
     
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
@@ -336,7 +336,7 @@ function isPrecise(stringedNumber) {
 
 
 //=====================================================
-//FEATURE: ADD NUMBERS TO DISPLAY
+//FEATURE: ADD NUMBERS TO CALCULATOR
 //=====================================================
 
 
@@ -344,13 +344,9 @@ function isPrecise(stringedNumber) {
 
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
-    console.log(`display number at addNum start is ${displayNumber}`);
-//    
+    console.log(`display number at addNum start is ${displayNumber}`);   
+    console.log(`number one at addNum start is ${numberOne}`);   
 
-
-
-
-    // displayText.focus();
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
     if (displayNumber === undefined) {
@@ -428,7 +424,7 @@ addNumbersEventListener();
 
 
 //=====================================================
-//FEATURE: ADD MATHS OPERATORS EVENT CODE;
+//FEATURE: ADD MATHS OPERATORS TO CALCULATOR;
 //=====================================================
 
 
@@ -572,6 +568,7 @@ function resolveEquation(event) {
     //add current display number to 2nd number var
     if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
+        console.log(`number two has been updated to: ${numberTwo}`);
     }
 
 
@@ -580,8 +577,11 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
-
+        
+        console.log(`result after operate is: ${result}`);
+        console.log(`type of result is: ${typeof result}`);
         if(!isValidNumber(result)) {
+            console.log(`not valid result if ran`);
             return;
         }
 
@@ -591,8 +591,8 @@ function resolveEquation(event) {
             return displayText.textContent = "Precision Error";
                 
         } else {
-            numberOne = undefined;
-            displayNumber = result;
+            numberOne = result;
+            displayNumber = "";
             console.log(`Value of displayNumber is ${displayNumber}`);
             // addNumbersEventListener();
             return refineResultForDisplay(result);
@@ -716,6 +716,10 @@ function removeDotEventListener() {
 
 
 
+//===========================================
+//FEATURE: ATTACH KEYS TO CALCULATOR BUTTONS
+//=================================================
+
 
 //Object to store flag of held down keys
 let heldDownKeys = {};
@@ -803,6 +807,18 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener("keyup", (event) => {
        heldDownKeys[event.key] = false;
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*CURRENTLY UNUSED OR BROKEN CODE*/
