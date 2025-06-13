@@ -352,6 +352,12 @@ function addNumberToDisplay(event) {
     if (displayNumber === undefined) {
         console.log("this aint no proper number");
         displayNumber = "";
+    };
+
+    //resets calculator after pressed equals;
+    if (!isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
+        console.log("cleared for fresh calculation");
+        clearAll();
     }
 
     
@@ -591,8 +597,8 @@ function resolveEquation(event) {
             return displayText.textContent = "Precision Error";
                 
         } else {
-            numberOne = result;
-            displayNumber = "";
+            numberOne = undefined;
+            displayNumber = result;
             console.log(`Value of displayNumber is ${displayNumber}`);
             // addNumbersEventListener();
             return refineResultForDisplay(result);
