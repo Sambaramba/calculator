@@ -50,8 +50,8 @@ const plusBtn = document.querySelector("#plus-button");
 const equals = document.querySelector("#equals-button");
 
 //Clear buttons;
-let clear = document.querySelector ("#ac-button");
-let clearEntry = document.querySelector("#ce-button");
+const clear = document.querySelector ("#ac-button");
+const clearEntry = document.querySelector("#ce-button");
 
 //Decimal place button;
 const dot = document.querySelector("#dot-button");
@@ -59,15 +59,15 @@ const dot = document.querySelector("#dot-button");
 
 //OTHER INDIVIDUAL ELEMENTS;
 
-let displayText = document.querySelector("#display-text");
+const displayText = document.querySelector("#display-text");
 displayText.textContent = "0";
 
 
 //GROUPING DOM ELEMENTS;
 
 //number and maths selector alls
-let numbers = document.querySelectorAll(".number");
-let arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
+const numbers = document.querySelectorAll(".number");
+const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
 
 //==========================================================
@@ -793,6 +793,7 @@ document.addEventListener('keydown', (event) => {
             break;
         case "Enter":
             equals.click();
+            console.log
             break;
         case "/":
             divideBtn.click();
