@@ -490,12 +490,15 @@ function addOperator(event) {
             console.log("result isn't precise");
             console.log(`Value of result is ${result}`);
             clearAll();
-            return displayText.textContent = "Precision Error";
+            answerText.textContent = "";
+            displayText.textContent = "Precision Error";
+            return;
                 
         } else {
             numberOne = result;
             numberTwo = undefined;
             // operator = currentOperator;
+            answerText.textContent = `${numberOne} ${operator}`;
             console.log(`Value of result is ${result}`);
             console.log(`Value of displayNumber is ${displayNumber}`);
             addNumbersEventListener();
@@ -509,8 +512,12 @@ function addOperator(event) {
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
-    //display 1st two parts of calculation for clarity;
-    answerText.textContent = `${numberOne} ${operator}`;
+    
+    //display 1st part of calculation for clarity;
+    if (isValidNumber(numberOne) && operator) {
+        answerText.textContent = `${numberOne} ${operator}`;
+    }
+    
     //removes equals event if condition met
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         console.log("equals removed from add op");
@@ -589,7 +596,9 @@ function resolveEquation(event) {
         if(!isPrecise(result)) {
             console.log("result isn't precise");
             clearAll();
-            return displayText.textContent = "Precision Error";
+            answerText.textContent = "";
+            displayText.textContent = "Precision Error";
+            return;
                 
         } else {
             numberOne = undefined;
@@ -629,6 +638,7 @@ function clearAll(event) {
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
     displayText.textContent = "0";
+    answerText.textContent = " ";
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
