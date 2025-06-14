@@ -441,7 +441,6 @@ function addOperator(event) {
     // console.log("Display number's starting value is: " + displayNumber);
     let currentOperator = event.target.textContent;
     // console.log(`current operator is ${currentOperator}`);
-
     //highlights maths operator button;
     event.target.focus();
     
@@ -510,7 +509,8 @@ function addOperator(event) {
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
-    
+    //display 1st two parts of calculation for clarity;
+    answerText.textContent = `${numberOne} ${operator}`;
     //removes equals event if condition met
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         console.log("equals removed from add op");
