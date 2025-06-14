@@ -61,6 +61,7 @@ const dot = document.querySelector("#dot-button");
 
 const displayText = document.querySelector("#display-text");
 displayText.textContent = "0";
+const answerText = document.querySelector("#answer-text");
 
 
 //GROUPING DOM ELEMENTS;
@@ -331,10 +332,6 @@ function isPrecise(stringedNumber) {
 
 
 
-
-
-
-
 //=====================================================
 //FEATURE: ADD NUMBERS TO CALCULATOR
 //=====================================================
@@ -442,11 +439,11 @@ function addOperator(event) {
     console.log("Operators starting value in addOp is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     // console.log("Display number's starting value is: " + displayNumber);
-    // removeMinusSignEventListener();
-
     let currentOperator = event.target.textContent;
     // console.log(`current operator is ${currentOperator}`);
-    
+
+    //highlights maths operator button;
+    event.target.focus();
     
     //delete count property until next num btn is pressed
     delete numbers.count;
@@ -483,7 +480,6 @@ function addOperator(event) {
         let result = operate(numberOne, operator, numberTwo);
         operator = currentOperator;
 
-
         
         //Result will be undefined and display showing Clever!;
         if(!isValidNumber(result)) {
@@ -514,7 +510,6 @@ function addOperator(event) {
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
-
     
     //removes equals event if condition met
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
