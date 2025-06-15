@@ -59,9 +59,9 @@ const dot = document.querySelector("#dot-button");
 
 //OTHER INDIVIDUAL ELEMENTS;
 
-const displayText = document.querySelector("#display-text");
-displayText.textContent = "0";
-const answerText = document.querySelector("#answer-text");
+const currentDisplayText = document.querySelector("#current-display");
+currentDisplayText.textContent = "0";
+const previousExpressionDisplay = document.querySelector("#previous-expression-display");
 
 
 //GROUPING DOM ELEMENTS;
@@ -139,7 +139,7 @@ function operate(numberOne, operator, numberTwo, event) {
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
-        displayText.textContent = "Clever!";
+        currentDisplayText.textContent = "Clever!";
         // console.log("Clever!");
         return value;
     }
@@ -315,10 +315,10 @@ function refineResultForDisplay(stringedNumber) {
     if (cleanedNumber.length > 12) {
         clearAll();
         console.log("is NaN");
-        displayText.textContent = "NaN";
+        currentDisplayText.textContent = "NaN";
         
     } else {
-        displayText.textContent = refinedNumber;
+        currentDisplayText.textContent = refinedNumber;
         // if (isValidNumber(numberTwo)) {
         // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`;
         // } else { 
@@ -384,7 +384,7 @@ function addNumberToDisplay(event) {
 
     if (numbers.count >= 9) {
         removeNumbersEventListener();
-        return displayText.textContent = displayNumber;
+        return currentDisplayText.textContent = displayNumber;
     }
 
     ++numbers.count;
@@ -408,7 +408,7 @@ function addNumberToDisplay(event) {
     }
     // console.log(event.target);
     // console.log(displayNumber);
-    return displayText.textContent = displayNumber;
+    return currentDisplayText.textContent = displayNumber;
 };
 
 
@@ -500,15 +500,15 @@ function addOperator(event) {
             console.log("result isn't precise");
             console.log(`Value of result is ${result}`);
             clearAll();
-            answerText.textContent = "";
-            displayText.textContent = "Precision Error";
+            previousExpressionDisplay.textContent = "";
+            currentDisplayText.textContent = "Precision Error";
             return;
                 
         } else {
             numberOne = result;
             numberTwo = undefined;
             // operator = currentOperator;
-            answerText.textContent = `${numberOne} ${operator}`;
+            previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
             console.log(`Value of result is ${result}`);
             console.log(`Value of displayNumber is ${displayNumber}`);
             addNumbersEventListener();
@@ -525,7 +525,7 @@ function addOperator(event) {
 
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
-        answerText.textContent = `${numberOne} ${operator}`;
+        previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
     }
     
     //removes equals event if condition met
@@ -606,8 +606,8 @@ function resolveEquation(event) {
         if(!isPrecise(result)) {
             console.log("result isn't precise");
             clearAll();
-            answerText.textContent = "";
-            displayText.textContent = "Precision Error";
+            previousExpressionDisplay.textContent = "";
+            currentDisplayText.textContent = "Precision Error";
             return;
                 
         } else {
@@ -652,8 +652,8 @@ function clearAll(event) {
     numbers.count = 0;
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
-    displayText.textContent = "0";
-    answerText.textContent = " ";
+    currentDisplayText.textContent = "0";
+    previousExpressionDisplay.textContent = " ";
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
@@ -688,7 +688,7 @@ function deleteCharacter(event) {
     let numberMinusLastCharacter = displayNumber.slice(0, -1);
 
     displayNumber = numberMinusLastCharacter;
-    displayText.textContent = numberMinusLastCharacter;
+    currentDisplayText.textContent = numberMinusLastCharacter;
     
     if (displayNumber.length === 0) {
         // delete numbers.count;
@@ -696,7 +696,7 @@ function deleteCharacter(event) {
         console.log("remove count var,dot and clear entry events in delete char");
         displayNumber = "";
         removeClearEntryEventListener();
-        return displayText.textContent = "0";
+        return currentDisplayText.textContent = "0";
     }
 }
 
@@ -725,7 +725,7 @@ function addDecimalPlace(event) {
     let dotSign = event.target.textContent;
     if (!displayNumber.includes(dotSign) && isValidNumber(displayNumber)) {
         displayNumber += dotSign;
-        displayText.textContent = displayNumber;
+        currentDisplayText.textContent = displayNumber;
         console.log("added dot event");
      }
 }
