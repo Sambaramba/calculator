@@ -125,8 +125,8 @@ body {
     outline: 0.5rem solid var(--light-yellow);
 }
 
-#display-text,
-#answer-text {
+#current-display,
+#previous-expression-display {
     overflow: hidden;
 
 }
