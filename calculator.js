@@ -140,7 +140,6 @@ function operate(numberOne, operator, numberTwo, event) {
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
         currentDisplayText.textContent = "Clever!";
-        // console.log("Clever!");
         return value;
     }
 
@@ -189,7 +188,6 @@ function removeAllNonNumbers(stringedNumber) {
 
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
-    console.log(typeof stringedNumber);
     
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
@@ -222,13 +220,12 @@ function isPrecise(stringedNumber) {
 }
 
 
+
 //REFINE FOR DISPLAY HELPER FUNCTIONS
 //=================================
 
 
 function removeExcessDecimalPlaces(stringedNumber) {
-    console.log(stringedNumber);
-    
     
     let refinedNumber;
     
@@ -300,6 +297,8 @@ function removeTrailingZeros(number) {
 }
 
 
+//HELPER FUNCTION FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
+
 
 //displays Nan or result dependant on num length;
 //used to display result 
@@ -307,28 +306,17 @@ function refineResultForDisplay(stringedNumber) {
 
     // remove excess dps from result;  
     let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
-    console.log(`refined number is ${refinedNumber}`);
+
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
     
-    
+    //keeps result to 12 digits max and updates display
     if (cleanedNumber.length > 12) {
         clearAll();
-        console.log("is NaN");
         currentDisplayText.textContent = "NaN";
         
     } else {
         currentDisplayText.textContent = refinedNumber;
-        // if (isValidNumber(numberTwo)) {
-        // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`;
-        // } else { 
-        //     answerText.textContent = `${numberOne} ${operator}`;
-        // }
-        // numberOne = displayNumber;
-        // console.log(`number one is ${numberOne}`);
-        // console.log(numberTwo);
-        console.log("less than 12");
-        
     }
     return;
 }  
@@ -345,13 +333,8 @@ function refineResultForDisplay(stringedNumber) {
 
 
 
-
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
-    console.log(`display number at addNum start is ${displayNumber}`);   
-    console.log(`number one at addNum start is ${numberOne}`);
-    console.log(`number two at addNum start is ${numberTwo}`);
-    console.log(`operator at addNum start is ${operator}`);
 
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
@@ -367,13 +350,11 @@ function addNumberToDisplay(event) {
 
     //resets calculator after pressed equals;
     if (!isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
-        console.log("cleared for fresh calculation");
         clearAll();
     }
 
-    
+    //stores number value to add to display later;
     let eventNum = event.target.textContent;
-    // console.log(eventNum);
 
     //Adds count variable if there isn't one already;
     //also add events for dot,clear entry and maths ops
@@ -381,26 +362,22 @@ function addNumberToDisplay(event) {
           numbers.count = 0;
           addDotEventListener();
           addClearEntryEventlistener();
-          addArithmeticOperatorsEventListener();
-          console.log("added dot, maths ops and clearEntry events in addNum");
-        
-        
+          addArithmeticOperatorsEventListener();   
     };
 
+    //keeps length of each number to 9 max
     if (numbers.count >= 9) {
         removeNumbersEventListener();
         return currentDisplayText.textContent = displayNumber;
     }
-
-    ++numbers.count;
-    // console.log(numbers.count);
-
     
+    //increment to keep record of current number length;
+    ++numbers.count;
+
     
     //Either replace displayNumber or add to it
     if (displayNumber === "0") {
         displayNumber = eventNum;
-        // numbers.count === 1;
     } else {
         displayNumber += eventNum;
     }
@@ -409,10 +386,7 @@ function addNumberToDisplay(event) {
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && numbers.count === 1) {
         addEqualsEventListener();
-        // console.log(("add equals event in addNum"));
     }
-    // console.log(event.target);
-    // console.log(displayNumber);
     return currentDisplayText.textContent = displayNumber;
 };
 
@@ -422,15 +396,12 @@ function addNumberToDisplay(event) {
 function addNumbersEventListener () {
     numbers.forEach((number) => {
         number.addEventListener("click", addNumberToDisplay);
-        // number.addEventListener("keydown", addNumberToDisplay);
     });
 };
 
-//would it be easier to add/remove on mousedown,mouseup?
 function removeNumbersEventListener() {
     numbers.forEach((number) => {
         number.removeEventListener("click", addNumberToDisplay);
-        // number.removeEventListener("keydown", addNumberToDisplay);
     });
 };
 
@@ -445,16 +416,10 @@ addNumbersEventListener();
 //=====================================================
 
 
-//function to reuse add arithmetic operators click event code
 
 function addOperator(event) {
-    // console.log(event);
-    // console.log("Number One's starting value is: " + numberOne);
-    // console.log("Operators starting value in addOp is: " + operator);
-    // console.log("Numbers two's starting value is: " + numberTwo);
-    // console.log("Display number's starting value is: " + displayNumber);
+    
     let currentOperator = event.target.textContent;
-    // console.log(`current operator is ${currentOperator}`);
 
     //highlights maths operator button;
     event.target.focus();
@@ -465,24 +430,19 @@ function addOperator(event) {
 
     //resets 2nd num value for repeat operations
     if(isValidNumber(numberTwo)) {
-        // console.log("reset num2 value in addOperator");
         numberTwo = undefined;
     }
 
-    
     //Add display number to numberOne variable if it has no value;
     if (!isValidNumber(numberOne)&& isValidNumber(displayNumber)) {
         numberOne = displayNumber;
-        // displayText.textContent = displayNumber;
         displayNumber = "";
         addNumbersEventListener();
-        // console.log("numberOne value is: " + numberOne);
     }
 
     //add current display number to 2nd number var
     if (isValidNumber(numberOne) && operator &&
         isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
-
             numberTwo = displayNumber;
             displayNumber = "";
     }
@@ -496,26 +456,20 @@ function addOperator(event) {
         previousExpressionDisplay.textContent = "";
         
         //Result will be undefined and display showing Clever!;
+        //could make this more clear
         if(!isValidNumber(result)) {
             return;
         }
         
         // if runs when number has lost precision
         if(!isPrecise(result)) {
-            console.log("result isn't precise");
-            console.log(`Value of result is ${result}`);
             clearAll();
-            // previousExpressionDisplay.textContent = "";
             currentDisplayText.textContent = "Precision Error";
             return;
                 
         } else {
             numberOne = result;
             numberTwo = undefined;
-            // operator = currentOperator;
-            // previousExpressionDisplay.textContent = "";
-            console.log(`Value of result is ${result}`);
-            console.log(`Value of displayNumber is ${displayNumber}`);
             addNumbersEventListener();
             removeEqualsEventListener();
             return refineResultForDisplay(result);
@@ -523,25 +477,13 @@ function addOperator(event) {
         
     };
 
-    
-
     operator = currentOperator;
-    console.log(`operator value is now ${operator}`);
 
-    //display 1st part of calculation for clarity;
-    // if (isValidNumber(numberOne) && operator) {
-    //     previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
-    // }
-    
-    //removes equals event if condition met
+    //stops breaking calculator for repeat calculations;
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
-        console.log("equals removed from add op");
-        removeEqualsEventListener();
-        
-        
+        removeEqualsEventListener();   
     }
     
-    // could refactor and return something
     return
     
 };
@@ -576,61 +518,44 @@ function resolveEquation(event) {
 
     //readd event listener for repeat operations
     //think this can be deleted;
-    addArithmeticOperatorsEventListener();
+    // addArithmeticOperatorsEventListener();
+
+
     
-    console.log(`numberOne at equals start is ${numberOne}`);
-    console.log(`displayNumber at equals start is ${displayNumber}`);
-    console.log(`numberTwo at equals start is ${numberTwo}`);
-    console.log(`operator at equals start is ${operator}`);
-
-
+    //if number One doesn't have a value add displayNumber to it
     if(!isValidNumber(numberOne) && isValidNumber(displayNumber) && isValidNumber(numberTwo)) {
         numberOne = displayNumber;
     }
     
-    //add current display number to 2nd number var
+    //If number 2 doesn't have value add displayNumber to it;
     if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = displayNumber;
-        console.log(`number two has been updated to: ${numberTwo}`);
     }
 
 
-
-    //wack code block in another function?
+    //CALCULATE AND DISPLAY RESULT CODE
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
-        // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`
-        // console.log(`result after operate is: ${result}`);
-        // console.log(`type of result is: ${typeof result}`);
+        
         if(!isValidNumber(result)) {
-            console.log(`not valid result if ran`);
             return;
         }
 
         if(!isPrecise(result)) {
-            console.log("result isn't precise");
             clearAll();
             previousExpressionDisplay.textContent = "";
             currentDisplayText.textContent = "Precision Error";
             return;
                 
         } else {
-            //added number two to below expression but haven't commited yet;
             previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
             numberOne = undefined;
             displayNumber = result;
-            console.log(`numberOne at equals end is ${numberOne}`);
-            console.log(`displayNumber at equals end is ${displayNumber}`);
-            console.log(`numberTwo at equals end is ${numberTwo}`);
-            console.log(`operator at equals end is ${operator}`);
-            // addNumbersEventListener();
             return refineResultForDisplay(result);
         }
         
-    };
-     console.log("bottom of resolve Equation runs");
-    
+    };   
 }
 
 //Equals click event add/remove code
@@ -698,7 +623,6 @@ function deleteCharacter(event) {
     if (displayNumber.length === 0) {
         // delete numbers.count;
         removeDotEventListener();
-        console.log("remove count var,dot and clear entry events in delete char");
         displayNumber = "";
         removeClearEntryEventListener();
         return currentDisplayText.textContent = "0";
@@ -731,7 +655,6 @@ function addDecimalPlace(event) {
     if (!displayNumber.includes(dotSign) && isValidNumber(displayNumber)) {
         displayNumber += dotSign;
         currentDisplayText.textContent = displayNumber;
-        console.log("added dot event");
      }
 }
 
@@ -760,7 +683,6 @@ document.addEventListener('keydown', (event) => {
     
     //store key in variable
     let key = event.key;
-    console.log(event);
     event.preventDefault();
     if(heldDownKeys[key]) return;
     heldDownKeys[key] = true;
@@ -774,52 +696,40 @@ document.addEventListener('keydown', (event) => {
             clearEntry.click();
             break;
         case "0":
-            console.log("0 key pressed");
             button0.click();
             break;
         case "1":
-            console.log("1 key pressed");
             button1.click();
             break;
         case "2":
-            console.log("2 key pressed");
             button2.click();
             break;
         case "3":
-            console.log("3 key pressed");
             button3.click();
             break;
         case "4":
-            console.log("4 key pressed");
             button4.click();
             break;
         case "5":
-            console.log("5 key pressed");
             button5.click();
             break;
         case "6":
-            console.log("6 key pressed");
             button6.click();
             break;
         case "7":
-            console.log("7 key pressed");
             button7.click();
             break;
         case "8":
-            console.log("8 key pressed");
             button8.click();
             break;
         case "9":
-            console.log("9 key pressed");
             button9.click();
             break;
         case ".":
-            console.log("dot key selected");
             dot.click();
             break;
         case "Enter":
             equals.click();
-            console.log("enter key selected");
             break;
         case "/":
             divideBtn.click();
