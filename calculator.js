@@ -612,7 +612,7 @@ function resolveEquation(event) {
                 
         } else {
             //added number two to below expression but haven't commited yet;
-            // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`;
+            previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo}`;
             numberOne = undefined;
             displayNumber = result;
             console.log(`numberOne at equals end is ${numberOne}`);
