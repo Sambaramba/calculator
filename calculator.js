@@ -174,6 +174,56 @@ function operate(numberOne, operator, numberTwo, event) {
     return value;
 }
 
+//=============================
+//HELPER FUNCTION FOR IS PRECISE AND REFINE FOR DISPLAY
+
+//used for checking absolute length of number
+function removeAllNonNumbers(stringedNumber) {
+    
+    //removes all characters except numbers
+   let cleanedNumber = stringedNumber.replace(/\D/g, "");
+//    console.log(typeof cleanedNumber);
+   return cleanedNumber;
+}
+
+
+//checks if number is in precise range returning true or false;
+function isPrecise(stringedNumber) {
+    console.log(typeof stringedNumber);
+    
+    //for Scientific Numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+            console.log("triggered SN if in isPrecise");
+            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
+            let significant = stringedNumber.slice(0, baseIndex);
+            let cleanedSignificant = removeAllNonNumbers(significant);
+
+            if (cleanedSignificant.length <= 15) {
+                    return true;
+            }  else { 
+                console.log("SN num isn't precise");
+                return false;
+            }; 
+    }
+
+    //for decimals
+    if (stringedNumber.includes(".")) {
+       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+       if (cleanedDecimalNum.length <= 15) {
+          return true;
+        }
+    }
+    //for integers
+    let pureNumber = Number(stringedNumber);
+    if (Number.isSafeInteger(pureNumber)) {
+    return true;
+    }
+    return false;
+}
+
+
+//REFINE FOR DISPLAY HELPER FUNCTIONS
+//=================================
 
 
 function removeExcessDecimalPlaces(stringedNumber) {
@@ -199,17 +249,14 @@ function removeExcessDecimalPlaces(stringedNumber) {
     if (numberThenDecimal.test(stringedNumber) || 
         minusNumberThenDecimal.test(stringedNumber))
         {   
-            console.log("To 11 dps");
             refinedNumber = Number(stringedNumber).toFixed(11);
         } else {
-            console.log("To 2 dps");
             refinedNumber = Number(stringedNumber).toFixed(2);
         };
     
     //remove zeros from end of number;
-    // console.log(refinedNumber);
     refinedNumber = removeTrailingZeros(refinedNumber);
-    // console.log(refinedNumber);
+    
     return refinedNumber;
 } 
 
@@ -247,22 +294,11 @@ function removeTrailingZeros(number) {
             //change back to string when removed zeros off end;
             removedZeros = array.join("");
     }
-    // console.log(removedZeros);
-    // console.log(beforeDecimalPlace);
     
     // attach two parts back together and return;
     return beforeDecimalPlace + removedZeros;
 }
 
-
-//used for checking absolute length of number
-function removeAllNonNumbers(stringedNumber) {
-    
-    //removes all characters except numbers
-   let cleanedNumber = stringedNumber.replace(/\D/g, "");
-//    console.log(typeof cleanedNumber);
-   return cleanedNumber;
-}
 
 
 //displays Nan or result dependant on num length;
@@ -283,6 +319,11 @@ function refineResultForDisplay(stringedNumber) {
         
     } else {
         displayText.textContent = refinedNumber;
+        // if (isValidNumber(numberTwo)) {
+        // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`;
+        // } else { 
+        //     answerText.textContent = `${numberOne} ${operator}`;
+        // }
         // numberOne = displayNumber;
         // console.log(`number one is ${numberOne}`);
         // console.log(numberTwo);
@@ -293,40 +334,6 @@ function refineResultForDisplay(stringedNumber) {
 }  
 
 
-//checks if number is in precise range returning true or false;
-//helper function for what? for result precision
-function isPrecise(stringedNumber) {
-    console.log(typeof stringedNumber);
-    
-    //for Scientific Numbers
-    if (stringedNumber.toLowerCase().includes("e")) {
-            console.log("triggered SN if in isPrecise");
-            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
-            let significant = stringedNumber.slice(0, baseIndex);
-            let cleanedSignificant = removeAllNonNumbers(significant);
-
-            if (cleanedSignificant.length <= 15) {
-                    return true;
-            }  else { 
-                console.log("SN num isn't precise");
-                return false;
-            }; 
-    }
-
-    //for decimals
-    if (stringedNumber.includes(".")) {
-       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-       if (cleanedDecimalNum.length <= 15) {
-          return true;
-        }
-    }
-    //for integers
-    let pureNumber = Number(stringedNumber);
-    if (Number.isSafeInteger(pureNumber)) {
-    return true;
-    }
-    return false;
-}
 
 
 
@@ -342,7 +349,9 @@ function isPrecise(stringedNumber) {
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
     console.log(`display number at addNum start is ${displayNumber}`);   
-    console.log(`number one at addNum start is ${numberOne}`);   
+    console.log(`number one at addNum start is ${numberOne}`);
+    console.log(`number two at addNum start is ${numberTwo}`);
+    console.log(`operator at addNum start is ${operator}`);
 
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
@@ -359,7 +368,7 @@ function addNumberToDisplay(event) {
 
     
     let eventNum = event.target.textContent;
-    console.log(eventNum);
+    // console.log(eventNum);
 
     //Adds count variable if there isn't one already;
     //also add events for dot,clear entry and maths ops
@@ -379,7 +388,7 @@ function addNumberToDisplay(event) {
     }
 
     ++numbers.count;
-    console.log(numbers.count);
+    // console.log(numbers.count);
 
     
     
@@ -395,7 +404,7 @@ function addNumberToDisplay(event) {
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
     if (isValidNumber(numberOne) && numbers.count === 1) {
         addEqualsEventListener();
-        console.log(("add equals event in addNum"));
+        // console.log(("add equals event in addNum"));
     }
     // console.log(event.target);
     // console.log(displayNumber);
@@ -436,11 +445,12 @@ addNumbersEventListener();
 function addOperator(event) {
     // console.log(event);
     // console.log("Number One's starting value is: " + numberOne);
-    console.log("Operators starting value in addOp is: " + operator);
+    // console.log("Operators starting value in addOp is: " + operator);
     // console.log("Numbers two's starting value is: " + numberTwo);
     // console.log("Display number's starting value is: " + displayNumber);
     let currentOperator = event.target.textContent;
     // console.log(`current operator is ${currentOperator}`);
+
     //highlights maths operator button;
     event.target.focus();
     
@@ -461,7 +471,7 @@ function addOperator(event) {
         // displayText.textContent = displayNumber;
         displayNumber = "";
         addNumbersEventListener();
-        console.log("numberOne value is: " + numberOne);
+        // console.log("numberOne value is: " + numberOne);
     }
 
     //add current display number to 2nd number var
@@ -512,7 +522,7 @@ function addOperator(event) {
 
     operator = currentOperator;
     console.log(`operator value is now ${operator}`);
-    
+
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
         answerText.textContent = `${numberOne} ${operator}`;
@@ -585,9 +595,9 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
-        
-        console.log(`result after operate is: ${result}`);
-        console.log(`type of result is: ${typeof result}`);
+        // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`
+        // console.log(`result after operate is: ${result}`);
+        // console.log(`type of result is: ${typeof result}`);
         if(!isValidNumber(result)) {
             console.log(`not valid result if ran`);
             return;
@@ -601,9 +611,14 @@ function resolveEquation(event) {
             return;
                 
         } else {
+            //added number two to below expression but haven't commited yet;
+            // answerText.textContent = `${numberOne} ${operator} ${numberTwo}`;
             numberOne = undefined;
             displayNumber = result;
-            console.log(`Value of displayNumber is ${displayNumber}`);
+            console.log(`numberOne at equals end is ${numberOne}`);
+            console.log(`displayNumber at equals end is ${displayNumber}`);
+            console.log(`numberTwo at equals end is ${numberTwo}`);
+            console.log(`operator at equals end is ${operator}`);
             // addNumbersEventListener();
             return refineResultForDisplay(result);
         }
@@ -739,8 +754,9 @@ let heldDownKeys = {};
 document.addEventListener('keydown', (event) => {
     
     //store key in variable
-
     let key = event.key;
+    console.log(event);
+    event.preventDefault();
     if(heldDownKeys[key]) return;
     heldDownKeys[key] = true;
     
@@ -798,7 +814,7 @@ document.addEventListener('keydown', (event) => {
             break;
         case "Enter":
             equals.click();
-            console.log
+            console.log("enter key selected");
             break;
         case "/":
             divideBtn.click();
