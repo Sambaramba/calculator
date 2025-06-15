@@ -360,6 +360,11 @@ function addNumberToDisplay(event) {
         displayNumber = "";
     };
 
+    //display 1st part of calculation for clarity;
+    if (isValidNumber(numberOne) && operator) {
+        previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
+    }
+
     //resets calculator after pressed equals;
     if (!isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
         console.log("cleared for fresh calculation");
@@ -488,7 +493,7 @@ function addOperator(event) {
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
         operator = currentOperator;
-
+        previousExpressionDisplay.textContent = "";
         
         //Result will be undefined and display showing Clever!;
         if(!isValidNumber(result)) {
@@ -500,7 +505,7 @@ function addOperator(event) {
             console.log("result isn't precise");
             console.log(`Value of result is ${result}`);
             clearAll();
-            previousExpressionDisplay.textContent = "";
+            // previousExpressionDisplay.textContent = "";
             currentDisplayText.textContent = "Precision Error";
             return;
                 
@@ -508,7 +513,7 @@ function addOperator(event) {
             numberOne = result;
             numberTwo = undefined;
             // operator = currentOperator;
-            previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
+            // previousExpressionDisplay.textContent = "";
             console.log(`Value of result is ${result}`);
             console.log(`Value of displayNumber is ${displayNumber}`);
             addNumbersEventListener();
@@ -524,9 +529,9 @@ function addOperator(event) {
     console.log(`operator value is now ${operator}`);
 
     //display 1st part of calculation for clarity;
-    if (isValidNumber(numberOne) && operator) {
-        previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
-    }
+    // if (isValidNumber(numberOne) && operator) {
+    //     previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
+    // }
     
     //removes equals event if condition met
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
@@ -612,7 +617,7 @@ function resolveEquation(event) {
                 
         } else {
             //added number two to below expression but haven't commited yet;
-            previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo}`;
+            previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
             numberOne = undefined;
             displayNumber = result;
             console.log(`numberOne at equals end is ${numberOne}`);
@@ -653,7 +658,7 @@ function clearAll(event) {
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
     currentDisplayText.textContent = "0";
-    previousExpressionDisplay.textContent = " ";
+    previousExpressionDisplay.textContent = "";
     addNumbersEventListener();
     addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
