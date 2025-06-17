@@ -103,6 +103,22 @@ function isValidNumber(value) {
 }
 
 
+//HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS EXPONENT VALUE
+
+function getExponent(stringedNumber) {
+
+    //return exponent
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let exponent = stringedNumber.slice(indexOfBase + 1);
+        return Number(exponent);
+    }
+    //or return no value
+    return undefined;
+}
+
+
+
 //FOUR BASIC MATHS OPERATIONS
 //HELPER FUNCTIONS FOR OPERATE;
 
@@ -169,6 +185,12 @@ function operate(numberOne, operator, numberTwo, event) {
     // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
+    // let exponent = getExponent(value);
+
+    // if(exponent !== undefined && exponent <= -7) {
+    //     console.log(`value is ${value}`);
+    //     value = 0;
+    // }
     
     return value;
 }
@@ -188,6 +210,8 @@ function removeAllNonNumbers(stringedNumber) {
 
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
+
+    console.log(`number at isPrecise start is ${stringedNumber}`);
     
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
@@ -196,9 +220,21 @@ function isPrecise(stringedNumber) {
             let significant = stringedNumber.slice(0, baseIndex);
             let cleanedSignificant = removeAllNonNumbers(significant);
 
+            //added exponent to check certain amount of zeros;
+            // let exponent = stringedNumber.slice(baseIndex + 1);
+            // if (exponent <= -5) {
+            //     console.log(`exponent value in is precise is ${exponent}`);
+            // }
             if (cleanedSignificant.length <= 15) {
                     return true;
             }  else { 
+
+                // let exponent = getExponent(stringedNumber);
+
+                // if(exponent !== undefined && exponent <= -7) {
+                //     console.log(`stringed num is ${stringedNumber}`);
+                //     value = 0;
+                // }
                 console.log("SN num isn't precise");
                 return false;
             }; 
@@ -309,9 +345,11 @@ function refineResultForDisplay(stringedNumber) {
 
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
-    
     //keeps result to 12 digits max and updates display
     if (cleanedNumber.length > 12) {
+        // cleanedNumber.test(/^[0]+/)
+        console.log(`type of cleaned number is ${typeof cleanedNumber}`);
+        console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
         clearAll();
         currentDisplayText.textContent = "NaN";
         
@@ -463,9 +501,18 @@ function addOperator(event) {
         
         // if runs when number has lost precision
         if(!isPrecise(result)) {
-            clearAll();
-            currentDisplayText.textContent = "Precision Error";
-            return;
+            console.log("result is inprecise");
+            let exponent = getExponent(result);
+
+            if(exponent !== undefined && exponent <= -7) {
+                console.log(`inprecise result is ${result}`);
+                result = 0;
+            } else {
+                console.log(result);
+                clearAll();
+                currentDisplayText.textContent = "Precision Error";
+                return;
+            }
                 
         } else {
             numberOne = result;
@@ -545,6 +592,7 @@ function resolveEquation(event) {
         if(!isPrecise(result)) {
             clearAll();
             previousExpressionDisplay.textContent = "";
+            console.log(`inprecise result in resolve equation is ${result}`);
             currentDisplayText.textContent = "Precision Error";
             return;
                 
