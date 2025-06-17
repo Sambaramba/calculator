@@ -53,7 +53,7 @@ const allClearButton = document.querySelector ("#ac-button");
 const clearEntryButton = document.querySelector("#ce-button");
 
 //Decimal place button;
-const dot = document.querySelector("#dot-button");
+const decimalPlaceButton = document.querySelector("#dot-button");
 
 
 //OTHER INDIVIDUAL ELEMENTS;
@@ -731,11 +731,11 @@ function addDecimalPlace(event) {
 
 
 function addDotEventListener() {
-    dot.addEventListener("click", addDecimalPlace, {once: true});
+    decimalPlaceButton.addEventListener("click", addDecimalPlace, {once: true});
 }
 
 function removeDotEventListener() {
-    dot.removeEventListener("click", addDecimalPlace);
+    decimalPlaceButton.removeEventListener("click", addDecimalPlace);
 }
 
 
@@ -797,7 +797,7 @@ document.addEventListener('keydown', (event) => {
             button9.click();
             break;
         case ".":
-            dot.click();
+            decimalPlaceButton.click();
             break;
         case "Enter":
             equals.click();
