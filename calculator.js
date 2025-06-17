@@ -421,7 +421,7 @@ function addNumberToDisplay(event) {
     //also add events for dot,clear entry and maths ops
     if (!numbers.count) {
           numbers.count = 0;
-          addDotEventListener();
+          addDecimalPlaceEventListener();
           addClearEntryEventlistener();
           addArithmeticOperatorsEventListener();   
     };
@@ -693,7 +693,7 @@ function deleteCharacter(event) {
     
     if (displayNumber.length === 0) {
         // delete numbers.count;
-        removeDotEventListener();
+        removeDecimalPlaceEventListener();
         displayNumber = "";
         removeClearEntryEventListener();
         return currentDisplayText.textContent = "0";
@@ -722,19 +722,19 @@ function removeClearEntryEventListener() {
 
 function addDecimalPlace(event) {
 
-    let dotSign = event.target.textContent;
-    if (!displayNumber.includes(dotSign) && isValidNumber(displayNumber)) {
-        displayNumber += dotSign;
+    const decimalPlace = event.target.textContent;
+    if (!displayNumber.includes(decimalPlace) && isValidNumber(displayNumber)) {
+        displayNumber += decimalPlace;
         currentDisplayText.textContent = displayNumber;
      }
 }
 
 
-function addDotEventListener() {
+function addDecimalPlaceEventListener() {
     decimalPlaceButton.addEventListener("click", addDecimalPlace, {once: true});
 }
 
-function removeDotEventListener() {
+function removeDecimalPlaceEventListener() {
     decimalPlaceButton.removeEventListener("click", addDecimalPlace);
 }
 
