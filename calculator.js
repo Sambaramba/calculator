@@ -111,10 +111,21 @@ function getExponent(stringedNumber) {
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let exponent = stringedNumber.slice(indexOfBase + 1);
+        //return exponent value as number type
         return Number(exponent);
     }
     //or return no value
     return undefined;
+}
+
+//helper to convert small proper decimals to zero;
+function makeProperDecimalZero(number) {
+    let zero = 0;
+    let fivePlusZeros = /^0(\.0{4,}|0{4,})$/;
+    if (number.StartsWith(fivePlusZeros)) {
+        return zero;
+    }
+    return number;
 }
 
 
