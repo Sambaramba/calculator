@@ -3,11 +3,11 @@
 //============================================================
 
 //VARIABLES FOR THE MATHS EXPRESSION
-//declared as undefined
 
-let numberOne;
-let operator;
-let numberTwo;
+
+let numberOne = undefined;
+let operator = undefined;
+let numberTwo = undefined;
 
 //variable to store display value;
 let displayNumber = "";
@@ -122,7 +122,8 @@ function getExponent(stringedNumber) {
 //WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
 //======================================================================================================================
 
-//helper to convert number to zero if it's a small proper decimal;
+//HELPER FOR OPERATE
+//converts number to zero if it's a small proper decimal;
 function makeSmallProperDecimalsZero(stringedNumber) {
      
     //for scientific notation numbers
@@ -210,7 +211,7 @@ function operate(numberOne, operator, numberTwo, event) {
     // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
-    
+    console.log(`value before proper decimal func is ${value}`);
     //converts to zero if proper decimal starts with five or more zeros
     value = makeSmallProperDecimalsZero(value);
     console.log(`value after proper decimal func is ${value}`);
