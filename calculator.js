@@ -130,14 +130,14 @@ function makeSmallProperDecimalsZero(stringedNumber) {
         let exponent = getExponent(stringedNumber);
         //converts Scientific numbers to zero if they represent very small decimals
         if(exponent !== undefined && exponent <= -5) {
-            return 0;
+            return "0";
         } else {
             return stringedNumber
         };
     } else {
         //for normal decimal/zero-padded strings
         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
-        return startsWithFivePlusZeros.test(stringedNumber) ? 0 : stringedNumber; 
+        return startsWithFivePlusZeros.test(stringedNumber) ? "0" : stringedNumber; 
     }
 }
 
@@ -180,6 +180,7 @@ function operate(numberOne, operator, numberTwo, event) {
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
         currentDisplayText.textContent = "Clever!";
+        //why am i returning value? is it for result? could i do NaN?
         return value;
     }
 
@@ -211,7 +212,8 @@ function operate(numberOne, operator, numberTwo, event) {
     value = value.toString();
     
     //converts to zero if proper decimal starts with five or more zeros
-    value = makeSmallProperDecimalsZero(value)
+    value = makeSmallProperDecimalsZero(value);
+    console.log(`value after proper decimal func is ${value}`);
     
     return value;
 }
