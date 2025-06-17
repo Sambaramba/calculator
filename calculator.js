@@ -122,11 +122,23 @@ function getExponent(stringedNumber) {
 //WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
 //======================================================================================================================
 
-//helper to convert small proper decimals to zero;
+//helper to convert number to zero if it's a small proper decimal;
 function makeSmallProperDecimalsZero(stringedNumber) {
-    let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
-    return startsWithFivePlusZeros.test(stringedNumber) ? 0 : stringedNumber;
-    
+     
+    //for scientific notation numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+        let exponent = getExponent(stringedNumber);
+        //converts Scientific numbers to zero if they represent very small decimals
+        if(exponent !== undefined && exponent <= -5) {
+            return 0;
+        } else {
+            return stringedNumber
+        };
+    } else {
+        //for normal decimal/zero-padded strings
+        let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
+        return startsWithFivePlusZeros.test(stringedNumber) ? 0 : stringedNumber; 
+    }
 }
 
 
@@ -197,12 +209,9 @@ function operate(numberOne, operator, numberTwo, event) {
     // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
-    // let exponent = getExponent(value);
-
-    // if(exponent !== undefined && exponent <= -7) {
-    //     console.log(`value is ${value}`);
-    //     value = 0;
-    // }
+    
+    //converts to zero if proper decimal starts with five or more zeros
+    value = makeSmallProperDecimalsZero(value)
     
     return value;
 }
