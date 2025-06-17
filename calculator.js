@@ -119,10 +119,10 @@ function getExponent(stringedNumber) {
 }
 
 //helper to convert small proper decimals to zero;
-function makeProperDecimalZero(number) {
+function makeSmallProperDecimalsZero(number) {
     let zero = 0;
-    let fivePlusZeros = /^0(\.0{4,}|0{4,})$/;
-    if (number.StartsWith(fivePlusZeros)) {
+    let fivePlusZeros = /^0(\.0{4,}|0{4,})/;
+    if (fivePlusZeros.test(number)) {
         return zero;
     }
     return number;
