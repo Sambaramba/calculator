@@ -28,7 +28,6 @@ const divideOperator = "\u00F7";
 //INDIVIDUAL BUTTONS
 
 //NUMBERS
-
 const button0 = document.querySelector("#button-0");
 const button1 = document.querySelector("#button-1");
 const button2 = document.querySelector("#button-2");
@@ -50,8 +49,8 @@ const plusBtn = document.querySelector("#plus-button");
 const equals = document.querySelector("#equals-button");
 
 //Clear buttons;
-const clear = document.querySelector ("#ac-button");
-const clearEntry = document.querySelector("#ce-button");
+const allClearButton = document.querySelector ("#ac-button");
+const clearEntryButton = document.querySelector("#ce-button");
 
 //Decimal place button;
 const dot = document.querySelector("#dot-button");
@@ -662,7 +661,7 @@ function clearAll(event) {
 }
 
 //AC button add click event;
-clear.addEventListener("click", clearAll);
+allClearButton.addEventListener("click", clearAll);
 
 
 
@@ -703,11 +702,11 @@ function deleteCharacter(event) {
 
 //Clear entry add/remove click event funcs;
 function addClearEntryEventlistener() {
-clearEntry.addEventListener("click", deleteCharacter);
+clearEntryButton.addEventListener("click", deleteCharacter);
 }
 
 function removeClearEntryEventListener() {
-    clearEntry.removeEventListener("click", deleteCharacter);
+    clearEntryButton.removeEventListener("click", deleteCharacter);
 }
 
 
@@ -762,10 +761,10 @@ document.addEventListener('keydown', (event) => {
     //
     switch(key) {
         case "Delete":
-            clear.click();
+            allClearButton.click();
             break;
         case "Backspace":
-            clearEntry.click();
+            clearEntryButton.click();
             break;
         case "0":
             button0.click();
