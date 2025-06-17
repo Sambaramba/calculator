@@ -118,14 +118,15 @@ function getExponent(stringedNumber) {
     return undefined;
 }
 
+//============================================================================================================
+//WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
+//======================================================================================================================
+
 //helper to convert small proper decimals to zero;
-function makeSmallProperDecimalsZero(number) {
-    let zero = 0;
-    let fivePlusZeros = /^0(\.0{4,}|0{4,})/;
-    if (fivePlusZeros.test(number)) {
-        return zero;
-    }
-    return number;
+function makeSmallProperDecimalsZero(stringedNumber) {
+    let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
+    return startsWithFivePlusZeros.test(stringedNumber) ? 0 : stringedNumber;
+    
 }
 
 
