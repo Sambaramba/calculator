@@ -46,7 +46,7 @@ const minusBtn = document.querySelector("#minus-button");
 const plusBtn = document.querySelector("#plus-button");
 
 //Equals button
-const equals = document.querySelector("#equals-button");
+const equalsButton = document.querySelector("#equals-button");
 
 //Clear buttons;
 const allClearButton = document.querySelector ("#ac-button");
@@ -60,6 +60,7 @@ const decimalPlaceButton = document.querySelector("#dot-button");
 
 const currentDisplayText = document.querySelector("#current-display");
 currentDisplayText.textContent = "0";
+
 const previousExpressionDisplay = document.querySelector("#previous-expression-display");
 
 
@@ -632,11 +633,11 @@ function resolveEquation(event) {
 //Equals click event add/remove code
 
 function addEqualsEventListener() {
-    equals.addEventListener("click", resolveEquation);
+    equalsButton.addEventListener("click", resolveEquation);
 }
 
 function removeEqualsEventListener() {
-    equals.removeEventListener("click", resolveEquation);
+    equalsButton.removeEventListener("click", resolveEquation);
 }
 
 
@@ -800,7 +801,7 @@ document.addEventListener('keydown', (event) => {
             decimalPlaceButton.click();
             break;
         case "Enter":
-            equals.click();
+            equalsButton.click();
             break;
         case "/":
             divideBtn.click();
