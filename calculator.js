@@ -585,6 +585,8 @@ function addOperator(event) {
             numberTwo = displayNumber;
             displayNumber = "";
     }
+
+
     
     //wack code block in another function?
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
@@ -592,7 +594,7 @@ function addOperator(event) {
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
         operator = currentOperator;
-        previousExpressionDisplay.textContent = "";
+        previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
         
         //Result will be undefined and display showing Clever!;
         //could make this more clear
@@ -608,38 +610,21 @@ function addOperator(event) {
                 result = "0";
             } else {
                 console.log(`${result} is not a small decimal`)
-            clearAll();
-            currentDisplayText.textContent = "Precision Error";
-            return;
-            }
-            // let exponent = getExponent(result);
-            // console.log(`inprecise result in add op before make zero is: ${result}`);
-            // result = makeSmallProperDecimalsZero(result);
-            // console.log(`inprecise result in add op after make zero is: ${result}`);
-            // if (result !== "0") {
-            //     console.log(result);
-            //     clearAll();
-            //     currentDisplayText.textContent = "Precision Error";
-            //     return;
-            // }
-            // if(exponent !== undefined && exponent <= -7) {
-            //     console.log(`inprecise result is ${result}`);
-            //     result = 0;
-            // } else {
-            //     console.log(result);
-            //     clearAll();
-            //     currentDisplayText.textContent = "Precision Error";
-            //     return;
-            // }
-                
-        } else {
-            numberOne = result;
-            numberTwo = undefined;
-            addNumbersEventListener();
-            removeEqualsEventListener();
-            return refineResultForDisplay(result);
+                clearAll();
+                currentDisplayText.textContent = "Precision Error";
+                return;
+            }       
         }
-        
+        //runs if result is within fine limits
+        numberOne = result;
+        numberTwo = undefined;
+        console.log(`Number one if result is fine in add operators is ${numberOne}`);
+        console.log(`result if result is fine in add operators is ${result}`);
+        console.log(`Number two if result is fine in add operators is ${numberTwo}`);
+        console.log(`display number if result is fine in add operators is ${displayNumber}`);
+        addNumbersEventListener();
+        removeEqualsEventListener();
+        return refineResultForDisplay(result);    
     };
 
     operator = currentOperator;
