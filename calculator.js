@@ -262,6 +262,31 @@ function removeAllNonNumbers(stringedNumber) {
 }
 
 
+//helper function to find digits in scientific numbers
+//do i want to return stringed number when not SN number?
+//or undefined/null/NaN?
+function getScientificNumberLength(stringedNumber) {
+    
+    console.log(`starting num type in SN num length func is ${typeof stringedNumber}`);
+    if(typeof stringedNumber !== "string") {
+        return stringedNumber;
+    }
+    //for Scientific Numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+            let significand = getSignificand(stringedNumber);
+            let exponent = getExponent(stringedNumber);
+
+            let cleanedSignificand = removeAllNonNumbers(significand);
+            let cleanedExponent = removeAllNonNumbers(exponent);
+            //convert to both to numbers and add to find total digits;
+            let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
+            console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
+            return totalSignificantDigits;       
+    }
+    return stringedNumber;
+}
+
+
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
 
