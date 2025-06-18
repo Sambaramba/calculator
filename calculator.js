@@ -137,21 +137,34 @@ function getSignificand(stringedNumber) {
 //WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
 //======================================================================================================================
 
-//HELPER FOR OPERATE
+
+//Check if starts with 0.0000/00000;
+//returns true or false;
+function isSmallProperDecimal(stringedNumber) {
+     //for scientific notation numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+        let exponent = getExponent(stringedNumber);
+        return (exponent !== undefined && exponent <= -5) ? true : false;
+    
+    } else {
+        //for normal decimal/zero-padded strings
+        let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
+        return startsWithFivePlusZeros.test(stringedNumber) ? true : false; 
+    }
+    return false;
+}
+
+
 //converts number to zero if it's a small proper decimal;
 function makeSmallProperDecimalsZero(stringedNumber) {
      
     //for scientific notation numbers
     if (stringedNumber.toLowerCase().includes("e")) {
         let exponent = getExponent(stringedNumber);
-        //converts Scientific numbers to zero if they represent very small decimals
 
+        //converts Scientific numbers to zero if they represent very small decimals
         return (exponent !== undefined && exponent <= -5) ? "0" : stringedNumber;
-        // if(exponent !== undefined && exponent <= -5) {
-        //     return "0";
-        // } else {
-        //     return stringedNumber
-        // };
+    
     } else {
         //for normal decimal/zero-padded strings
         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
