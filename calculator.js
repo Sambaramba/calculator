@@ -145,11 +145,13 @@ function makeSmallProperDecimalsZero(stringedNumber) {
     if (stringedNumber.toLowerCase().includes("e")) {
         let exponent = getExponent(stringedNumber);
         //converts Scientific numbers to zero if they represent very small decimals
-        if(exponent !== undefined && exponent <= -5) {
-            return "0";
-        } else {
-            return stringedNumber
-        };
+
+        return (exponent !== undefined && exponent <= -5) ? "0" : stringedNumber;
+        // if(exponent !== undefined && exponent <= -5) {
+        //     return "0";
+        // } else {
+        //     return stringedNumber
+        // };
     } else {
         //for normal decimal/zero-padded strings
         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
