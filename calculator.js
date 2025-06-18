@@ -102,6 +102,8 @@ function isValidNumber(value) {
     
 }
 
+//HELPER FUNCTIONS TO EXTRACT PARTS OF SCIENTIFIC NOTATION NUMBERS
+
 
 //HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS EXPONENT VALUE
 
@@ -112,7 +114,7 @@ function getExponent(stringedNumber) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let exponent = stringedNumber.slice(indexOfBase + 1);
         //return exponent value as number type
-        return Number(exponent);
+        return exponent;
     }
     //or return no value
     return undefined;
@@ -126,7 +128,8 @@ function getSignificand(stringedNumber) {
         let significand = stringedNumber.slice(0, indexOfBase);
         return significand;
     }
-    return stringedNumber;
+    //why return this? not stringed NUmber?
+    return undefined;
 }
 
 
@@ -236,7 +239,7 @@ function operate(numberOne, operator, numberTwo, event) {
 
 //used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
-    
+    console.log(typeof stringedNumber);
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
 //    console.log(typeof cleanedNumber);
@@ -252,16 +255,22 @@ function isPrecise(stringedNumber) {
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
             console.log("triggered SN if in isPrecise");
-            let baseIndex = stringedNumber.toLowerCase().indexOf("e");
-            let significant = stringedNumber.slice(0, baseIndex);
-            let cleanedSignificant = removeAllNonNumbers(significant);
+            // let baseIndex = stringedNumber.toLowerCase().indexOf("e");
+            // let significand = stringedNumber.slice(0, baseIndex);
+            let significand = getSignificand(stringedNumber);
+            let exponent = getExponent(stringedNumber);
 
+            let cleanedSignificand = removeAllNonNumbers(significand);
+            let cleanedExponent = removeAllNonNumbers(exponent);
+            //convert to nums and add to find  total digits;
+            let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
+            console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
             //added exponent to check certain amount of zeros;
             // let exponent = stringedNumber.slice(baseIndex + 1);
             // if (exponent <= -5) {
             //     console.log(`exponent value in is precise is ${exponent}`);
             // }
-            if (cleanedSignificant.length <= 15) {
+            if (totalSignificantDigits <= 15) {
                     return true;
             }  else { 
 
