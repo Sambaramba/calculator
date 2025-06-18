@@ -118,6 +118,18 @@ function getExponent(stringedNumber) {
     return undefined;
 }
 
+//HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS SIGNIFICAND VALUE
+
+function getSignificand(stringedNumber) {
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let significand = stringedNumber.slice(0, indexOfBase);
+        return significand;
+    }
+    return stringedNumber;
+}
+
+
 //============================================================================================================
 //WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
 //======================================================================================================================
@@ -211,10 +223,10 @@ function operate(numberOne, operator, numberTwo, event) {
     // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
-    console.log(`value before proper decimal func is ${value}`);
+    // console.log(`value before proper decimal func is ${value}`);
     //converts to zero if proper decimal starts with five or more zeros
-    value = makeSmallProperDecimalsZero(value);
-    console.log(`value after proper decimal func is ${value}`);
+    // value = makeSmallProperDecimalsZero(value);
+    // console.log(`value after proper decimal func is ${value}`);
     
     return value;
 }
@@ -371,15 +383,31 @@ function refineResultForDisplay(stringedNumber) {
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
     //keeps result to 12 digits max and updates display
     if (cleanedNumber.length > 12) {
-        // cleanedNumber.test(/^[0]+/)
-        console.log(`type of cleaned number is ${typeof cleanedNumber}`);
-        console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
-        clearAll();
-        currentDisplayText.textContent = "NaN";
+        // console.log(`refined number before make zero is: ${refinedNumber}`);
+        //update refined number to zero if is small decimal;
+        // refinedNumber = makeSmallProperDecimalsZero(refinedNumber);
+        // console.log(`refined number after make zero is: ${refinedNumber}`);
+        // if (refinedNumber === "0") {
+        //     console.log(`refined number is ${refinedNumber} (should be zero)`);
+        //     return currentDisplayText.textContent = refinedNumber;
+            
+        // } else {
+            console.log(`type of cleaned number is ${typeof cleanedNumber}`);
+            console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
+            clearAll();
+            return currentDisplayText.textContent = "NaN";
+        }
+       
         
-    } else {
+    // } else {
+        
+
         currentDisplayText.textContent = refinedNumber;
-    }
+    // }
+    console.log(`refined number at refine for display end is ${refinedNumber}`);
+    console.log(`display number at refine for display end is ${displayNumber}`);
+    console.log(`numberOne number at refine for display end is ${numberOne}`);
+    console.log(`numberTwo number at refine for display end is ${numberTwo}`);
     return;
 }  
 
@@ -526,17 +554,29 @@ function addOperator(event) {
         // if runs when number has lost precision
         if(!isPrecise(result)) {
             console.log("result is inprecise");
-            let exponent = getExponent(result);
-
-            if(exponent !== undefined && exponent <= -7) {
-                console.log(`inprecise result is ${result}`);
-                result = 0;
-            } else {
-                console.log(result);
-                clearAll();
-                currentDisplayText.textContent = "Precision Error";
-                return;
-            }
+            console.log(result);
+            clearAll();
+            currentDisplayText.textContent = "Precision Error";
+            return;
+            // let exponent = getExponent(result);
+            // console.log(`inprecise result in add op before make zero is: ${result}`);
+            // result = makeSmallProperDecimalsZero(result);
+            // console.log(`inprecise result in add op after make zero is: ${result}`);
+            // if (result !== "0") {
+            //     console.log(result);
+            //     clearAll();
+            //     currentDisplayText.textContent = "Precision Error";
+            //     return;
+            // }
+            // if(exponent !== undefined && exponent <= -7) {
+            //     console.log(`inprecise result is ${result}`);
+            //     result = 0;
+            // } else {
+            //     console.log(result);
+            //     clearAll();
+            //     currentDisplayText.textContent = "Precision Error";
+            //     return;
+            // }
                 
         } else {
             numberOne = result;
@@ -609,6 +649,7 @@ function resolveEquation(event) {
 
         let result = operate(numberOne, operator, numberTwo);
         
+        //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
             return;
         }
