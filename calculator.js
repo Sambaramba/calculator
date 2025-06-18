@@ -578,10 +578,15 @@ function addOperator(event) {
         // if runs when number has lost precision
         if(!isPrecise(result)) {
             console.log("result is inprecise");
-            console.log(result);
+            if (isSmallProperDecimal(result)) {
+                console.log(`${result} is a small decimal`)
+                result = "0";
+            } else {
+                console.log(`${result} is not a small decimal`)
             clearAll();
             currentDisplayText.textContent = "Precision Error";
             return;
+            }
             // let exponent = getExponent(result);
             // console.log(`inprecise result in add op before make zero is: ${result}`);
             // result = makeSmallProperDecimalsZero(result);
