@@ -297,20 +297,21 @@ function isPrecise(stringedNumber) {
             console.log("triggered SN if in isPrecise");
             // let baseIndex = stringedNumber.toLowerCase().indexOf("e");
             // let significand = stringedNumber.slice(0, baseIndex);
-            let significand = getSignificand(stringedNumber);
-            let exponent = getExponent(stringedNumber);
+            // let significand = getSignificand(stringedNumber);
+            // let exponent = getExponent(stringedNumber);
 
-            let cleanedSignificand = removeAllNonNumbers(significand);
-            let cleanedExponent = removeAllNonNumbers(exponent);
+            // let cleanedSignificand = removeAllNonNumbers(significand);
+            // let cleanedExponent = removeAllNonNumbers(exponent);
             //convert to nums and add to find  total digits;
-            let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
-            console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
+            // let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
+            // console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
             //added exponent to check certain amount of zeros;
             // let exponent = stringedNumber.slice(baseIndex + 1);
             // if (exponent <= -5) {
             //     console.log(`exponent value in is precise is ${exponent}`);
             // }
-            if (totalSignificantDigits <= 15) {
+            if (getScientificNumberLength(stringedNumber) <= 15) {
+                console.log("SN num is 15 or less long");
                     return true;
             }  else { 
 
@@ -321,6 +322,7 @@ function isPrecise(stringedNumber) {
                 //     value = 0;
                 // }
                 console.log("SN num isn't precise");
+                console.log("SN num is over 15 digits long");
                 return false;
             }; 
     }
