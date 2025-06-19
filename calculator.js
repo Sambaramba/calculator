@@ -425,12 +425,14 @@ function removeTrailingZeros(stringedNumber) {
 
             const lastCharacter = afterDecimalArray[afterDecimalArray.length - 1];
             if (lastCharacter === "0" || lastCharacter === ".") {
+                    //then remove last character
                     afterDecimalArray.pop();
             } 
             //change back to string when removed zeros off end;
             minusTrailingZeros = afterDecimalArray.join("");
     }
     console.log(`no trailing zeros at func end is ${minusTrailingZeros}`);
+
     // attach two parts back together and return;
     return beforeDecimalPlace + minusTrailingZeros;
 }
@@ -451,12 +453,17 @@ function refineResultForDisplay(stringedNumber) {
     //keeps result to 12 digits max and updates display
     if (cleanedNumber.length > 12) {
         // console.log(`refined number before make zero is: ${refinedNumber}`);
+
         //update refined number to zero if is small decimal;
         // refinedNumber = makeSmallProperDecimalsZero(refinedNumber);
         // console.log(`refined number after make zero is: ${refinedNumber}`);
-        // if (refinedNumber === "0") {
-        //     console.log(`refined number is ${refinedNumber} (should be zero)`);
-        //     return currentDisplayText.textContent = refinedNumber;
+        if (isSmallProperDecimal(refinedNumber)) {
+            refinedNumber = "0";
+            console.log("is small decimal over 12 digits");
+            console.log(`refined number after small proper decimal check is: ${refinedNumber}`);
+            console.log(`refined number is ${refinedNumber} (should be zero)`);
+            return currentDisplayText.textContent = refinedNumber;
+        }
             
         // } else {
             console.log(`type of cleaned number is ${typeof cleanedNumber}`);
