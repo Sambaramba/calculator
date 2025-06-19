@@ -267,7 +267,7 @@ function removeAllNonNumbers(stringedNumber) {
 //or undefined/null/NaN?
 function getScientificNumberLength(stringedNumber) {
     
-    console.log(`starting num type in SN num length func is ${typeof stringedNumber}`);
+    
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
@@ -285,6 +285,7 @@ function getScientificNumberLength(stringedNumber) {
     }
     return undefined;
 }
+
 
 function getDecimalNumberLength(stringedNumber) {
     
@@ -329,57 +330,31 @@ function isPrecise(stringedNumber) {
     console.log(`number at isPrecise start is ${stringedNumber}`);
     
     //for Scientific Numbers
-    if (stringedNumber.toLowerCase().includes("e")) {
-            console.log("triggered SN if in isPrecise");
-            // let baseIndex = stringedNumber.toLowerCase().indexOf("e");
-            // let significand = stringedNumber.slice(0, baseIndex);
-            // let significand = getSignificand(stringedNumber);
-            // let exponent = getExponent(stringedNumber);
-
-            // let cleanedSignificand = removeAllNonNumbers(significand);
-            // let cleanedExponent = removeAllNonNumbers(exponent);
-            //convert to nums and add to find  total digits;
-            // let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
-            // console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
-            //added exponent to check certain amount of zeros;
-            // let exponent = stringedNumber.slice(baseIndex + 1);
-            // if (exponent <= -5) {
-            //     console.log(`exponent value in is precise is ${exponent}`);
-            // }
-            if (getScientificNumberLength(stringedNumber) <= 15) {
-                console.log("SN num is 15 or less long");
-                    return true;
-            }  else { 
-
-                // let exponent = getExponent(stringedNumber);
-
-                // if(exponent !== undefined && exponent <= -7) {
-                //     console.log(`stringed num is ${stringedNumber}`);
-                //     value = 0;
-                // }
-                console.log("SN num isn't precise");
-                console.log("SN num is over 15 digits long");
-                return false;
-            }; 
-    }
+    
+    let scientificNotationLength = getScientificNumberLength(stringedNumber);
+    
+    if (scientificNotationLength <= 15 && 
+        scientificNotationLength !== undefined) {
+        console.log("is a precise SN num");
+            return true;
+    } 
 
     //for decimals
-    if(getDecimalNumberLength(stringedNumber) <= 15) {
-        console.log("decimal num is 15 or less long");
+    let decimalNumberLength = getDecimalNumberLength(stringedNumber);
+    if(decimalNumberLength <= 15 && 
+       decimalNumberLength !== undefined) {
+        console.log("is precise decimal num");
         return true;
     }
-    // if (stringedNumber.includes(".")) {
-    //    let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-    //    if (cleanedDecimalNum.length <= 15) {
-    //       return true;
-    //     }
-    // }
+    
 
     //for integers
     let pureNumber = Number(stringedNumber);
     if (Number.isSafeInteger(pureNumber)) {
+        console.log("is precise integer")
     return true;
     }
+    console.log(`${stringedNumber} is not a precise number`);
     return false;
 }
 
@@ -391,7 +366,7 @@ function isPrecise(stringedNumber) {
 
 function removeExcessDecimalPlaces(stringedNumber) {
     
-    let refinedNumber;
+    let refinedNumber = undefined;
     
     if (stringedNumber.includes("e")) {
         console.log("got e in remove dps");
@@ -422,42 +397,42 @@ function removeExcessDecimalPlaces(stringedNumber) {
 } 
 
 
-function removeTrailingZeros(number) {
+function removeTrailingZeros(stringedNumber) {
      
     //exits out if scientific notation number;
-    if (number.includes("e")) {
+    if (stringedNumber.includes("e")) {
         console.log("we got some e");
-        return number;
+        return stringedNumber;
     }
     //stores index of dp;
-    let dot = number.indexOf(".");
+    const decimalPlace = stringedNumber.indexOf(".");
     
     //if number doesn't contain dot return number as is;
-    if (dot === -1) {
-        return number;
+    if (decimalPlace === -1) {
+        return stringedNumber;
     }
     
     //splits into two parts at the index of the dp;
-    let beforeDecimalPlace = number.slice(0, dot);
-    let afterDecimalPlace = number.slice(dot);
+    const beforeDecimalPlace = stringedNumber.slice(0, decimalPlace);
+    const afterDecimalPlace = stringedNumber.slice(decimalPlace);
     
-    let array = afterDecimalPlace.split("");
-    let removedZeros;
+    let afterDecimalArray = afterDecimalPlace.split("");
+    let minusTrailingZeros;
 
     
     //create array to remove trailing zeros
-    for (let i = array.length; i >= 0; i--) {
+    for (let i = afterDecimalArray.length; i >= 0; i--) {
 
-            const last = array[array.length - 1];
-            if (last === "0" || last === ".") {
-                    array.pop();
+            const lastCharacter = afterDecimalArray[afterDecimalArray.length - 1];
+            if (lastCharacter === "0" || lastCharacter === ".") {
+                    afterDecimalArray.pop();
             } 
             //change back to string when removed zeros off end;
-            removedZeros = array.join("");
+            minusTrailingZeros = afterDecimalArray.join("");
     }
-    
+    console.log(`no trailing zeros at func end is ${minusTrailingZeros}`);
     // attach two parts back together and return;
-    return beforeDecimalPlace + removedZeros;
+    return beforeDecimalPlace + minusTrailingZeros;
 }
 
 
@@ -1018,6 +993,47 @@ if (displayNumber !== "-") {
 //add in clear entry func
 // addMinusSignEventListener();
 
+
+/*OLD IS PRECISE FUNC CODE*/
+    // if (stringedNumber.toLowerCase().includes("e")) {
+    //         console.log("triggered SN if in isPrecise");
+            // let baseIndex = stringedNumber.toLowerCase().indexOf("e");
+            // let significand = stringedNumber.slice(0, baseIndex);
+            // let significand = getSignificand(stringedNumber);
+            // let exponent = getExponent(stringedNumber);
+
+            // let cleanedSignificand = removeAllNonNumbers(significand);
+            // let cleanedExponent = removeAllNonNumbers(exponent);
+            //convert to nums and add to find  total digits;
+            // let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
+            // console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
+            //added exponent to check certain amount of zeros;
+            // let exponent = stringedNumber.slice(baseIndex + 1);
+            // if (exponent <= -5) {
+            //     console.log(`exponent value in is precise is ${exponent}`);
+            // }
+
+
+     //else { 
+
+        // let exponent = getExponent(stringedNumber);
+
+        // if(exponent !== undefined && exponent <= -7) {
+        //     console.log(`stringed num is ${stringedNumber}`);
+        //     value = 0;
+        // }
+    //     console.log("SN num isn't precise");
+    //     console.log("SN num is over 15 digits long");
+    //     return false;
+    // }; 
+    // }
+
+    // if (stringedNumber.includes(".")) {
+    //    let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+    //    if (cleanedDecimalNum.length <= 15) {
+    //       return true;
+    //     }
+    // }
 
 
 //Code for calculator accepting scientific notation
