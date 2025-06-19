@@ -286,6 +286,42 @@ function getScientificNumberLength(stringedNumber) {
     return stringedNumber;
 }
 
+function getDecimalNumberLength(stringedNumber) {
+    
+    //remove non string data types;
+    if(typeof stringedNumber !== "string") {
+        return stringedNumber;
+    }
+
+    //for decimals
+    if (stringedNumber.includes(".") && !stringedNumber.toLowerCase().includes("e")) {
+       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+       return cleanedDecimalNum.length;   
+    }
+    //if not decimal return as is;
+    return stringedNumber;
+}
+
+// function getNumberLength(stringedNumber) {
+
+//     //remove non string data types;
+//     if(typeof stringedNumber !== "string") {
+//         return stringedNumber;
+//     }
+
+//     //for integers
+//     let pureNumber = Number(stringedNumber);
+//     if (Number.isSafeInteger(pureNumber)) {
+//     return true;
+//     }
+//     return false;
+
+
+//     //if not decimal return as is;
+//     return stringedNumber;
+
+// }
+
 
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
