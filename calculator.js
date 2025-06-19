@@ -712,6 +712,7 @@ function resolveEquation(event) {
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
+        previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
         
         //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
@@ -719,18 +720,24 @@ function resolveEquation(event) {
         }
 
         if(!isPrecise(result)) {
-            clearAll();
-            previousExpressionDisplay.textContent = "";
-            console.log(`inprecise result in resolve equation is ${result}`);
-            currentDisplayText.textContent = "Precision Error";
-            return;
+            console.log("result is inprecise");
+            if (isSmallProperDecimal(result)) {
+                console.log(`${result} is a small decimal`)
+                result = "0";
+            } else {
+                console.log(`${result} is not a small decimal`)
+                clearAll();
+                // previousExpressionDisplay.textContent = "";
+                currentDisplayText.textContent = "Precision Error";
+                return;
+            }
                 
-        } else {
-            previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
+        }
+            // previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
+            console.log("refine result code in resolveEquation ran");
             numberOne = undefined;
             displayNumber = result;
             return refineResultForDisplay(result);
-        }
         
     };   
 }
@@ -860,6 +867,7 @@ document.addEventListener('keydown', (event) => {
     
     //store key in variable
     let key = event.key;
+    console.log(`key is ${key}`);
     event.preventDefault();
     if(heldDownKeys[key]) return;
     heldDownKeys[key] = true;
