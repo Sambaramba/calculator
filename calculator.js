@@ -269,7 +269,7 @@ function getScientificNumberLength(stringedNumber) {
     
     console.log(`starting num type in SN num length func is ${typeof stringedNumber}`);
     if(typeof stringedNumber !== "string") {
-        return stringedNumber;
+        return undefined;
     }
     //for Scientific Numbers
     if (stringedNumber.toLowerCase().includes("e")) {
@@ -283,14 +283,14 @@ function getScientificNumberLength(stringedNumber) {
             console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
             return totalSignificantDigits;       
     }
-    return stringedNumber;
+    return undefined;
 }
 
 function getDecimalNumberLength(stringedNumber) {
     
     //remove non string data types;
     if(typeof stringedNumber !== "string") {
-        return stringedNumber;
+        return undefined;
     }
 
     //for decimals
@@ -299,7 +299,7 @@ function getDecimalNumberLength(stringedNumber) {
        return cleanedDecimalNum.length;   
     }
     //if not decimal return as is;
-    return stringedNumber;
+    return undefined;
 }
 
 // function getNumberLength(stringedNumber) {
@@ -374,7 +374,7 @@ function isPrecise(stringedNumber) {
     //       return true;
     //     }
     // }
-    
+
     //for integers
     let pureNumber = Number(stringedNumber);
     if (Number.isSafeInteger(pureNumber)) {
