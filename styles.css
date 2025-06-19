@@ -57,7 +57,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 10px;
     background: linear-gradient(45deg, rgb(174, 182, 228), rgb(247, 255, 222));
 }
 
@@ -384,7 +384,8 @@ background-color: var(--light-orange);
 /*ACTIVE STYLES*/
 
 button:active {
-    transform: translateY(4px);
+    transform: translateY(0.25rem);
+    /* 4px */
 
 }
 
@@ -428,3 +429,27 @@ button:active {
 .green:focus::before {
     background-color: var(--bright-orange-highlight);
 }
+
+
+//===========================================================
+//MEDIA QUERIES
+//==============================================================
+
+
+/* Small devices: 600px and up */
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Medium devices and up: 768px and above (desktop) */
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+
+
+
