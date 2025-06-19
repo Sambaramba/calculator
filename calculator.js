@@ -364,12 +364,17 @@ function isPrecise(stringedNumber) {
     }
 
     //for decimals
-    if (stringedNumber.includes(".")) {
-       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-       if (cleanedDecimalNum.length <= 15) {
-          return true;
-        }
+    if(getDecimalNumberLength(stringedNumber) <= 15) {
+        console.log("decimal num is 15 or less long");
+        return true;
     }
+    // if (stringedNumber.includes(".")) {
+    //    let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+    //    if (cleanedDecimalNum.length <= 15) {
+    //       return true;
+    //     }
+    // }
+    
     //for integers
     let pureNumber = Number(stringedNumber);
     if (Number.isSafeInteger(pureNumber)) {
