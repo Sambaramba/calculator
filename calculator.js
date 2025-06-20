@@ -132,6 +132,17 @@ function getSignificand(stringedNumber) {
     return undefined;
 }
 
+//HELPER FUNCTION TO RETURN THE EXPONENT EXPRESSION PART OF SCIENTIFIC NUMBER
+
+function removeSignificand(stringedNumber) {
+     if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let removedSignificandNumber = stringedNumber.slice(indexOfBase);
+        return removedSignificandNumber;
+    }
+    return undefined;
+}
+
 
 //============================================================================================================
 //WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
@@ -324,6 +335,8 @@ function getDecimalNumberLength(stringedNumber) {
 // }
 
 
+
+
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
 
@@ -436,6 +449,76 @@ function removeTrailingZeros(stringedNumber) {
     // attach two parts back together and return;
     return beforeDecimalPlace + minusTrailingZeros;
 }
+
+//do i check or do i remove them?
+//Or both?
+//where am i using this in code?
+
+// function checkForZerosFollowedByEndNumber(stringedNumber) {
+
+//     let numberToCheck = stringedNumber;
+//     const endsWithZerosThenDigit = /(0{3,})\d$/;
+    
+
+//     if(typeof stringedNumber !== "string") {
+//         //convert to string
+//         numberToCheck = stringedNumber.toString();
+//     }
+//     //remove integers
+//     if(!stringedNumber.includes(".")) {
+//         return false;
+//         //check if need to change return statement to undefined.
+//     }
+    
+//     //
+//     if(stringedNumber.toLowerCase().includes("e")) {
+//        const significand = getSignificand(stringedNumber);
+//        numberToCheck = significand;
+//     } 
+
+//     if (endsWithZerosThenDigit.test(numberToCheck)) {
+//          return true;
+//     }
+//     return false;
+// }
+
+// function removeZerosFollowedByEndNumber(stringedNumber) {
+
+//     let numberToCheck = stringedNumber;
+
+//     if(typeof stringedNumber !== "string") {
+//         //convert to string
+//         numberToCheck = stringedNumber.toString();
+//     }
+    
+//     const endsWithZerosThenDigit = /(0{3,})\d$/;
+//     let significand = getSignificand(stringedNumber);
+//     let nonSignificandPart = removeSignificand(stringedNumber);
+
+//     if(stringedNumber.toLowerCase().includes("e") && 
+//        endsWithZerosThenDigit.test(significand)) {
+//        numberToCheck = significand;
+//     } 
+//     else if (stringedNumber.includes(".") && 
+//             endsWithZerosThenDigit.test(significand)) {
+//                 numberToCheck
+
+//     }
+    
+//     let removedtrailingDigitsNumber = undefined
+//     //This doesn't work for SN nums
+//     //Need to add to nonSignificanPart
+//     if (endsWithZerosThenDigit.test(numberToCheck)) {
+//         let removedEndDigitNumber = numberToCheck.slice(0, -1);
+//         removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
+//     }
+
+//     if (stringedNumber.toLowerCase().includes("e")) {
+//         return removedtrailingDigitsNumber + nonSignificandPart;
+//     }
+//     return removedtrailingDigitsNumber;
+   
+// }
 
 
 //HELPER FUNCTION FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
@@ -713,7 +796,7 @@ function resolveEquation(event) {
 
         let result = operate(numberOne, operator, numberTwo);
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
-        
+
         //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
             return;
