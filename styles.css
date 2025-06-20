@@ -58,6 +58,7 @@
 
 html {
     font-size: 10px;
+    font-size: clamp(10px, 1vw + 0.5rem, 16px);
     background: linear-gradient(45deg, rgb(174, 182, 228), rgb(247, 255, 222));
 }
 
@@ -436,20 +437,49 @@ button:active {
 //==============================================================
 
 
-/* Small devices: 600px and up */
-@media only screen and (min-width: 600px) {
+/* Small devices: 600px and up
+@media only screen and (min-width: 600px) and (max-width: 767.98px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Medium devices and up: 768px and above (desktop) */
+/* @media only screen and (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+} */
+
+
+
+
+/* @media (min-width: 480px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
   html {
     font-size: 13px;
   }
 }
 
-/* Medium devices and up: 768px and above (desktop) */
-@media only screen and (min-width: 768px) {
+@media (min-width: 1280px) {
   html {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
-
-
-
+@media (min-width: 1440px) {
+  html {
+    font-size: 16px; /* default desktop */
+  }
+} */
