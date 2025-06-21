@@ -78,15 +78,8 @@ const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 //============================================================
 
 
-
-//VALID NUMBER CHECKS
+//VALID NUMBER CHECK
 //--------------------
-
-//test if valid non zero number,returns true or false;
-function isNonZeroNumber(value) {
-    const number = Number(value);
-    return Number.isFinite(number) && number !== 0;
-}
 
 //test if valid number, returns true or false;
 //tests if argument is string or number datatype;
@@ -106,7 +99,6 @@ function isValidNumber(value) {
     }
     
 }
-
 
 
 //HELPER FUNCTIONS TO EXTRACT PARTS OF SCIENTIFIC NOTATION NUMBERS
@@ -130,7 +122,7 @@ function getExponent(stringedNumber) {
 //HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS SIGNIFICAND VALUE
 
 function getSignificand(stringedNumber) {
-    //return significan
+    //return significand
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let significand = stringedNumber.slice(0, indexOfBase);
@@ -156,10 +148,6 @@ function removeSignificand(stringedNumber) {
 }
 
 
-//============================================================================================================
-//WANT TO KEEP NUMBERS AS STRINGS THROUGHOUT CODE AS INBUILT JS WILL CONVERT OTHERWISE AND GIVE UNEXPECTED RESULTS
-//======================================================================================================================
-
 
 //Check if starts with 0.0000/00000;
 //returns true or false;
@@ -174,25 +162,6 @@ function isSmallProperDecimal(stringedNumber) {
         //for normal decimal/zero-padded strings
         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
         return startsWithFivePlusZeros.test(stringedNumber) ? true : false; 
-    }
-}
-
-
-//converts number to zero if it's a small proper decimal;
-//don't think need to return stringedNumber after the check func;
-function makeSmallProperDecimalsZero(stringedNumber) {
-     
-    //for scientific notation numbers
-    if (stringedNumber.toLowerCase().includes("e")) {
-        let exponent = getExponent(stringedNumber);
-
-        //converts Scientific numbers to zero if they represent very small decimals
-        return (exponent !== undefined && exponent <= -5) ? "0" : stringedNumber;
-    
-    } else {
-        //for normal decimal/zero-padded strings
-        let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
-        return startsWithFivePlusZeros.test(stringedNumber) ? "0" : stringedNumber; 
     }
 }
 
@@ -262,11 +231,10 @@ function operate(numberOne, operator, numberTwo, event) {
 
     }
     
-    // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
     
-    console.log(`value before remove 3+ zero then num if statement is ${value}`);
+    console.log(`value after calculation in operate is ${value}`);
 
     if (checkPaddedZerosWithEndNumber(value))  {
         console.log(`value before remove 3+ zero then num func is ${value}`);
@@ -332,25 +300,6 @@ function getDecimalNumberLength(stringedNumber) {
     return undefined;
 }
 
-// function getNumberLength(stringedNumber) {
-
-//     //remove non string data types;
-//     if(typeof stringedNumber !== "string") {
-//         return stringedNumber;
-//     }
-
-//     //for integers
-//     let pureNumber = Number(stringedNumber);
-//     if (Number.isSafeInteger(pureNumber)) {
-//     return true;
-//     }
-//     return false;
-
-
-//     //if not decimal return as is;
-//     return stringedNumber;
-
-// }
 
 
 
@@ -1050,6 +999,32 @@ document.addEventListener("keyup", (event) => {
 
 //UNUSED
 
+/*TEST FOR NON-ZERO NUMBER
+//test if valid non zero number,returns true or false;
+// function isNonZeroNumber(value) {
+//     const number = Number(value);
+//     return Number.isFinite(number) && number !== 0;
+// }
+
+/*FOR CONVERTING SMALL DECIMALS TO ZERO
+//converts number to zero if it's a small proper decimal;
+//don't think need to return stringedNumber after the check func;
+// function makeSmallProperDecimalsZero(stringedNumber) {
+     
+//     //for scientific notation numbers
+//     if (stringedNumber.toLowerCase().includes("e")) {
+//         let exponent = getExponent(stringedNumber);
+
+//         //converts Scientific numbers to zero if they represent very small decimals
+//         return (exponent !== undefined && exponent <= -5) ? "0" : stringedNumber;
+    
+//     } else {
+//         //for normal decimal/zero-padded strings
+//         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
+//         return startsWithFivePlusZeros.test(stringedNumber) ? "0" : stringedNumber; 
+//     }
+// }
+
 //ADD MINUS SIGN TO START OF NUMBERS CODE;
 /*
 let minusBtn = document.querySelector("#minus-button");
@@ -1220,6 +1195,27 @@ function convertToScientificNotation(number) {
 
 
 //BROKEN CODE
+
+
+// function getNumberLength(stringedNumber) {
+
+//     //remove non string data types;
+//     if(typeof stringedNumber !== "string") {
+//         return stringedNumber;
+//     }
+
+//     //for integers
+//     let pureNumber = Number(stringedNumber);
+//     if (Number.isSafeInteger(pureNumber)) {
+//     return true;
+//     }
+//     return false;
+
+
+//     //if not decimal return as is;
+//     return stringedNumber;
+
+// }
 
 //doesnt work for negative exponents yet
 //think if you have value as number not string will convert
