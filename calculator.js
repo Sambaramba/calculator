@@ -252,10 +252,15 @@ function operate(numberOne, operator, numberTwo, event) {
     // console.log( `value is : ${value}`);
     //convert to result back to string
     value = value.toString();
-    // console.log(`value before proper decimal func is ${value}`);
-    //converts to zero if proper decimal starts with five or more zeros
-    // value = makeSmallProperDecimalsZero(value);
-    // console.log(`value after proper decimal func is ${value}`);
+    
+    console.log(`value before remove 3+ zero then num if statement is ${value}`);
+
+    if (checkPaddedZerosWithEndNumber(value))  {
+        console.log(`value before remove 3+ zero then num func is ${value}`);
+         value = removeZerosFollowedByEndNumber(value);
+        console.log(`value after remove 3+ zero then num func is ${value}`);
+    }
+    
     
     return value;
 }
