@@ -450,9 +450,12 @@ function removeTrailingZeros(stringedNumber) {
     return beforeDecimalPlace + minusTrailingZeros;
 }
 
-//do i check or do i remove them?
-//Or both?
-//where am i using this in code?
+
+
+//HELPERS FOR OPERATE?
+//============================================================================
+
+//check if end of decimal ends with 3+ zeros before single number
 
 function checkPaddedZerosWithEndNumber(stringedNumber) {
 
@@ -482,43 +485,39 @@ function checkPaddedZerosWithEndNumber(stringedNumber) {
     return false;
 }
 
-// function removeZerosFollowedByEndNumber(stringedNumber) {
 
-//     let numberToCheck = stringedNumber;
+//removes those numbers if so
+function removeZerosFollowedByEndNumber(stringedNumber) {
 
-//     if(typeof stringedNumber !== "string") {
-//         //convert to string
-//         numberToCheck = stringedNumber.toString();
-//     }
+
+    if(typeof stringedNumber !== "string") {
+        return undefined;
+    }
     
-//     const endsWithZerosThenDigit = /(0{3,})\d$/;
-//     let significand = getSignificand(stringedNumber);
-//     let nonSignificandPart = removeSignificand(stringedNumber);
-
-//     if(stringedNumber.toLowerCase().includes("e") && 
-//        endsWithZerosThenDigit.test(significand)) {
-//        numberToCheck = significand;
-//     } 
-//     else if (stringedNumber.includes(".") && 
-//             endsWithZerosThenDigit.test(significand)) {
-//                 numberToCheck
-
-//     }
+    let removedEndDigitNumber = undefined;
+    let removedtrailingDigitsNumber = undefined
     
-//     let removedtrailingDigitsNumber = undefined
-//     //This doesn't work for SN nums
-//     //Need to add to nonSignificanPart
-//     if (endsWithZerosThenDigit.test(numberToCheck)) {
-//         let removedEndDigitNumber = numberToCheck.slice(0, -1);
-//         removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
-//     }
 
-//     if (stringedNumber.toLowerCase().includes("e")) {
-//         return removedtrailingDigitsNumber + nonSignificandPart;
-//     }
-//     return removedtrailingDigitsNumber;
+    ///for scientific notation numbers
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let significand = getSignificand(stringedNumber);
+        let nonSignificandPart = removeSignificand(stringedNumber);
+        removedEndDigitNumber = significand.slice(0, -1);
+        removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);
+        return removedtrailingDigitsNumber + nonSignificandPart;
+
+    } 
+    //For decimals
+    else if (stringedNumber.includes(".")) {
+        removedEndDigitNumber = stringedNumber.slice(0, -1);
+        removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
+        return removedtrailingDigitsNumber;
+    } else  {
+       return undefined;
+    }
+    
    
-// }
+}
 
 
 //HELPER FUNCTION FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
