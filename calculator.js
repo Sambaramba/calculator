@@ -454,33 +454,33 @@ function removeTrailingZeros(stringedNumber) {
 //Or both?
 //where am i using this in code?
 
-// function checkForZerosFollowedByEndNumber(stringedNumber) {
+function checkPaddedZerosWithEndNumber(stringedNumber) {
 
-//     let numberToCheck = stringedNumber;
-//     const endsWithZerosThenDigit = /(0{3,})\d$/;
+    let numberToCheck = stringedNumber;
+    const endsWithZerosThenDigit = /(0{3,})\d$/;
     
-
-//     if(typeof stringedNumber !== "string") {
-//         //convert to string
-//         numberToCheck = stringedNumber.toString();
-//     }
-//     //remove integers
-//     if(!stringedNumber.includes(".")) {
-//         return false;
-//         //check if need to change return statement to undefined.
-//     }
+    //convert to string
+    if(typeof stringedNumber !== "string") {
+        // numberToCheck = stringedNumber.toString();
+        return false;
+    }
+    //remove integers
+    if(!numberToCheck.includes(".")) {
+        return false;
+        //check if need to change return statement to undefined.
+    }
     
-//     //
-//     if(stringedNumber.toLowerCase().includes("e")) {
-//        const significand = getSignificand(stringedNumber);
-//        numberToCheck = significand;
-//     } 
+    //update with significand
+    if(stringedNumber.toLowerCase().includes("e")) {
+       const significand = getSignificand(stringedNumber);
+       numberToCheck = significand;
+    } 
 
-//     if (endsWithZerosThenDigit.test(numberToCheck)) {
-//          return true;
-//     }
-//     return false;
-// }
+    if (endsWithZerosThenDigit.test(numberToCheck)) {
+         return true;
+    }
+    return false;
+}
 
 // function removeZerosFollowedByEndNumber(stringedNumber) {
 
