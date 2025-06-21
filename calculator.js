@@ -71,11 +71,16 @@ const numbers = document.querySelectorAll(".number");
 const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
 
+
+
 //==========================================================
 // GENERIC HELPER FUNCTIONS;
 //============================================================
 
+
+
 //VALID NUMBER CHECKS
+//--------------------
 
 //test if valid non zero number,returns true or false;
 function isNonZeroNumber(value) {
@@ -102,7 +107,10 @@ function isValidNumber(value) {
     
 }
 
+
+
 //HELPER FUNCTIONS TO EXTRACT PARTS OF SCIENTIFIC NOTATION NUMBERS
+//----------------------------------------------------------------
 
 
 //HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS EXPONENT VALUE
@@ -113,7 +121,6 @@ function getExponent(stringedNumber) {
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let exponent = stringedNumber.slice(indexOfBase + 1);
-        //return exponent value as number type
         return exponent;
     }
     //or return no value
@@ -123,23 +130,28 @@ function getExponent(stringedNumber) {
 //HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS SIGNIFICAND VALUE
 
 function getSignificand(stringedNumber) {
+    //return significan
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let significand = stringedNumber.slice(0, indexOfBase);
+        console.log(`type of significand in get significand is ${typeof significand}`);
         return significand;
     }
-    //why return this? not stringed NUmber?
+    //or return no value;
     return undefined;
 }
 
 //HELPER FUNCTION TO RETURN THE EXPONENT EXPRESSION PART OF SCIENTIFIC NUMBER
 
 function removeSignificand(stringedNumber) {
+
+    //return exponent expression
      if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let removedSignificandNumber = stringedNumber.slice(indexOfBase);
         return removedSignificandNumber;
     }
+    //or return no value;
     return undefined;
 }
 
@@ -152,6 +164,7 @@ function removeSignificand(stringedNumber) {
 //Check if starts with 0.0000/00000;
 //returns true or false;
 function isSmallProperDecimal(stringedNumber) {
+
      //for scientific notation numbers
     if (stringedNumber.toLowerCase().includes("e")) {
         let exponent = getExponent(stringedNumber);
@@ -162,11 +175,11 @@ function isSmallProperDecimal(stringedNumber) {
         let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
         return startsWithFivePlusZeros.test(stringedNumber) ? true : false; 
     }
-    return false;
 }
 
 
 //converts number to zero if it's a small proper decimal;
+//don't think need to return stringedNumber after the check func;
 function makeSmallProperDecimalsZero(stringedNumber) {
      
     //for scientific notation numbers
@@ -270,7 +283,7 @@ function operate(numberOne, operator, numberTwo, event) {
 
 //used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
-    console.log(typeof stringedNumber);
+
     //removes all characters except numbers
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
 //    console.log(typeof cleanedNumber);
@@ -353,15 +366,14 @@ function isPrecise(stringedNumber) {
     
     if (scientificNotationLength <= 15 && 
         scientificNotationLength !== undefined) {
-        console.log("is a precise SN num");
             return true;
     } 
 
     //for decimals
     let decimalNumberLength = getDecimalNumberLength(stringedNumber);
+
     if(decimalNumberLength <= 15 && 
        decimalNumberLength !== undefined) {
-        console.log("is precise decimal num");
         return true;
     }
     
@@ -369,10 +381,8 @@ function isPrecise(stringedNumber) {
     //for integers
     let pureNumber = Number(stringedNumber);
     if (Number.isSafeInteger(pureNumber)) {
-        console.log("is precise integer")
     return true;
     }
-    console.log(`${stringedNumber} is not a precise number`);
     return false;
 }
 
@@ -391,7 +401,7 @@ function removeExcessDecimalPlaces(stringedNumber) {
         
         let number = Number(stringedNumber);
         let nonExponential = number.toFixed(15);
-        console.log(nonExponential);
+        
         return removeTrailingZeros(nonExponential);
         
     }
@@ -449,7 +459,6 @@ function removeTrailingZeros(stringedNumber) {
             //change back to string when removed zeros off end;
             minusTrailingZeros = afterDecimalArray.join("");
     }
-    console.log(`no trailing zeros at func end is ${minusTrailingZeros}`);
 
     // attach two parts back together and return;
     return beforeDecimalPlace + minusTrailingZeros;
@@ -553,7 +562,7 @@ function refineResultForDisplay(stringedNumber) {
         }
             
         // } else {
-            console.log(`type of cleaned number is ${typeof cleanedNumber}`);
+            // console.log(`type of cleaned number is ${typeof cleanedNumber}`);
             console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
             clearAll();
             return currentDisplayText.textContent = "NaN";
@@ -565,10 +574,10 @@ function refineResultForDisplay(stringedNumber) {
 
         currentDisplayText.textContent = refinedNumber;
     // }
-    console.log(`refined number at refine for display end is ${refinedNumber}`);
-    console.log(`display number at refine for display end is ${displayNumber}`);
-    console.log(`numberOne number at refine for display end is ${numberOne}`);
-    console.log(`numberTwo number at refine for display end is ${numberTwo}`);
+    // console.log(`refined number at refine for display end is ${refinedNumber}`);
+    // console.log(`display number at refine for display end is ${displayNumber}`);
+    // console.log(`numberOne number at refine for display end is ${numberOne}`);
+    // console.log(`numberTwo number at refine for display end is ${numberTwo}`);
     return;
 }  
 
@@ -669,10 +678,10 @@ addNumbersEventListener();
 
 
 function addOperator(event) {
-    
+    console.log(`type of display number at addOp start is ${typeof displayNumber}`);
     let currentOperator = event.target.textContent;
 
-    //highlights maths operator button;
+    //highlights current maths operator button;
     event.target.focus();
     
     //delete count property until next num btn is pressed
@@ -730,10 +739,10 @@ function addOperator(event) {
         //runs if result is within fine limits
         numberOne = result;
         numberTwo = undefined;
-        console.log(`Number one if result is fine in add operators is ${numberOne}`);
-        console.log(`result if result is fine in add operators is ${result}`);
-        console.log(`Number two if result is fine in add operators is ${numberTwo}`);
-        console.log(`display number if result is fine in add operators is ${displayNumber}`);
+        // console.log(`Number one if result is fine in add operators is ${numberOne}`);
+        // console.log(`result if result is fine in add operators is ${result}`);
+        // console.log(`Number two if result is fine in add operators is ${numberTwo}`);
+        // console.log(`display number if result is fine in add operators is ${displayNumber}`);
         addNumbersEventListener();
         removeEqualsEventListener();
         return refineResultForDisplay(result);    
@@ -774,7 +783,7 @@ function removeArithmeticOperatorsEventListener() {
 
 /*does not give correct answers for scientific notation*/
 function resolveEquation(event) {
-    
+    console.log(`type of display number at resolveEquation start is ${typeof displayNumber}`);
     //reset count property for addToDisplay();
     delete numbers.count;
 
@@ -954,7 +963,7 @@ document.addEventListener('keydown', (event) => {
     
     //store key in variable
     let key = event.key;
-    console.log(`key is ${key}`);
+    // console.log(`key is ${key}`);
     event.preventDefault();
     if(heldDownKeys[key]) return;
     heldDownKeys[key] = true;
