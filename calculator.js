@@ -101,6 +101,55 @@ function isValidNumber(value) {
 }
 
 
+//CERTAIN TYPES OF NUMBERS CHECKS
+//-------------------------------
+
+//Check if starts with 0.0000/00000;
+//returns true or false;
+function isSmallProperDecimal(stringedNumber) {
+
+     //for scientific notation numbers
+    if (stringedNumber.toLowerCase().includes("e")) {
+        let exponent = getExponent(stringedNumber);
+        return (exponent !== undefined && exponent <= -5) ? true : false;
+    
+    } else {
+        //for normal decimal/zero-padded strings
+        let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
+        return startsWithFivePlusZeros.test(stringedNumber) ? true : false; 
+    }
+}
+
+//check if end of decimal ends with 3+ zeros before single number
+function checkPaddedZerosWithEndNumber(stringedNumber) {
+
+    let numberToCheck = stringedNumber;
+    const endsWithZerosThenDigit = /(0{3,})\d$/;
+    
+    //convert to string
+    if(typeof stringedNumber !== "string") {
+        // numberToCheck = stringedNumber.toString();
+        return false;
+    }
+    //remove integers
+    if(!numberToCheck.includes(".")) {
+        return false;
+        //check if need to change return statement to undefined.
+    }
+    
+    //update with significand
+    if(stringedNumber.toLowerCase().includes("e")) {
+       const significand = getSignificand(stringedNumber);
+       numberToCheck = significand;
+    } 
+
+    if (endsWithZerosThenDigit.test(numberToCheck)) {
+         return true;
+    }
+    return false;
+}
+
+
 //HELPER FUNCTIONS TO EXTRACT PARTS OF SCIENTIFIC NOTATION NUMBERS
 //----------------------------------------------------------------
 
@@ -148,22 +197,6 @@ function removeSignificand(stringedNumber) {
 }
 
 
-
-//Check if starts with 0.0000/00000;
-//returns true or false;
-function isSmallProperDecimal(stringedNumber) {
-
-     //for scientific notation numbers
-    if (stringedNumber.toLowerCase().includes("e")) {
-        let exponent = getExponent(stringedNumber);
-        return (exponent !== undefined && exponent <= -5) ? true : false;
-    
-    } else {
-        //for normal decimal/zero-padded strings
-        let startsWithFivePlusZeros = /^0(\.0{4,}|0{4,})/;
-        return startsWithFivePlusZeros.test(stringedNumber) ? true : false; 
-    }
-}
 
 
 
@@ -248,6 +281,7 @@ function operate(numberOne, operator, numberTwo, event) {
 
 //=============================
 //HELPER FUNCTION FOR IS PRECISE AND REFINE FOR DISPLAY
+//is it now a generic helper function?
 
 //used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
@@ -416,37 +450,7 @@ function removeTrailingZeros(stringedNumber) {
 
 
 //HELPERS FOR OPERATE?
-//============================================================================
-
-//check if end of decimal ends with 3+ zeros before single number
-
-function checkPaddedZerosWithEndNumber(stringedNumber) {
-
-    let numberToCheck = stringedNumber;
-    const endsWithZerosThenDigit = /(0{3,})\d$/;
-    
-    //convert to string
-    if(typeof stringedNumber !== "string") {
-        // numberToCheck = stringedNumber.toString();
-        return false;
-    }
-    //remove integers
-    if(!numberToCheck.includes(".")) {
-        return false;
-        //check if need to change return statement to undefined.
-    }
-    
-    //update with significand
-    if(stringedNumber.toLowerCase().includes("e")) {
-       const significand = getSignificand(stringedNumber);
-       numberToCheck = significand;
-    } 
-
-    if (endsWithZerosThenDigit.test(numberToCheck)) {
-         return true;
-    }
-    return false;
-}
+//====================
 
 
 //removes those numbers if so
