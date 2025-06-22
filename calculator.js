@@ -81,8 +81,7 @@ const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 //VALID NUMBER CHECK
 //--------------------
 
-//test if valid number, returns true or false;
-//tests if argument is string or number datatype;
+//reuseable number check
 function isValidNumber(value) {
 
     if(typeof value === "number") {
@@ -104,8 +103,7 @@ function isValidNumber(value) {
 //CERTAIN TYPES OF NUMBERS CHECKS
 //-------------------------------
 
-//Check if starts with 0.0000/00000;
-//returns true or false;
+//Checks if number starts with 0.0000/00000;
 function isSmallProperDecimal(stringedNumber) {
 
      //for scientific notation numbers
@@ -224,60 +222,12 @@ function divide(a, b) {
 
 //carries out calculations
 //helper function in add maths operators and resolveEquation
-function operate(numberOne, operator, numberTwo, event) {
-     
 
-    //converts from string into number;
-    numberOne = parseFloat(numberOne);
-    numberTwo = parseFloat(numberTwo);
-    
-    let value;
+//========================================================================
+//INTERMEDIATE HELPER FUNCTIONS
+//===========================================================================
 
-    //divided by zero code with snarky message;
-    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
-        clearAll(event);
-        currentDisplayText.textContent = "Clever!";
-        //why am i returning value? is it for result? could i do NaN?
-        return value;
-    }
 
-    //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
-    switch (operator) {
-        
-        case plusOperator : 
-            value = add(numberOne, numberTwo);
-            break;
-
-        case minusOperator : 
-            value = subtract(numberOne, numberTwo);
-            break;
-
-        case multiplyOperator : 
-            value = multiply(numberOne, numberTwo);
-            break;
-
-        case divideOperator : 
-            value = divide(numberOne, numberTwo);
-            break;
-
-        default: console.log("That is not a arthmetic operator");
-
-    }
-    
-    //convert to result back to string
-    value = value.toString();
-    
-    console.log(`value after calculation in operate is ${value}`);
-
-    if (checkPaddedZerosWithEndNumber(value))  {
-        console.log(`value before remove 3+ zero then num func is ${value}`);
-         value = removeZerosFollowedByEndNumber(value);
-        console.log(`value after remove 3+ zero then num func is ${value}`);
-    }
-    
-    
-    return value;
-}
 
 //=============================
 //HELPER FUNCTION FOR IS PRECISE AND REFINE FOR DISPLAY
@@ -338,36 +288,7 @@ function getDecimalNumberLength(stringedNumber) {
 
 
 
-//checks if number is in precise range returning true or false;
-function isPrecise(stringedNumber) {
 
-    console.log(`number at isPrecise start is ${stringedNumber}`);
-    
-    //for Scientific Numbers
-    
-    let scientificNotationLength = getScientificNumberLength(stringedNumber);
-    
-    if (scientificNotationLength <= 15 && 
-        scientificNotationLength !== undefined) {
-            return true;
-    } 
-
-    //for decimals
-    let decimalNumberLength = getDecimalNumberLength(stringedNumber);
-
-    if(decimalNumberLength <= 15 && 
-       decimalNumberLength !== undefined) {
-        return true;
-    }
-    
-
-    //for integers
-    let pureNumber = Number(stringedNumber);
-    if (Number.isSafeInteger(pureNumber)) {
-    return true;
-    }
-    return false;
-}
 
 
 
@@ -379,6 +300,8 @@ function removeExcessDecimalPlaces(stringedNumber) {
     
     let refinedNumber = undefined;
     
+    //convert scientific notation numbers to normal number
+    //then remove zeros from end
     if (stringedNumber.includes("e")) {
         console.log("got e in remove dps");
         
@@ -486,8 +409,102 @@ function removeZerosFollowedByEndNumber(stringedNumber) {
    
 }
 
+//===============================================================================================
+//MAIN HELPER FUNCTIONS---
+//=============================================================================================
 
-//HELPER FUNCTION FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
+
+//HELPER FUNCTIONS FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
+
+
+function operate(numberOne, operator, numberTwo, event) {
+     
+
+    //converts from string into number;
+    numberOne = parseFloat(numberOne);
+    numberTwo = parseFloat(numberTwo);
+    
+    let value;
+
+    //divided by zero code with snarky message;
+    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
+        clearAll(event);
+        currentDisplayText.textContent = "Clever!";
+        //why am i returning value? is it for result? could i do NaN?
+        return value;
+    }
+
+    //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
+    switch (operator) {
+        
+        case plusOperator : 
+            value = add(numberOne, numberTwo);
+            break;
+
+        case minusOperator : 
+            value = subtract(numberOne, numberTwo);
+            break;
+
+        case multiplyOperator : 
+            value = multiply(numberOne, numberTwo);
+            break;
+
+        case divideOperator : 
+            value = divide(numberOne, numberTwo);
+            break;
+
+        default: console.log("That is not a arthmetic operator");
+
+    }
+    
+    //convert to result back to string
+    value = value.toString();
+    
+    console.log(`value after calculation in operate is ${value}`);
+
+    if (checkPaddedZerosWithEndNumber(value))  {
+        console.log(`value before remove 3+ zero then num func is ${value}`);
+         value = removeZerosFollowedByEndNumber(value);
+        console.log(`value after remove 3+ zero then num func is ${value}`);
+    }
+    
+    
+    return value;
+}
+
+
+
+//checks if number is in precise range returning true or false;
+function isPrecise(stringedNumber) {
+
+    console.log(`number at isPrecise start is ${stringedNumber}`);
+    
+    //for Scientific Numbers
+    
+    let scientificNotationLength = getScientificNumberLength(stringedNumber);
+    
+    if (scientificNotationLength <= 15 && 
+        scientificNotationLength !== undefined) {
+            return true;
+    } 
+
+    //for decimals
+    let decimalNumberLength = getDecimalNumberLength(stringedNumber);
+
+    if(decimalNumberLength <= 15 && 
+       decimalNumberLength !== undefined) {
+        return true;
+    }
+    
+
+    //for integers
+    let pureNumber = Number(stringedNumber);
+    if (Number.isSafeInteger(pureNumber)) {
+    return true;
+    }
+    return false;
+}
+
 
 
 //displays Nan or result dependant on num length;
