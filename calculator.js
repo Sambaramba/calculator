@@ -78,10 +78,7 @@ const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 //============================================================
 
 
-//VALID NUMBER CHECK
-//--------------------
-
-//reuseable number check
+//Reuseable number check
 function isValidNumber(value) {
 
     if(typeof value === "number") {
@@ -99,11 +96,66 @@ function isValidNumber(value) {
     
 }
 
+//used for checking absolute length of number
+function removeAllNonNumbers(stringedNumber) {
 
-//CERTAIN TYPES OF NUMBERS CHECKS
-//-------------------------------
+    //removes all characters except numbers
+   let cleanedNumber = stringedNumber.replace(/\D/g, "");
+//    console.log(typeof cleanedNumber);
+   return cleanedNumber;
+}
 
-//Checks if number starts with 0.0000/00000;
+
+// --------------------------------------
+// SCIENTIFIC NOTATION HELPERS
+// --------------------------------------
+
+
+// Extracts exponent from scientific notation string (e.g. "1e-6" => "-6")
+function getExponent(stringedNumber) {
+
+    //return exponent
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let exponent = stringedNumber.slice(indexOfBase + 1);
+        return exponent;
+    }
+    //or return no value
+    return undefined;
+}
+
+// Extracts significand from scientific notation string
+function getSignificand(stringedNumber) {
+    //return significand
+    if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let significand = stringedNumber.slice(0, indexOfBase);
+        console.log(`type of significand in get significand is ${typeof significand}`);
+        return significand;
+    }
+    //or return no value;
+    return undefined;
+}
+
+// Returns the exponent part including "e" 
+function removeSignificand(stringedNumber) {
+
+    //return exponent expression
+     if(stringedNumber.toLowerCase().includes("e")) {
+        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
+        let removedSignificandNumber = stringedNumber.slice(indexOfBase);
+        return removedSignificandNumber;
+    }
+    //or return no value;
+    return undefined;
+}
+
+
+//=================================================================
+//SCIENTIFIC NOTATION / NUMBER FORMAT HELPERS
+//=====================================================================
+
+//Checks if number starts with 0.0000/00000 (small decimals);
 function isSmallProperDecimal(stringedNumber) {
 
      //for scientific notation numbers
@@ -118,7 +170,10 @@ function isSmallProperDecimal(stringedNumber) {
     }
 }
 
-//check if end of decimal ends with 3+ zeros before single number
+
+
+
+//Checks if decimal ends with 3+ zeros before a single digit
 function checkPaddedZerosWithEndNumber(stringedNumber) {
 
     let numberToCheck = stringedNumber;
@@ -148,100 +203,6 @@ function checkPaddedZerosWithEndNumber(stringedNumber) {
 }
 
 
-//HELPER FUNCTIONS TO EXTRACT PARTS OF SCIENTIFIC NOTATION NUMBERS
-//----------------------------------------------------------------
-
-
-//HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS EXPONENT VALUE
-
-function getExponent(stringedNumber) {
-
-    //return exponent
-    if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let exponent = stringedNumber.slice(indexOfBase + 1);
-        return exponent;
-    }
-    //or return no value
-    return undefined;
-}
-
-//HELPER FUNCTION TO RETURN SCIENTIFIC NUMBERS SIGNIFICAND VALUE
-
-function getSignificand(stringedNumber) {
-    //return significand
-    if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let significand = stringedNumber.slice(0, indexOfBase);
-        console.log(`type of significand in get significand is ${typeof significand}`);
-        return significand;
-    }
-    //or return no value;
-    return undefined;
-}
-
-//HELPER FUNCTION TO RETURN THE EXPONENT EXPRESSION PART OF SCIENTIFIC NUMBER
-
-function removeSignificand(stringedNumber) {
-
-    //return exponent expression
-     if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let removedSignificandNumber = stringedNumber.slice(indexOfBase);
-        return removedSignificandNumber;
-    }
-    //or return no value;
-    return undefined;
-}
-
-
-
-
-
-//FOUR BASIC MATHS OPERATIONS
-//HELPER FUNCTIONS FOR OPERATE;
-
-function add (a, b ) {
-    return a + b;
-}
-
-function subtract (a, b) {
-    return a - b;
-}
-
-function multiply (a, b ) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-
-//i dont fully understand why this unicode conversion works in below function
-
-//carries out calculations
-//helper function in add maths operators and resolveEquation
-
-//========================================================================
-//INTERMEDIATE HELPER FUNCTIONS
-//===========================================================================
-
-
-
-//=============================
-//HELPER FUNCTION FOR IS PRECISE AND REFINE FOR DISPLAY
-//is it now a generic helper function?
-
-//used for checking absolute length of number
-function removeAllNonNumbers(stringedNumber) {
-
-    //removes all characters except numbers
-   let cleanedNumber = stringedNumber.replace(/\D/g, "");
-//    console.log(typeof cleanedNumber);
-   return cleanedNumber;
-}
-
 
 //helper function to find digits in scientific numbers
 //do i want to return stringed number when not SN number?
@@ -268,6 +229,7 @@ function getScientificNumberLength(stringedNumber) {
 }
 
 
+
 function getDecimalNumberLength(stringedNumber) {
     
     //remove non string data types;
@@ -284,51 +246,6 @@ function getDecimalNumberLength(stringedNumber) {
     return undefined;
 }
 
-
-
-
-
-
-
-
-
-//REFINE FOR DISPLAY HELPER FUNCTIONS
-//=================================
-
-
-function removeExcessDecimalPlaces(stringedNumber) {
-    
-    let refinedNumber = undefined;
-    
-    //convert scientific notation numbers to normal number
-    //then remove zeros from end
-    if (stringedNumber.includes("e")) {
-        console.log("got e in remove dps");
-        
-        let number = Number(stringedNumber);
-        let nonExponential = number.toFixed(15);
-        
-        return removeTrailingZeros(nonExponential);
-        
-    }
-    
-    //variables to check if number starts with single num before decimal place.
-    const minusNumberThenDecimal = /^-\d\./;
-    const numberThenDecimal = /^\d\./;
-
-    if (numberThenDecimal.test(stringedNumber) || 
-        minusNumberThenDecimal.test(stringedNumber))
-        {   
-            refinedNumber = Number(stringedNumber).toFixed(11);
-        } else {
-            refinedNumber = Number(stringedNumber).toFixed(2);
-        };
-    
-    //remove zeros from end of number;
-    refinedNumber = removeTrailingZeros(refinedNumber);
-    
-    return refinedNumber;
-} 
 
 
 function removeTrailingZeros(stringedNumber) {
@@ -372,11 +289,6 @@ function removeTrailingZeros(stringedNumber) {
 
 
 
-//HELPERS FOR OPERATE?
-//====================
-
-
-//removes those numbers if so
 function removeZerosFollowedByEndNumber(stringedNumber) {
 
 
@@ -409,68 +321,69 @@ function removeZerosFollowedByEndNumber(stringedNumber) {
    
 }
 
-//===============================================================================================
-//MAIN HELPER FUNCTIONS---
-//=============================================================================================
 
 
-//HELPER FUNCTIONS FOR ADD ARITHMETIC OPERATORS AND RESOLVE EQUATION FUNCTIONS
+// ===================================================================================
+// BASIC MATH OPERATIONS
+// ========================================================================================
 
 
-function operate(numberOne, operator, numberTwo, event) {
-     
-
-    //converts from string into number;
-    numberOne = parseFloat(numberOne);
-    numberTwo = parseFloat(numberTwo);
-    
-    let value;
-
-    //divided by zero code with snarky message;
-    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
-        clearAll(event);
-        currentDisplayText.textContent = "Clever!";
-        //why am i returning value? is it for result? could i do NaN?
-        return value;
-    }
-
-    //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
-    switch (operator) {
-        
-        case plusOperator : 
-            value = add(numberOne, numberTwo);
-            break;
-
-        case minusOperator : 
-            value = subtract(numberOne, numberTwo);
-            break;
-
-        case multiplyOperator : 
-            value = multiply(numberOne, numberTwo);
-            break;
-
-        case divideOperator : 
-            value = divide(numberOne, numberTwo);
-            break;
-
-        default: console.log("That is not a arthmetic operator");
-
-    }
-    
-    //convert to result back to string
-    value = value.toString();
-    
-    console.log(`value after calculation in operate is ${value}`);
-
-    if (checkPaddedZerosWithEndNumber(value))  {
-        console.log(`value before remove 3+ zero then num func is ${value}`);
-         value = removeZerosFollowedByEndNumber(value);
-        console.log(`value after remove 3+ zero then num func is ${value}`);
-    }
-    
-    
-    return value;
+function add (a, b ) {
+    return a + b;
 }
+
+function subtract (a, b) {
+    return a - b;
+}
+
+function multiply (a, b ) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
+
+//========================================================================
+//INTERMEDIATE HELPER FUNCTIONS
+//===========================================================================
+
+
+
+function removeExcessDecimalPlaces(stringedNumber) {
+    
+    let refinedNumber = undefined;
+    
+    //convert scientific notation numbers to normal number
+    //then remove zeros from end
+    if (stringedNumber.includes("e")) {
+        console.log("got e in remove dps");
+        
+        let number = Number(stringedNumber);
+        let nonExponential = number.toFixed(15);
+        
+        return removeTrailingZeros(nonExponential);
+        
+    }
+    
+    //variables to check if number starts with single num before decimal place.
+    const minusNumberThenDecimal = /^-\d\./;
+    const numberThenDecimal = /^\d\./;
+
+    if (numberThenDecimal.test(stringedNumber) || 
+        minusNumberThenDecimal.test(stringedNumber))
+        {   
+            refinedNumber = Number(stringedNumber).toFixed(11);
+        } else {
+            refinedNumber = Number(stringedNumber).toFixed(2);
+        };
+    
+    //remove zeros from end of number;
+    refinedNumber = removeTrailingZeros(refinedNumber);
+    
+    return refinedNumber;
+} 
 
 
 
@@ -551,6 +464,68 @@ function refineResultForDisplay(stringedNumber) {
     return;
 }  
 
+
+
+//===============================================================================================
+//MAIN HELPER FUNCTIONS---
+//=============================================================================================
+
+
+
+function operate(numberOne, operator, numberTwo, event) {
+     
+
+    //converts from string into number;
+    numberOne = parseFloat(numberOne);
+    numberTwo = parseFloat(numberTwo);
+    
+    let value;
+
+    //divided by zero code with snarky message;
+    if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
+        clearAll(event);
+        currentDisplayText.textContent = "Clever!";
+        //why am i returning value? is it for result? could i do NaN?
+        return value;
+    }
+
+    //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
+    switch (operator) {
+        
+        case plusOperator : 
+            value = add(numberOne, numberTwo);
+            break;
+
+        case minusOperator : 
+            value = subtract(numberOne, numberTwo);
+            break;
+
+        case multiplyOperator : 
+            value = multiply(numberOne, numberTwo);
+            break;
+
+        case divideOperator : 
+            value = divide(numberOne, numberTwo);
+            break;
+
+        default: console.log("That is not a arthmetic operator");
+
+    }
+    
+    //convert to result back to string
+    value = value.toString();
+    
+    console.log(`value after calculation in operate is ${value}`);
+
+    if (checkPaddedZerosWithEndNumber(value))  {
+        console.log(`value before remove 3+ zero then num func is ${value}`);
+         value = removeZerosFollowedByEndNumber(value);
+        console.log(`value after remove 3+ zero then num func is ${value}`);
+    }
+    
+    
+    return value;
+}
 
 
 
