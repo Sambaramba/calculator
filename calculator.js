@@ -11,7 +11,7 @@ let numberTwo = undefined;
 
 //variables to store display values;
 let currentDisplayNumber = "";
-// let previousExpressionDisplayNumber = "";
+let previousExpressionDisplayNumber = "";
 
 //VARIABLES THAT STORE MATHS BUTTONS TEXTCONTENT
 //these are used to make operate functions switch statement more readable;
@@ -63,7 +63,7 @@ let currentDisplayText = document.querySelector("#current-display");
 currentDisplayText.textContent = "0";
 
 let previousExpressionDisplay = document.querySelector("#previous-expression-display");
-
+previousExpressionDisplay.textContent = "";
 
 //GROUPING DOM ELEMENTS;
 
@@ -552,11 +552,12 @@ function addNumberToDisplay(event) {
 
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
-        previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
+        previousExpressionDisplayNumber = `${numberOne} ${operator}`
+        previousExpressionDisplay.textContent = previousExpressionDisplayNumber;
     }
 
     //resets calculator after pressed equals;
-    if (!isValidNumber(numberOne) && operator && isValidNumber(displayNumber)) {
+    if (!isValidNumber(numberOne) && operator && isValidNumber(currentDisplayNumber)) {
         clearAll();
     }
 
@@ -760,6 +761,7 @@ function resolveEquation(event) {
 
         //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
+            previousExpressionDisplay.textContent = "";
             return;
         }
 
@@ -804,6 +806,7 @@ function removeEqualsEventListener() {
 
 function clearAll(event) {
     currentDisplayNumber = "";
+    previousExpressionDisplayNumber = "";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
@@ -813,7 +816,6 @@ function clearAll(event) {
     currentDisplayText.textContent = "0";
     previousExpressionDisplay.textContent = "";
     addNumbersEventListener();
-    addArithmeticOperatorsEventListener();
     removeEqualsEventListener();
 }
 
