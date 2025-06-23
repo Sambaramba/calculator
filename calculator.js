@@ -127,6 +127,7 @@ function getExponent(stringedNumber) {
 
 // Extracts significand from scientific notation string
 function getSignificand(stringedNumber) {
+
     //return significand
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
@@ -150,6 +151,7 @@ function removeSignificand(stringedNumber) {
     //or return no value;
     return undefined;
 }
+
 
 
 //=================================================================
@@ -182,13 +184,11 @@ function checkPaddedZerosWithEndNumber(stringedNumber) {
     
     //convert to string
     if(typeof stringedNumber !== "string") {
-        // numberToCheck = stringedNumber.toString();
         return false;
     }
     //remove integers
     if(!numberToCheck.includes(".")) {
         return false;
-        //check if need to change return statement to undefined.
     }
     
     //update with significand
@@ -203,18 +203,18 @@ function checkPaddedZerosWithEndNumber(stringedNumber) {
     return false;
 }
 
+//--------------------------------------------------------------------
+//FIND NUMBERS LENGTH FUNCTIONS
+//--------------------------------------------------------------------
 
 
-//helper function to find digits in scientific numbers
-//do i want to return stringed number when not SN number?
-//or undefined/null/NaN?
 function getScientificNumberLength(stringedNumber) {
     
     
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
-    //for Scientific Numbers
+    
     if (stringedNumber.toLowerCase().includes("e")) {
             let significand = getSignificand(stringedNumber);
             let exponent = getExponent(stringedNumber);
@@ -233,20 +233,22 @@ function getScientificNumberLength(stringedNumber) {
 
 function getDecimalNumberLength(stringedNumber) {
     
-    //remove non string data types;
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
 
-    //for decimals
-    if (stringedNumber.includes(".") && !stringedNumber.toLowerCase().includes("e")) {
-       let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-       return cleanedDecimalNum.length;   
+    if (stringedNumber.includes(".") && 
+       !stringedNumber.toLowerCase().includes("e")) {
+            let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
+            return cleanedDecimalNum.length;   
     }
-    //if not decimal return as is;
+
     return undefined;
 }
 
+//---------------------------------------------------
+//REMOVE ZEROS FUNCTIONS
+//--------------------------------------------------------------------
 
 
 function removeTrailingZeros(stringedNumber) {
@@ -283,7 +285,6 @@ function removeTrailingZeros(stringedNumber) {
             //change back to string when removed zeros off end;
             minusTrailingZeros = afterDecimalArray.join("");
     }
-
     // attach two parts back together and return;
     return beforeDecimalPlace + minusTrailingZeros;
 }
@@ -292,14 +293,12 @@ function removeTrailingZeros(stringedNumber) {
 
 function removeZerosFollowedByEndNumber(stringedNumber) {
 
-
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
     
     let removedEndDigitNumber = undefined;
     let removedtrailingDigitsNumber = undefined
-    
 
     ///for scientific notation numbers
     if(stringedNumber.toLowerCase().includes("e")) {
@@ -318,8 +317,6 @@ function removeZerosFollowedByEndNumber(stringedNumber) {
     } else  {
        return undefined;
     }
-    
-   
 }
 
 
@@ -389,16 +386,15 @@ function removeExcessDecimalPlaces(stringedNumber) {
 //checks if number is in precise range returning true or false;
 function isPrecise(stringedNumber) {
 
-    console.log(`number at isPrecise start is ${stringedNumber}`);
     
     //for Scientific Numbers
-    
     let scientificNotationLength = getScientificNumberLength(stringedNumber);
     
     if (scientificNotationLength <= 15 && 
         scientificNotationLength !== undefined) {
             return true;
     } 
+
 
     //for decimals
     let decimalNumberLength = getDecimalNumberLength(stringedNumber);
@@ -419,50 +415,30 @@ function isPrecise(stringedNumber) {
 
 
 
-//displays Nan or result dependant on num length;
-//used to display result 
-function refineResultForDisplay(stringedNumber) {
 
-    // previousExpressionDisplay = `${numberOne} ${operator} ${numberTwo}`;
+function refineResultForDisplay(stringedNumber) {
 
     // remove excess dps from result;  
     let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
     
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
+
     //keeps result to 12 digits max and updates display
     if (cleanedNumber.length > 12) {
-        // console.log(`refined number before make zero is: ${refinedNumber}`);
-
         //update refined number to zero if is small decimal;
-        // refinedNumber = makeSmallProperDecimalsZero(refinedNumber);
-        // console.log(`refined number after make zero is: ${refinedNumber}`);
         if (isSmallProperDecimal(refinedNumber)) {
             refinedNumber = "0";
-            // console.log("is small decimal over 12 digits");
-            // console.log(`refined number after small proper decimal check is: ${refinedNumber}`);
             console.log(`refined number is ${refinedNumber} (should be zero)`);
             return currentDisplayText.textContent = refinedNumber;
         }
             
-        // } else {
-            // console.log(`type of cleaned number is ${typeof cleanedNumber}`);
-            // console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
             clearAll();
             return currentDisplayText.textContent = "NaN";
         }
        
-        
-    // } else {
-        
-
         currentDisplayText.textContent = refinedNumber;
-    // }
-    // console.log(`refined number at refine for display end is ${refinedNumber}`);
-    // console.log(`display number at refine for display end is ${displayNumber}`);
-    // console.log(`numberOne number at refine for display end is ${numberOne}`);
-    // console.log(`numberTwo number at refine for display end is ${numberTwo}`);
-    return;
+
 }  
 
 
@@ -486,7 +462,6 @@ function operate(numberOne, operator, numberTwo, event) {
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
-        // previousExpressionDisplay = "";
         currentDisplayText.textContent = "Clever!";
         //why am i returning value? is it for result? could i do NaN?
         return value;
@@ -521,9 +496,7 @@ function operate(numberOne, operator, numberTwo, event) {
     console.log(`value after calculation in operate is ${value}`);
 
     if (checkPaddedZerosWithEndNumber(value))  {
-        console.log(`value before remove 3+ zero then num func is ${value}`);
          value = removeZerosFollowedByEndNumber(value);
-        console.log(`value after remove 3+ zero then num func is ${value}`);
     }
     
     
@@ -673,25 +646,17 @@ function addOperator(event) {
         
         // if runs when number has lost precision
         if(!isPrecise(result)) {
-            console.log("result is inprecise");
             if (isSmallProperDecimal(result)) {
-                console.log(`${result} is a small decimal`)
                 result = "0";
             } else {
-                console.log(`${result} is not a small decimal`)
                 clearAll();
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }       
         }
-        //runs if result is within fine limits
-
+        //runs if result is in acceptable limits
         numberOne = result;
         numberTwo = undefined;
-        // console.log(`Number one if result is fine in add operators is ${numberOne}`);
-        // console.log(`result if result is fine in add operators is ${result}`);
-        // console.log(`Number two if result is fine in add operators is ${numberTwo}`);
-        // console.log(`display number if result is fine in add operators is ${displayNumber}`);
         addNumbersEventListener();
         removeEqualsEventListener();
         return refineResultForDisplay(result);    
@@ -732,22 +697,16 @@ function removeArithmeticOperatorsEventListener() {
 
 /*does not give correct answers for scientific notation*/
 function resolveEquation(event) {
-    console.log(`type of current display number at resolveEquation start is ${typeof currentDisplayNumber}`);
-    //reset count property for addToDisplay();
+
+    //resets count for next number;
     delete numbers.count;
 
-    //readd event listener for repeat operations
-    //think this can be deleted;
-    // addArithmeticOperatorsEventListener();
-
-
-    
-    //if number One doesn't have a value add currentDisplayNumber to it
+    //stores first number for next calculation
     if(!isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && isValidNumber(numberTwo)) {
         numberOne = currentDisplayNumber;
     }
     
-    //If number 2 doesn't have value add currentDisplayNumber to it;
+    //Allows operate to run later in this function
     if (isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = currentDisplayNumber;
     }
@@ -766,21 +725,15 @@ function resolveEquation(event) {
         }
 
         if(!isPrecise(result)) {
-            console.log("result is inprecise");
             if (isSmallProperDecimal(result)) {
-                console.log(`${result} is a small decimal`)
                 result = "0";
             } else {
-                console.log(`${result} is not a small decimal`)
                 clearAll();
-                // previousExpressionDisplay.textContent = "";
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }
                 
         }
-            // previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
-            console.log("refine result code in resolveEquation ran");
             numberOne = undefined;
             currentDisplayNumber = result;
             return refineResultForDisplay(result);
