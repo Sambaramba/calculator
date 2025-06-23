@@ -58,10 +58,10 @@ const decimalPlaceButton = document.querySelector("#dot-button");
 
 //OTHER INDIVIDUAL ELEMENTS;
 
-const currentDisplayText = document.querySelector("#current-display");
+let currentDisplayText = document.querySelector("#current-display");
 currentDisplayText.textContent = "0";
 
-const previousExpressionDisplay = document.querySelector("#previous-expression-display");
+let previousExpressionDisplay = document.querySelector("#previous-expression-display");
 
 
 //GROUPING DOM ELEMENTS;
@@ -252,7 +252,7 @@ function removeTrailingZeros(stringedNumber) {
      
     //exits out if scientific notation number;
     if (stringedNumber.includes("e")) {
-        console.log("we got some e");
+        console.log("we got some e in remove zeros func");
         return stringedNumber;
     }
     //stores index of dp;
@@ -356,9 +356,7 @@ function removeExcessDecimalPlaces(stringedNumber) {
     let refinedNumber = undefined;
     
     //convert scientific notation numbers to normal number
-    //then remove zeros from end
     if (stringedNumber.includes("e")) {
-        console.log("got e in remove dps");
         
         let number = Number(stringedNumber);
         let nonExponential = number.toFixed(15);
@@ -438,15 +436,15 @@ function refineResultForDisplay(stringedNumber) {
         // console.log(`refined number after make zero is: ${refinedNumber}`);
         if (isSmallProperDecimal(refinedNumber)) {
             refinedNumber = "0";
-            console.log("is small decimal over 12 digits");
-            console.log(`refined number after small proper decimal check is: ${refinedNumber}`);
+            // console.log("is small decimal over 12 digits");
+            // console.log(`refined number after small proper decimal check is: ${refinedNumber}`);
             console.log(`refined number is ${refinedNumber} (should be zero)`);
             return currentDisplayText.textContent = refinedNumber;
         }
             
         // } else {
             // console.log(`type of cleaned number is ${typeof cleanedNumber}`);
-            console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
+            // console.log(`cleaned number with over 12 or more digits is: ${cleanedNumber}`);
             clearAll();
             return currentDisplayText.textContent = "NaN";
         }
@@ -479,11 +477,12 @@ function operate(numberOne, operator, numberTwo, event) {
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
     
-    let value;
+    let value = undefined;
 
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
+        previousExpressionDisplay = "";
         currentDisplayText.textContent = "Clever!";
         //why am i returning value? is it for result? could i do NaN?
         return value;
@@ -526,7 +525,6 @@ function operate(numberOne, operator, numberTwo, event) {
     
     return value;
 }
-
 
 
 
