@@ -9,8 +9,9 @@ let numberOne = undefined;
 let operator = undefined;
 let numberTwo = undefined;
 
-//variable to store display value;
-let displayNumber = "";
+//variables to store display values;
+let currentDisplayNumber = "";
+// let previousExpressionDisplayNumber = "";
 
 //VARIABLES THAT STORE MATHS BUTTONS TEXTCONTENT
 //these are used to make operate functions switch statement more readable;
@@ -422,9 +423,11 @@ function isPrecise(stringedNumber) {
 //used to display result 
 function refineResultForDisplay(stringedNumber) {
 
+    // previousExpressionDisplay = `${numberOne} ${operator} ${numberTwo}`;
+
     // remove excess dps from result;  
     let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
-
+    
     //removes all non numbers for results length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
     //keeps result to 12 digits max and updates display
@@ -472,6 +475,7 @@ function refineResultForDisplay(stringedNumber) {
 
 function operate(numberOne, operator, numberTwo, event) {
      
+    // previousExpressionDisplay = `${numberOne} ${operator} ${numberTwo}`;
 
     //converts from string into number;
     numberOne = parseFloat(numberOne);
@@ -482,7 +486,7 @@ function operate(numberOne, operator, numberTwo, event) {
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
-        previousExpressionDisplay = "";
+        // previousExpressionDisplay = "";
         currentDisplayText.textContent = "Clever!";
         //why am i returning value? is it for result? could i do NaN?
         return value;
@@ -541,9 +545,9 @@ function addNumberToDisplay(event) {
 
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
-    if (displayNumber === undefined) {
+    if (currentDisplayNumber === undefined) {
         console.log("this aint no proper number");
-        displayNumber = "";
+        currentDisplayNumber = "";
     };
 
     //display 1st part of calculation for clarity;
@@ -571,7 +575,7 @@ function addNumberToDisplay(event) {
     //keeps length of each number to 9 max
     if (numbers.count >= 9) {
         removeNumbersEventListener();
-        return currentDisplayText.textContent = displayNumber;
+        return currentDisplayText.textContent = currentDisplayNumber;
     }
     
     //increment to keep record of current number length;
@@ -579,10 +583,10 @@ function addNumberToDisplay(event) {
 
     
     //Either replace displayNumber or add to it
-    if (displayNumber === "0") {
-        displayNumber = eventNum;
+    if (currentDisplayNumber === "0") {
+        currentDisplayNumber = eventNum;
     } else {
-        displayNumber += eventNum;
+        currentDisplayNumber += eventNum;
     }
 
     
@@ -590,7 +594,7 @@ function addNumberToDisplay(event) {
     if (isValidNumber(numberOne) && numbers.count === 1) {
         addEqualsEventListener();
     }
-    return currentDisplayText.textContent = displayNumber;
+    return currentDisplayText.textContent = currentDisplayNumber;
 };
 
 
@@ -621,7 +625,7 @@ addNumbersEventListener();
 
 
 function addOperator(event) {
-    console.log(`type of display number at addOp start is ${typeof displayNumber}`);
+    console.log(`type of current display number at addOp start is ${typeof currentDisplayNumber}`);
     let currentOperator = event.target.textContent;
 
     //highlights current maths operator button;
@@ -637,17 +641,17 @@ function addOperator(event) {
     }
 
     //Add display number to numberOne variable if it has no value;
-    if (!isValidNumber(numberOne)&& isValidNumber(displayNumber)) {
-        numberOne = displayNumber;
-        displayNumber = "";
+    if (!isValidNumber(numberOne)&& isValidNumber(currentDisplayNumber)) {
+        numberOne = currentDisplayNumber;
+        currentDisplayNumber = "";
         addNumbersEventListener();
     }
 
     //add current display number to 2nd number var
     if (isValidNumber(numberOne) && operator &&
-        isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
-            numberTwo = displayNumber;
-            displayNumber = "";
+        isValidNumber(currentDisplayNumber) && !isValidNumber(numberTwo)) {
+            numberTwo = currentDisplayNumber;
+            currentDisplayNumber = "";
     }
 
 
@@ -680,6 +684,7 @@ function addOperator(event) {
             }       
         }
         //runs if result is within fine limits
+
         numberOne = result;
         numberTwo = undefined;
         // console.log(`Number one if result is fine in add operators is ${numberOne}`);
@@ -726,7 +731,7 @@ function removeArithmeticOperatorsEventListener() {
 
 /*does not give correct answers for scientific notation*/
 function resolveEquation(event) {
-    console.log(`type of display number at resolveEquation start is ${typeof displayNumber}`);
+    console.log(`type of current display number at resolveEquation start is ${typeof currentDisplayNumber}`);
     //reset count property for addToDisplay();
     delete numbers.count;
 
@@ -736,14 +741,14 @@ function resolveEquation(event) {
 
 
     
-    //if number One doesn't have a value add displayNumber to it
-    if(!isValidNumber(numberOne) && isValidNumber(displayNumber) && isValidNumber(numberTwo)) {
-        numberOne = displayNumber;
+    //if number One doesn't have a value add currentDisplayNumber to it
+    if(!isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && isValidNumber(numberTwo)) {
+        numberOne = currentDisplayNumber;
     }
     
-    //If number 2 doesn't have value add displayNumber to it;
-    if (isValidNumber(numberOne) && isValidNumber(displayNumber) && !isValidNumber(numberTwo)) {
-        numberTwo = displayNumber;
+    //If number 2 doesn't have value add currentDisplayNumber to it;
+    if (isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && !isValidNumber(numberTwo)) {
+        numberTwo = currentDisplayNumber;
     }
 
 
@@ -775,7 +780,7 @@ function resolveEquation(event) {
             // previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
             console.log("refine result code in resolveEquation ran");
             numberOne = undefined;
-            displayNumber = result;
+            currentDisplayNumber = result;
             return refineResultForDisplay(result);
         
     };   
@@ -798,7 +803,7 @@ function removeEqualsEventListener() {
 
 
 function clearAll(event) {
-    displayNumber = "";
+    currentDisplayNumber = "";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
@@ -826,27 +831,27 @@ allClearButton.addEventListener("click", clearAll);
 function deleteCharacter(event) {
     
     //readds number event
-    if(displayNumber.length === 9) {
+    if(currentDisplayNumber.length === 9) {
         addNumbersEventListener();
     }
     
     //stores value of last character
-    let lastCharacter = displayNumber.charAt(displayNumber.length - 1);
+    let lastCharacter = currentDisplayNumber.charAt(currentDisplayNumber.length - 1);
     
     //decrements count property if last character is number
     if(Number(lastCharacter)) {
         --numbers.count;
     }
     //stores number with last character removed
-    let numberMinusLastCharacter = displayNumber.slice(0, -1);
+    let numberMinusLastCharacter = currentDisplayNumber.slice(0, -1);
 
-    displayNumber = numberMinusLastCharacter;
+    currentDisplayNumber = numberMinusLastCharacter;
     currentDisplayText.textContent = numberMinusLastCharacter;
     
-    if (displayNumber.length === 0) {
+    if (currentDisplayNumber.length === 0) {
         // delete numbers.count;
         removeDecimalPlaceEventListener();
-        displayNumber = "";
+        currentDisplayNumber = "";
         removeClearEntryEventListener();
         return currentDisplayText.textContent = "0";
     }
@@ -875,9 +880,9 @@ function removeClearEntryEventListener() {
 function addDecimalPlace(event) {
 
     const decimalPlace = event.target.textContent;
-    if (!displayNumber.includes(decimalPlace) && isValidNumber(displayNumber)) {
-        displayNumber += decimalPlace;
-        currentDisplayText.textContent = displayNumber;
+    if (!currentDisplayNumber.includes(decimalPlace) && isValidNumber(currentDisplayNumber)) {
+        currentDisplayNumber += decimalPlace;
+        currentDisplayText.textContent = currentDisplayNumber;
      }
 }
 
