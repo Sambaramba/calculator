@@ -717,6 +717,7 @@ function resolveEquation(event) {
 
         let result = operate(numberOne, operator, numberTwo);
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
+        removeClearEntryEventListener()
 
         //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
