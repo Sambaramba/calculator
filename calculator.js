@@ -515,7 +515,8 @@ function operate(numberOne, operator, numberTwo, event) {
 
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
-
+     
+    previousExpressionDisplay.textContent = "";
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
     if (currentDisplayNumber === undefined) {
@@ -618,6 +619,7 @@ function addOperator(event) {
     if (!isValidNumber(numberOne)&& isValidNumber(currentDisplayNumber)) {
         numberOne = currentDisplayNumber;
         currentDisplayNumber = "";
+        previousExpressionDisplay.textContent = `${numberOne} ${currentOperator}`;
         addNumbersEventListener();
     }
 
@@ -717,7 +719,7 @@ function resolveEquation(event) {
 
         let result = operate(numberOne, operator, numberTwo);
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
-        removeClearEntryEventListener()
+        removeClearEntryEventListener();
 
         //when divide by zero exit out of whole function
         if(!isValidNumber(result)) {
@@ -730,6 +732,8 @@ function resolveEquation(event) {
                 result = "0";
             } else {
                 clearAll();
+                previousDisplayNumber = `${result} =`
+                previousExpressionDisplay.textContent = previousDisplayNumber;
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }
