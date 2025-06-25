@@ -59,15 +59,17 @@ const decimalPlaceButton = document.querySelector("#dot-button");
 
 //OTHER INDIVIDUAL ELEMENTS;
 
+// Select and initialize the current display element
 let currentDisplayText = document.querySelector("#current-display");
 currentDisplayText.textContent = "0";
 
+// Select and clear the previous expression display
 let previousExpressionDisplay = document.querySelector("#previous-expression-display");
 previousExpressionDisplay.textContent = "";
 
+
 //GROUPING DOM ELEMENTS;
 
-//number and maths selector alls
 const numbers = document.querySelectorAll(".number");
 const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 
@@ -100,9 +102,8 @@ function isValidNumber(value) {
 //used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
 
-    //removes all characters except numbers
+    //removes all non-number characters
    let cleanedNumber = stringedNumber.replace(/\D/g, "");
-//    console.log(typeof cleanedNumber);
    return cleanedNumber;
 }
 
@@ -132,7 +133,6 @@ function getSignificand(stringedNumber) {
     if(stringedNumber.toLowerCase().includes("e")) {
         let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
         let significand = stringedNumber.slice(0, indexOfBase);
-        console.log(`type of significand in get significand is ${typeof significand}`);
         return significand;
     }
     //or return no value;
@@ -177,26 +177,27 @@ function isSmallProperDecimal(stringedNumber) {
 
 
 //Checks if decimal ends with 3+ zeros before a single digit
-function checkPaddedZerosWithEndNumber(stringedNumber) {
+function hasTrailingZerosBeforeDigit(stringedNumber) {
 
     let numberToCheck = stringedNumber;
     const endsWithZerosThenDigit = /(0{3,})\d$/;
     
-    //convert to string
+    //Ensure input is a string: otherwise, return false
     if(typeof stringedNumber !== "string") {
         return false;
     }
-    //remove integers
+
+    //return false if numbers not a decimal
     if(!numberToCheck.includes(".")) {
         return false;
     }
     
-    //update with significand
+    //Extract significand if numbers is scientfic notation
     if(stringedNumber.toLowerCase().includes("e")) {
        const significand = getSignificand(stringedNumber);
        numberToCheck = significand;
     } 
-
+    //Test if the string ends with three or more zeros followed by a digit
     if (endsWithZerosThenDigit.test(numberToCheck)) {
          return true;
     }
@@ -495,7 +496,7 @@ function operate(numberOne, operator, numberTwo, event) {
     
     console.log(`value after calculation in operate is ${value}`);
 
-    if (checkPaddedZerosWithEndNumber(value))  {
+    if (hasTrailingZerosBeforeDigit(value))  {
          value = removeZerosFollowedByEndNumber(value);
     }
     
