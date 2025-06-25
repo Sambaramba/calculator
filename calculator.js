@@ -506,7 +506,6 @@ function operate(numberOne, operator, numberTwo, event) {
 
 
 
-
 //=====================================================
 //FEATURE: ADD NUMBERS TO CALCULATOR
 //=====================================================
@@ -652,6 +651,8 @@ function addOperator(event) {
                 result = "0";
             } else {
                 clearAll();
+                previousDisplayNumber = `${result} =`;
+                previousExpressionDisplay.textContent = previousDisplayNumber;
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }       
@@ -828,10 +829,6 @@ function removeClearEntryEventListener() {
 
 
 
-
-
-
-
 //=====================================================
 //FEATURE: ADD DECIMAl PLACE TO NUMBERS CODE;
 //=====================================================
@@ -854,7 +851,6 @@ function addDecimalPlaceEventListener() {
 function removeDecimalPlaceEventListener() {
     decimalPlaceButton.removeEventListener("click", addDecimalPlace);
 }
-
 
 
 
