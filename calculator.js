@@ -3,22 +3,13 @@
 //============================================================
 
 //VARIABLES FOR THE MATHS EXPRESSION
-
-
 let numberOne = undefined;
 let operator = undefined;
 let numberTwo = undefined;
 
-//variables to store display values;
+//VARIABLES THAT STORE DISPLAY VALUES
 let currentDisplayNumber = "";
 let previousExpressionDisplayNumber = "";
-
-//VARIABLES THAT STORE MATHS BUTTONS TEXTCONTENT
-//these are used to make operate functions switch statement more readable;
-const plusOperator = "\u002B";
-const minusOperator = "\u2212";
-const multiplyOperator = "\u00D7";
-const divideOperator = "\u00F7";
 
 
 //==========================================================
@@ -419,28 +410,29 @@ function isPrecise(stringedNumber) {
 
 
 function refineResultForDisplay(stringedNumber) {
-
-    // remove excess dps from result;  
+    
+    // remove excess decimal places 
     let refinedNumber = removeExcessDecimalPlaces(stringedNumber);
     
-    //removes all non numbers for results length check
+    //removes all non numbers for digit length check
     let cleanedNumber = removeAllNonNumbers(refinedNumber);
 
-    //keeps result to 12 digits max and updates display
+    // Limit result to 12 digits max
     if (cleanedNumber.length > 12) {
-        //update refined number to zero if is small decimal;
+        // If it's a small proper decimal, display as 0
         if (isSmallProperDecimal(refinedNumber)) {
             refinedNumber = "0";
-            console.log(`refined number is ${refinedNumber} (should be zero)`);
-            return currentDisplayText.textContent = refinedNumber;
+            currentDisplayText.textContent = refinedNumber;
+            return 
         }
-            
-            clearAll();
-            return currentDisplayText.textContent = "NaN";
+        // Otherwise, it's too long or invalid — clear and show NaN
+        clearAll();
+        currentDisplayText.textContent = "NaN";
+        return
         }
        
-        currentDisplayText.textContent = refinedNumber;
-
+    currentDisplayText.textContent = refinedNumber;
+    return
 }  
 
 
@@ -452,21 +444,24 @@ function refineResultForDisplay(stringedNumber) {
 
 
 function operate(numberOne, operator, numberTwo, event) {
-     
-    // previousExpressionDisplay = `${numberOne} ${operator} ${numberTwo}`;
 
-    //converts from string into number;
+    // Define Unicode operator symbols for clarity
+    const plusOperator = "\u002B";
+    const minusOperator = "\u2212";
+    const multiplyOperator = "\u00D7";
+    const divideOperator = "\u00F7";
+
+    //converts from string into number for maths functions;
     numberOne = parseFloat(numberOne);
     numberTwo = parseFloat(numberTwo);
     
-    let value = undefined;
+    let value;
 
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
         currentDisplayText.textContent = "Clever!";
-        //why am i returning value? is it for result? could i do NaN?
-        return value;
+        return undefined;
     }
 
     //MATCHES OPERATOR VALUE WITH BASIC MATHS FUNCTION AND CALLS IT;
@@ -488,8 +483,8 @@ function operate(numberOne, operator, numberTwo, event) {
             value = divide(numberOne, numberTwo);
             break;
 
-        default: console.log("That is not a arthmetic operator");
-
+        default: 
+        return undefined;
     }
     
     //convert to result back to string
@@ -497,6 +492,7 @@ function operate(numberOne, operator, numberTwo, event) {
     
     console.log(`value after calculation in operate is ${value}`);
 
+    // Clean up result if it ends with 3+ zeros before a digit 
     if (hasTrailingZerosBeforeDigit(value))  {
          value = removeTrailingZerosAndFinalDigit(value);
     }
@@ -640,9 +636,9 @@ function addOperator(event) {
         let result = operate(numberOne, operator, numberTwo);
         operator = currentOperator;
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
-        
-        //Result will be undefined and display showing Clever!;
-        //could make this more clear
+
+        //If operate() returned undefined
+        //Result will be undefined and calculator will display Clever!;
         if(!isValidNumber(result)) {
             return;
         }
@@ -724,7 +720,8 @@ function resolveEquation(event) {
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
         removeClearEntryEventListener();
 
-        //when divide by zero exit out of whole function
+        //If operate() returned undefined
+        //calculator will display Clever!;
         if(!isValidNumber(result)) {
             previousExpressionDisplay.textContent = "";
             return;
