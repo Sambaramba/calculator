@@ -388,7 +388,6 @@ function isPrecise(stringedNumber) {
             return true;
     } 
 
-
     //for decimals
     let decimalNumberLength = getDecimalNumberLength(stringedNumber);
 
@@ -397,7 +396,6 @@ function isPrecise(stringedNumber) {
         return true;
     }
     
-
     //for integers
     let pureNumber = Number(stringedNumber);
     if (Number.isSafeInteger(pureNumber)) {
@@ -489,15 +487,12 @@ function operate(numberOne, operator, numberTwo, event) {
     
     //convert to result back to string
     value = value.toString();
-    
-    console.log(`value after calculation in operate is ${value}`);
 
     // Clean up result if it ends with 3+ zeros before a digit 
     if (hasTrailingZerosBeforeDigit(value))  {
          value = removeTrailingZerosAndFinalDigit(value);
     }
-    
-    
+
     return value;
 }
 
@@ -790,30 +785,30 @@ allClearButton.addEventListener("click", clearAll);
 
 function deleteCharacter(event) {
     
-    //readds number event
+    //re-enables number input once back under limit;
     if(currentDisplayNumber.length === 9) {
         addNumbersEventListener();
     }
+
     
-    //stores value of last character
     let lastCharacter = currentDisplayNumber.charAt(currentDisplayNumber.length - 1);
-    
-    //decrements count property if last character is number
-    if(Number(lastCharacter)) {
+    let numberCheck = /\d/;
+
+    //if last digit is number decrement the count
+    if(numberCheck.test(lastCharacter)) {
         --numbers.count;
     }
-    //stores number with last character removed
-    let numberMinusLastCharacter = currentDisplayNumber.slice(0, -1);
-
-    currentDisplayNumber = numberMinusLastCharacter;
-    currentDisplayText.textContent = numberMinusLastCharacter;
+    
+    //remove last digit and update current display
+    currentDisplayNumber = currentDisplayNumber.slice(0, -1);
+    currentDisplayText.textContent = currentDisplayNumber;
     
     if (currentDisplayNumber.length === 0) {
-        // delete numbers.count;
         removeDecimalPlaceEventListener();
-        currentDisplayNumber = "";
         removeClearEntryEventListener();
-        return currentDisplayText.textContent = "0";
+        currentDisplayNumber = "";
+        currentDisplayText.textContent = "0";
+        return;
     }
 }
 
