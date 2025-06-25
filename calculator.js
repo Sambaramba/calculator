@@ -831,9 +831,10 @@ function removeClearEntryEventListener() {
 function addDecimalPlace(event) {
 
     const decimalPlace = event.target.textContent;
-    if (!currentDisplayNumber.includes(decimalPlace) && isValidNumber(currentDisplayNumber)) {
-        currentDisplayNumber += decimalPlace;
-        currentDisplayText.textContent = currentDisplayNumber;
+    if (!currentDisplayNumber.includes(decimalPlace) && 
+        isValidNumber(currentDisplayNumber)) {
+            currentDisplayNumber += decimalPlace;
+            currentDisplayText.textContent = currentDisplayNumber;
      }
 }
 
@@ -853,20 +854,20 @@ function removeDecimalPlaceEventListener() {
 //=================================================
 
 
-//Object to store flag of held down keys
+//Tracks keys that are being held down;
 let heldDownKeys = {};
 
 //Code to attach keydown to click events for buttons
 document.addEventListener('keydown', (event) => {
     
-    //store key in variable
     let key = event.key;
-    // console.log(`key is ${key}`);
     event.preventDefault();
+
+    // Adds key to heldDownKeys with a true flag if it isn't already pressed
     if(heldDownKeys[key]) return;
     heldDownKeys[key] = true;
     
-    //
+    //trigger button click if key not already held
     switch(key) {
         case "Delete":
             allClearButton.click();
@@ -926,6 +927,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
+//reset key hold flag
 document.addEventListener("keyup", (event) => {
        heldDownKeys[event.key] = false;
 });
