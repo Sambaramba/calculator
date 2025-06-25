@@ -291,8 +291,9 @@ function removeTrailingZeros(stringedNumber) {
 }
 
 
-
-function removeZerosFollowedByEndNumber(stringedNumber) {
+/*Removes the last digit of a decimal or scientific notation number (as a string),
+then trims any trailing zeros from the resulting number.*/
+function removeTrailingZerosAndFinalDigit(stringedNumber) {
 
     if(typeof stringedNumber !== "string") {
         return undefined;
@@ -311,13 +312,13 @@ function removeZerosFollowedByEndNumber(stringedNumber) {
 
     } 
     //For decimals
-    else if (stringedNumber.includes(".")) {
+    if (stringedNumber.includes(".")) {
         removedEndDigitNumber = stringedNumber.slice(0, -1);
         removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
         return removedtrailingDigitsNumber;
-    } else  {
-       return undefined;
     }
+    //If netiher a decimal or a scientific notation number return undefined;
+    return undefined;
 }
 
 
@@ -497,7 +498,7 @@ function operate(numberOne, operator, numberTwo, event) {
     console.log(`value after calculation in operate is ${value}`);
 
     if (hasTrailingZerosBeforeDigit(value))  {
-         value = removeZerosFollowedByEndNumber(value);
+         value = removeTrailingZerosAndFinalDigit(value);
     }
     
     
