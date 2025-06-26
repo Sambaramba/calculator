@@ -230,8 +230,8 @@ function getDecimalNumberLength(stringedNumber) {
 
     if (stringedNumber.includes(".") && 
        !stringedNumber.toLowerCase().includes("e")) {
-            let cleanedDecimalNum = removeAllNonNumbers(stringedNumber);
-            return cleanedDecimalNum.length;   
+            let cleanedDecimalNumber = removeAllNonNumbers(stringedNumber);
+            return cleanedDecimalNumber.length;   
     }
 
     return undefined;
