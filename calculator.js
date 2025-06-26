@@ -458,6 +458,7 @@ function operate(numberOne, operator, numberTwo, event) {
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
         clearAll(event);
+        previousExpressionDisplay.textContent = "";
         currentDisplayText.textContent = "Clever!";
         return undefined;
     }
@@ -511,6 +512,7 @@ function addNumberToDisplay(event) {
     previousExpressionDisplay.textContent = "";
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
+    //seems superflouous
     if (currentDisplayNumber === undefined) {
         console.log("this aint no proper number");
         currentDisplayNumber = "";
@@ -611,7 +613,7 @@ function addOperator(event) {
     if (!isValidNumber(numberOne)&& isValidNumber(currentDisplayNumber)) {
         numberOne = currentDisplayNumber;
         currentDisplayNumber = "";
-        previousExpressionDisplay.textContent = `${numberOne} ${currentOperator}`;
+        // previousExpressionDisplay.textContent = `${numberOne} ${currentOperator}`;
         addNumbersEventListener();
     }
 
@@ -629,8 +631,9 @@ function addOperator(event) {
         
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
+        previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`
         operator = currentOperator;
-        previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`;
+        
 
         //If operate() returned undefined
         //Result will be undefined and calculator will display Clever!;
