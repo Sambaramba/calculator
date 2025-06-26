@@ -513,10 +513,10 @@ function addNumberToDisplay(event) {
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
     //seems superflouous
-    if (currentDisplayNumber === undefined) {
-        console.log("this aint no proper number");
-        currentDisplayNumber = "";
-    };
+    // if (currentDisplayNumber === undefined) {
+    //     console.log("this aint no proper number");
+    //     currentDisplayNumber = "";
+    // };
 
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
@@ -638,6 +638,8 @@ function addOperator(event) {
         //If operate() returned undefined
         //Result will be undefined and calculator will display Clever!;
         if(!isValidNumber(result)) {
+            previousExpressionDisplay.textContent = "";
+            // console.log(`currentDisplayNumber is ${currentDisplayNumber}`);
             return;
         }
         
