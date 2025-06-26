@@ -559,7 +559,7 @@ function addNumberToDisplay(event) {
         currentDisplayNumber += eventNum;
     }
 
-    console.log(`currentDisplayNumber at addNum end is ${currentDisplayNumber}`);
+    // console.log(`currentDisplayNumber at addNum end is ${currentDisplayNumber}`);
 
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
@@ -597,7 +597,8 @@ addNumbersEventListener();
 
 
 function addOperator(event) {
-    console.log(`type of current display number at addOp start is ${typeof currentDisplayNumber}`);
+
+    //Stores maths operator value;
     let currentOperator = event.target.textContent;
 
     //highlights current maths operator button;
@@ -627,22 +628,17 @@ function addOperator(event) {
             currentDisplayNumber = "";
     }
 
-
-    
-    //wack code block in another function?
+    //If variables have values carries out caluclation
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`
         
-
-        //If operate() returned undefined
+        //If operate() returned undefined;
         //Result will be undefined and calculator will display Clever!;
         if(!isValidNumber(result)) {
-            console.log(`operator after divide by 0 is ${operator}`);
             previousExpressionDisplay.textContent = "";
-            // console.log(`currentDisplayNumber is ${currentDisplayNumber}`);
             return;
         }
         
@@ -652,8 +648,7 @@ function addOperator(event) {
                 result = "0";
             } else {
                 clearAll();
-                previousDisplayNumber = `${result} =`;
-                previousExpressionDisplay.textContent = previousDisplayNumber;
+                previousExpressionDisplay.textContent = `${result} =`;
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }       
@@ -664,9 +659,10 @@ function addOperator(event) {
         operator = currentOperator;
         addNumbersEventListener();
         removeEqualsEventListener();
-        return refineResultForDisplay(result);    
+        refineResultForDisplay(result); 
+        return;  
     };
-
+    
     operator = currentOperator;
 
     //stops breaking calculator for repeat calculations;
@@ -674,7 +670,7 @@ function addOperator(event) {
         removeEqualsEventListener();   
     }
     
-    return
+    return;
     
 };
 
@@ -706,12 +702,12 @@ function resolveEquation(event) {
     //resets count for next number;
     delete numbers.count;
 
-    //stores first number for next calculation
+    // Enable chained equals by setting numberOne to the last result
     if(!isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && isValidNumber(numberTwo)) {
         numberOne = currentDisplayNumber;
     }
     
-    //Allows operate to run later in this function
+    //Assigns 2nd operand a value to allow equation to run;
     if (isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && !isValidNumber(numberTwo)) {
         numberTwo = currentDisplayNumber;
     }
@@ -730,11 +726,12 @@ function resolveEquation(event) {
             previousExpressionDisplay.textContent = "";
             return;
         }
-
+        
         if(!isPrecise(result)) {
             if (isSmallProperDecimal(result)) {
                 result = "0";
             } else {
+                //runs if lost precision and not small proper decimal;
                 clearAll();
                 previousDisplayNumber = `${result} =`
                 previousExpressionDisplay.textContent = previousDisplayNumber;
@@ -743,9 +740,10 @@ function resolveEquation(event) {
             }
                 
         }
-            numberOne = undefined;
-            currentDisplayNumber = result;
-            return refineResultForDisplay(result);
+        //runs if result is in acceptable limits
+        numberOne = undefined;
+        currentDisplayNumber = result;
+        return refineResultForDisplay(result);
         
     };   
 }
