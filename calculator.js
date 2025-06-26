@@ -31,10 +31,10 @@ const button8 = document.querySelector("#button-8");
 const button9 = document.querySelector("#button-9");
 
 //MATHS OPERATORS
-const divideBtn = document.querySelector("#divide-button");
-const multiplyBtn = document.querySelector("#multiply-button");
-const minusBtn = document.querySelector("#minus-button");
-const plusBtn = document.querySelector("#plus-button");
+const divideButton = document.querySelector("#divide-button");
+const multiplyButton = document.querySelector("#multiply-button");
+const minusButton = document.querySelector("#minus-button");
+const plusButton = document.querySelector("#plus-button");
 
 //Equals button
 const equalsButton = document.querySelector("#equals-button");
@@ -537,7 +537,7 @@ function addNumberToDisplay(event) {
     //also add events for dot,clear entry and maths ops
     if (!numbers.count) {
           numbers.count = 0;
-          addDecimalPlaceEventListener();
+          addDecimalPointEventListener();
           addClearEntryEventlistener();
           addArithmeticOperatorsEventListener();   
     };
@@ -809,7 +809,7 @@ function deleteCharacter(event) {
     currentDisplayText.textContent = currentDisplayNumber;
     
     if (currentDisplayNumber.length === 0) {
-        removeDecimalPlaceEventListener();
+        removeDecimalPointEventListener();
         removeClearEntryEventListener();
         currentDisplayNumber = "";
         currentDisplayText.textContent = "0";
@@ -918,16 +918,16 @@ document.addEventListener('keydown', (event) => {
             equalsButton.click();
             break;
         case "/":
-            divideBtn.click();
+            divideButton.click();
             break;
         case "*":
-            multiplyBtn.click();
+            multiplyButton.click();
             break;
         case "-":
-            minusBtn.click();
+            minusButton.click();
             break;
         case "+":
-            plusBtn.click();
+            plusButton.click();
             break;
         default: console.log("this shouldn't run");
     }
