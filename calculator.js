@@ -457,7 +457,7 @@ function operate(numberOne, operator, numberTwo, event) {
 
     //divided by zero code with snarky message;
     if (operator === divideOperator && (numberTwo === 0 || numberTwo === -0)) {
-        clearAll(event);
+        clearAll();
         previousExpressionDisplay.textContent = "";
         currentDisplayText.textContent = "Clever!";
         return undefined;
@@ -509,6 +509,7 @@ function operate(numberOne, operator, numberTwo, event) {
 //Numbers event function to them to display;
 function addNumberToDisplay(event) {
      
+
     previousExpressionDisplay.textContent = "";
     //this fixes issue after divide by zero
     //dont understand when displayNumber becomes undefined though
@@ -520,8 +521,8 @@ function addNumberToDisplay(event) {
 
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
-        previousExpressionDisplayNumber = `${numberOne} ${operator}`
-        previousExpressionDisplay.textContent = previousExpressionDisplayNumber;
+        // previousExpressionDisplayNumber = `${numberOne} ${operator}`
+        previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
     }
 
     //resets calculator after pressed equals;
@@ -557,6 +558,8 @@ function addNumberToDisplay(event) {
     } else {
         currentDisplayNumber += eventNum;
     }
+
+    console.log(`currentDisplayNumber at addNum end is ${currentDisplayNumber}`);
 
     
     //add equals listener when num1 and displayNums are finite nums and operator has truthy value
@@ -632,12 +635,12 @@ function addOperator(event) {
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
         previousExpressionDisplay.textContent = `${numberOne} ${operator} ${numberTwo} =`
-        operator = currentOperator;
         
 
         //If operate() returned undefined
         //Result will be undefined and calculator will display Clever!;
         if(!isValidNumber(result)) {
+            console.log(`operator after divide by 0 is ${operator}`);
             previousExpressionDisplay.textContent = "";
             // console.log(`currentDisplayNumber is ${currentDisplayNumber}`);
             return;
@@ -658,6 +661,7 @@ function addOperator(event) {
         //runs if result is in acceptable limits
         numberOne = result;
         numberTwo = undefined;
+        operator = currentOperator;
         addNumbersEventListener();
         removeEqualsEventListener();
         return refineResultForDisplay(result);    
@@ -769,6 +773,7 @@ function clearAll(event) {
     operator = undefined;
     numberTwo = undefined;
     numbers.count = 0;
+    // delete numbers.count;
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
     currentDisplayText.textContent = "0";
