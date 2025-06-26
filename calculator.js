@@ -9,7 +9,6 @@ let numberTwo = undefined;
 
 //VARIABLES THAT STORE DISPLAY VALUES
 let currentDisplayNumber = "";
-let previousExpressionDisplayNumber = "";
 
 
 //==========================================================
@@ -104,7 +103,7 @@ function removeAllNonNumbers(stringedNumber) {
 // --------------------------------------
 
 
-// Extracts exponent from scientific notation string (e.g. "1e-6" => "-6")
+// Extracts exponent from scientific notation string;
 function getExponent(stringedNumber) {
 
     //return exponent
@@ -213,9 +212,9 @@ function getScientificNumberLength(stringedNumber) {
 
             let cleanedSignificand = removeAllNonNumbers(significand);
             let cleanedExponent = removeAllNonNumbers(exponent);
-            //convert to both to numbers and add to find total digits;
+
+            //convert both to numbers and add together to find total digits;
             let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
-            console.log(`totalSignificantDigits = ${totalSignificantDigits}`)
             return totalSignificantDigits;       
     }
     return undefined;
@@ -713,7 +712,7 @@ function resolveEquation(event) {
     }
 
 
-    //CALCULATE AND DISPLAY RESULT CODE
+    //CALCULATE AND DISPLAY RESULT CODE IF ALL VARIABLES HAVE A VALUE
     if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
 
         let result = operate(numberOne, operator, numberTwo);
@@ -733,8 +732,7 @@ function resolveEquation(event) {
             } else {
                 //runs if lost precision and not small proper decimal;
                 clearAll();
-                previousDisplayNumber = `${result} =`
-                previousExpressionDisplay.textContent = previousDisplayNumber;
+                previousExpressionDisplay.textContent = `${result} =`
                 currentDisplayText.textContent = "Precision Error";
                 return;
             }
@@ -766,7 +764,6 @@ function removeEqualsEventListener() {
 
 function clearAll(event) {
     currentDisplayNumber = "";
-    previousExpressionDisplayNumber = "";
     numberOne = undefined;
     operator = undefined;
     numberTwo = undefined;
@@ -798,7 +795,6 @@ function deleteCharacter(event) {
         addNumbersEventListener();
     }
 
-    
     let lastCharacter = currentDisplayNumber.charAt(currentDisplayNumber.length - 1);
     let numberCheck = /\d/;
 
@@ -839,6 +835,7 @@ function removeClearEntryEventListener() {
 function addDecimalPlace(event) {
 
     const decimalPlace = event.target.textContent;
+
     if (!currentDisplayNumber.includes(decimalPlace) && 
         isValidNumber(currentDisplayNumber)) {
             currentDisplayNumber += decimalPlace;
