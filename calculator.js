@@ -246,38 +246,39 @@ function removeTrailingZeros(stringedNumber) {
      
     //exits out if scientific notation number;
     if (stringedNumber.includes("e")) {
-        console.log("we got some e in remove zeros func");
-        return stringedNumber;
-    }
-    //stores index of dp;
-    const decimalPlace = stringedNumber.indexOf(".");
-    
-    //if number doesn't contain dot return number as is;
-    if (decimalPlace === -1) {
         return stringedNumber;
     }
     
-    //splits into two parts at the index of the dp;
-    const beforeDecimalPlace = stringedNumber.slice(0, decimalPlace);
-    const afterDecimalPlace = stringedNumber.slice(decimalPlace);
+    const decimalPoint = stringedNumber.indexOf(".");
     
-    let afterDecimalArray = afterDecimalPlace.split("");
-    let minusTrailingZeros;
+    //exit out of function if number is an integer
+    if (decimalPoint === -1) {
+        return stringedNumber;
+    }
+    
+    //splits into two parts at the decimal place;
+    const beforeDecimalPoint = stringedNumber.slice(0, decimalPoint);
+    const afterDecimalPoint = stringedNumber.slice(decimalPoint);
+    
+    let afterDecimalPointArray = afterDecimalPoint.split("");
+    let withoutTrailingZeros;
 
     
-    //create array to remove trailing zeros
-    for (let i = afterDecimalArray.length; i >= 0; i--) {
+    //create array to remove all trailing zeros
+    for (let i = afterDecimalPointArray.length; i >= 0; i--) {
 
-            const lastCharacter = afterDecimalArray[afterDecimalArray.length - 1];
+            const lastCharacter = afterDecimalPointArray[afterDecimalPointArray.length - 1];
+
+            //check if last character is either 0 or decimal point
             if (lastCharacter === "0" || lastCharacter === ".") {
                     //then remove last character
-                    afterDecimalArray.pop();
+                    afterDecimalPointArray.pop();
             } 
             //change back to string when removed zeros off end;
-            minusTrailingZeros = afterDecimalArray.join("");
+            withoutTrailingZeros = afterDecimalPointArray.join("");
     }
     // attach two parts back together and return;
-    return beforeDecimalPlace + minusTrailingZeros;
+    return beforeDecimalPoint + withoutTrailingZeros;
 }
 
 
@@ -375,7 +376,7 @@ function removeExcessDecimalPlaces(stringedNumber) {
 
 
 
-//checks if number is in precise range returning true or false;
+//checks if number is in javascripts precise number range; returning true or false;
 function isPrecise(stringedNumber) {
 
     
@@ -427,9 +428,9 @@ function refineResultForDisplay(stringedNumber) {
         currentDisplayText.textContent = "NaN";
         return
         }
-       
+    //Display the refined result if in acceptable limits;   
     currentDisplayText.textContent = refinedNumber;
-    return
+    return;
 }  
 
 
