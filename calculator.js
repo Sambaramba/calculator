@@ -833,13 +833,13 @@ function removeClearEntryEventListener() {
 //=====================================================
 
 
-function addDecimalPlace(event) {
+function addDecimalPoint(event) {
 
-    const decimalPlace = event.target.textContent;
+    const decimalPoint = event.target.textContent;
 
-    if (!currentDisplayNumber.includes(decimalPlace) && 
+    if (!currentDisplayNumber.includes(decimalPoint) && 
         isValidNumber(currentDisplayNumber)) {
-            currentDisplayNumber += decimalPlace;
+            currentDisplayNumber += decimalPoint;
             currentDisplayText.textContent = currentDisplayNumber;
      }
 }
