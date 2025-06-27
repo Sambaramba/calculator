@@ -71,23 +71,29 @@ const arithmeticOperators = document.querySelectorAll(".arithmetic-operator");
 //============================================================
 
 
-//Reuseable number check
+// Checks if a value is a valid finite number or a numeric string
 function isValidNumber(value) {
-
-    if(typeof value === "number") {
+    
+    // Check if value is a number type and finite
+    if (typeof value === "number") {
         return Number.isFinite(value);
-    } else if (typeof value === "string") {
-        
+    }
+    // Check if value is a non-empty string representing a finite number
+    if (typeof value === "string") {
+        // empty or whitespace-only strings are invalid
         if (value.trim().length === 0 ) {
             return false;
         }
-        const number = Number(value);
-        return Number.isFinite(number);
-    } else { 
-        return false;
+        const numberFromString = Number(value);
+        return Number.isFinite(numberFromString);
     }
+
+    // All other types are invalid
+    return false;
     
 }
+
+
 
 //used for checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
