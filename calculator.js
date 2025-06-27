@@ -506,29 +506,28 @@ function operate(numberOne, operator, numberTwo, event) {
 
 
 
-//Numbers event function to them to display;
+//Numbers event function for adding them to variables and the display;
 function addNumberToDisplay(event) {
      
-
+    //resets previous display after precision errors
     previousExpressionDisplay.textContent = "";
     
 
-    //display 1st part of calculation for clarity;
+    //display 1st two parts of calculation for user clarity;
     if (isValidNumber(numberOne) && operator) {
-        // previousExpressionDisplayNumber = `${numberOne} ${operator}`
         previousExpressionDisplay.textContent = `${numberOne} ${operator}`;
     }
 
-    //resets calculator after pressed equals;
+    //resets calculator after equals was pressed;
     if (!isValidNumber(numberOne) && operator && isValidNumber(currentDisplayNumber)) {
         clearAll();
     }
 
-    //stores number value to add to display later;
+    //stores selected number value to add to current number and display;
     let eventNumber = event.target.textContent;
 
-    //Adds count variable if there isn't one already;
-    //also add events for dot,clear entry and maths ops
+    //Adds count variable if non exists
+    //also adds listeners for decimal point,clear entry and maths operators;
     if (!numbers.count) {
           numbers.count = 0;
           addDecimalPointEventListener();
@@ -544,22 +543,23 @@ function addNumberToDisplay(event) {
     
     //increment to keep record of current number length;
     ++numbers.count;
-
     
-    //Either replace displayNumber or add to it
+    
     if (currentDisplayNumber === "0") {
+        //replaces to stop adding multiple zeros at beginning
         currentDisplayNumber = eventNumber;
     } else {
+        //Otherwise adds number to end
         currentDisplayNumber += eventNumber;
     }
 
-    // console.log(`currentDisplayNumber at addNum end is ${currentDisplayNumber}`);
-
     
-    //add equals listener when num1 and displayNums are finite nums and operator has truthy value
+    //Only adds equals event when 2nd number variable conatins a number;
     if (isValidNumber(numberOne) && numbers.count === 1) {
         addEqualsEventListener();
     }
+
+    //Update with current number
     return currentDisplayText.textContent = currentDisplayNumber;
 };
 
