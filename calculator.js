@@ -116,16 +116,18 @@ function getExponent(stringedNumber) {
     return undefined;
 }
 
-// Extracts significand from scientific notation string
+// Extracts the significand 
 function getSignificand(stringedNumber) {
+    
+    const isScientificNotation =stringedNumber.toLowerCase().includes("e")
 
     //return significand
-    if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let significand = stringedNumber.slice(0, indexOfBase);
+    if(isScientificNotation) {
+        let exponentIndex = stringedNumber.toLowerCase().indexOf("e");
+        let significand = stringedNumber.slice(0, exponentIndex);
         return significand;
     }
-    //or return no value;
+    //return undefined if not scientific notation
     return undefined;
 }
 
