@@ -511,13 +511,7 @@ function addNumberToDisplay(event) {
      
 
     previousExpressionDisplay.textContent = "";
-    //this fixes issue after divide by zero
-    //dont understand when displayNumber becomes undefined though
-    //seems superflouous
-    // if (currentDisplayNumber === undefined) {
-    //     console.log("this aint no proper number");
-    //     currentDisplayNumber = "";
-    // };
+    
 
     //display 1st part of calculation for clarity;
     if (isValidNumber(numberOne) && operator) {
@@ -531,7 +525,7 @@ function addNumberToDisplay(event) {
     }
 
     //stores number value to add to display later;
-    let eventNum = event.target.textContent;
+    let eventNumber = event.target.textContent;
 
     //Adds count variable if there isn't one already;
     //also add events for dot,clear entry and maths ops
@@ -554,9 +548,9 @@ function addNumberToDisplay(event) {
     
     //Either replace displayNumber or add to it
     if (currentDisplayNumber === "0") {
-        currentDisplayNumber = eventNum;
+        currentDisplayNumber = eventNumber;
     } else {
-        currentDisplayNumber += eventNum;
+        currentDisplayNumber += eventNumber;
     }
 
     // console.log(`currentDisplayNumber at addNum end is ${currentDisplayNumber}`);
@@ -617,7 +611,6 @@ function addOperator(event) {
     if (!isValidNumber(numberOne)&& isValidNumber(currentDisplayNumber)) {
         numberOne = currentDisplayNumber;
         currentDisplayNumber = "";
-        // previousExpressionDisplay.textContent = `${numberOne} ${currentOperator}`;
         addNumbersEventListener();
     }
 
@@ -642,7 +635,7 @@ function addOperator(event) {
             return;
         }
         
-        // if runs when number has lost precision
+        
         if(!isPrecise(result)) {
             if (isSmallProperDecimal(result)) {
                 result = "0";
