@@ -198,14 +198,15 @@ function hasTrailingZerosBeforeDigit(stringedNumber) {
 //FIND NUMBERS LENGTH FUNCTIONS
 //--------------------------------------------------------------------
 
-
+//returns total length of scientific notation number or undefined;
 function getScientificNumberLength(stringedNumber) {
     
-    
+    //exits function if not a string
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
-    
+
+    //finds combined total length of both parts of scientific notation numbers
     if (stringedNumber.toLowerCase().includes("e")) {
             let significand = getSignificand(stringedNumber);
             let exponent = getExponent(stringedNumber);
@@ -217,23 +218,29 @@ function getScientificNumberLength(stringedNumber) {
             let totalSignificantDigits = Number(cleanedSignificand.length) + Number(cleanedExponent);
             return totalSignificantDigits;       
     }
+    //return undefined for other number types
     return undefined;
 }
 
 
-
+//Returns length of decimal number or undefined
 function getDecimalNumberLength(stringedNumber) {
     
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
-
-    if (stringedNumber.includes(".") && 
-       !stringedNumber.toLowerCase().includes("e")) {
-            let cleanedDecimalNumber = removeAllNonNumbers(stringedNumber);
+    const hasDecimalPoint = stringedNumber.includes(".");
+    const isScientificNotation = stringedNumber.toLowerCase().includes("e");
+    
+    
+    //Finds length for pure decimal numbers
+    if (hasDecimalPoint && 
+       !isScientificNotation) {
+            const cleanedDecimalNumber = removeAllNonNumbers(stringedNumber);
             return cleanedDecimalNumber.length;   
     }
-
+    
+    //Returns undefined for integers and scientific notation numbers
     return undefined;
 }
 
@@ -285,7 +292,7 @@ function removeTrailingZeros(stringedNumber) {
 /*Removes the last digit of a decimal or scientific notation number (as a string),
 then trims any trailing zeros from the resulting number.*/
 function removeTrailingZerosAndFinalDigit(stringedNumber) {
-
+    
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
@@ -308,7 +315,7 @@ function removeTrailingZerosAndFinalDigit(stringedNumber) {
         removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
         return removedtrailingDigitsNumber;
     }
-    //If netiher a decimal or a scientific notation number return undefined;
+    //If numbers netiher a decimal or in scientific notation form; return undefined;
     return undefined;
 }
 
@@ -356,15 +363,17 @@ function removeExcessDecimalPlaces(stringedNumber) {
         
     }
     
-    //variables to check if number starts with single num before decimal place.
+    //variables to check if number starts with only a single digit before the decimal ploint.
     const minusNumberThenDecimal = /^-\d\./;
     const numberThenDecimal = /^\d\./;
-
+    
+    //refine to 11 decimal place if it does;
     if (numberThenDecimal.test(stringedNumber) || 
         minusNumberThenDecimal.test(stringedNumber))
         {   
             refinedNumber = Number(stringedNumber).toFixed(11);
         } else {
+            //otherwise refine to 2 decimal places 
             refinedNumber = Number(stringedNumber).toFixed(2);
         };
     
@@ -376,7 +385,7 @@ function removeExcessDecimalPlaces(stringedNumber) {
 
 
 
-//checks if number is in javascripts precise number range; returning true or false;
+//Check if number is in javascripts precise number range; returning true or false;
 function isPrecise(stringedNumber) {
 
     
@@ -486,14 +495,14 @@ function operate(numberOne, operator, numberTwo, event) {
         return undefined;
     }
     
-    //convert to result back to string
+    //convert result back to string
     value = value.toString();
 
     // Clean up result if it ends with 3+ zeros before a digit 
     if (hasTrailingZerosBeforeDigit(value))  {
          value = removeTrailingZerosAndFinalDigit(value);
     }
-
+    
     return value;
 }
 
