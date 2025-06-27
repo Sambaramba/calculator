@@ -136,8 +136,8 @@ function getNonSignificandPart(stringedNumber) {
 
     //return exponent expression
      if(isScientificNotation) {
-        let exponentIndex = stringedNumber.toLowerCase().indexOf("e");
-        let nonSignificandPart = stringedNumber.slice(exponentIndex);
+        const exponentIndex = stringedNumber.toLowerCase().indexOf("e");
+        const nonSignificandPart = stringedNumber.slice(exponentIndex);
         return nonSignificandPart;
     }
     //return undefined if not scientific notation
