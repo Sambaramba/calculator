@@ -129,16 +129,18 @@ function getSignificand(stringedNumber) {
     return undefined;
 }
 
-// Returns the exponent part including "e" 
-function removeSignificand(stringedNumber) {
+// Returns the exponent part including "e" (the non-significand part)
+function getNonSignificandPart(stringedNumber) {
+    
+    const isScientificNotation =stringedNumber.toLowerCase().includes("e")
 
     //return exponent expression
-     if(stringedNumber.toLowerCase().includes("e")) {
-        let indexOfBase = stringedNumber.toLowerCase().indexOf("e");
-        let removedSignificandNumber = stringedNumber.slice(indexOfBase);
-        return removedSignificandNumber;
+     if(isScientificNotation) {
+        let exponentIndex = stringedNumber.toLowerCase().indexOf("e");
+        let nonSignificandPart = stringedNumber.slice(exponentIndex);
+        return nonSignificandPart;
     }
-    //or return no value;
+    //return undefined if not scientific notation
     return undefined;
 }
 
@@ -166,7 +168,7 @@ function isSmallProperDecimal(stringedNumber) {
 
 
 
-//Checks if decimal ends with 3+ zeros before a single digit
+//Checks if decimal ends with 3+ zeros before a single digit; returns true or false
 function hasTrailingZerosBeforeDigit(stringedNumber) {
 
     let numberToCheck = stringedNumber;
