@@ -95,7 +95,7 @@ function isValidNumber(value) {
 
 
 
-//used for checking absolute length of number
+//For checking absolute length of number
 function removeAllNonNumbers(stringedNumber) {
 
     //removes all non-number characters
@@ -360,39 +360,41 @@ function divide(a, b) {
 //===========================================================================
 
 
-
+// Refines a numeric string by removing excess decimal places
 function removeExcessDecimalPlaces(stringedNumber) {
     
-    let refinedNumber = undefined;
+    const isScientificNumber = stringedNumber.includes("e");
+    let refinedNumber;
     
-    //convert scientific notation numbers to normal number
-    if (stringedNumber.includes("e")) {
+    //for scientific notation numbers
+    if (isScientificNumber) {
         
-        let number = Number(stringedNumber);
-        let nonExponential = number.toFixed(15);
-        
+        const number = Number(stringedNumber);
+
+        //Convert to full decimal string
+        const nonExponential = number.toFixed(15);
+
+        //return stringed decimal number with trimmed trailing zeros
         return removeTrailingZeros(nonExponential);
         
     }
     
-    //variables to check if number starts with only a single digit before the decimal ploint.
-    const minusNumberThenDecimal = /^-\d\./;
-    const numberThenDecimal = /^\d\./;
+    // Match numbers that start with a single digit before the decimal point
+    const singleDigitThenDecimal = /^\d\./;
+    const negativeSingleDigitThenDecimal = /^-\d\./;
     
     //refine to 11 decimal place if it does;
-    if (numberThenDecimal.test(stringedNumber) || 
-        minusNumberThenDecimal.test(stringedNumber))
+    if (singleDigitThenDecimal.test(stringedNumber) || 
+        negativeSingleDigitThenDecimal.test(stringedNumber))
         {   
             refinedNumber = Number(stringedNumber).toFixed(11);
         } else {
-            //otherwise refine to 2 decimal places 
+            //Otherwise refine to 2 decimal places 
             refinedNumber = Number(stringedNumber).toFixed(2);
-        };
+        }
     
-    //remove zeros from end of number;
-    refinedNumber = removeTrailingZeros(refinedNumber);
-    
-    return refinedNumber;
+    //Trim trailing zeros
+    return removeTrailingZeros(refinedNumber);
 } 
 
 
