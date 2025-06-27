@@ -123,8 +123,8 @@ function getSignificand(stringedNumber) {
 
     //return significand
     if(isScientificNotation) {
-        let exponentIndex = stringedNumber.toLowerCase().indexOf("e");
-        let significand = stringedNumber.slice(0, exponentIndex);
+        const exponentIndex = stringedNumber.toLowerCase().indexOf("e");
+        const significand = stringedNumber.slice(0, exponentIndex);
         return significand;
     }
     //return undefined if not scientific notation
