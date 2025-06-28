@@ -302,33 +302,36 @@ function removeTrailingZeros(stringedNumber) {
 }
 
 
-/*Removes the last digit of a decimal or scientific notation number (as a string),
+/*Removes the last digit for decimal or scientific notation numbers (as a string),
 then trims any trailing zeros from the resulting number.*/
+//returns undefined for integers
 function removeTrailingZerosAndFinalDigit(stringedNumber) {
     
     if(typeof stringedNumber !== "string") {
         return undefined;
     }
     
-    let removedEndDigitNumber = undefined;
-    let removedtrailingDigitsNumber = undefined
+    const isScientificNotation = stringedNumber.toLowerCase().includes("e")
+    const hasDecimalPoint = stringedNumber.includes(".")
+    let withoutEndDigit;
+    let withoutEndDigitAndTrailingZeros;
 
-    ///for scientific notation numbers
-    if(stringedNumber.toLowerCase().includes("e")) {
+    //for scientific notation numbers
+    if(isScientificNotation) {
         let significand = getSignificand(stringedNumber);
         let nonSignificandPart = removeSignificand(stringedNumber);
-        removedEndDigitNumber = significand.slice(0, -1);
-        removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);
-        return removedtrailingDigitsNumber + nonSignificandPart;
+        withoutEndDigit = significand.slice(0, -1);
+        withoutEndDigitAndTrailingZeros = removeTrailingZeros(withoutEndDigit);
+        return withoutEndDigitAndTrailingZeros + nonSignificandPart;
 
     } 
     //For decimals
-    if (stringedNumber.includes(".")) {
-        removedEndDigitNumber = stringedNumber.slice(0, -1);
-        removedtrailingDigitsNumber = removeTrailingZeros(removedEndDigitNumber);  
-        return removedtrailingDigitsNumber;
+    if (hasDecimalPoint) {
+        withoutEndDigit = stringedNumber.slice(0, -1);
+        withoutEndDigitAndTrailingZeros = removeTrailingZeros(withoutEndDigit);  
+        return withoutEndDigitAndTrailingZeros;
     }
-    //If numbers netiher a decimal or in scientific notation form; return undefined;
+    //If numbers neither a decimal or in scientific notation form; return undefined;
     return undefined;
 }
 
@@ -402,28 +405,26 @@ function removeExcessDecimalPlaces(stringedNumber) {
 
 //Check if number is in javascripts precise number range; returning true or false;
 function isPrecise(stringedNumber) {
-
+     
+    if (typeof stringedNumber !== "string") return false;
     
-    //for Scientific Numbers
-    let scientificNotationLength = getScientificNumberLength(stringedNumber);
-    
-    if (scientificNotationLength <= 15 && 
-        scientificNotationLength !== undefined) {
-            return true;
+    //For Scientific Notation
+    const scientificLength = getScientificNumberLength(stringedNumber);
+    if (scientificLength !== undefined && scientificLength <= 15) {
+        return true;
     } 
 
-    //for decimals
-    let decimalNumberLength = getDecimalNumberLength(stringedNumber);
+    //For decimal numbers
+    const decimalLength = getDecimalNumberLength(stringedNumber);
 
-    if(decimalNumberLength <= 15 && 
-       decimalNumberLength !== undefined) {
+    if(decimalLength !== undefined && decimalLength <= 15) {
         return true;
     }
     
-    //for integers
-    let pureNumber = Number(stringedNumber);
-    if (Number.isSafeInteger(pureNumber)) {
-    return true;
+    //For integers
+    const numericValue = Number(stringedNumber);
+    if (Number.isSafeInteger(numericValue)) {
+        return true;
     }
     return false;
 }
