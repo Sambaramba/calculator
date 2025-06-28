@@ -179,30 +179,27 @@ function isSmallProperDecimal(stringedNumber) {
 
 
 //Checks if decimal ends with 3+ zeros before a single end digit; returns true or false
+//think can clean this up more
+//clearer to do SN and decimal nums seperatly
 function hasTrailingZerosBeforeDigit(stringedNumber) {
-
-    let numberToCheck = stringedNumber;
-    const endsWithZerosThenDigit = /(0{3,})\d$/;
     
     //Ensure input is a string: otherwise, return false
-    if(typeof stringedNumber !== "string") {
-        return false;
+    if(typeof stringedNumber !== "string") return false;
+
+    
+    const endsWithZerosThenDigit = /(0{3,})\d$/;
+    const isScientificNotation = stringedNumber.toLowerCase().includes("e")
+
+    if(isScientificNotation) {
+       const significand = getSignificand(stringedNumber);
+       return endsWithZerosThenDigit.test(significand);
     }
 
-    //return false if numbers not a decimal
-    if(!numberToCheck.includes(".")) {
-        return false;
+    //For Decimal numbers
+    if(stringedNumber.includes(".")) {
+       return endsWithZerosThenDigit.test(stringedNumber);
     }
     
-    //Extract significand if scientfic notation
-    if(stringedNumber.toLowerCase().includes("e")) {
-       const significand = getSignificand(stringedNumber);
-       numberToCheck = significand;
-    } 
-    //Test if the string ends with three or more zeros followed by a digit
-    if (endsWithZerosThenDigit.test(numberToCheck)) {
-         return true;
-    }
     return false;
 }
 
@@ -246,8 +243,7 @@ function getDecimalNumberLength(stringedNumber) {
     
     
     //Finds length for pure decimal numbers
-    if (hasDecimalPoint && 
-       !isScientificNotation) {
+    if (hasDecimalPoint && !isScientificNotation) {
             const cleanedDecimalNumber = removeAllNonNumbers(stringedNumber);
             return cleanedDecimalNumber.length;   
     }
