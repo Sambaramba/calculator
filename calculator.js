@@ -160,7 +160,7 @@ function getNonSignificandPart(stringedNumber) {
 //SCIENTIFIC NOTATION / NUMBER FORMAT HELPERS
 //=====================================================================
 
-//Checks if number starts with 0.0000/00000 (small decimals);
+//Checks if number starts with 0.0000/00000 (small decimals); returns true or false
 function isSmallProperDecimal(stringedNumber) {
 
      //for scientific notation numbers
@@ -178,7 +178,7 @@ function isSmallProperDecimal(stringedNumber) {
 
 
 
-//Checks if decimal ends with 3+ zeros before a single digit; returns true or false
+//Checks if decimal ends with 3+ zeros before a single end digit; returns true or false
 function hasTrailingZerosBeforeDigit(stringedNumber) {
 
     let numberToCheck = stringedNumber;
@@ -194,7 +194,7 @@ function hasTrailingZerosBeforeDigit(stringedNumber) {
         return false;
     }
     
-    //Extract significand if numbers is scientfic notation
+    //Extract significand if scientfic notation
     if(stringedNumber.toLowerCase().includes("e")) {
        const significand = getSignificand(stringedNumber);
        numberToCheck = significand;
@@ -218,7 +218,7 @@ function getScientificNumberLength(stringedNumber) {
         return undefined;
     }
 
-    //finds combined total length of both parts of scientific notation numbers
+    //finds combined total length of significand and exponent expression if scientific notation
     if (stringedNumber.toLowerCase().includes("e")) {
             let significand = getSignificand(stringedNumber);
             let exponent = getExponent(stringedNumber);
@@ -263,8 +263,9 @@ function getDecimalNumberLength(stringedNumber) {
 
 function removeTrailingZeros(stringedNumber) {
      
-    //exits out if scientific notation number;
-    if (stringedNumber.includes("e")) {
+    const isScientificNotation = stringedNumber.includes("e")
+    
+    if (isScientificNotation) {
         return stringedNumber;
     }
     
