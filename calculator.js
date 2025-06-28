@@ -416,7 +416,6 @@ function isPrecise(stringedNumber) {
 
     //For decimal numbers
     const decimalLength = getDecimalNumberLength(stringedNumber);
-
     if(decimalLength !== undefined && decimalLength <= 15) {
         return true;
     }
@@ -446,12 +445,12 @@ function refineResultForDisplay(stringedNumber) {
         if (isSmallProperDecimal(refinedNumber)) {
             refinedNumber = "0";
             currentDisplayText.textContent = refinedNumber;
-            return 
+            return; 
         }
         // Otherwise, it's too long or invalid — clear and show NaN
         clearAll();
         currentDisplayText.textContent = "NaN";
-        return
+        return;
         }
     //Display the refined result if in acceptable limits;   
     currentDisplayText.textContent = refinedNumber;
@@ -628,7 +627,7 @@ function addOperator(event) {
     
 
     //resets 2nd num value for repeat operations
-    if(isValidNumber(numberTwo)) {
+    if (isValidNumber(numberTwo)) {
         numberTwo = undefined;
     }
 
@@ -647,7 +646,7 @@ function addOperator(event) {
     }
 
     //If variables have values carries out caluclation
-    if(isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
+    if (isValidNumber(numberOne) && operator && isValidNumber(numberTwo)) {
         
         //return stringed number/undefined;
         let result = operate(numberOne, operator, numberTwo);
@@ -655,13 +654,13 @@ function addOperator(event) {
         
         //If operate() returned undefined;
         //Result will be undefined and calculator will display Clever!;
-        if(!isValidNumber(result)) {
+        if (!isValidNumber(result)) {
             previousExpressionDisplay.textContent = "";
             return;
         }
         
         
-        if(!isPrecise(result)) {
+        if (!isPrecise(result)) {
             if (isSmallProperDecimal(result)) {
                 result = "0";
             } else {
@@ -854,9 +853,7 @@ function removeClearEntryEventListener() {
 function addDecimalPoint(event) {
 
     const decimalPoint = event.target.textContent;
-
-    if (!currentDisplayNumber.includes(decimalPoint) && 
-        isValidNumber(currentDisplayNumber)) {
+    if (isValidNumber(currentDisplayNumber) && !currentDisplayNumber.includes(decimalPoint)) {
             currentDisplayNumber += decimalPoint;
             currentDisplayText.textContent = currentDisplayNumber;
      }
