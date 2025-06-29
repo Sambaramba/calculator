@@ -616,7 +616,6 @@ function addOperator(event) {
     
     //delete count property until next number buttons pressed
     delete numbers.count;
-    // numbers.count = 0;
     
 
     //resets 2nd number variables value for repeat operations
@@ -681,13 +680,12 @@ function addOperator(event) {
     if(isValidNumber(numberOne) && operator && !isValidNumber(numberTwo)) {
         removeEqualsEventListener();   
     }
-    
+
     return;
     
 };
 
 //maths operators event listener;
-
 function addArithmeticOperatorsEventListener() {
     arithmeticOperators.forEach ((operator) => {
         operator.addEventListener("click", addOperator);
@@ -710,9 +708,8 @@ function removeArithmeticOperatorsEventListener() {
 
 function resolveEquation(event) {
 
-    //resets count for next number;
+    //delete count property until next number buttons pressed
     delete numbers.count;
-    // numbers.count = 0;
 
     // Enable chained equals by setting numberOne to the last result
     if(!isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && isValidNumber(numberTwo)) {
@@ -760,7 +757,6 @@ function resolveEquation(event) {
 }
 
 //Equals click event add/remove code
-
 function addEqualsEventListener() {
     equalsButton.addEventListener("click", resolveEquation);
 }
@@ -781,7 +777,6 @@ function clearAll(event) {
     operator = undefined;
     numberTwo = undefined;
     numbers.count = 0;
-    // delete numbers.count
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
     currentDisplayText.textContent = "0";
@@ -820,6 +815,7 @@ function deleteCharacter(event) {
     currentDisplayNumber = currentDisplayNumber.slice(0, -1);
     currentDisplayText.textContent = currentDisplayNumber;
     
+    // If all characters are deleted, reset display to "0" and disable decimal and CE buttons
     if (currentDisplayNumber.length === 0) {
         removeDecimalPointEventListener();
         removeClearEntryEventListener();
