@@ -542,8 +542,8 @@ function addNumberToDisplay(event) {
     //stores selected number value to add to current number and display;
     let eventNumber = event.target.textContent;
 
-    //Adds count variable if non exists
-    //also adds listeners for decimal point,clear entry and maths operators;
+    //Add count when add first number to display
+    //Add listeners for decimal point,clear entry and maths operators;
     if (!numbers.count) {
           numbers.count = 0;
           addDecimalPointEventListener();
@@ -608,17 +608,18 @@ addNumbersEventListener();
 
 function addOperator(event) {
 
-    //Stores maths operator value;
+    //Stores value of selected maths operator
     let currentOperator = event.target.textContent;
 
     //highlights current maths operator button;
     event.target.focus();
     
-    //delete count property until next num btn is pressed
+    //delete count property until next number buttons pressed
     delete numbers.count;
+    // numbers.count = 0;
     
 
-    //resets 2nd num value for repeat operations
+    //resets 2nd number variables value for repeat operations
     if (isValidNumber(numberTwo)) {
         numberTwo = undefined;
     }
@@ -653,9 +654,11 @@ function addOperator(event) {
         
         
         if (!isPrecise(result)) {
+            //If pass test update result to zero
             if (isSmallProperDecimal(result)) {
                 result = "0";
             } else {
+                //Reset calculator and inform user in displays
                 clearAll();
                 previousExpressionDisplay.textContent = `${result} =`;
                 currentDisplayText.textContent = "Precision Error";
@@ -705,11 +708,11 @@ function removeArithmeticOperatorsEventListener() {
 //=====================================================
 
 
-/*does not give correct answers for scientific notation*/
 function resolveEquation(event) {
 
     //resets count for next number;
     delete numbers.count;
+    // numbers.count = 0;
 
     // Enable chained equals by setting numberOne to the last result
     if(!isValidNumber(numberOne) && isValidNumber(currentDisplayNumber) && isValidNumber(numberTwo)) {
@@ -778,7 +781,7 @@ function clearAll(event) {
     operator = undefined;
     numberTwo = undefined;
     numbers.count = 0;
-    // delete numbers.count;
+    // delete numbers.count
     removeNumbersEventListener();
     removeArithmeticOperatorsEventListener();
     currentDisplayText.textContent = "0";
@@ -853,7 +856,7 @@ function addDecimalPoint(event) {
 
 
 function addDecimalPointEventListener() {
-    decimalPointButton.addEventListener("click", addDecimalPoint, {once: true});
+    decimalPointButton.addEventListener("click", addDecimalPoint);
 }
 
 function removeDecimalPointEventListener() {
