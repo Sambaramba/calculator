@@ -179,8 +179,6 @@ function isSmallProperDecimal(stringedNumber) {
 
 
 //Checks if decimal ends with 3+ zeros before a single end digit; returns true or false
-//think can clean this up more
-//clearer to do SN and decimal nums seperatly
 function hasTrailingZerosBeforeDigit(stringedNumber) {
     
     //Ensure input is a string: otherwise, return false
@@ -199,7 +197,8 @@ function hasTrailingZerosBeforeDigit(stringedNumber) {
     if(stringedNumber.includes(".")) {
        return endsWithZerosThenDigit.test(stringedNumber);
     }
-    
+
+    //Returns false for integers
     return false;
 }
 
@@ -256,45 +255,42 @@ function getDecimalNumberLength(stringedNumber) {
 //REMOVE ZEROS FUNCTIONS
 //--------------------------------------------------------------------
 
-
+// Returns the input string with trailing zeros removed from the decimal portion, if any
 function removeTrailingZeros(stringedNumber) {
      
     const isScientificNotation = stringedNumber.includes("e")
-    
     if (isScientificNotation) {
         return stringedNumber;
     }
     
     const decimalPoint = stringedNumber.indexOf(".");
-    
-    //exit out of function if number is an integer
+    // Return early if the number is an integer 
     if (decimalPoint === -1) {
         return stringedNumber;
     }
     
-    //splits into two parts at the decimal place;
+    // Split the string into two parts: before and after the decimal point
     const beforeDecimalPoint = stringedNumber.slice(0, decimalPoint);
-    const afterDecimalPoint = stringedNumber.slice(decimalPoint);
+    const afterDecimalPoint = stringedNumber.slice(decimalPoint + 1);
     
     let afterDecimalPointArray = afterDecimalPoint.split("");
-    let withoutTrailingZeros;
-
     
-    //create array to remove all trailing zeros
-    for (let i = afterDecimalPointArray.length; i >= 0; i--) {
 
-            const lastCharacter = afterDecimalPointArray[afterDecimalPointArray.length - 1];
-
-            //check if last character is either 0 or decimal point
-            if (lastCharacter === "0" || lastCharacter === ".") {
-                    //then remove last character
-                    afterDecimalPointArray.pop();
-            } 
-            //change back to string when removed zeros off end;
-            withoutTrailingZeros = afterDecimalPointArray.join("");
+    // Remove trailing zeros and the decimal point if no digits remain after it
+    while (
+        afterDecimalPointArray.length > 0 && 
+        afterDecimalPointArray[afterDecimalPointArray.length - 1] === "0"
+    ) {
+        afterDecimalPointArray.pop();
     }
-    // attach two parts back together and return;
-    return beforeDecimalPoint + withoutTrailingZeros;
+    // Convert the array back to a string after trimming
+    const withoutTrailingZeros = afterDecimalPointArray.join("");
+
+    if (withoutTrailingZeros.length === 0) {
+        return beforeDecimalPoint
+    }
+    //Attach two parts back together and return the result;
+    return beforeDecimalPoint + "." + withoutTrailingZeros;
 }
 
 
@@ -460,7 +456,7 @@ function refineResultForDisplay(stringedNumber) {
 //=============================================================================================
 
 
-
+//
 function operate(numberOne, operator, numberTwo, event) {
 
     // Define Unicode operator symbols for clarity
