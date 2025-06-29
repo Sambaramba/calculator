@@ -311,7 +311,7 @@ function removeTrailingZerosAndFinalDigit(stringedNumber) {
     //for scientific notation numbers
     if(isScientificNotation) {
         let significand = getSignificand(stringedNumber);
-        let nonSignificandPart = removeSignificand(stringedNumber);
+        let nonSignificandPart = getNonSignificandPart(stringedNumber);
         withoutEndDigit = significand.slice(0, -1);
         withoutEndDigitAndTrailingZeros = removeTrailingZeros(withoutEndDigit);
         return withoutEndDigitAndTrailingZeros + nonSignificandPart;
