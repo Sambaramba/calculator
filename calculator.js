@@ -820,6 +820,7 @@ function deleteCharacter(event) {
         removeDecimalPointEventListener();
         removeClearEntryEventListener();
         currentDisplayNumber = "";
+        previousExpressionDisplay.textContent = "";
         currentDisplayText.textContent = "0";
         return;
     }
