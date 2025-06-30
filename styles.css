@@ -7,7 +7,7 @@
     --violet-highlight: hsl(280, 82%, 89%);
     --green-highlight: hsl(115, 72%, 63%);
     --green: hsl(118, 80%, 44%);
-    /* --bright-green: hsl(109, 43%, 36%); */
+    --bright-green: hsl(109, 43%, 36%);
     --blue-highlight: hsl(192, 83%, 84%);
     --blue: hsl(204, 88%, 75%);
     --bright-blue: hsl(192, 96%, 49%);
@@ -53,7 +53,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 2.5rem;
+    font-size: 2.5rem;s
 }
 
 html {
@@ -84,7 +84,6 @@ body {
 
 .medium {
     font-size: 2.5rem;
-    /* font-weight: 600; */
 }
 
 .large {
@@ -100,10 +99,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid black; */
     border-radius: 1rem;
     padding: 2rem 1rem 4rem 1rem;
-    /* padding-bottom: 4rem; */
     width: 40rem;
     height: 50rem;
     gap: 1rem;
@@ -175,7 +172,6 @@ body {
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
-    /* gap: 0.5rem; */
     padding: 0.5rem;
 }
 
@@ -184,8 +180,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    /* flex: 1 1 auto;
-    gap: 2rem; */
     width: 100%;
 }
 
@@ -197,13 +191,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    /* gap: 0.5rem; */
     padding: 0.5rem;
 }
 
 
 button {
-    /* padding: 2rem 2.5rem; */
     border: 0.25rem solid var(--purple);
     position: relative;
     cursor: pointer;
@@ -227,34 +219,17 @@ button {
     height: 5.75rem;
 }
 
-
-
-/*#ac-button {
-    padding: 2rem;
-    border-radius: 1rem 0 0 1rem;
-    border: 0.25rem solid var(--bright-orange);
-    background-color: var(--light-orange);
-    height: 100%;
-    width: 7rem;
-}*/
-
-/*#ce-button {
-    border-radius: 0 1rem 1rem 0;
-}*/
-
 #ac-button, 
 #ce-button {
     border: 0.25rem solid var(--bright-orange);
     width: 5rem;
     height: 5rem;
-    /* background-color : var(--light-orange); */
-    /* height: 4rem;
-    width: 10rem;
-    border-radius: 0.5rem;
-    padding-bottom: 4rem; */
 }
 
-/*shading styles*/
+
+//================================================
+/*SHADING STYLES*/
+//=================================================
 
 /*BEFORE BUTTON STYLES*/
 
@@ -430,56 +405,3 @@ button:active {
 .green:focus::before {
     background-color: var(--bright-orange-highlight);
 }
-
-
-//===========================================================
-//MEDIA QUERIES
-//==============================================================
-
-
-/* Small devices: 600px and up
-@media only screen and (min-width: 600px) and (max-width: 767.98px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-/* Medium devices and up: 768px and above (desktop) */
-/* @media only screen and (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-} */
-
-
-
-
-/* @media (min-width: 480px) {
-  html {
-    font-size: 11px;
-  }
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1024px) {
-  html {
-    font-size: 13px;
-  }
-}
-
-@media (min-width: 1280px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1440px) {
-  html {
-    font-size: 16px; /* default desktop */
-  }
-} */
